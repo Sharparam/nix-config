@@ -26,6 +26,7 @@
       self,
       utils,
       nixpkgs,
+      nixpkgs-unstable,
       lix-module,
       darwin,
       home-manager,
@@ -85,6 +86,14 @@
       processConfigurations = lib.mapAttrs (n: v: v n);
     in
     {
+      lib = lib.my;
+      overlays.default = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = prev.system;
+          config.allowUnfree = true;
+        };
+        my = self.packages."${prev.system}";
+      };
       nixosConfigurations = processConfigurations {
         nixos = nixosSystem "x86_64-linux" [ ./hosts/nixos/default.nix ];
       };
@@ -98,6 +107,7 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [ nixfmt ];
         };
+        packages = lib.my.mapModules ./packages (p: pkgs.callPackage p { inputs = inputs; });
       }
     );
 }
