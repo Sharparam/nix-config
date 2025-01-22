@@ -3,5 +3,6 @@
   "editor.formatOnSaveMode": "file",
   "[nix]": {
     "editor.defaultFormatter": "jnoortheen.nix-ide"
-  }
+  },
+  "makefile.configureOnOpen": false
 }
