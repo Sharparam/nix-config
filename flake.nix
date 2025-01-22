@@ -60,6 +60,7 @@
         in
         nixpkgs.lib.nixosSystem rec {
           inherit system;
+          specialArgs = { inherit lib inputs; };
           modules = [
             lix-module.nixosModules.default
             home-manager.nixosModules.home-manager
