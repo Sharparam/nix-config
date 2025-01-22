@@ -34,7 +34,7 @@
   services.desktopManager.plasma6.enable = true;
 
   services.qemuGuest.enable = true;
-  services.spicee-vdagentd.enable = true;
+  services.spice-vdagentd.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
