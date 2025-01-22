@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+REV=$(curl -sSL https://api.github.com/repos/Sharparam/nix-dotfiles/branches/main | jq -r .commit.sha)
+
+if [[ $(uname) == "Linux" ]]; then
+  sudo nixos-rebuild switch --flake "github:Sharparam/nix-dotfiles?rev=$REV" -L
+else # Darwin
+  darwin-rebuild switch --flake "github:Sharparam/nix-dotfiles?rev=$REV" -L
+fi
