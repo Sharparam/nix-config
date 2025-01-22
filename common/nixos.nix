@@ -19,7 +19,7 @@ with lib.my;
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "Europe/Stockholm";
   console.keyMap = "us";
