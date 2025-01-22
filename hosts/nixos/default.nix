@@ -40,8 +40,6 @@
     # thunderbird
   ];
 
-  programs.home-manager.enable = true;
-  home.stateVersion = "24.11";
   home-manager.users.sharparam =
     {
       pkgs,
@@ -54,5 +52,8 @@
       imports = [
         ../../modules/hm/cli.nix
       ];
+
+      programs.home-manager.enable = true;
+      home.stateVersion = "24.11";
     };
 }
