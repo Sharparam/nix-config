@@ -105,8 +105,8 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [ nixfmt ];
+        devShells.default = pkgs.mkShell {
+          buildInputs = with pkgs; [ nixfmt-rfc-style ];
         };
         packages = lib.my.mapModules ./packages (p: pkgs.callPackage p { inputs = inputs; });
       }
