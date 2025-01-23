@@ -6,7 +6,6 @@
   ...
 }:
 {
-  home.stateVersion = lib.mkDefault "24.11";
   home.packages = with pkgs; [
     my.scripts
     aria2
