@@ -9,7 +9,7 @@
 with lib;
 with lib.${namespace};
 {
-  ${namespace} = {
+  sharparam = {
     tools = {
       home-manager = enabled;
       git = enabled;
