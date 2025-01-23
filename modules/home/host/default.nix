@@ -10,7 +10,7 @@
 with lib;
 with lib.${namespace};
 {
-  optionis.${namespace}.host = {
+  options.${namespace}.host = {
     name = mkOpt (types.nullOr types.str) host "The hostname.";
   };
 }
