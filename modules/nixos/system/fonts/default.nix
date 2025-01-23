@@ -11,7 +11,7 @@ let
   cfg = config.${namespace}.system.fonts;
 in
 {
-  options.${namespace}.system.fonts = {
+  options.${namespace}.system.fonts = with types; {
     enable = mkEnableOption "${namespace}.config.fonts.enable";
     fonts = mkOpt (listOf package) [ ] "Custom font packages to install.";
   };
