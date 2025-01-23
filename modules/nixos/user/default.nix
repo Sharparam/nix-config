@@ -54,6 +54,7 @@ in
 
   config = {
     environment.systemPackages = with pkgs; [ propagatedIcon ];
+    environment.localBinInPath = true;
 
     programs.zsh = {
       enable = true;
