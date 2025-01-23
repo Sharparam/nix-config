@@ -18,7 +18,7 @@ in
     console.useXkbConfig = true;
     services.xserver.xkb = {
       layout = "eu";
-      variant = "altgr-intl";
+      # variant = "altgr-intl";
       options = "caps:escape_shifted_compose,compose:rwin";
     };
   };
