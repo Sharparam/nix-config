@@ -1,51 +1,128 @@
 {
-  config,
   lib,
   pkgs,
+  namespace,
+  config,
   ...
 }:
+with lib;
+with lib.${namespace};
 let
-  cfg = config.sharparam.user;
-  uid = cfg.uid;
-  username = cfg.username;
-  description = cfg.description;
-  extraGroups = cfg.extraGroups;
-in
-{
-  options.sharparam.user = {
-    enable = lib.mkEnableOption "Enables the sharparam user.";
-    uid = lib.mkOption {
-      type = lib.types.nullOr lib.types.int;
-      default = 1000;
-      description = "UID for this system.";
-    };
-    username = lib.mkOption {
-      type = lib.types.str;
-      default = "sharparam";
-      description = "Username for this system.";
-    };
-    description = lib.mkOption {
-      type = lib.types.str;
-      default = "Adam Hellberg";
-      description = "Description for the user.";
-    };
-    extraGroups = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      description = "Extra groups for the user.";
+  cfg = config.${namespace}.user;
+  defaultIconFileName = "profile.png";
+  defaultIcon = pkgs.stdenvNoCC.mkDerivation {
+    name = "default-icon";
+    src = ./. + "/${defaultIconFileName}";
+
+    dontUnpack = true;
+
+    installPhase = ''
+      cp $src $out
+    '';
+
+    passthru = {
+      fileName = defaultIconFileName;
     };
   };
+  propagatedIcon =
+    pkgs.runCommandNoCC "propagated-icon"
+      {
+        passthru = {
+          fileName = cfg.icon.fileName;
+        };
+      }
+      ''
+        local target="$out/share/${namespace}-icons/user/${cfg.name}"
+        mkdir -p "$target"
 
-  config = lib.mkIf cfg.enable {
-    environment.localBinInPath = true;
-    programs.zsh.enable = true;
+        cp ${cfg.icon} "$target/${cfg.icon.fileName}"
+      '';
+in
+{
+  options.${namespace}.user = with types; {
+    name = mkOpt str "sharparam" "The name to use for the user account.";
+    fullName = mkOpt str "Adam Hellberg" "The full name of the user.";
+    email = mkOpt str "sharparam@sharparam.com" "The email of the user.";
+    initialPassword =
+      mkOpt str "password"
+        "The initial password to use when the user is first created.";
+    icon = mkOpt (nullOr package) defaultIcon "The profile picture to use for the user.";
+    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
+    extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
+    extraOptions = mkOpt attrs { } (mdDoc "Extra options passed to `users.users.<name>`.");
+  };
 
-    users.users.${username} = {
-      isNormalUser = true;
-      uid = uid;
-      description = description;
-      extraGroups = [ "wheel" ] ++ extraGroups;
-      shell = pkgs.zsh;
+  config = {
+    environment.systemPackages = with pkgs; [ propagatedIcon ];
+
+    programs.zsh = {
+      enable = true;
+      autosuggestions.enable = true;
+      histFile = "$XDG_CACHE_HOME/zsh.history";
     };
+
+    ${namespace}.home = {
+      file = {
+        "repos/.keep".text = "";
+        ".face".source = cfg.icon;
+        "Pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
+      };
+
+      extraOptions = {
+        home.shellAliases = {
+          g = "git";
+          gc = "git commit";
+          gp = "git push";
+        };
+      };
+
+      programs = {
+        zsh = {
+          enable = true;
+          enableCompletion = true;
+          syntaxHighlighting.enable = true;
+          autoSuggestion.enable = true;
+          initExtra = ''
+            # Use Vim keybindings
+            set -o vi
+            # Improved Vim bindings
+            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+          '';
+          shellAliases = {
+            ll = "ls -l";
+          };
+          plugins = [
+            {
+              name = "zsh-nix-shell";
+              file = "nix-shell.plugin.zsh";
+              src = pkgs.fetchFromGitHub {
+                owner = "chisui";
+                repo = "zsh-nix-shell";
+                rev = "v0.4.0";
+                sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+              };
+            }
+          ];
+        };
+        starship = {
+          enable = true;
+        };
+      };
+    };
+
+    users.users.${cfg.name} = {
+      isNormalUser = true;
+
+      inherit (cfg) name initialPassword;
+
+      home = "/home/${cfg.name}";
+      group = "users";
+
+      shell = pkgs.zsh;
+
+      uid = 1000;
+
+      extraGroups = cfg.extraGroups;
+    } // cfg.extraOptions;
   };
 }
