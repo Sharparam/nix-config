@@ -9,7 +9,6 @@
 with lib;
 with lib.${namespace};
 {
-  environment.localBinInPath = true;
   ${namespace} = {
     tools = {
       home-manager = enabled;

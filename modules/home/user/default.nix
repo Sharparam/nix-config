@@ -44,6 +44,7 @@ in
           message = "${namespace}.user.home must be set";
         }
       ];
+      environment.localBinInPath = true;
       home = {
         username = mkDefault cfg.name;
         homeDirectory = mkDefault cfg.home;
