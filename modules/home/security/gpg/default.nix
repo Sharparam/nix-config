@@ -10,7 +10,7 @@ let
   cfg = config.${namespace}.security.gpg;
 in
 {
-  options.${namespace}.security.gpg = {
+  options.${namespace}.security.gpg = with types; {
     enable = mkEnableOption "Enable GPG";
     defaultKey = mkOpt (nullOr str) "0xC58C41E27B00AD04" "Default key ID";
     trustedKey = mkOpt (nullOr str) "0xC58C41E27B00AD04" "Trusted key ID";
