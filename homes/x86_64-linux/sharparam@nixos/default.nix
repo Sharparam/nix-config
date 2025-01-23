@@ -14,6 +14,10 @@ with lib.${namespace};
       gpg = enabled;
     };
 
+    apps = {
+      kitty = enabled;
+    };
+
     tools = {
       home-manager = enabled;
       comma = enabled;
@@ -21,7 +25,6 @@ with lib.${namespace};
       git = enabled;
       htop = enabled;
       hyfetch = enabled;
-      kitty = enabled;
       zsh = enabled;
       ssh = enabled;
     };
