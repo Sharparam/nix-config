@@ -17,6 +17,7 @@ with lib.${namespace};
       git = enabled;
       htop = enabled;
       hyfetch = enabled;
+      kitty = enabled;
       zsh = enabled;
     };
   };
