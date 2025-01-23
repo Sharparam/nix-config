@@ -33,11 +33,9 @@ in
 
   config = mkIf cfg.enable {
     home.file.".ssh/id_yubikey_gpg.pub".source = ./id_yubikey_gpg.pub;
-    home.activation.fixSshPermissions =
-      lib.home-manager.hm.dag.entryAfter [ "writeBoundary" "linkGeneration" ]
-        ''
-          run chmod $VERBOSE_ARG 600 $HOME/.ssh
-        '';
+    home.activation.fixSshPermissions = lib.home-manager.hm.dag.entryAfter [ "writeBoundary" ] ''
+      run chmod $VERBOSE_ARG 700 $HOME/.ssh
+    '';
     programs.ssh = {
       enable = true;
       controlMaster = "auto";
