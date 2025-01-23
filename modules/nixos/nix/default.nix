@@ -8,11 +8,11 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.${namespace}.config.nix;
-  user = config.${namespace}.config.user;
+  cfg = config.${namespace}.nix;
+  user = config.${namespace}.user;
 in
 {
-  options.${namespace}.config.nix = with types; {
+  options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.lix "Which nix package to use.";
   };
