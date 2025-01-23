@@ -19,12 +19,12 @@ in
   config = mkIf cfg.enable {
     programs.gpg = {
       enable = true;
-      publicKeys = {
-        sharparam = {
+      publicKeys = [
+        {
           source = ./sharparam.asc;
           trust = "ultimate";
-        };
-      };
+        }
+      ];
       scdaemonSettings = {
         disable-ccid = true;
         card-timeout = 1;
