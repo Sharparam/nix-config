@@ -31,9 +31,9 @@ in
     ${namespace} = {
       # inherit apps cli-apps;
 
-      tools = {
-        direnv = enabled;
-      };
+      # tools = {
+      #   direnv = enabled;
+      # };
 
       # virtualisation = {
       #   podman = enabled;
