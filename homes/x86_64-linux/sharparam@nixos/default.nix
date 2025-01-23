@@ -15,6 +15,7 @@ with lib.${namespace};
       comma = enabled;
       direnv = enabled;
       git = enabled;
+      htop = enabled;
       hyfetch = enabled;
       zsh = enabled;
     };
