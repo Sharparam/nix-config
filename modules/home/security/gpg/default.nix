@@ -27,7 +27,7 @@ in
       ];
       scdaemonSettings = {
         disable-ccid = true;
-        card-timeout = 1;
+        card-timeout = "1";
         reader-port = "Yubico YubiKey OTP+FIDO+CCID 00 00";
       };
       settings = {
