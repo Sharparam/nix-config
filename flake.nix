@@ -24,6 +24,11 @@
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -52,8 +57,11 @@
         allowUnfree = true;
       };
 
+      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
+
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
+        nix-index-database.nixosModules.nix-index
       ];
     }
     // {

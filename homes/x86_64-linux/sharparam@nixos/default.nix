@@ -12,6 +12,7 @@ with lib.${namespace};
   snix = {
     tools = {
       home-manager = enabled;
+      comma = enabled;
       git = enabled;
       direnv = enabled;
       zsh = enabled;

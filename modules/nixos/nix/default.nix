@@ -20,11 +20,11 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       nix-health
-      nix-index
+      # nix-index
       nix-output-monitor
       nix-prefetch-git
       nixfmt-rfc-style
-      comma
+      # comma
     ];
     nix =
       let
