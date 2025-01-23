@@ -7,6 +7,7 @@
 }:
 with lib;
 with lib.${namespace};
+with lib.home-manager;
 let
   cfg = config.${namespace}.tools.ssh;
 in
@@ -33,8 +34,8 @@ in
 
   config = mkIf cfg.enable {
     home.file.".ssh/id_yubikey_gpg.pub".source = ./id_yubikey_gpg.pub;
-    home.activation.fixSshPermissions = lib.home-manager.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run chmod $VERBOSE_ARG 700 $HOME/.ssh
+    home.activation.createSshHomeDir = hm.dag.entryBetween [ "linkGeneration" ] [ "writeBoundary" ] ''
+      run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh"
     '';
     programs.ssh = {
       enable = true;
