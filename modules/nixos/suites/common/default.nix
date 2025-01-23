@@ -52,6 +52,10 @@ in
         gpg = enabled;
       };
 
+      tools = {
+        ssh = enabled;
+      };
+
       apps = {
         vim = enabled;
       };

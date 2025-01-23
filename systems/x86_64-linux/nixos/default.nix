@@ -21,10 +21,13 @@ with lib.${namespace};
     user = {
       extraGroups = [ "networkmanager" ];
     };
+
     system = {
       boot.grub = enabled;
       xkb.eu = enabled;
     };
+
+    tools.ssh.startAgent = true;
   };
 
   # Bootloader
