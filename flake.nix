@@ -35,7 +35,7 @@
         src = ./.;
 
         snowfall = {
-          namespace = "sharparam";
+          namespace = "snix";
           meta = {
             name = "sharparam-nix-dotfiles";
             title = "Sharparam's NixOS/Darwin flake";
