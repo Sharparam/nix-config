@@ -13,8 +13,9 @@ with lib.${namespace};
     tools = {
       home-manager = enabled;
       comma = enabled;
-      git = enabled;
       direnv = enabled;
+      git = enabled;
+      hyfetch = enabled;
       zsh = enabled;
     };
   };
