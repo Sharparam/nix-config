@@ -28,7 +28,10 @@ with lib.${namespace};
   };
 
   # Bootloader
-  boot.loader.grub.device = "/dev/vda";
+  boot.loader.grub = {
+    device = "/dev/vda";
+    efiSupport = false;
+  };
 
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 

@@ -23,7 +23,7 @@ in
       grub = {
         enable = true;
         device = mkDefault "nodev";
-        efiSupport = true;
+        efiSupport = mkDefault true;
         useOSProber = true;
       };
 
