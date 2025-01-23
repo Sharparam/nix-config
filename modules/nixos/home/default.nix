@@ -1,6 +1,7 @@
 {
   lib,
   namespace,
+  options,
   config,
   ...
 }:
