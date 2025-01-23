@@ -74,38 +74,38 @@ in
           gc = "git commit";
           gp = "git push";
         };
-      };
 
-      programs = {
-        zsh = {
-          enable = true;
-          enableCompletion = true;
-          syntaxHighlighting.enable = true;
-          autoSuggestion.enable = true;
-          initExtra = ''
-            # Use Vim keybindings
-            set -o vi
-            # Improved Vim bindings
-            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-          '';
-          shellAliases = {
-            ll = "ls -l";
+        programs = {
+          zsh = {
+            enable = true;
+            enableCompletion = true;
+            syntaxHighlighting.enable = true;
+            autoSuggestion.enable = true;
+            initExtra = ''
+              # Use Vim keybindings
+              set -o vi
+              # Improved Vim bindings
+              source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+            '';
+            shellAliases = {
+              ll = "ls -l";
+            };
+            plugins = [
+              {
+                name = "zsh-nix-shell";
+                file = "nix-shell.plugin.zsh";
+                src = pkgs.fetchFromGitHub {
+                  owner = "chisui";
+                  repo = "zsh-nix-shell";
+                  rev = "v0.4.0";
+                  sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+                };
+              }
+            ];
           };
-          plugins = [
-            {
-              name = "zsh-nix-shell";
-              file = "nix-shell.plugin.zsh";
-              src = pkgs.fetchFromGitHub {
-                owner = "chisui";
-                repo = "zsh-nix-shell";
-                rev = "v0.4.0";
-                sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-              };
-            }
-          ];
-        };
-        starship = {
-          enable = true;
+          starship = {
+            enable = true;
+          };
         };
       };
     };
