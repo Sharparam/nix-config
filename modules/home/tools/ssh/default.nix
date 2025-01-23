@@ -38,7 +38,7 @@ in
       controlMaster = "auto";
       controlPath = "~/.ssh/control/%r@%n:%p";
       controlPersist = "5m";
-      matchBlocks = with hm.dag; {
+      matchBlocks = with lib.home-manager.hm.dag; {
         servers = {
           host = "solaire shanalotte matrix radahn";
           identitiesOnly = true;
