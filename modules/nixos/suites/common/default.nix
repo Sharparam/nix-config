@@ -24,6 +24,9 @@ in
 
   config = mkIf cfg.enable {
     system.configurationRevision = rev;
+    environment.systemPackages = with pkgs; [
+      snix.scripts
+    ];
     services = {
       getty.greetingLine = "<<< Welcome to ${config.system.nixos.label} @ ${rev} - \\l >>>";
       xserver = {
