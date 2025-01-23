@@ -10,8 +10,8 @@ let
   cfg = config.${namespace}.system.xkb.eu;
 in
 {
-  options.${namespace}.system.xkb.xkb-us = {
-    enable = mkEnableOption "${namespace}.config.xkb.xkb-eu.enable";
+  options.${namespace}.system.xkb.eu = {
+    enable = mkEnableOption "${namespace}.config.xkb.eu.enable";
   };
 
   config = mkIf cfg.enable {
