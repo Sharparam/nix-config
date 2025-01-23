@@ -24,6 +24,7 @@ in
       nix-output-monitor
       nix-prefetch-git
       nixfmt-rfc-style
+      comma
     ];
     nix =
       let
