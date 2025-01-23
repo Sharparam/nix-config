@@ -47,6 +47,10 @@ in
         locale = enabled;
         time = enabled;
       };
+
+      apps = {
+        vim = enabled;
+      };
     };
   };
 }
