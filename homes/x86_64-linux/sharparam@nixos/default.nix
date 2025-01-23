@@ -15,10 +15,12 @@ with lib.${namespace};
       comma = enabled;
       direnv = enabled;
       git = enabled;
+      gpg = enabled;
       htop = enabled;
       hyfetch = enabled;
       kitty = enabled;
       zsh = enabled;
+      ssh = enabled;
     };
   };
 }

@@ -48,6 +48,10 @@ in
         time = enabled;
       };
 
+      security = {
+        gpg = enabled;
+      };
+
       apps = {
         vim = enabled;
       };
