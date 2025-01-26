@@ -26,6 +26,7 @@ with lib.${namespace};
     tools = {
       home-manager = enabled;
       comma = enabled;
+      bat = enabled;
       direnv = enabled;
       git = enabled;
       htop = enabled;
