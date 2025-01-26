@@ -21,8 +21,8 @@ in
     ];
 
     ${namespace}.cli.aliases = {
-      ls = "${pkgs.lsd}/bin/lsd --group-dirs first $@";
-      la = "${pkgs.lsd}/bin/lsd --long --all --group-dirs first $@";
+      ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
+      la = "${pkgs.lsd}/bin/lsd --long --all --group-dirs first";
     };
   };
 }
