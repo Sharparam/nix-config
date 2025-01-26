@@ -10,7 +10,7 @@ with lib.${namespace};
 let
   aliasesFile = pkgs.writeText "aliases.shrc" "${convertAliases config.${namespace}.cli.aliases}";
 
-  default-aliases = pkgs.writeText "default-alaises.shrc" (convertAliases {
+  default-aliases = pkgs.writeText "default-aliases.shrc" (convertAliases {
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
