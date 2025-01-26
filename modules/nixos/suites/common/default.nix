@@ -26,6 +26,7 @@ in
     system.configurationRevision = rev;
     environment.systemPackages = with pkgs; [
       snix.scripts
+      catppuccin-cursors.frappeDark
     ];
     services = {
       getty.greetingLine = "<<< Welcome to ${config.system.nixos.label} @ ${rev} - \\l >>>";

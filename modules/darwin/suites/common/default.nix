@@ -17,6 +17,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      snix.scripts
+      catppuccin-cursors.frappeDark
+    ];
+
     programs.zsh = enabled;
 
     catppuccin = {
