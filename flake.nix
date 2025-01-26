@@ -39,6 +39,11 @@
     };
 
     catppuccin.url = "github:catppuccin/nix";
+
+    iosevka = {
+      url = "github:Sharparam/Iosevka/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

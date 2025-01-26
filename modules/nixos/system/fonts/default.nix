@@ -1,7 +1,9 @@
 {
   lib,
   pkgs,
+  inputs,
   namespace,
+  system,
   config,
   ...
 }:
@@ -31,6 +33,7 @@ in
           noto-fonts-cjk-serif
           noto-fonts-emoji
           roboto
+          inputs.iosevka.packages.${system}.bin
         ]
         ++ cfg.fonts;
     };
