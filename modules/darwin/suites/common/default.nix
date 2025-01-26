@@ -31,6 +31,11 @@ in
 
     ${namespace} = {
       nix = enabled;
+
+      security = {
+        age = enabled;
+        gpg = enabled;
+      };
     };
   };
 }
