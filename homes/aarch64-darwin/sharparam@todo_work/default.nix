@@ -36,6 +36,7 @@ with lib.${namespace};
       git = enabled;
       htop = enabled;
       hyfetch = enabled;
+      lsd = enabled;
       zsh = enabled;
       ssh = enabled;
     };
