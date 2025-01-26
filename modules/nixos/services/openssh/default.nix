@@ -41,7 +41,7 @@ in
 
       settings = {
         AuthenticationMethods = "publickey";
-        PasswordAuthentication = "false";
+        PasswordAuthentication = false;
         PermitRootLogin = if format == "install-iso" then "yes" else "no";
         PubkeyAuthentication = "yes";
         UsePAM = true;
