@@ -32,6 +32,7 @@ with lib.${namespace};
       htop = enabled;
       hyfetch = enabled;
       lsd = enabled;
+      ripgrep = enabled;
       zsh = enabled;
       ssh = enabled;
     };
