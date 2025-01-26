@@ -35,6 +35,7 @@ with lib.${namespace};
       comma = enabled;
       direnv = enabled;
       git = enabled;
+      fd = enabled;
       htop = enabled;
       hyfetch = enabled;
       lsd = enabled;
