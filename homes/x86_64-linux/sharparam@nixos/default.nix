@@ -9,34 +9,9 @@
 with lib;
 with lib.${namespace};
 {
-  catppuccin = {
-    enable = true;
-    flavor = "frappe";
-  };
-
   snix = {
-    security = {
-      gpg = enabled;
-    };
-
-    apps = {
-      kitty = enabled;
-    };
-
-    tools = {
-      home-manager = enabled;
-      comma = enabled;
-      bat = enabled;
-      direnv = enabled;
-      duf = enabled;
-      fd = enabled;
-      git = enabled;
-      htop = enabled;
-      hyfetch = enabled;
-      lsd = enabled;
-      ripgrep = enabled;
-      zsh = enabled;
-      ssh = enabled;
+    suites = {
+      common = enabled;
     };
   };
 }

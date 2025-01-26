@@ -9,11 +9,6 @@
 with lib;
 with lib.${namespace};
 {
-  catppuccin = {
-    enable = true;
-    flavor = "frappe";
-  };
-
   snix = {
     user = {
       enable = true;
@@ -21,28 +16,8 @@ with lib.${namespace};
       email = "adam.hellberg@ninetech.com";
     };
 
-    security = {
-      gpg = enabled;
-    };
-
-    apps = {
-      kitty = enabled;
-    };
-
-    tools = {
-      home-manager = enabled;
-      bat = enabled;
-      comma = enabled;
-      direnv = enabled;
-      duf = enabled;
-      git = enabled;
-      fd = enabled;
-      htop = enabled;
-      hyfetch = enabled;
-      lsd = enabled;
-      ripgrep = enabled;
-      zsh = enabled;
-      ssh = enabled;
+    suites = {
+      common = enabled;
     };
   };
 }
