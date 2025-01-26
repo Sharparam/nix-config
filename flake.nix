@@ -38,6 +38,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix.url = "github:Mic92/sops-nix";
+
     catppuccin.url = "github:catppuccin/nix";
 
     iosevka = {
@@ -78,20 +80,25 @@
 
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
+        sops-nix.homeManagerModules.sops
         catppuccin.homeManagerModules.catppuccin
       ];
 
-      systems.modules.nixos = with inputs; [
-        home-manager.nixosModules.home-manager
-        nix-index-database.nixosModules.nix-index
-        catppuccin.nixosModules.catppuccin
-      ];
+      systems.modules = {
+        nixos = with inputs; [
+          home-manager.nixosModules.home-manager
+          nix-index-database.nixosModules.nix-index
+          sops-nix.nixosModules.sops
+          catppuccin.nixosModules.catppuccin
+        ];
 
-      systems.modules.darwin = with inputs; [
-        home-manager.darwinModules.home-manager
-        nix-index-database.darwinModules.nix-index
-        catppuccin.darwinModules.catppuccin
-      ];
+        darwin = with inputs; [
+          home-manager.darwinModules.home-manager
+          nix-index-database.darwinModules.nix-index
+          sops-nix.darwinModules.sops
+          catppuccin.darwinModules.catppuccin
+        ];
+      };
     }
     // {
       self = inputs.self;
