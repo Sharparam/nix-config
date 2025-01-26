@@ -25,6 +25,8 @@ in
       snowfallorg.flake
     ];
 
+    services.nix-daemon.enable = true;
+
     nix =
       let
         users = [
