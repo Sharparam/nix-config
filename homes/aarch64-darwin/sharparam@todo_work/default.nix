@@ -34,6 +34,7 @@ with lib.${namespace};
       bat = enabled;
       comma = enabled;
       direnv = enabled;
+      duf = enabled;
       git = enabled;
       fd = enabled;
       htop = enabled;

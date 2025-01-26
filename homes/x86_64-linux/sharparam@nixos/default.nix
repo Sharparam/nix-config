@@ -28,6 +28,7 @@ with lib.${namespace};
       comma = enabled;
       bat = enabled;
       direnv = enabled;
+      duf = enabled;
       fd = enabled;
       git = enabled;
       htop = enabled;
