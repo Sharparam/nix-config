@@ -49,6 +49,7 @@ in
       };
 
       security = {
+        age = enabled;
         gpg = enabled;
       };
 
