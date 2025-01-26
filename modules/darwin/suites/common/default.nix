@@ -36,6 +36,10 @@ in
         age = enabled;
         gpg = enabled;
       };
+
+      services = {
+        openssh = enabled;
+      };
     };
   };
 }

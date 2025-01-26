@@ -60,6 +60,10 @@ in
         gpg = enabled;
       };
 
+      services = {
+        openssh = enabled;
+      };
+
       tools = {
         ssh = enabled;
       };
