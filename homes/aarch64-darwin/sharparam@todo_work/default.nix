@@ -9,6 +9,11 @@
 with lib;
 with lib.${namespace};
 {
+  catppuccin = {
+    enable = true;
+    flavor = "frappe";
+  };
+
   snix = {
     user = {
       enable = true;

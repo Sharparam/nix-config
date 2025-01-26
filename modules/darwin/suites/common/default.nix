@@ -19,6 +19,11 @@ in
   config = mkIf cfg.enable {
     programs.zsh = enabled;
 
+    catppuccin = {
+      enable = true;
+      flavor = "frappe";
+    };
+
     ${namespace} = {
       nix = enabled;
     };

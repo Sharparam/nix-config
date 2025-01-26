@@ -29,6 +29,8 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -57,16 +59,21 @@
         allowUnfree = true;
       };
 
-      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
+      homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
+        catppuccin.homeManagerModules.catppuccin
+      ];
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
         nix-index-database.nixosModules.nix-index
+        catppuccin.nixosModules.catppuccin
       ];
 
       systems.modules.darwin = with inputs; [
         home-manager.darwinModules.home-manager
         nix-index-database.darwinModules.nix-index
+        catppuccin.darwinModules.catppuccin
       ];
     }
     // {

@@ -34,6 +34,12 @@ in
         excludePackages = [ pkgs.xterm ];
       };
     };
+
+    catppuccin = {
+      enable = true;
+      flavor = "frappe";
+    };
+
     ${namespace} = {
       nix = enabled;
 
