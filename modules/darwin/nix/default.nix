@@ -22,6 +22,7 @@ in
       nix-prefetch-git
       nixfmt-rfc-style
       # comma
+      snowfallorg.flake
     ];
 
     nix =
