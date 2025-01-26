@@ -63,6 +63,11 @@
         home-manager.nixosModules.home-manager
         nix-index-database.nixosModules.nix-index
       ];
+
+      systems.modules.darwin = with inputs; [
+        home-manager.darwinModules.home-manager
+        nix-index-database.darwinModules.nix-index
+      ];
     }
     // {
       self = inputs.self;
