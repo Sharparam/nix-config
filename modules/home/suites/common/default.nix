@@ -47,6 +47,7 @@ in
         ripgrep = enabled;
         rsync = enabled;
         ssh = enabled;
+        tmux = enabled;
         yt-dlp = enabled;
         zoxide = enabled;
         zsh = enabled;
