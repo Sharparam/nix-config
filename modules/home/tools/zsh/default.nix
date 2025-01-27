@@ -16,6 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    ${namespace}.tools.atuin.enableZvmWorkaround = true;
     programs = {
       zsh = {
         enable = true;
@@ -35,13 +36,15 @@ in
             file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
           }
 
-          # FIXME: zsh-vi-mode overwrites other bindings:
+          # zsh-vi-mode overwrites other bindings:
           # https://github.com/jeffreytse/zsh-vi-mode/issues/299
-          # {
-          #   name = "zsh-vi-mode";
-          #   src = pkgs.zsh-vi-mode;
-          #   file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-          # }
+          # See workaround:
+          # https://github.com/atuinsh/atuin/issues/1826
+          {
+            name = "zsh-vi-mode";
+            src = pkgs.zsh-vi-mode;
+            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+          }
         ];
       };
 
