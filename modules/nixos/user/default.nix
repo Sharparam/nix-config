@@ -70,12 +70,6 @@ in
       };
 
       extraOptions = {
-        home.shellAliases = {
-          g = "git";
-          gc = "git commit";
-          gp = "git push";
-        };
-
         programs = {
           zsh = {
             enable = true;
@@ -88,9 +82,6 @@ in
               # Improved Vim bindings
               source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
             '';
-            shellAliases = {
-              ll = "ls -l";
-            };
             plugins = [
               {
                 name = "zsh-nix-shell";
