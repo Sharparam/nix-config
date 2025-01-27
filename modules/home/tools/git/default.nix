@@ -92,5 +92,25 @@ in
         }
       ];
     };
+
+    ${namespace}.cli.aliases = {
+      gb = "git branch";
+      gca = "git commit --verbose --all";
+      gcaS = "git commit --verbose --all --gpg-sign";
+      gcam = "git commit --all --message";
+      gcamS = "git commit --all --message --gpg-sign";
+      gcm = "git commit --message";
+      gcmS = "git commit --message --gpg-sign";
+      gfr = "git pull --rebase";
+      gp = "git push";
+      gpf = "git push --force-with-lease";
+      gpF = "git push --force";
+
+      "?" = "gh copilot suggeste -t shell";
+      "??" = "gh copilot explain";
+      "?e" = "gh copoilot explain";
+      "?g" = "gh copilot suggest -t git";
+      "?gh" = "gh copilot suggest -t gh";
+    };
   };
 }
