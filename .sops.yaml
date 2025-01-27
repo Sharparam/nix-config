@@ -1,0 +1,21 @@
+keys:
+  # YubiKey age plugin is not supported by sops
+  - &yubikeys_age:
+    - &yk_main_age age1yubikey1qf2pqf4uhz9nhppcvsg0wl6d24nmrc8wthz6rnthkv0s96th8a9mzqhgul5 # 5 NFC Main
+    - &yk_backup_age age1yubikey1q08fhw5fzt7a24ehl6nk92va6matuqd37h3e294kmum66mucq5wkkfhcjwx # 5 NFC Backup
+  - &yubikey_gpg 644DC3F0338A5555C13AB8E402CE50D93CB7C819
+  - &hosts:
+    - &nixos age1qpyea3hjku8uz93683c8feppgcgsjsc2afvlsy5ma9pgl8z5ngas8kdujs # ssh_host_ed25519_key.pub
+creation_rules:
+  - path_regex: systems/x86_64-linux/nixos/secrets.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *nixos
+        pgp:
+          - *yubikey_gpg
+  - path_regex: systems/x86_64-linux/nixos/secrets/[^/]+.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *nixos
+        pgp:
+          - *yubikey_gpg
