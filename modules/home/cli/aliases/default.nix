@@ -18,8 +18,6 @@ let
     "......" = "cd ../../../../..";
     "......." = "cd ../../../../../..";
     "-" = "cd -";
-    ll = "ls --long";
-    la = "ls --all";
 
     launch = "nohup $@ &>/dev/null & disown";
 
