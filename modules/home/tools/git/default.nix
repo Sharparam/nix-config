@@ -19,6 +19,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      ghq
+      gh
+    ];
+
     programs.git = {
       inherit (cfg) userName userEmail;
       enable = true;
