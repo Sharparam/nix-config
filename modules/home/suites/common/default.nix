@@ -48,6 +48,7 @@ in
         rsync = enabled;
         ssh = enabled;
         yt-dlp = enabled;
+        zoxide = enabled;
         zsh = enabled;
       };
     };
