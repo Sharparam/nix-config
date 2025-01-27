@@ -36,6 +36,7 @@ in
 
       system = {
         interface = enabled;
+        input = enabled;
       };
 
       security = {
