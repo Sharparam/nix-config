@@ -45,6 +45,7 @@ in
         jq = enabled;
         lsd = enabled;
         ripgrep = enabled;
+        rsync = enabled;
         ssh = enabled;
         yt-dlp = enabled;
         zsh = enabled;
