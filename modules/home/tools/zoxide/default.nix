@@ -27,6 +27,6 @@ in
       pj = ''
         pushd "$(${pkgs.zoxide}/bin/zoxide -e $@)"
       '';
-    }
+    };
   };
 }
