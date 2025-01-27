@@ -15,6 +15,12 @@ in
   options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.lix "Which nix package to use.";
+    flakePath =
+      mkOpt str "/home/${user.name}/repos/github.com/Sharparam/nix-config"
+        "Path to the flake to use for NixOS configuration.";
+    keepAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
+    keepCount = mkOpt int 3 "How many store paths to keep.";
+    # cleanAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
   };
 
   config = mkIf cfg.enable {
@@ -33,6 +39,16 @@ in
       # comma
       snowfallorg.flake
     ];
+
+    programs = {
+      nh = {
+        enable = true;
+        clean.enable = true;
+        clean.extraArgs = "--keep-since ${cfg.keepAge} --keep ${toString cfg.keepCount}";
+        flake = cfg.flakePath;
+      };
+    };
+
     nix =
       let
         users = [
@@ -42,11 +58,11 @@ in
       in
       {
         package = cfg.package;
-        gc = {
-          options = "--delete-older-than 30d";
-          dates = "daily";
-          automatic = true;
-        };
+        # gc = {
+        #   options = "--delete-older-than ${cfg.cleanAge}";
+        #   dates = "daily";
+        #   automatic = true;
+        # };
 
         settings = {
           allowed-users = users;
