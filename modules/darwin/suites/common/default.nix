@@ -48,6 +48,10 @@ in
       services = {
         openssh = enabled;
       };
+
+      tools = {
+        homebrew = enabled;
+      };
     };
   };
 }
