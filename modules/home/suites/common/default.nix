@@ -34,6 +34,7 @@ in
         home-manager = enabled;
         comma = enabled;
         aria2 = enabled;
+        atuin = enabled;
         bat = enabled;
         curl = enabled;
         direnv = enabled;
