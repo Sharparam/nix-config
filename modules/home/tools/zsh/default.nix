@@ -19,7 +19,7 @@ in
     programs = {
       zsh = {
         enable = true;
-        # dotDir = ".config/zsh";
+        dotDir = ".config/zsh";
         enableCompletion = true;
         syntaxHighlighting.enable = true;
         autocd = true;
@@ -34,11 +34,14 @@ in
             src = pkgs.zsh-nix-shell;
             file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
           }
-          {
-            name = "zsh-vi-mode";
-            src = pkgs.zsh-vi-mode;
-            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-          }
+
+          # FIXME: zsh-vi-mode overwrites other bindings:
+          # https://github.com/jeffreytse/zsh-vi-mode/issues/299
+          # {
+          #   name = "zsh-vi-mode";
+          #   src = pkgs.zsh-vi-mode;
+          #   file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+          # }
         ];
       };
 
