@@ -19,26 +19,22 @@ in
     programs = {
       zsh = {
         enable = true;
+        dotDir = ".config/zsh";
         enableCompletion = true;
         syntaxHighlighting.enable = true;
+        autocd = true;
         autosuggestion.enable = true;
-        initExtra = ''
-          # Use vim bindings.
-          set -o vi
-
-          # Improved vim bindings.
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        '';
+        defaultKeymap = "viins";
         plugins = [
           {
             name = "zsh-nix-shell";
-            file = "nix-shell.plugin.zsh";
-            src = pkgs.fetchFromGitHub {
-              owner = "chisui";
-              repo = "zsh-nix-shell";
-              rev = "v0.4.0";
-              sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-            };
+            src = pkgs.zsh-nix-shell;
+            file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+          }
+          {
+            name = "zsh-vi-mode";
+            src = pkgs.zsh-vi-mode;
+            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
           }
         ];
       };
