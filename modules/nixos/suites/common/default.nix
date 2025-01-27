@@ -11,11 +11,12 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.suites.common;
-  rev =
-    if (lib.hasAttrByPath [ "rev" ] inputs.self.sourceInfo) then
-      inputs.self.sourceInfo.rev
-    else
-      "Dirty Build";
+  # rev =
+  #   if (lib.hasAttrByPath [ "rev" ] inputs.self.sourceInfo) then
+  #     inputs.self.sourceInfo.rev
+  #   else
+  #     "Dirty Build";
+  rev = with inputs; self.rev or self.dirtyRev or null;
 in
 {
   options.${namespace}.suites.common = with types; {

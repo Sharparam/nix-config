@@ -10,6 +10,7 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.suites.common;
+  rev = with inputs; self.rev or self.dirtyRev or null;
 in
 {
   options.${namespace}.suites.common = with types; {
@@ -17,6 +18,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    system.configurationRevision = rev;
     environment.systemPackages = with pkgs; [
       snix.scripts
       catppuccin-cursors.frappeDark
