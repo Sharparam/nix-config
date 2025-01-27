@@ -32,6 +32,10 @@ in
     ${namespace} = {
       nix = enabled;
 
+      system = {
+        interface = enabled;
+      };
+
       security = {
         age = enabled;
         gpg = enabled;
