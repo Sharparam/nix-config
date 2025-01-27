@@ -20,6 +20,9 @@ let
     "-" = "cd -";
     ll = "ls --long";
     la = "ls --all";
+
+    launch = "nohup $@ &>/dev/null & disown";
+
     status = "systemctl status";
     start = "sudo systemctl start";
     stop = "sudo systemctl stop";
