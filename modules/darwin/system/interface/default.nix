@@ -20,34 +20,56 @@ in
       "Pictures/screenshots/.keep".text = "";
     };
 
-    system.defaults = {
-      CustomSystemPreferences = {
+    system = {
+      defaults = {
+        CustomSystemPreferences = {
+        };
+
+        CustomUserPreferences = {
+        };
+
+        NSGlobalDomain = {
+          AppleShowAllExtensions = true;
+          AppleShowAllFiles = true;
+          AppleShowScrollBars = "Automatic";
+        };
+
+        controlcenter = {
+          BatteryShowPercentage = true;
+        };
+
         finder = {
+          AppleShowAllExtensions = true;
+          AppleShowAllFiles = true;
+          CreateDesktop = false;
+          FXDefaultSearchScope = "SCcf";
           FXEnableExtensionChangeWarning = false;
+          QuitMenuItem = true;
+          ShowExternalHardDrivesOnDesktop = false;
+          ShowHardDrivesOnDesktop = false;
+          ShowMountedServersOnDesktop = false;
           ShowPathbar = true;
+          ShowRemovableMediaOnDesktop = false;
+          ShowStatusBar = true;
+          _FXSortFoldersFirst = true;
+        };
+
+        loginWindow = {
+          DisableConsoleAccess = false;
+          GuestEnabled = false;
+          # LoginwindowText = "λ";
+          # SHOWFULLNAME = true;
+        };
+
+        screencapture = {
+          disable-shadow = true;
+          location = "/Users/${config.${namespace}.user.name}/Pictures/screenshots/";
+          type = "png";
         };
       };
 
-      finder = {
-        AppleShowAllExtensions = true;
-        AppleShowAllFiles = true;
-        FXEnableExtensionChangeWarning = false;
-      };
-
-      loginWindow = {
-        GuestEnabled = false;
-        # SHOWFULLNAME = true;
-      };
-
-      NSGlobalDomain = {
-        AppleShowAllExtensions = true;
-        AppleShowScrollBars = "Automatic";
-      };
-
-      screencapture = {
-        disable-shadow = true;
-        location = "/Users/${config.${namespace}.user.name}/Pictures/screenshots/";
-        type = "png";
+      startup = {
+        chime = false;
       };
     };
   };
