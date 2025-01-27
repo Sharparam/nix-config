@@ -17,6 +17,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    documentation = {
+      doc.enable = false;
+      info.enable = false;
+      man.enable = mkDefault true;
+    };
+
     environment.systemPackages = with pkgs; [
       # nix-index
       nix-prefetch-git
