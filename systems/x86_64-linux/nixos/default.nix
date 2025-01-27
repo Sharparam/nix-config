@@ -22,6 +22,12 @@ with lib.${namespace};
       extraGroups = [ "networkmanager" ];
     };
 
+    security = {
+      sops = {
+        enable = true;
+      };
+    };
+
     system = {
       boot.grub = enabled;
       xkb.eu = enabled;
