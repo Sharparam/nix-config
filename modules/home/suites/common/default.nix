@@ -39,6 +39,7 @@ in
         direnv = enabled;
         duf = enabled;
         fd = enabled;
+        fzf = enabled;
         git = enabled;
         htop = enabled;
         hyfetch = enabled;
