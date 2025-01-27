@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  osConfig,
+  osConfig ? { },
   namespace,
   config,
   ...
