@@ -99,8 +99,5 @@
           catppuccin.darwinModules.catppuccin
         ];
       };
-    }
-    // {
-      self = inputs.self;
     };
 }
