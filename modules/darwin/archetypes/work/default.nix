@@ -20,6 +20,7 @@ in
     ${namespace} = {
       suites = {
         common = enabled;
+        development = enabled;
       };
     };
   };
