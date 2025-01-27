@@ -15,12 +15,23 @@ let
     "..." = "cd ../..";
     "...." = "cd ../../..";
     "....." = "cd ../../../..";
+    "......" = "cd ../../../../..";
+    "......." = "cd ../../../../../..";
+    "-" = "cd -";
+    ll = "ls --long";
+    la = "ls --all";
     status = "systemctl status";
     start = "sudo systemctl start";
     stop = "sudo systemctl stop";
     restart = "sudo systemctl restart";
+    reload = "sudo systemctl reload";
     enable = "sudo systemctl enable";
     disable = "sudo systemctl disable";
+
+    ":q" = "exit";
+    ":q!" = "exit";
+    ":wq" = "exit";
+    ":x" = "exit";
   });
 in
 {
