@@ -41,6 +41,7 @@ in
       security = {
         age = enabled;
         gpg = enabled;
+        sudo = enabled;
       };
 
       services = {
