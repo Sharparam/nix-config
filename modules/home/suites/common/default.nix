@@ -33,7 +33,9 @@ in
       tools = {
         home-manager = enabled;
         comma = enabled;
+        aria2 = enabled;
         bat = enabled;
+        curl = enabled;
         direnv = enabled;
         duf = enabled;
         fd = enabled;
@@ -44,6 +46,7 @@ in
         lsd = enabled;
         ripgrep = enabled;
         ssh = enabled;
+        yt-dlp = enabled;
         zsh = enabled;
       };
     };
