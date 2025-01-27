@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.tools.atuin.enableZvmWorkaround = true;
+    # ${namespace}.tools.atuin.enableZvmWorkaround = true;
     programs = {
       zsh = {
         enable = true;
@@ -26,6 +26,11 @@ in
         autocd = true;
         autosuggestion.enable = true;
         defaultKeymap = "viins";
+        localVariables = {
+          ZVM_INIT_MODE = "sourcing";
+          ZVM_LAZY_KEYBINDINGS = false;
+          ZVM_LINE_INIT_MODE = "i";
+        };
         # initExtra = ''
         #   bindkey -vi
         # '';
