@@ -20,8 +20,8 @@ in
     userName = mkOpt str user.fullName "The name to configure Git with.";
     userEmail = mkOpt str user.email "The email to configure Git with.";
     signingKey = mkOpt str "C58C41E27B00AD04" "The GPG key to use for signing commits and tags.";
-    credentialHelper = mkOpt str null "The credential helper to use with Git.";
-    askPass = mkOpt str null "The askpass program to use with Git.";
+    credentialHelper = mkOpt (nullOr str) null "The credential helper to use with Git.";
+    askPass = mkOpt (nullOr str) null "The askpass program to use with Git.";
   };
 
   config = mkIf cfg.enable {
@@ -41,7 +41,7 @@ in
       extraConfig = {
         core = {
           autocrlf = "input";
-          askPass = mkIf cfg.askPass != null cfg.askPass;
+          askPass = mkIf (cfg.askPass != null) cfg.askPass;
         };
         init.defaultBranch = "main";
         fetch.prune = true;
@@ -64,10 +64,9 @@ in
           where = "after";
           ifexists = "addIfDifferent";
         };
-        credential =
-          mkIf cfg.credentialHelper != null {
-            helper = cfg.credentialHelper;
-          };
+        credential = mkIf (cfg.credentialHelper != null) {
+          helper = cfg.credentialHelper;
+        };
         github = {
           user = "Sharparam";
           username = "Sharparam";
