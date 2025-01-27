@@ -24,7 +24,10 @@ in
         syntaxHighlighting.enable = true;
         autocd = true;
         autosuggestion.enable = true;
-        defaultKeymap = "vicmd";
+        # defaultKeymap = "viins";
+        initExtra = ''
+          bindkey -vi
+        '';
         plugins = [
           {
             name = "zsh-nix-shell";
