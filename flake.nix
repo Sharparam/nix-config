@@ -112,6 +112,10 @@
         ];
       };
 
+      packages = {
+        default = "scripts";
+      };
+
       shells = {
         default = "dev";
       };
