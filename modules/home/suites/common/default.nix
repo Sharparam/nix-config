@@ -26,6 +26,8 @@ in
         gpg = enabled;
       };
 
+      dotfiles = enabled;
+
       apps = {
         kitty = enabled;
       };
