@@ -112,12 +112,14 @@
         ];
       };
 
-      packages = {
-        default = "scripts";
-      };
+      alias = {
+        packages = {
+          default = "scripts";
+        };
 
-      shells = {
-        default = "dev";
+        shells = {
+          default = "dev";
+        };
       };
     };
 }
