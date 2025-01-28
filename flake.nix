@@ -69,8 +69,8 @@
         snowfall = {
           namespace = "snix";
           meta = {
-            name = "sharparam-nix-dotfiles";
-            title = "Sharparam's NixOS/Darwin flake";
+            name = "snix";
+            title = "Sharparam's NixOS/nix-darwin/nix flake";
           };
         };
       };
