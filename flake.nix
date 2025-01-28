@@ -2,8 +2,6 @@
   description = "Sharparam's Nix files";
 
   inputs = {
-    utils.url = "github:numtide/flake-utils";
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     stable.url = "github:NixOS/nixpkgs/nixos-24.11";
