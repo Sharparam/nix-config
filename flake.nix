@@ -49,6 +49,8 @@
       url = "github:Sharparam/Iosevka/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs =
@@ -87,6 +89,10 @@
         catppuccin.homeManagerModules.catppuccin
       ];
 
+      homes.users."sharparam@todo_work".modules = with inputs; [
+        mac-app-util.homeManagerModules.default
+      ];
+
       systems.modules = {
         nixos = with inputs; [
           home-manager.nixosModules.home-manager
@@ -100,6 +106,7 @@
           nix-index-database.darwinModules.nix-index
           sops-nix.darwinModules.sops
           catppuccin.darwinModules.catppuccin
+          mac-app-util.darwinModules.default
         ];
       };
     };
