@@ -111,5 +111,9 @@
           mac-app-util.darwinModules.default
         ];
       };
+
+      shells = {
+        default = "dev";
+      };
     };
 }
