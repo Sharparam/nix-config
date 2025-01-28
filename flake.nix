@@ -76,10 +76,6 @@
       };
     in
     lib.mkFlake {
-      inherit inputs;
-
-      src = ./.;
-
       channels-config = {
         allowUnfree = true;
       };
