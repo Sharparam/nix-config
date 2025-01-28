@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix.url = "github:Mic92/sops-nix";
 
     catppuccin.url = "github:catppuccin/nix";
@@ -97,6 +102,7 @@
         nixos = with inputs; [
           home-manager.nixosModules.home-manager
           nix-index-database.nixosModules.nix-index
+          nur.modules.nixos.default
           sops-nix.nixosModules.sops
           catppuccin.nixosModules.catppuccin
         ];
