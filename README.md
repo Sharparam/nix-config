@@ -1,4 +1,4 @@
-# nix-dotfiles
+# nix-config
 
 My Nix config/dotfiles.
 
