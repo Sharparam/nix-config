@@ -9,7 +9,10 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.tools.git;
+  is-linux = pkgs.stdenv.isLinux;
+  is-darwin = pkgs.stdenv.isDarwin;
   user = config.${namespace}.user;
+  _1PasswordSigningKey = "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
   ninetechConfig = {
     user.email = "adam.hellberg@ninetech.com";
   };
@@ -17,9 +20,12 @@ in
 {
   options.${namespace}.tools.git = with types; {
     enable = mkEnableOption "Git";
+    use1Password = mkBoolOpt false "Use 1Password integration.";
     userName = mkOpt str user.fullName "The name to configure Git with.";
     userEmail = mkOpt str user.email "The email to configure Git with.";
-    signingKey = mkOpt str "C58C41E27B00AD04" "The GPG key to use for signing commits and tags.";
+    signingKey =
+      mkOpt str "C58C41E27B00AD04"
+        "The GPG key to use for signing commits and tags (ignored if using 1Password).";
     credentialHelper = mkOpt (nullOr str) null "The credential helper to use with Git.";
     askPass = mkOpt (nullOr str) null "The askpass program to use with Git.";
   };
@@ -35,7 +41,7 @@ in
       enable = true;
       lfs = enabled;
       signing = {
-        key = cfg.signingKey;
+        key = if cfg.use1Password then cfg.signingKey else _1PasswordSigningKey;
         signByDefault = true;
       };
       extraConfig = {
@@ -66,6 +72,17 @@ in
         };
         credential = mkIf (cfg.credentialHelper != null) {
           helper = cfg.credentialHelper;
+        };
+        gpg = mkIf cfg.use1Password {
+          format = "ssh";
+          ssh = {
+            allowedSignersFile = "~/.ssh/allowed_signers";
+            program =
+              if is-linux then
+                (getExe' pkgs._1password-gui "op-ssh-sign")
+              else
+                "${pkgs._1password-gui}/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+          };
         };
         github = {
           user = "Sharparam";

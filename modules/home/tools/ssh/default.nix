@@ -14,6 +14,7 @@ in
 {
   options.${namespace}.tools.ssh = {
     enable = mkEnableOption "SSH";
+    useYubiKey = mkBoolOpt false "Use YubiKey for auth";
     identityFile = mkOption {
       type = with types; either (listOf str) (nullOr str);
       default = [ "~/.ssh/id_yubikey_gpg.pub" ];
@@ -26,7 +27,7 @@ in
         else
           p;
       description = ''
-        Specifies iles from which the user identity is read.
+        Specifies files from which the user identity is read.
         Identities will be tried in the given order.
       '';
     };
@@ -40,20 +41,23 @@ in
     programs.ssh = {
       enable = true;
       controlMaster = "auto";
-      controlPath = "~/.ssh/control/%r@%n:%p";
+      controlPath = "~/.ssh/control/%r@%h:%p";
       controlPersist = "5m";
       matchBlocks = with lib.home-manager.hm.dag; {
-        servers = {
-          host = "solaire shanalotte matrix radahn";
-          identitiesOnly = true;
-          identityFile = cfg.identityFile;
-          hostname = "%h.sharparam.com";
-          user = "sharparam";
-          extraOptions = {
-            PasswordAuthentication = "no";
-            VerifyHostKeyDNS = "yes";
-          };
-        };
+        servers =
+          {
+            host = "solaire shanalotte matrix radahn";
+            hostname = "%h.sharparam.com";
+            user = "sharparam";
+            extraOptions = {
+              PasswordAuthentication = "no";
+              VerifyHostKeyDNS = "yes";
+            };
+          }
+          // (mkIf cfg.useYubiKey {
+            identitiesOnly = true;
+            identityFile = cfg.identityFile;
+          });
         solaire = entryAfter [ "servers" ] {
           port = 987;
         };
@@ -70,7 +74,7 @@ in
           hostname = "aur.archlinux.org";
           user = "aur";
         };
-        "ssh.dev.azure.com" = {
+        "ssh.dev.azure.com" = mkIf cfg.useYubiKey {
           identitiesOnly = true;
           identityFile = cfg.identityFile;
         };
