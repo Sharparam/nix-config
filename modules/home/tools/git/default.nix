@@ -70,9 +70,13 @@ in
           where = "after";
           ifexists = "addIfDifferent";
         };
-        credential = mkIf (cfg.credentialHelper != null) {
-          helper = cfg.credentialHelper;
-        };
+        credential.helper =
+          if cfg.credentialHelper != null then
+            cfg.credentialHelper
+          else if is-linux then
+            getExe' config.programs.git.package "git-credential-libsecret"
+          else
+            getExe' config.programs.git.package "git-credential-osxkeychain";
         gpg = mkIf cfg.use1Password {
           format = "ssh";
           ssh = {
