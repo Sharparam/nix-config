@@ -30,7 +30,7 @@ diff: build
 	nix shell 'nixpkgs#nix-diff' -c nix-diff --color=always --skip-already-compared /var/run/current-system ./result | less -R --quit-if-one-screen
 
 switch: build
-	result/sw/bin/$(REBUILD) switch --flake .#
+	result/sw/bin/$(REBUILD) switch --flake .?submodules=1#
 
 update:
 	nix flake update
