@@ -68,38 +68,6 @@ in
         ".face".source = cfg.icon;
         "Pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
       };
-
-      extraOptions = {
-        programs = {
-          zsh = {
-            enable = true;
-            enableCompletion = true;
-            syntaxHighlighting.enable = true;
-            autoSuggestion.enable = true;
-            initExtra = ''
-              # Use Vim keybindings
-              set -o vi
-              # Improved Vim bindings
-              source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-            '';
-            plugins = [
-              {
-                name = "zsh-nix-shell";
-                file = "nix-shell.plugin.zsh";
-                src = pkgs.fetchFromGitHub {
-                  owner = "chisui";
-                  repo = "zsh-nix-shell";
-                  rev = "v0.4.0";
-                  sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-                };
-              }
-            ];
-          };
-          starship = {
-            enable = true;
-          };
-        };
-      };
     };
 
     users.users.${cfg.name} = {
