@@ -41,7 +41,7 @@ in
       enable = true;
       lfs = enabled;
       signing = {
-        key = if cfg.use1Password then cfg.signingKey else _1PasswordSigningKey;
+        key = if cfg.use1Password then _1PasswordSigningKey else cfg.signingKey;
         signByDefault = true;
       };
       extraConfig = {
