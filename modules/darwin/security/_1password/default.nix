@@ -26,11 +26,14 @@ in
       };
     };
 
-    programs.ssh = mkIf cfg.enableSshAgent {
-      extraConfig = ''
-        Host *
-          IdentityAgent ~/.1password/agent.sock
-      '';
+    ${namespace}.home.extraOptions = mkIf cfg.enableSshAgent {
+      ${namespace}.tools.git.use1Password = true;
+      programs.ssh.extraOptionOverrides = {
+        IdentityAgent = "~/.1password/agent.sock";
+      };
+      programs.zsh.sessionVariables = {
+        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+      };
     };
   };
 }

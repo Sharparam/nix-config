@@ -14,7 +14,6 @@ with lib.${namespace};
       common = enabled;
     };
 
-    tools.git.use1Password = true;
     tools.ssh = enabled;
   };
 }
