@@ -16,7 +16,7 @@ diff-and-switch: build
 	$(MAKE) -o build switch
 
 build:
-	nix --extra-experimental-features 'nix-command flakes' build .#$(TARGET)
+	nix --extra-experimental-features 'nix-command flakes' build .?submodules=1#$(TARGET)
 	@if [ -d /var/run/current-system ]; then \
 		nix store diff-closures /var/run/current-system ./result; \
 	else \
