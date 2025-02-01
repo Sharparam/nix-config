@@ -26,6 +26,11 @@ with lib.${namespace};
       sops = {
         enable = true;
       };
+
+      _1password = {
+        enable = true;
+        enableSshAgent = true;
+      };
     };
 
     system = {
@@ -33,7 +38,7 @@ with lib.${namespace};
       xkb.eu = enabled;
     };
 
-    tools.ssh.startAgent = true;
+    tools.ssh.startAgent = false;
   };
 
   # Bootloader

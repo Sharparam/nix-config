@@ -13,5 +13,8 @@ with lib.${namespace};
     suites = {
       common = enabled;
     };
+
+    tools.git.use1Password = true;
+    tools.ssh = enabled;
   };
 }
