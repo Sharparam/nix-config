@@ -1,4 +1,4 @@
-.PHONY: build diff switch diff-and-switch
+.PHONY: check build diff switch diff-and-switch
 .PHONY: update generate-hardware-configuration
 .PHONY: collect-garbage collect-garbage-system collect-garbage-home
 .PHONY: print-%
@@ -9,6 +9,9 @@ TARGET := $(if $(filter Darwin,$(OS)),darwinConfigurations.$(HOSTNAME).system,ni
 REBUILD := $(if $(filter Darwin,$(OS)),darwin-rebuild,nixos-rebuild)
 
 GC_MIN_AGE := 14d
+
+check:
+	nix flake check '.?submodules=1'
 
 diff-and-switch: build
 	$(MAKE) -o build diff
