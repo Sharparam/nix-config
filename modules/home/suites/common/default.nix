@@ -30,6 +30,7 @@ in
 
       apps = {
         kitty = enabled;
+        neovim = enabled;
       };
 
       tools = {
