@@ -20,9 +20,5 @@ with lib.${namespace};
       common = enabled;
       desktop = enabled;
     };
-
-    security = {
-      bitwarden = enabled;
-    };
   };
 }
