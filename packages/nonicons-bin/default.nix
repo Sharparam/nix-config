@@ -16,6 +16,13 @@ stdenv.mkDerivation {
     url = url;
   };
 
+  installPhase = ''
+    runHook preInstall
+    mkdir -p $out/share/fonts/TTF/nonicons
+    cp $src $out/share/fonts/TTF/nonicons
+    runHook postInstall
+  '';
+
   meta = {
     homepage = "https://github.com/ya2s/nonicons";
     description = "nonicons font (binary package)";
