@@ -12,7 +12,7 @@ let
 in
 {
   options = {
-    enable = mkEnabledOption "Enable Desktop suite.";
+    enable = mkEnableOption "Enable Desktop suite.";
   };
 
   config = mkIf cfg.enable {
