@@ -21,11 +21,11 @@ in
     programs.atuin = {
       enable = true;
       enableZshIntegration = !cfg.enableZvmWorkaround;
-      # TODO: Daemon support is only in unstable
-      # daemon = {
-      #   enable = cfg.enableDaemon;
-      #   logLevel = "warn";
-      # };
+      # Daemon support is only in unstable
+      daemon = {
+        enable = cfg.enableDaemon;
+        logLevel = "warn";
+      };
       settings = {
         dialect = "uk";
         enter_accept = true;
