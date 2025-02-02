@@ -18,7 +18,9 @@ in
 
   config = mkIf cfg.enable {
     # ${namespace}.tools.atuin.enableZvmWorkaround = true;
-    xdg.configFile."starship.toml".source = config.lib.file.mkOutOfStoreSymlink starshipConfigPath;
+    xdg.configFile."starship.toml".source = mkForce (
+      config.lib.file.mkOutOfStoreSymlink starshipConfigPath
+    );
     programs = {
       zsh = {
         enable = true;
