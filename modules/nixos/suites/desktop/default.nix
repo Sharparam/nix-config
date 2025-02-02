@@ -28,6 +28,7 @@ in
 
       security = {
         _1password = enabled;
+        bitwarden = enabled;
       };
 
       apps = {
