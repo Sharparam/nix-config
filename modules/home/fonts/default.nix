@@ -8,10 +8,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.${namespace}.home.fonts;
+  cfg = config.${namespace}.fonts;
 in
 {
-  options.${namespace}.home.fonts = with types; {
+  options.${namespace}.fonts = with types; {
     enable = mkEnableOption "Enable home-manager font management.";
   };
 
