@@ -41,6 +41,7 @@ in
       snowfallorg.flake
       alejandra
       deadnix
+      statix
     ];
 
     programs = {

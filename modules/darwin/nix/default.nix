@@ -34,6 +34,7 @@ in
       snowfallorg.flake
       alejandra
       deadnix
+      statix
     ];
 
     services.nix-daemon.enable = true;
