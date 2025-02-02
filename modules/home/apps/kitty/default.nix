@@ -54,6 +54,7 @@ in
         "f1" = "show_kitty_env_vars";
         "kitty_mod+z" = "toggle_layout stack";
       };
+      extraConfig = builtins.readFile ../../../../dotfiles/kitty/.config/kitty/font-nerd-symbols.conf;
     };
   };
 }
