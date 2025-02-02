@@ -30,8 +30,13 @@ in
       programs.ssh.extraOptionOverrides = {
         IdentityAgent = "~/.1password/agent.sock";
       };
-      programs.zsh.sessionVariables = {
-        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+      programs.zsh = {
+        sessionVariables = {
+          SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+        };
+        initExtra = ''
+          [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
+        '';
       };
     };
   };
