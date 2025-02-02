@@ -21,5 +21,11 @@ in
         "Xcode" = 497799835;
       };
     };
+
+    ${namespace} = {
+      apps = {
+        jetbrains.toolbox = enabled;
+      };
+    };
   };
 }
