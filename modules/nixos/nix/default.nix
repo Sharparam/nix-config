@@ -44,6 +44,10 @@ in
       statix
     ];
 
+    services = {
+      lorri = enabled;
+    };
+
     programs = {
       nh = {
         enable = true;

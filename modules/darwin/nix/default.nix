@@ -37,7 +37,10 @@ in
       statix
     ];
 
-    services.nix-daemon.enable = true;
+    services = {
+      lorri = enabled;
+      nix-daemon = enabled;
+    };
 
     nix =
       let
