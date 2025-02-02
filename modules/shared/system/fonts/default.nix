@@ -44,6 +44,8 @@ in
           roboto
 
           inputs.iosevka.packages.${system}.bin
+
+          snix.nonicons-bin
         ]
         ++ cfg.fonts;
     };
