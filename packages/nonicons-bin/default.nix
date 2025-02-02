@@ -14,6 +14,7 @@ stdenv.mkDerivation {
 
   src = pkgs.fetchurl {
     url = url;
+    sha256 = "sha256-25k4k7IUzmrYO1TF4ErDia1VT0vMxqQZuWviiesU1qc=";
   };
 
   installPhase = ''
