@@ -35,9 +35,12 @@ in
       # nix-index
       nix-output-monitor
       nix-prefetch-git
+      nixd
       nixfmt-rfc-style
       # comma
       snowfallorg.flake
+      alejandra
+      deadnix
     ];
 
     programs = {

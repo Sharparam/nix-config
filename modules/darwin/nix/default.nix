@@ -24,11 +24,16 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      nix-health
       # nix-index
+      nix-output-monitor
       nix-prefetch-git
+      nixd
       nixfmt-rfc-style
       # comma
       snowfallorg.flake
+      alejandra
+      deadnix
     ];
 
     services.nix-daemon.enable = true;
