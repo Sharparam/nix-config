@@ -18,16 +18,16 @@ in
   config = mkIf cfg.enable {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode;
+      package = pkgs.vscode.fhs;
       # enableUpdateCheck = true;
       # enableExtensionUpdateCheck = true;
       # mutableExtensionsDir = true;
-      extensions = with pkgs.vscode-extensions; [
+      # extensions = with pkgs.vscode-extensions; [
 
-      ];
-      userSettings = {
+      # ];
+      # userSettings = {
 
-      };
+      # };
     };
   };
 }
