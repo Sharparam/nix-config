@@ -25,11 +25,13 @@ in
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;
     };
-    snowfallorg.users.${config.${namespace}.user.name}.home.config = cfg.extraOptions;
+
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
       # backupFileExtension = "backup";
+
+      users.${config.${namespace}.user.name} = mkAliasDefinitions options.${namespace}.home.extraOptions;
     };
   };
 }
