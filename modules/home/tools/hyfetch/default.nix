@@ -25,7 +25,7 @@ in
       [
         hyfetch
       ]
-      ++ optionals (cfg.backend == "fastfetch") [ fastfetch ];
+      ++ optional (cfg.backend == "fastfetch") fastfetch;
 
     # Sadly we have to disable the pride month animation since the config file
     # is read-only when managed by home-manager.
