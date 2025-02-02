@@ -17,7 +17,7 @@ in
     enable = mkEnableOption "Kitty Terminal Emulator";
     fontPackage = mkOpt (nullOr package) inputs.iosevka.packages.${system}.bin "Font package to use.";
     fontName = mkOpt (nullOr str) "Iosevka Sharpie Term" "Font name to use.";
-    fontSize = mkOpt (nullOr str) "12" "Font size to use.";
+    fontSize = mkOpt (nullOr number) 12 "Font size to use.";
   };
 
   config = mkIf cfg.enable {
