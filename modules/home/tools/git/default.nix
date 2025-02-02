@@ -12,7 +12,12 @@ let
   is-linux = pkgs.stdenv.isLinux;
   is-darwin = pkgs.stdenv.isDarwin;
   user = config.${namespace}.user;
-  _1PasswordSigningKey = "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
+  _1PasswordSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
+  sshSigningProgram =
+    if is-linux then
+      (getExe' pkgs._1password-gui "op-ssh-sign")
+    else
+      "${pkgs._1password-gui}/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
   ninetechConfig = {
     user.email = "adam.hellberg@ninetech.com";
   };
@@ -34,14 +39,27 @@ in
     home.packages = with pkgs; [
       ghq
       gh
+      lazyjj
     ];
+
+    programs = {
+      lazygit = {
+        enable = true;
+        settings = {
+          gui = {
+            timeFormat = "02 Jan 2006";
+            shortTimeFormat = "15:04";
+          };
+        };
+      };
+    };
 
     programs.git = {
       inherit (cfg) userName userEmail;
       enable = true;
       lfs = enabled;
       signing = {
-        key = if cfg.use1Password then _1PasswordSigningKey else cfg.signingKey;
+        key = if cfg.use1Password then "key::${_1PasswordSigningKey}" else cfg.signingKey;
         signByDefault = true;
       };
       extraConfig = {
@@ -81,11 +99,7 @@ in
           format = "ssh";
           ssh = {
             allowedSignersFile = "~/.ssh/allowed_signers";
-            program =
-              if is-linux then
-                (getExe' pkgs._1password-gui "op-ssh-sign")
-              else
-                "${pkgs._1password-gui}/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+            program = sshSigningProgram;
           };
         };
         github = {
@@ -112,6 +126,37 @@ in
           contents = ninetechConfig;
         }
       ];
+    };
+
+    programs.jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = cfg.userName;
+          email = cfg.userEmail;
+        };
+        signing = {
+          sign-all = true;
+          backend = if cfg.use1Password then "ssh" else "gpg";
+          key = if cfg.use1Password then _1PasswordSigningKey else cfg.signingKey;
+          backends.ssh = {
+            allowed-signers = "~/.ssh/allowed_signers";
+            program = sshSigningProgram;
+          };
+        };
+        git = {
+          sign-on-push = true;
+          subprocess = true;
+        };
+        ui = {
+          show-cryptographic-signatures = true;
+        };
+        template-aliases = {
+          "format_short_cryptographic_signature(sig)" = ''
+            if (sig, sig.status(), "(no sig)")
+          '';
+        };
+      };
     };
 
     ${namespace}.cli.aliases =
