@@ -30,6 +30,10 @@ in
       };
     };
 
+    ${namespace}.home.extraOptions.programs.zsh.initExtra = ''
+      [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
+    '';
+
     ${namespace}.home.extraOptions = mkIf cfg.enableSshAgent {
       ${namespace}.tools.git.use1Password = true;
       programs.ssh.extraOptionOverrides = {
@@ -39,9 +43,6 @@ in
         sessionVariables = {
           SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
         };
-        initExtra = ''
-          [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
-        '';
       };
     };
   };
