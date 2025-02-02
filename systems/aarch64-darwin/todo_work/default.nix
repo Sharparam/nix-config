@@ -13,6 +13,10 @@ with lib.${namespace};
     archetypes = {
       work = enabled;
     };
+
+    security = {
+      _1password.enableSshAgent = true;
+    };
   };
 
   # environment.systemPath = [ "/opt/homebrew/bin" ];

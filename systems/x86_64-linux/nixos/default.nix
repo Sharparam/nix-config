@@ -27,10 +27,7 @@ with lib.${namespace};
         enable = true;
       };
 
-      _1password = {
-        enable = true;
-        enableSshAgent = true;
-      };
+      _1password.enableSshAgent = true;
     };
 
     system = {

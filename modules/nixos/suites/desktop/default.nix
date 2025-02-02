@@ -26,8 +26,11 @@ in
         # };
       };
 
+      security = {
+        _1password = enabled;
+      };
+
       apps = {
-        # _1password = enabled;
         firefox = enabled;
         # vlc = enabled;
         # yt-music = enabled;
