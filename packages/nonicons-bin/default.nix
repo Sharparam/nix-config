@@ -17,6 +17,9 @@ stdenv.mkDerivation {
     sha256 = "sha256-25k4k7IUzmrYO1TF4ErDia1VT0vMxqQZuWviiesU1qc=";
   };
 
+  dontUnpack = true;
+  dontBuild = true;
+
   installPhase = ''
     runHook preInstall
     mkdir -p $out/share/fonts/TTF/nonicons
