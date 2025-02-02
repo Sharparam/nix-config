@@ -52,6 +52,11 @@ in
           };
         };
       };
+      zsh = {
+        sessionVariables = {
+          GITHUB_USER = "Sharparam";
+        };
+      };
     };
 
     programs.git = {
