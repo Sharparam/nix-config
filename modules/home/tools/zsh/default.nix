@@ -9,6 +9,7 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.tools.zsh;
+  starshipConfigPath = "${config.${namespace}.home.home}/repos/github.com/Sharparam/nix-config/dotfiles/starship/.config/starship.toml";
 in
 {
   options.${namespace}.tools.zsh = {
@@ -17,6 +18,7 @@ in
 
   config = mkIf cfg.enable {
     # ${namespace}.tools.atuin.enableZvmWorkaround = true;
+    xdg.configFile."starship.toml".source = config.lib.file.mkOutOfStoreSymlink starshipConfigPath;
     programs = {
       zsh = {
         enable = true;
