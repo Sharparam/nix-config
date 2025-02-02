@@ -20,13 +20,5 @@ in
 
   config = mkIf cfg.enable {
     xdg.configFile."dotfiles".source = config.lib.file.mkOutOfStoreSymlink cfg.dotfilesPath;
-
-    programs.neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-    };
   };
 }

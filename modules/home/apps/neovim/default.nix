@@ -21,5 +21,13 @@ in
 
   config = mkIf cfg.enable {
     xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
+
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+    };
   };
 }
