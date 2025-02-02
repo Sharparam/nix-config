@@ -29,6 +29,7 @@ in
       };
 
       dotfiles = enabled;
+      fonts = enabled;
 
       apps = {
         kitty = enabled;

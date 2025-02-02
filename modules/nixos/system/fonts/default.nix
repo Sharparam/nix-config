@@ -13,29 +13,45 @@ let
   cfg = config.${namespace}.system.fonts;
 in
 {
-  options.${namespace}.system.fonts = with types; {
-    enable = mkEnableOption "${namespace}.config.fonts.enable";
-    fonts = mkOpt (listOf package) [ ] "Custom font packages to install.";
-  };
+  imports = [ (lib.snowfall.fs.get-file "modules/shared/system/fonts/default.nix") ];
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ font-manager ];
+    environment.systemPackages = with pkgs; [
+      font-manager
+      fontpreview
+      smile
+    ];
     fonts = {
       enableDefaultPackages = true;
-      packages =
-        with pkgs;
-        [
-          corefonts
-          jetbrains-mono
-          meslo-lgs-nf
-          noto-fonts
-          noto-fonts-cjk-sans
-          noto-fonts-cjk-serif
-          noto-fonts-emoji
-          roboto
-          inputs.iosevka.packages.${system}.bin
-        ]
-        ++ cfg.fonts;
+
+      fontconfig = {
+        antialias = true;
+        hinting = enabled;
+
+        defaultFonts =
+          let
+            nerd = [
+              "Symbols Nerd Font"
+            ];
+            emoji = [
+              "Noto Color Emoji"
+              "Noto Emoji"
+            ];
+          in
+          {
+            serif = [ "Noto Serif" ] ++ emoji ++ nerd;
+            sansSerif = [ "Noto Sans" ] ++ emoji ++ nerd;
+            monospace = [
+              "Iosevka Sharpie"
+              "Iosevka Nerd Font"
+            ] ++ nerd;
+            emoji = emoji;
+          };
+      };
+
+      fontDir = {
+        enable = true;
+      };
     };
   };
 }
