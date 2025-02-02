@@ -16,8 +16,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      jetbrains-toolbox
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   jetbrains-toolbox
+    # ];
+
+    homebrew = {
+      casks = [ "jetbrains-toolbox" ];
+    };
   };
 }
