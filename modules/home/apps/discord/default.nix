@@ -8,10 +8,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = options.${namespace}.apps.discord;
+  cfg = config.${namespace}.apps.discord;
 in
 {
-  options = {
+  options.${namespace}.apps.discord = {
     enable = mkEnableOption "Enable Discord.";
   };
 
