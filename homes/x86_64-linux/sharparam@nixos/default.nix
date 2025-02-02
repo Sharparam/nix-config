@@ -14,6 +14,10 @@ with lib.${namespace};
       common = enabled;
     };
 
+    security = {
+      bitwarden = enabled;
+    };
+
     tools.ssh = enabled;
   };
 }

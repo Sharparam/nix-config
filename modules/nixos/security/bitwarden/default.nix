@@ -9,8 +9,6 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.security.bitwarden;
-  is-linux = pkgs.stdenv.isLinux;
-  is-darwin = pkgs.stdenv.isDarwin;
 in
 {
   options.${namespace}.security.bitwarden = with types; {
@@ -18,13 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages =
-      with pkgs;
-      [
-        bitwarden-cli
-      ]
-      ++ optional is-linux bitwarden-desktop;
-
-    homebrew.casks = mkIf is-darwin [ "bitwarden" ];
+    environment.systemPackages = with pkgs; [
+      bitwarden-desktop
+      bitwarden-cli
+    ];
   };
 }
