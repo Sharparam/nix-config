@@ -31,8 +31,11 @@ in
 
     ${namespace}.home.extraOptions = mkIf cfg.enableSshAgent {
       ${namespace}.tools.git.use1Password = true;
-      programs.ssh.extraOptionOverrides = {
-        IdentityAgent = "~/.1password/agent.sock";
+      programs.ssh = {
+        includes = [ "~/.ssh/1Password/config" ];
+        extraOptionOverrides = {
+          IdentityAgent = "~/.1password/agent.sock";
+        };
       };
       programs.zsh = {
         sessionVariables = {
