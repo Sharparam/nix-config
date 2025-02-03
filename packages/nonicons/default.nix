@@ -8,7 +8,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "nonicons";
-  version = "1.0.0";
+  version = "0-unstable-2024-12-12";
 
   src = pkgs.fetchFromGitHub {
     owner = "ya2s";

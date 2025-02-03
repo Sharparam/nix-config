@@ -10,7 +10,7 @@ let
 in
 stdenv.mkDerivation {
   pname = "nonicons-bin";
-  version = "1.0.0";
+  version = "0-unstable-2024-12-12";
 
   src = pkgs.fetchurl {
     url = url;
