@@ -7,6 +7,7 @@
 }:
 with lib;
 with lib.${namespace};
+with lib.home-manager;
 let
   cfg = config.${namespace}.fonts;
 in
@@ -26,6 +27,11 @@ in
       <fontconfig>
         <dir>~/.local/share/fonts</dir>
       </fontconfig>
+    '';
+
+    home.activation.ensureDummyFontConfig = hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "$HOME/.config/fontconfig/conf.d"
+      run cp $VERBOSE_ARG ${builtins.toPath ./00-dummy.conf} "$HOME/.config/fontconfig/conf.d/00-dummy.conf"
     '';
   };
 }
