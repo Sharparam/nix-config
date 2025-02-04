@@ -9,7 +9,7 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.tools.zsh;
-  starshipConfigPath = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/starship/.config/starship.toml";
+  starshipConfigPath = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/config/starship.toml";
 in
 {
   options.${namespace}.tools.zsh = {
