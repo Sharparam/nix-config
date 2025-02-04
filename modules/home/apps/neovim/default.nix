@@ -22,6 +22,16 @@ in
   config = mkIf cfg.enable {
     xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
 
+    home.packages = with pkgs; [
+      # Some packages are required for plugins to be able to build things
+      unzip
+      nodejs
+      # parinfer-rust plugin needs to be compiled
+      cargo
+      rustc
+      gcc
+    ];
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
