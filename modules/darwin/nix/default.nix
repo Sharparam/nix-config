@@ -56,6 +56,10 @@ in
           trusted-users = users;
 
           experimental-features = "nix-command flakes";
+          # TODO: Broken on nix-darwin
+          # See: https://github.com/LnL7/nix-darwin/issues/943
+          # See: https://github.com/LnL7/nix-darwin/issues/947
+          # use-xdg-base-directories = true;
           http-connections = 50;
           log-lines = 50;
 

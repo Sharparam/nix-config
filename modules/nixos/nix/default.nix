@@ -78,6 +78,7 @@ in
           sandbox = "relaxed";
           auto-optimise-store = true;
           experimental-features = "nix-command flakes";
+          use-xdg-base-directories = true;
           http-connections = 50;
           warn-dirty = false;
           log-lines = 50;
