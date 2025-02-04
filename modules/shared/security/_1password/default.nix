@@ -23,6 +23,8 @@ in
       programs.zsh.initExtra = ''
         [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
       '';
+
+      xdg.configFile."direnv/lib/oprc.sh".source = "${pkgs.snix.direnv-op}/share/direnv-op/oprc.sh";
     };
 
     ${namespace}.home.extraOptions = mkIf cfg.enableSshAgent {
