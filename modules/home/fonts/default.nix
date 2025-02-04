@@ -19,5 +19,13 @@ in
     fonts.fontconfig = {
       enable = true;
     };
+
+    xdg.configFile."fontconfig/conf.d/99-local-fonts.conf".text = ''
+      <?xml version="1.0" ?>
+      <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+      <fontconfig>
+        <dir>~/.local/share/fonts</dir>
+      </fontconfig>
+    '';
   };
 }
