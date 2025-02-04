@@ -16,7 +16,7 @@ in
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.lix "Which nix package to use.";
     flakePath =
-      mkOpt str "/home/${user.name}/repos/github.com/Sharparam/nix-config"
+      mkOpt str "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1"
         "Path to the flake to use for NixOS configuration.";
     keepAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
     keepCount = mkOpt int 3 "How many store paths to keep.";
