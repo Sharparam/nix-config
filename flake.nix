@@ -56,7 +56,7 @@
     };
 
     locale-en_se = {
-      url = "github:Sharparam/locale-en_se/v1.0.0";
+      url = "github:Sharparam/locale-en_se/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -106,6 +106,7 @@
           nur.modules.nixos.default
           sops-nix.nixosModules.sops
           catppuccin.nixosModules.catppuccin
+          locale-en_se.nixosModules.default
         ];
 
         darwin = with inputs; [
