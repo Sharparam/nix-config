@@ -55,6 +55,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    locale-en_se = {
+      url = "github:Sharparam/locale-en_se/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
