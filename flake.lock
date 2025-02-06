@@ -348,11 +348,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738798906,
-        "narHash": "sha256-w/vioNpPi/62QcYYjm8mS5wBNmI4yBjxTNfyAUj6QWU=",
+        "lastModified": 1738807956,
+        "narHash": "sha256-5IdDDZ9C5OTj60pag2YUy4kOKke/w7hpcURiPCJ4XHI=",
         "owner": "Sharparam",
         "repo": "locale-en_se",
-        "rev": "4b3212bd9290f8021cbb410fb8388160307358a8",
+        "rev": "9781b159ab9cfa388359222001c86febc1f22db0",
         "type": "github"
       },
       "original": {
