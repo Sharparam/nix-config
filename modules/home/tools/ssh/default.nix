@@ -38,6 +38,7 @@ in
     home.file.".ssh/id_yubikey_gpg.pub".source = ./id_yubikey_gpg.pub;
     home.activation.createSshHomeDir = hm.dag.entryBetween [ "linkGeneration" ] [ "writeBoundary" ] ''
       run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh"
+      run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh/control"
     '';
     programs.ssh = {
       enable = true;
