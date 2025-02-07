@@ -16,4 +16,6 @@ with lib.${namespace};
 
     tools.ssh = enabled;
   };
+
+  home.stateVersion = "24.11";
 }

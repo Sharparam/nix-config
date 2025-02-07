@@ -20,7 +20,6 @@ in
 
   config = {
     ${namespace}.home.extraOptions = {
-      home.stateVersion = mkDefault config.system.stateVersion;
       home.file = mkAliasDefinitions options.${namespace}.home.file;
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;

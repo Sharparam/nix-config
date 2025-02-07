@@ -22,4 +22,6 @@ with lib.${namespace};
       development = enabled;
     };
   };
+
+  home.stateVersion = "24.11";
 }
