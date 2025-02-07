@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     homebrew = {
       masApps = mkIf config.${namespace}.tools.homebrew.enableMas {
-        "Xcode" = 497799835;
+        # "Xcode" = 497799835;
       };
     };
 
