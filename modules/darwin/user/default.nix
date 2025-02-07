@@ -19,8 +19,9 @@ in
   };
 
   config = {
-    users.user.${cfg.name} = {
+    users.users.${cfg.name} = {
       uid = mkIf (cfg.uid != null) cfg.uid;
+      shell = pkgs.zsh;
     };
   };
 }
