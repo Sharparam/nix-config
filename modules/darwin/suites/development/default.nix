@@ -25,6 +25,7 @@ in
     ${namespace} = {
       apps = {
         jetbrains.toolbox = enabled;
+        vscode = enabled;
       };
     };
   };

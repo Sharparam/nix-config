@@ -21,6 +21,9 @@ with lib.${namespace};
       desktop = enabled;
       development = enabled;
     };
+
+    # vscode.fhs doesn't work on nix-darwin
+    apps.vscode = disabled;
   };
 
   home.stateVersion = "24.11";
