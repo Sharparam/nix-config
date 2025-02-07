@@ -17,7 +17,7 @@ let
     if is-linux then
       (getExe' pkgs._1password-gui "op-ssh-sign")
     else
-      "${pkgs._1password-gui}/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      "op-ssh-sign"; # TODO: Fix?
   ninetechConfig = {
     user.email = "adam.hellberg@ninetech.com";
   };
