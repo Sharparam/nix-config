@@ -113,7 +113,6 @@
           home-manager.darwinModules.home-manager
           nix-index-database.darwinModules.nix-index
           sops-nix.darwinModules.sops
-          catppuccin.darwinModules.catppuccin
           mac-app-util.darwinModules.default
         ];
       };

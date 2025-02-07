@@ -26,11 +26,6 @@ in
 
     programs.zsh = enabled;
 
-    catppuccin = {
-      enable = true;
-      flavor = "frappe";
-    };
-
     ${namespace} = {
       nix = enabled;
 
