@@ -19,7 +19,8 @@ in
     ${namespace} = {
       security = {
         _1password = enabled;
-        bitwarden = enabled;
+        # TODO: bitwarden-cli doesn't build on nix-darwin
+        # bitwarden = enabled;
       };
     };
   };
