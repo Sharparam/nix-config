@@ -29,7 +29,7 @@ in
       };
 
       dotfiles = enabled;
-      fonts = enabled;
+      fonts.enable = pkgs.stdenv.isLinux;
 
       apps = {
         kitty = enabled;
