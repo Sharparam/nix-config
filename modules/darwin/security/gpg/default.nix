@@ -21,7 +21,8 @@ in
     ];
 
     programs = {
-      ssh.startAgent = mkIf cfg.enableSSHSupport false;
+      # TODO: Not supported on nix-darwin
+      # ssh.startAgent = mkIf cfg.enableSSHSupport false;
       gnupg.agent = {
         enable = true;
         enableSSHSupport = cfg.enableSSHSupport;
