@@ -25,13 +25,14 @@ in
       gnupg.agent = {
         enable = true;
         enableSSHSupport = cfg.enableSSHSupport;
-        settings = {
-          default-cache-ttl = 60;
-          default-cache-ttl-ssh = 60;
-          max-cache-ttl = 120;
-          max-cache-ttl-ssh = 120;
-          min-passphrase-len = 64;
-        };
+        # TODO: settings not supported on nix-darwin
+        # settings = {
+        #   default-cache-ttl = 60;
+        #   default-cache-ttl-ssh = 60;
+        #   max-cache-ttl = 120;
+        #   max-cache-ttl-ssh = 120;
+        #   min-passphrase-len = 64;
+        # };
       };
     };
   };
