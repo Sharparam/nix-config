@@ -21,7 +21,8 @@ in
     system.configurationRevision = rev;
     environment.systemPackages = with pkgs; [
       snix.scripts
-      catppuccin-cursors.frappeDark
+      # TODO: Not supported on nix-darwin
+      # catppuccin-cursors.frappeDark
     ];
 
     programs.zsh = enabled;
