@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     ${namespace} = {
       apps = {
-        vscode = enabled;
+        vscode.enable = mkDefault true;
       };
     };
   };
