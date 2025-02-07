@@ -54,7 +54,7 @@ in
           _FXSortFoldersFirst = true;
         };
 
-        loginWindow = {
+        loginwindow = {
           DisableConsoleAccess = false;
           GuestEnabled = false;
           # LoginwindowText = "λ";
