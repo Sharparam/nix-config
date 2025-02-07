@@ -71,8 +71,12 @@ rec {
       mapAttrsToList (
         name: value:
         let
-          containsDollar = builtins.elem "$" (lib.splitString "" value);
-          containsNewline = builtins.elem "\n" (lib.splitString "" value);
+          # containsDollar = builtins.elem "$" (lib.splitString "" value);
+          matchDollar = builtins.match ''\$'' value;
+          containsDollar = matchDollar != null;
+          # containsNewline = builtins.elem "\n" (lib.splitString "" value);
+          matchNewline = builtins.match "\n" value;
+          containsNewline = matchNewline != null;
         in
         if containsDollar || containsNewline then
           ''
