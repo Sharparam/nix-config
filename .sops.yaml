@@ -5,8 +5,21 @@ keys:
     - &yk_backup_age age1yubikey1q08fhw5fzt7a24ehl6nk92va6matuqd37h3e294kmum66mucq5wkkfhcjwx # 5 NFC Backup
   - &yubikey_gpg 644DC3F0338A5555C13AB8E402CE50D93CB7C819
   - &hosts:
+    - &reah age1h6e7jeedt3a3wwytnrgk56pnd843cfytpk66n704n6hh2usweuqshvsg9f # ssh_host_ed25519_key.pub
     - &nixos age1qpyea3hjku8uz93683c8feppgcgsjsc2afvlsy5ma9pgl8z5ngas8kdujs # ssh_host_ed25519_key.pub
 creation_rules:
+  - path_regex: systems/aarch64-darwin/reah/secrets.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *reah
+        pgp:
+          - *yubikey_gpg
+  - path_regex: systems/aarch64-darwin/reah/secrets/[^/]+.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *reah
+        pgp:
+          - *yubikey_gpg
   - path_regex: systems/x86_64-linux/nixos/secrets.(ya?ml|json|env|ini)$
     key_groups:
       - age:

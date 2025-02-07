@@ -19,5 +19,5 @@ with lib.${namespace};
     };
   };
 
-  # environment.systemPath = [ "/opt/homebrew/bin" ];
+  environment.systemPath = [ "/opt/homebrew/bin" ];
 }

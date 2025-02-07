@@ -95,7 +95,7 @@
         catppuccin.homeManagerModules.catppuccin
       ];
 
-      homes.users."sharparam@todo_work".modules = with inputs; [
+      homes.users."sharparam@reah".modules = with inputs; [
         mac-app-util.homeManagerModules.default
       ];
 
