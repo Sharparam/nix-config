@@ -45,7 +45,7 @@ in
     };
 
   config = {
-    programs.zsh.initExtra = lib.mkAfter ''
+    programs.zsh.initExtra = lib.mkBefore ''
       source ${default-aliases}
       source ${aliasesFile}
     '';
