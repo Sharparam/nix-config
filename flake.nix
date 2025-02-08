@@ -87,6 +87,7 @@
 
       overlays = with inputs; [
         snowfall-flake.overlays.default
+        nur.overlays.default
       ];
 
       homes.modules = with inputs; [
