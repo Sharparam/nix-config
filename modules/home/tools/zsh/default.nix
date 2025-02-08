@@ -14,9 +14,7 @@ in
 {
   options.${namespace}.tools.zsh = with types; {
     enable = mkEnableOption "ZSH";
-    syntaxHighlightingPackage =
-      mkOpt package pkgs.zsh-fast-syntax-highlighting
-        "The package to use for syntax highlighting in ZSH.";
+    enableFastSyntaxHighlighting = mkBoolOpt true "Enable fast syntax highlighting";
   };
 
   config = mkIf cfg.enable {
@@ -30,10 +28,7 @@ in
         dotDir = ".config/zsh";
         enableCompletion = true;
         enableVteIntegration = true;
-        syntaxHighlighting = {
-          enable = true;
-          package = cfg.syntaxHighlightingPackage;
-        };
+        syntaxHighlighting.enable = !cfg.enableFastSyntaxHighlighting;
         autocd = true;
         autosuggestion.enable = true;
         defaultKeymap = "viins";
@@ -58,6 +53,11 @@ in
             src = pkgs.zsh-vi-mode;
             file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
           }
+          (mkIf cfg.enableFastSyntaxHighlighting {
+            name = "zsh-fast-syntax-highlighting";
+            src = pkgs.zsh-fast-syntax-highlighting;
+            file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
+          })
           {
             name = "zsh-you-should-use";
             src = pkgs.zsh-you-should-use;
