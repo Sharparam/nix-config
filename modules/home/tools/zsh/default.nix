@@ -42,9 +42,6 @@ in
           ZVM_LAZY_KEYBINDINGS = false;
           ZVM_LINE_INIT_MODE = "i";
         };
-        # initExtra = ''
-        #   bindkey -vi
-        # '';
         plugins = [
           {
             name = "zsh-nix-shell";
