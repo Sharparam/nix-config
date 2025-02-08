@@ -39,13 +39,13 @@ in
       let
         flagsStr = escapeShellArgs config.programs.atuin.flags;
       in
-      mkIf cfg.enableZvmWorkaround ''
+      mkIf cfg.enableZvmWorkaround (mkAfter ''
         if [[ $options[zle] = on ]]; then
           function atuin_init() {
             eval "$(${pkgs.atuin}/bin/atuin init zsh ${flagsStr})"
           }
           zvm_after_init_commands+=(atuin_init)
         fi
-      '';
+      '');
   };
 }
