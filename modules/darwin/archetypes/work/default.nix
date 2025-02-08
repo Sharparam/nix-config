@@ -7,11 +7,9 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.archetypes.work;
-in
-{
+in {
   options.${namespace}.archetypes.work = with types; {
     enable = mkEnableOption "Whether or not to enable the work archetype.";
   };
@@ -23,6 +21,10 @@ in
         desktop = enabled;
         development = enabled;
       };
+    };
+
+    homebrew = {
+      casks = ["microsoft-teams"];
     };
   };
 }
