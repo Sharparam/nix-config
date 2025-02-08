@@ -19,6 +19,7 @@ in
     ${namespace} = {
       apps = {
         discord = enabled;
+        firefox = enabled;
       };
     };
   };

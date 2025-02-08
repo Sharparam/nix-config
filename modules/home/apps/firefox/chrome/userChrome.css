@@ -1,0 +1,25 @@
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* TST */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header,
+/* Sidebery */ #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+  display: none;
+}
+
+.notSecure[pageproxystate="valid"],
+.notSecure[pageproxystate="valid"] > #identity-icon-box {
+  animation-name: notsecure;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes notsecure {
+  10% {
+    background-color: red;
+  }
+  100% {
+    background-color: #4d0404;
+  }
+}
