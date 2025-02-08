@@ -19,5 +19,13 @@ in
     home.packages = with pkgs; [
       rsync
     ];
+
+    ${namespace}.cli.aliases =
+      let
+        rsync = "${pkgs.rsync}/bin/rsync";
+      in
+      {
+        rsync = "${rsync} --info=progress2 --partial -h";
+      };
   };
 }
