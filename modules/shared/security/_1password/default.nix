@@ -21,7 +21,7 @@ in
   config = mkIf cfg.enable {
     ${namespace}.home.extraOptions =
       {
-        programs.zsh.initExtra = ''
+        programs.zsh.initExtra = mkAfter ''
           [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
         '';
 
