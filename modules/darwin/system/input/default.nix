@@ -21,6 +21,8 @@ in {
         remapCapsLockToEscape = true;
         # swapLeftCommandAndLeftAlt = false;
         # swapLeftCtrlAndFn = false;
+
+        nonUS.remapTilde = true;
       };
 
       defaults = {
