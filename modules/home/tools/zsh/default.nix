@@ -37,6 +37,9 @@ in
           ZVM_LAZY_KEYBINDINGS = false;
           ZVM_LINE_INIT_MODE = "i";
         };
+        initExtraBeforeCompInit = ''
+          path+="$HOME/.local/bin"
+        '';
         plugins = [
           {
             name = "zsh-nix-shell";
