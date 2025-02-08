@@ -19,7 +19,10 @@ in
     ${namespace} = {
       apps = {
         discord = enabled;
-        firefox = enabled;
+        # TODO: Firefox is broken on darwin
+        # https://github.com/NixOS/nixpkgs/issues/366581
+        # See firefox module in the darwin tree instead
+        # firefox = enabled;
       };
     };
   };

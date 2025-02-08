@@ -22,6 +22,10 @@ in
         # TODO: bitwarden-cli doesn't build on nix-darwin
         # bitwarden = enabled;
       };
+
+      apps = {
+        firefox = enabled;
+      };
     };
   };
 }
