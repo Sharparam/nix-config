@@ -24,6 +24,10 @@ with lib.${namespace};
 
     # vscode.fhs doesn't work on nix-darwin
     apps.vscode = disabled;
+
+    tools = {
+      azure = enabled;
+    };
   };
 
   home.stateVersion = "24.11";
