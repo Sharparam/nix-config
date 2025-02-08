@@ -19,29 +19,29 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.home.extraOptions =
-      {
-        programs.zsh.initExtra = mkAfter ''
-          [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
-        '';
+    ${namespace}.home.extraOptions = {
+      programs = {
+        zsh = {
+          initExtra = mkAfter ''
+            [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
+          '';
 
-        xdg.configFile."direnv/lib/oprc.sh".source =
-          optionalString config.${namespace}.tools.direnv.enable
-            "${pkgs.snix.direnv-op}/share/direnv-op/oprc.sh";
-      }
-      // mkIf cfg.enableSshAgent {
-        ${namespace}.tools.git.use1Password = true;
-        programs.ssh = {
+          sessionVariables = mkIf cfg.enableSshAgent {
+            SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+          };
+        };
+
+        ssh = mkIf cfg.enableSshAgent {
           includes = [ "~/.ssh/1Password/config" ];
           extraOptionOverrides = {
             IdentityAgent = "~/.1password/agent.sock";
           };
         };
-        programs.zsh = {
-          sessionVariables = {
-            SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
-          };
-        };
       };
+
+      xdg.configFile."direnv/lib/oprc.sh".source = "${pkgs.snix.direnv-op}/share/direnv-op/oprc.sh";
+
+      ${namespace}.tools.git.use1Password = cfg.enableSshAgent;
+    };
   };
 }
