@@ -19,7 +19,7 @@ in
     programs.bat = enabled;
 
     ${namespace}.cli.aliases = {
-      cat = "${pkgs.bat}/bin/bat";
+      cat = "${pkgs.bat}/bin/bat --paging=never";
     };
   };
 }
