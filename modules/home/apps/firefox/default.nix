@@ -86,7 +86,7 @@ in
               "layers.gpu-process.enabled" = true;
               "layers.mlgpu.enabled" = true;
             })
-            (otionalAttrs cfg.hardwareDecoding {
+            (optionalAttrs cfg.hardwareDecoding {
               "media.ffmpeg.vaapi.enabled" = true;
               "media.gpu-process-decoder" = true;
               "media.hardware-video-decoding.enabled" = true;
