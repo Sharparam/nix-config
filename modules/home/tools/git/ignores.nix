@@ -2,7 +2,7 @@
   ### Emacs ###
   # -*- mode: gitignore; -*-
   "*~"
-  "\#*\#"
+  ''\#*\#''
   "/.emacs.desktop"
   "/.emacs.desktop.lock"
   "*.elc"
