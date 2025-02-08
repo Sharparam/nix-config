@@ -55,6 +55,29 @@ in
             file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
           }
         ];
+        prezto = {
+          enable = true;
+          pmodules = [
+            "helper"
+            "spectrum"
+            "history"
+            "environment"
+            "directory"
+            "utility"
+            "git"
+            "ruby"
+            "rails"
+            "python"
+            "node"
+            "completion"
+          ];
+          python = {
+            virtualenvAutoSwitch = true;
+          };
+          utility = {
+            safeOps = false;
+          };
+        };
       };
 
       starship = {
