@@ -61,6 +61,11 @@ in
             src = pkgs.zsh-vi-mode;
             file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
           }
+          {
+            name = "zsh-you-should-use";
+            src = pkgs.zsh-you-should-use;
+            file = "share/zsh/plugins/you-should-use/you-should-use.plugin.zsh";
+          }
         ];
         prezto = {
           enable = true;
