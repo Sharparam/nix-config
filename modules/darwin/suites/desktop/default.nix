@@ -25,6 +25,7 @@ in
 
       apps = {
         firefox = enabled;
+        telegram = enabled;
       };
     };
   };
