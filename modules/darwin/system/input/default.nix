@@ -6,11 +6,9 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.system.input;
-in
-{
+in {
   options.${namespace}.system.input = with types; {
     enable = mkEnableOption "Whether or not to enable the input system.";
   };
@@ -37,5 +35,7 @@ in
         };
       };
     };
+
+    homebrew.casks = ["smooze-pro"];
   };
 }
