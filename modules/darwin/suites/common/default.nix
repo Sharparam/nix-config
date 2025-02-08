@@ -32,6 +32,7 @@ in
       nix = enabled;
 
       system = {
+        fonts = enabled;
         interface = enabled;
         input = enabled;
       };
