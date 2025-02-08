@@ -53,6 +53,11 @@ in
             src = pkgs.zsh-vi-mode;
             file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
           }
+          {
+            name = "zsh-catppuccin-syntax-highlighting";
+            src = config.catppuccin.sources.zsh-syntax-highlighting;
+            file = "catppuccin_${config.catppuccin.zsh-syntax-highlighting.flavor}-zsh-syntax-highlighting.zsh";
+          }
           (mkIf cfg.enableFastSyntaxHighlighting {
             name = "zsh-fast-syntax-highlighting";
             src = pkgs.zsh-fast-syntax-highlighting;

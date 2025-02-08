@@ -21,6 +21,9 @@ in
       flavor = "frappe";
 
       nvim.enable = false;
+
+      # We manage this manually to ensure correct load order
+      zsh-syntax-highlighting.enable = false;
     };
 
     ${namespace} = {
