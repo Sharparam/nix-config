@@ -40,6 +40,7 @@ in
         home-manager = enabled;
         comma = enabled;
         aria2 = enabled;
+        asciinema = enabled;
         atuin = enabled;
         bat = enabled;
         curl = enabled;
