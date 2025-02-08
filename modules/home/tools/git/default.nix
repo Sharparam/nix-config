@@ -168,7 +168,10 @@ in
     ${namespace}.cli.aliases =
       let
         git = "${pkgs.git}/bin/git";
-        gh = "${pkgs.gh}/bin/gh";
+        # gh = "${pkgs.gh}/bin/gh";
+        # Don't use the direct package path because 1Password will make an alias
+        # for `gh` to automatically inject secrets
+        gh = "gh";
       in
       {
         # Commented git aliases are provided by Prezto already
