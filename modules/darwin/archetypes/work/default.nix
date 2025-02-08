@@ -25,6 +25,9 @@ in {
 
     homebrew = {
       casks = ["microsoft-teams"];
+      masApps = mkIf config.${namespace}.tools.homebrew.enable {
+        "Microsoft Outlook" = 985367838;
+      };
     };
   };
 }
