@@ -12,8 +12,11 @@ let
   starshipConfigPath = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/config/starship.toml";
 in
 {
-  options.${namespace}.tools.zsh = {
+  options.${namespace}.tools.zsh = with types; {
     enable = mkEnableOption "ZSH";
+    syntaxHighlightingPackage =
+      mkOpt package pkgs.zsh-fast-syntax-highlighting
+        "The package to use for syntax highlighting in ZSH.";
   };
 
   config = mkIf cfg.enable {
@@ -26,8 +29,11 @@ in
         enable = true;
         dotDir = ".config/zsh";
         enableCompletion = true;
-        syntaxHighlighting.enable = true;
         enableVteIntegration = true;
+        syntaxHighlighting = {
+          enable = true;
+          package = cfg.syntaxHighlightingPackage;
+        };
         autocd = true;
         autosuggestion.enable = true;
         defaultKeymap = "viins";
