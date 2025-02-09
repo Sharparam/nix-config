@@ -22,7 +22,7 @@ helper_deps = [
 ]
 
 menus_deps = [
-  carbon_dep
+  carbon_dep,
   skylight_dep
 ]
 
