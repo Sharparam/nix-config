@@ -33,6 +33,7 @@ in
           meslo-lgs-nf
 
           nerd-fonts.caskaydia-cove
+          nerd-fonts.hack
           nerd-fonts.iosevka
           nerd-fonts.symbols-only
 
