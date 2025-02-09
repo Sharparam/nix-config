@@ -67,8 +67,8 @@ in {
           )
           + ''
             ## Launchers
-            default < cmd - return : ${getExe pkgs.kitty} --single-instance -d ~
-            default < shift + cmd - return : ${getExe pkgs.kitty} -d ~
+            default < cmd - return : kitty --single-instance -d ~
+            default < shift + cmd - return : kitty -d ~
 
             ## System
             default < cmd - l : osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'
