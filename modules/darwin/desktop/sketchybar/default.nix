@@ -6,31 +6,29 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.desktop.sketchybar;
-in
-{
+in {
   options.${namespace}.desktop.sketchybar = with types; {
     enable = mkEnableOption "Enable sketchybar.";
     package = mkOpt package pkgs.sketchybar "sketchybar package";
-    logFile =
-      mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/sketchybar.log"
-        "File path of log output";
+    # logFile =
+    #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/sketchybar.log"
+    #     "File path of log output";
     catppuccinFlavor = mkOpt str "frappe" "Catppuccin flavor for colors.";
   };
 
   config = mkIf cfg.enable {
-    ${namespace} = {
-      cli.aliases = {
+    ${namespace}.home = {
+      extraOptions.${namespace}.cli.aliases = {
         restart-sketchybar = ''launchctl kickstart -k gui/"$(id -u)"/org.nixos.sketchybar'';
       };
 
-      home.configFile."sketchybar".source = ./config;
+      configFile."sketchybar".source = ./config;
     };
 
     services.sketchybar = {
-      inherit (cfg) logFile;
+      # inherit (cfg) logFile;
 
       enable = true;
       package = cfg.package;
