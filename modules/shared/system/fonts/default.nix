@@ -48,6 +48,7 @@ in
 
           snix.nonicons-bin
         ]
+        ++ optional pkgs.stdenv.isDarwin sketchybar-app-font
         ++ cfg.fonts;
     };
   };
