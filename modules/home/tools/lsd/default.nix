@@ -24,6 +24,7 @@ in
       ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
       ll = "ls --long";
       la = "ls --all";
+      lt = "ls --tree";
     };
   };
 }
