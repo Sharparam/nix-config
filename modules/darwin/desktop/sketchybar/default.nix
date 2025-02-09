@@ -35,6 +35,7 @@ in {
 
       extraPackages = with pkgs; [
         jq
+        (lua5_4.withPackages (ps: with ps; [ snix.sbarlua ]))
         snix.sketchyhelper
       ];
 
