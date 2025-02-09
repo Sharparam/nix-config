@@ -23,6 +23,7 @@ in {
 
       apps = {
         firefox = enabled;
+        kde-connect = enabled;
         slack = enabled;
         telegram = enabled;
       };
