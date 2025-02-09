@@ -16,7 +16,10 @@ in
     system.defaults.NSGlobalDomain.AppleFontSmoothing = 1;
 
     homebrew = {
-      casks = [ "sf-symbols" ];
+      casks = [
+        "font-sf-pro"
+        "sf-symbols"
+      ];
     };
   };
 }
