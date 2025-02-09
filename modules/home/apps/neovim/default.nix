@@ -22,6 +22,8 @@ in
   config = mkIf cfg.enable {
     xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink cfg.configPath;
 
+    home.sessionVariables.VISUAL = mkDefault "nvim";
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
