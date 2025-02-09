@@ -48,6 +48,8 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+
     catppuccin.url = "github:catppuccin/nix";
 
     iosevka = {
@@ -126,6 +128,10 @@
         shells = {
           default = "dev";
         };
+      };
+
+      outputs-builder = channels: {
+        formatter = inputs.treefmt-nix.lib.mkWrapper channels.nixpkgs ./treefmt.nix;
       };
     };
 }
