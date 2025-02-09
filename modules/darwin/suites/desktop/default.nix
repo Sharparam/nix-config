@@ -28,6 +28,7 @@ in
       };
 
       apps = {
+        dropbox = enabled;
         firefox = enabled;
         kde-connect = enabled;
         slack = enabled;
