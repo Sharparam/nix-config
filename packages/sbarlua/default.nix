@@ -5,17 +5,14 @@
   gcc,
   readline,
   lua5_4,
-  # lua54Packages,
   fetchFromGitHub,
   ...
 }: let
   lua = lua5_4;
 in
-  # lua54Packages.buildLuaPackage {
   lua.pkgs.buildLuaPackage {
     pname = "sbarlua";
     version = "0-unstable-2024-08-12";
-    # name = "lua${lua.luaversion}-" + pname + "-" + version;
 
     src = fetchFromGitHub {
       owner = "FelixKratz";
