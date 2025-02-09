@@ -57,13 +57,15 @@ in {
               # Toggle floating window
               default < lalt - space : ${yabai} -m window --toggle float; ${sketchybar} --trigger window_focus
             ''
-            else ''
-              ## Modes
-              :: default
-
-              # Toggle floating window
-              default < lalt - space : ${yabai} -m window --toggle float
-            ''
+            else
+              (''
+                  ## Modes
+                  :: default
+                ''
+                + optionalString useYabai ''
+                  # Toggle floating window
+                  default < lalt - space : ${yabai} -m window --toggle float
+                '')
           )
           + ''
             ## Launchers
