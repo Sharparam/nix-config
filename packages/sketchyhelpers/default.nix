@@ -4,6 +4,7 @@
   meson,
   ninja,
   pkg-config,
+  apple-sdk,
 }:
 stdenv.mkDerivation (final: {
   pname = "sketchyhelpers";
@@ -17,6 +18,10 @@ stdenv.mkDerivation (final: {
     meson
     ninja
     pkg-config
+  ];
+
+  buildInputs = [
+    apple-sdk.privateFrameworksHook
   ];
 
   enableParallelBuilding = true;
