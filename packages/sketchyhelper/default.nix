@@ -4,7 +4,7 @@
   ...
 }:
 stdenv.mkDerivation (final: {
-  pname = "sketchybarhelper";
+  pname = "sketchyhelper";
   version = "0-unstable-2024-05-06";
 
   src = lib.cleanSource ./.;
