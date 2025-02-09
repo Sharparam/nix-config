@@ -14,5 +14,9 @@ in
 
   config = mkIf cfg.enable {
     system.defaults.NSGlobalDomain.AppleFontSmoothing = 1;
+
+    homebrew = {
+      casks = [ "sf-symbols" ];
+    };
   };
 }
