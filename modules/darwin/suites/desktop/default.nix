@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.suites.desktop;
-in {
+in
+{
   options.${namespace}.suites.desktop = with types; {
     enable = mkEnableOption "Whether or not to enable common desktop configuration.";
   };
@@ -19,6 +21,10 @@ in {
         _1password = enabled;
         # TODO: bitwarden-cli doesn't build on nix-darwin
         # bitwarden = enabled;
+      };
+
+      desktop = {
+        skhd = enabled;
       };
 
       apps = {
