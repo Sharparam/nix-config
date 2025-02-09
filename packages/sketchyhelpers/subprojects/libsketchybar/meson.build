@@ -1,6 +1,6 @@
 project('libsketchybar', 'c',
   default_options: {
-    c_std: 'c99'
+    'c_std': 'c99'
   })
 
 inc = include_directories('include')
