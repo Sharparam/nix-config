@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+# No `set` because this is embedded inside the yabai script
+
+LABELS=(
+  main
+  code
+  web
+  comms
+  media
+  misc
+  scratch
+)
+
+for (( i = 1; i <= "${#LABELS[@]}"; i++ )); do
+  yabai -m space "$i" --label "${LABELS[(($i - 1))]}"
+done
+
+yabai -m config --space media layout stack window_opacity off
+yabai -m config --space scratch layout float
+
+UNMANAGED=(
+  1Password
+  Activity Monitor
+  App Store
+  Archive Utility
+  Bitwarden
+  Calculator
+  Dictionary
+  FaceTime
+  Photo Booth
+  Screen Sharing
+  Screens
+  Smooze Pro
+  Software Update
+  System Information
+  System Preferences
+  System Settings
+)
+
+for (( i = 1; i <= "${#UNMANAGED[@]}"; i++ )); do
+  yabai -m rule --add label="unmanage_${UNMANAGED[(($i - 1))]}" app="^${UNMANAGED[(($i - 1))]}.*$" manage=off
+done
+
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
+
+COMMS=(
+  Discord
+  Element
+  Mail
+  Messages
+  Messenger
+  Microsoft Teams
+  "Microsoft Teams (work or school)"
+  Outlook
+  Slack
+  Telegram
+  Thunderbird
+  Vesktop
+)
+
+for (( i = 1; i <= "${#COMMS[@]}"; i++ )); do
+  yabai -m rule --add label="comms_${COMMS[(($i - 1))]}" app="^${COMMS[(($i - 1))}.*$" space=comms
+done
+
+STICKY=(
+  1Password
+  Bitwarden
+)
+
+for (( i = 1; i <= "${#STICKY[@]}"; i++ )); do
+  yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))}.*$" sticky=on
+done
+
+MEDIA=(
+  Music
+  Plex
+  Spotify
+  VLC
+)
+
+for (( i = 1; i <= "${#MEDIA[@]}"; i++ )); do
+  yabai -m rule --add label="media_${MEDIA[(($i - 1))}" app="^${MEDIA[(($i - 1))}.*$" space=media
+done
+
+CODE=(
+  Android Studio
+  CLion
+  DataGrip
+  Fleet
+  GoLand
+  IntelliJ IDEA
+  IntelliJ IDEA Community Edition
+  IntelliJ IDEA Ultimate
+  PhpStorm
+  PyCharm
+  PyCharm Community
+  PyCharm Professional
+  Rider
+  RubyMine
+  RustRover
+  Visual Studio
+  Visual Studio Code
+  WebStorm
+  XCode
+)
+
+for (( i = 1; i <= "${#CODE[@]}"; i++ )); do
+  yabai -m rule --add label="code_${CODE[(($i - 1))}" app="^${CODE[(($i - 1))}.*$" space=code
+done
