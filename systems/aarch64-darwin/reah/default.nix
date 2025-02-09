@@ -17,6 +17,12 @@ with lib.${namespace};
     security = {
       _1password.enableSshAgent = true;
     };
+
+    desktop = {
+      # jankyborders = enabled;
+      # yabai = enabled;
+      # sketchybar = enabled;
+    };
   };
 
   environment.systemPath = [ "/opt/homebrew/bin" ];
