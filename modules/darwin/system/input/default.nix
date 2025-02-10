@@ -47,6 +47,6 @@ in {
       };
     };
 
-    homebrew.casks = ["smooze-pro"];
+    homebrew.casks = ["smooze-pro" "steermouse"];
   };
 }
