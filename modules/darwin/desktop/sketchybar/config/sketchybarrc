@@ -1,78 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env lua
 
-echo "sketchybar configuration loading"
+--[[
+  Mostly following FelixKratz's config:
+  https://github.com/FelixKratz/dotfiles/tree/master/.config/sketchybar
+]]
 
-ITEM_DIR="$CONFIG_DIR/items"
-PLUGIN_DIR="$CONFIG_DIR/plugins"
-
-source "$CONFIG_DIR/colors/colors.sh"
-source "$CONFIG_DIR/icons.sh"
-
-FONT="SF Pro"
-
-PADDING=3
-
-bar=(
-  height=45
-  color="$BAR_COLOR"
-  border_width=2
-  border_color="$BAR_BORDER_COLOR"
-  shadow=off
-  position=top
-  sticky=on
-  padding_right=10
-  padding_left=10
-  y_offset=-5
-  margin=-2
-  topmost=window
-)
-
-sketchybar --bar "${bar[@]}"
-
-defaults=(
-  updates=when_shown
-  icon.color="$ICON_COLOR"
-  icon.padding_left="$PADDING"
-  icon.padding_right="$PADDING"
-  label.color="$LABEL_COLOR"
-  label.padding_left="$PADDING"
-  label.padding_right="$PADDING"
-  padding_left="$PADDING"
-  padding_right="$PADDING"
-  background.height=26
-  background.corner_radius=9
-  background.border_width=2
-  popup.background.border_width=2
-  popup.background.corner_radius=9
-  popup.background.border_color="$POPUP_BORDER_COLOR"
-  popup.background.color="$POPUP_BACKGROUND_COLOR"
-  popup.background.shadow.drawing=on
-  popup.blur_radius=20
-  scroll_texts=on
-)
-
-sketchybar --default "${defaults[@]}"
-
-# Left
-# shellcheck source=items/apple.sh
-source "$ITEM_DIR/apple.sh"
-# shellcheck source=items/spaces.sh
-source "$ITEM_DIR/spaces.sh"
-# shellcheck source=items/yabai.sh
-source "$ITEM_DIR/yabai.sh"
-# shellcheck source=items/front_app.sh
-source "$ITEM_DIR/front_app.sh"
-
-# Right
-# shellcheck source=items/calendar.sh
-source "$ITEM_DIR/calendar.sh"
-# shellcheck source=items/wifi.sh
-source "$ITEM_DIR/wifi.sh"
-# shellcheck source=items/battery.sh
-source "$ITEM_DIR/battery.sh"
-
-sketchybar --hotload on
-
-sketchybar --update
-
-echo "sketchybar configuration loaded"
+require "init"
