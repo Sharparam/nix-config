@@ -18,6 +18,7 @@ in
     homebrew = {
       casks = [
         "font-sf-pro"
+        "font-sf-mono"
         "sf-symbols"
       ];
     };
