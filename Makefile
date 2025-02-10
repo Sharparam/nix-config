@@ -30,7 +30,7 @@ build:
 
 diff: build
 	# nix shell 'nixpkgs#nix-diff' -c nix-diff --color=always --skip-already-compared /var/run/current-system ./result | less -R --quit-if-one-screen
-	nix run 'nixpkgs#nvd' -- --color always /var/run/current-system ./result | less --raw-control-chars --quit-if-one-screen
+	nix run 'nixpkgs#nvd' -- --color always diff /var/run/current-system ./result | less --raw-control-chars --quit-if-one-screen
 
 switch: build
 	result/sw/bin/$(REBUILD) switch --flake .?submodules=1#
