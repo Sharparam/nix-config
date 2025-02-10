@@ -8,6 +8,8 @@ OS := $(shell uname -s)
 TARGET := $(if $(filter Darwin,$(OS)),darwinConfigurations.$(HOSTNAME).system,nixosConfigurations.$(HOSTNAME).config.system.build.toplevel)
 REBUILD := $(if $(filter Darwin,$(OS)),darwin-rebuild,nixos-rebuild)
 
+NOM := $(shell { command -v nom || command -v nix; } 2>/dev/null)
+
 GC_MIN_AGE := 14d
 
 check:
@@ -19,7 +21,7 @@ diff-and-switch: build
 	$(MAKE) -o build switch
 
 build:
-	nix --extra-experimental-features 'nix-command flakes' build .?submodules=1#$(TARGET)
+	$(NOM) build --extra-experimental-features 'nix-command flakes' .?submodules=1#$(TARGET)
 	@if [ -d /var/run/current-system ]; then \
 		nix store diff-closures /var/run/current-system ./result; \
 	else \
