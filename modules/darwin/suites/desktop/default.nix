@@ -6,11 +6,9 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.suites.desktop;
-in
-{
+in {
   options.${namespace}.suites.desktop = with types; {
     enable = mkEnableOption "Whether or not to enable common desktop configuration.";
   };
@@ -33,6 +31,7 @@ in
         firefox = enabled;
         kde-connect = enabled;
         slack = enabled;
+        spotify = enabled;
         telegram = enabled;
       };
     };
