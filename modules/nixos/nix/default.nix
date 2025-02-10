@@ -31,12 +31,14 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      nix-diff
       nix-health
       # nix-index
       nix-output-monitor
       nix-prefetch-git
       nixd
       nixfmt-rfc-style
+      nvd
       # comma
       snowfallorg.flake
       alejandra
