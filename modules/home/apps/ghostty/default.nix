@@ -9,11 +9,15 @@ with lib;
 with lib.${namespace}; let
   cfg = config.${namespace}.apps.ghostty;
 in {
-  options.${namespace}.apps.ghostty = {
+  options.${namespace}.apps.ghostty = with types; {
     enable = mkEnableOption "Enable ghostty.";
+    setAsDefault = mkBoolOpt false "Set ghostty as default terminal (TERMINAL env var).";
   };
 
   config = mkIf cfg.enable {
+    home.sessionVariables = mkIf cfg.setAsDefault {
+      TERMINAL = mkDefault "ghostty";
+    };
     programs.ghostty = {
       enable = true;
       settings = {

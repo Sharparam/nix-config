@@ -1,14 +1,13 @@
 {
   lib,
   pkgs,
-  osConfig ? { },
+  osConfig ? {},
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace};
-{
+with lib.${namespace}; {
   snix = {
     user = {
       enable = true;
@@ -22,8 +21,14 @@ with lib.${namespace};
       development = enabled;
     };
 
-    # vscode.fhs doesn't work on nix-darwin
-    apps.vscode = disabled;
+    apps = {
+      ghostty = {
+        enable = true;
+        setAsDefault = true;
+      };
+      # vscode.fhs doesn't work on nix-darwin
+      vscode = disabled;
+    };
 
     tools = {
       azure = enabled;
