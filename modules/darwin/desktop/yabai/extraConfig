@@ -12,8 +12,8 @@ LABELS=(
   scratch
 )
 
-for (( i = 1; i <= "${#LABELS[@]}"; i++ )); do
-  yabai -m space "$i" --label "${LABELS[(($i - 1))]}"
+for ((i = 1; i <= "${#LABELS[@]}"; i++)); do
+  yabai -m space "$i" --label "${LABELS[((i - 1))]}"
 done
 
 yabai -m config --space media layout stack window_opacity off
@@ -38,8 +38,8 @@ UNMANAGED=(
   System Settings
 )
 
-for (( i = 1; i <= "${#UNMANAGED[@]}"; i++ )); do
-  yabai -m rule --add label="unmanage_${UNMANAGED[(($i - 1))]}" app="^${UNMANAGED[(($i - 1))]}.*$" manage=off
+for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
+  yabai -m rule --add label="unmanage_${UNMANAGED[((i - 1))]}" app="^${UNMANAGED[((i - 1))]}.*$" manage=off
 done
 
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
@@ -62,8 +62,8 @@ COMMS=(
   Vesktop
 )
 
-for (( i = 1; i <= "${#COMMS[@]}"; i++ )); do
-  yabai -m rule --add label="comms_${COMMS[(($i - 1))]}" app="^${COMMS[(($i - 1))}.*$" space=comms
+for ((i = 1; i <= "${#COMMS[@]}"; i++)); do
+  yabai -m rule --add label="comms_${COMMS[((i - 1))]}" app="^${COMMS[((i - 1))]}.*$" space=comms
 done
 
 STICKY=(
@@ -71,8 +71,8 @@ STICKY=(
   Bitwarden
 )
 
-for (( i = 1; i <= "${#STICKY[@]}"; i++ )); do
-  yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))}.*$" sticky=on
+for ((i = 1; i <= "${#STICKY[@]}"; i++)); do
+  yabai -m rule --add label="sticky_${STICKY[((i - 1))]}" app="^${STICKY[((i - 1))]}.*$" sticky=on
 done
 
 MEDIA=(
@@ -82,8 +82,8 @@ MEDIA=(
   VLC
 )
 
-for (( i = 1; i <= "${#MEDIA[@]}"; i++ )); do
-  yabai -m rule --add label="media_${MEDIA[(($i - 1))}" app="^${MEDIA[(($i - 1))}.*$" space=media
+for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
+  yabai -m rule --add label="media_${MEDIA[((i - 1))]}" app="^${MEDIA[((i - 1))]}.*$" space=media
 done
 
 CODE=(
@@ -108,6 +108,6 @@ CODE=(
   XCode
 )
 
-for (( i = 1; i <= "${#CODE[@]}"; i++ )); do
-  yabai -m rule --add label="code_${CODE[(($i - 1))}" app="^${CODE[(($i - 1))}.*$" space=code
+for ((i = 1; i <= "${#CODE[@]}"; i++)); do
+  yabai -m rule --add label="code_${CODE[((i - 1))]}" app="^${CODE[((i - 1))]}.*$" space=code
 done
