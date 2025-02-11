@@ -65,23 +65,21 @@
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs =
-    inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
 
-        src = ./.;
+      src = ./.;
 
-        snowfall = {
-          namespace = "snix";
-          meta = {
-            name = "snix";
-            title = "Sharparam's NixOS/nix-darwin/nix flake";
-          };
+      snowfall = {
+        namespace = "snix";
+        meta = {
+          name = "snix";
+          title = "Sharparam's NixOS/nix-darwin/nix flake";
         };
       };
-    in
+    };
+  in
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
