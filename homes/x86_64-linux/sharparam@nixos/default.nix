@@ -15,6 +15,10 @@ with lib.${namespace};
     };
 
     tools.ssh = enabled;
+
+    apps = {
+      ghostty = enabled;
+    };
   };
 
   home.stateVersion = "24.11";
