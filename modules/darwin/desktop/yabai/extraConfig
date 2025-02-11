@@ -111,3 +111,7 @@ CODE=(
 for ((i = 1; i <= "${#CODE[@]}"; i++)); do
   yabai -m rule --add label="code_${CODE[((i - 1))]}" app="^${CODE[((i - 1))]}.*$" space=code
 done
+
+# Workarounds for ghostty
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
