@@ -63,6 +63,8 @@
     };
 
     mac-app-util.url = "github:hraban/mac-app-util";
+
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs = inputs: let
@@ -88,6 +90,7 @@
       overlays = with inputs; [
         snowfall-flake.overlays.default
         nur.overlays.default
+        ghostty.overlays.default
       ];
 
       homes.modules = with inputs; [

@@ -19,6 +19,7 @@ in
     ${namespace} = {
       apps = {
         discord = enabled;
+        ghostty = enabled;
         # TODO: Firefox is broken on darwin
         # https://github.com/NixOS/nixpkgs/issues/366581
         # See firefox module in the darwin tree instead
