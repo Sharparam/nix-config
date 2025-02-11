@@ -27,7 +27,10 @@ in {
 
       apps = {
         dropbox = enabled;
-        google.drive = enabled;
+        google = {
+          chrome = enabled;
+          drive = enabled;
+        };
         firefox = enabled;
         kde-connect = enabled;
         slack = enabled;
