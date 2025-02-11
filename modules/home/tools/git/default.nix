@@ -6,23 +6,20 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.tools.git;
   is-linux = pkgs.stdenv.isLinux;
   is-darwin = pkgs.stdenv.isDarwin;
   user = config.${namespace}.user;
   _1PasswordSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
   sshSigningProgram =
-    if is-linux then
-      (getExe' pkgs._1password-gui "op-ssh-sign")
-    else
-      "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"; # TODO: Fix?
+    if is-linux
+    then (getExe' pkgs._1password-gui "op-ssh-sign")
+    else "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"; # TODO: Fix?
   ninetechConfig = {
     user.email = "adam.hellberg@ninetech.com";
   };
-in
-{
+in {
   options.${namespace}.tools.git = with types; {
     enable = mkEnableOption "Git";
     use1Password = mkBoolOpt false "Use 1Password integration.";
@@ -30,7 +27,7 @@ in
     userEmail = mkOpt str user.email "The email to configure Git with.";
     signingKey =
       mkOpt str "C58C41E27B00AD04"
-        "The GPG key to use for signing commits and tags (ignored if using 1Password).";
+      "The GPG key to use for signing commits and tags (ignored if using 1Password).";
     credentialHelper = mkOpt (nullOr str) null "The credential helper to use with Git.";
     askPass = mkOpt (nullOr str) null "The askpass program to use with Git.";
   };
@@ -70,7 +67,10 @@ in
       enable = true;
       lfs = enabled;
       signing = {
-        key = if cfg.use1Password then "key::${_1PasswordSigningKey}" else cfg.signingKey;
+        key =
+          if cfg.use1Password
+          then "key::${_1PasswordSigningKey}"
+          else cfg.signingKey;
         signByDefault = true;
       };
       extraConfig = {
@@ -100,12 +100,11 @@ in
           ifexists = "addIfDifferent";
         };
         credential.helper =
-          if cfg.credentialHelper != null then
-            cfg.credentialHelper
-          else if is-linux then
-            getExe' config.programs.git.package "git-credential-libsecret"
-          else
-            getExe' config.programs.git.package "git-credential-osxkeychain";
+          if cfg.credentialHelper != null
+          then cfg.credentialHelper
+          else if is-linux
+          then getExe' config.programs.git.package "git-credential-libsecret"
+          else getExe' config.programs.git.package "git-credential-osxkeychain";
         gpg = mkIf cfg.use1Password {
           format = "ssh";
           ssh = {
@@ -149,8 +148,14 @@ in
         };
         signing = {
           sign-all = true;
-          backend = if cfg.use1Password then "ssh" else "gpg";
-          key = if cfg.use1Password then _1PasswordSigningKey else cfg.signingKey;
+          backend =
+            if cfg.use1Password
+            then "ssh"
+            else "gpg";
+          key =
+            if cfg.use1Password
+            then _1PasswordSigningKey
+            else cfg.signingKey;
           backends.ssh = {
             allowed-signers = "~/.ssh/allowed_signers";
             program = sshSigningProgram;
@@ -171,36 +176,34 @@ in
       };
     };
 
-    ${namespace}.cli.aliases =
-      let
-        git = "${pkgs.git}/bin/git";
-        # gh = "${pkgs.gh}/bin/gh";
-        # Don't use the direct package path because 1Password will make an alias
-        # for `gh` to automatically inject secrets
-        gh = "gh";
-      in
-      {
-        # Commented git aliases are provided by Prezto already
-        ga = "${git} add";
-        # gb = "${git} branch";
-        # gca = "${git} commit --verbose --all";
-        # gcaS = "${git} commit --verbose --all --gpg-sign";
-        # gcam = "${git} commit --all --message";
-        # gcamS = "${git} commit --all --message --gpg-sign";
-        # gcm = "${git} commit --message";
-        # gcmS = "${git} commit --message --gpg-sign";
-        gdt = "${git} difftool";
-        # gfr = "${git} pull --rebase";
-        # gp = "${git} push";
-        # gpf = "${git} push --force-with-lease";
-        # gpF = "${git} push --force";
-        gst = "${git} status";
+    ${namespace}.cli.aliases = let
+      git = "${pkgs.git}/bin/git";
+      # gh = "${pkgs.gh}/bin/gh";
+      # Don't use the direct package path because 1Password will make an alias
+      # for `gh` to automatically inject secrets
+      gh = "gh";
+    in {
+      # Commented git aliases are provided by Prezto already
+      ga = "${git} add";
+      # gb = "${git} branch";
+      # gca = "${git} commit --verbose --all";
+      # gcaS = "${git} commit --verbose --all --gpg-sign";
+      # gcam = "${git} commit --all --message";
+      # gcamS = "${git} commit --all --message --gpg-sign";
+      # gcm = "${git} commit --message";
+      # gcmS = "${git} commit --message --gpg-sign";
+      gdt = "${git} difftool";
+      # gfr = "${git} pull --rebase";
+      # gp = "${git} push";
+      # gpf = "${git} push --force-with-lease";
+      # gpF = "${git} push --force";
+      gst = "${git} status";
 
-        "?" = "${gh} copilot suggeste -t shell";
-        "??" = "${gh} copilot explain";
-        "?e" = "${gh} copoilot explain";
-        "?g" = "${gh} copilot suggest -t git";
-        "?gh" = "${gh} copilot suggest -t gh";
-      };
+      "?" = "${gh} copilot suggeste -t shell";
+      "??" = "${gh} copilot explain";
+      "?e" = "${gh} copoilot explain";
+      "?g" = "${gh} copilot suggest -t git";
+      "?gh" = "${gh} copilot suggest -t gh";
+    };
   };
 }
