@@ -69,11 +69,11 @@ in {
           )
           + ''
             ## Launchers
-            default < cmd - return : kitty --single-instance -d ~
-            default < shift + cmd - return : kitty -d ~
+            default < lalt - return : kitty --single-instance -d ~
+            default < shift + lalt - return : kitty -d ~
 
             ## System
-            default < cmd - l : osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'
+            default < lalt - l : osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'
           ''
           + optionalString useYabai ''
             ## Window
