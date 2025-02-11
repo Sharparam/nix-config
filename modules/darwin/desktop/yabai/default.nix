@@ -8,6 +8,7 @@
 with lib;
 with lib.${namespace}; let
   cfg = config.${namespace}.desktop.yabai;
+  useSketchybar = config.${namespace}.desktop.sketchybar.enable;
 in {
   options.${namespace}.desktop.yabai = with types; {
     enable = mkEnableOption "Enable yabai.";
@@ -17,6 +18,7 @@ in {
     #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log"
     #     "File path of log output";
     spacesCount = mkOpt int 9 "Number of spaces";
+    enableSpaceId = mkBoolOpt (!useSketchyBar) "Whether to enable SpaceId";
   };
 
   config = mkIf cfg.enable {
@@ -24,9 +26,9 @@ in {
       restart-yabai = ''launchctl kickstart -k gui/"$(id -u)"/org.nixos.yabai'';
     };
 
-    services.yabai = let
-      useSketchybar = config.${namespace}.desktop.sketchybar.enable;
-    in {
+    homebrew.casks = mkIf cfg.enableSpaceId ["spaceid"];
+
+    services.yabai = {
       # inherit (cfg) logFile;
 
       enable = true;
