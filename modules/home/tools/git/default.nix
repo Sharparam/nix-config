@@ -50,6 +50,12 @@ in
             timeFormat = "02 Jan 2006";
             shortTimeFormat = "15:04";
           };
+          keybinding = {
+            universal = {
+              # Default <a-enter> conflicts with skhd binding to spawn terminal
+              confirmInEditor = "<c-enter>";
+            };
+          };
         };
       };
       zsh = {
