@@ -4,20 +4,66 @@ local settings = require "settings"
 local app_icons = require "utils.app_icons"
 
 local APP_FONT = "sketchybar-app-font:Regular:16.0"
+local NERD_FONT = "Symbols Nerd Font:Regular:16.0"
 
 local MAX_SPACES = 9
 
+--[[
+  1: main
+  2: code
+  3: web
+  4: comms
+  5: media
+  6: misc
+  7: scratch
+--]]
+local ICON_OVERRIDES = {
+  [2] = {
+    font = NERD_FONT,
+    string = " ",
+  },
+  [3] = {
+    font = NERD_FONT,
+    string = " ",
+  },
+  [4] = {
+    font = NERD_FONT,
+    string = " ",
+  },
+  [5] = {
+    font = NERD_FONT,
+    string = " ",
+  },
+}
+
+local function override(target, source)
+  for k, v in pairs(source) do
+    if type(v) == "table" and type(target[k]) == "table" then
+      override(target[k], v)
+    else
+      target[k] = v
+    end
+  end
+end
+
 local function create_space_item(i)
+  local overrides = ICON_OVERRIDES[i]
+  local icon = {
+    font = { family = settings.font.numbers },
+    string = i,
+    padding_left = 15,
+    padding_right = 8,
+    color = colors.white,
+    highlight_color = colors.red,
+  }
+
+  if overrides then
+    override(icon, overrides)
+  end
+
   return {
     space = i,
-    icon = {
-      font = { family = settings.font.numbers },
-      string = i,
-      padding_left = 15,
-      padding_right = 8,
-      color = colors.white,
-      highlight_color = colors.red,
-    },
+    icon = icon,
     label = {
       padding_right = 20,
       color = colors.label.foreground,
