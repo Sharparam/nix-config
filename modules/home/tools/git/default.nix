@@ -49,8 +49,10 @@ in {
           };
           keybinding = {
             universal = {
+              # TODO: Cannot currently combine modifiers with enter key in custom keybinds
+              # https://github.com/jesseduffield/lazygit/issues/4258
               # Default <a-enter> conflicts with skhd binding to spawn terminal
-              confirmInEditor = "<c-enter>";
+              # confirmInEditor = "<c-enter>";
             };
           };
         };
