@@ -12,6 +12,7 @@ in {
   options.${namespace}.apps.ghostty = with types; {
     enable = mkEnableOption "Enable ghostty.";
     setAsDefault = mkBoolOpt false "Set ghostty as default terminal (TERMINAL env var).";
+    fontSize = mkOpt int 12 "Font size";
   };
 
   config = mkIf cfg.enable {
@@ -33,7 +34,7 @@ in {
           "Iosevka Nerd Font Mono"
           "Symbols Nerd Font Mono"
         ];
-        font-size = 12;
+        font-size = cfg.fontSize;
         # theme = "catppuccin-macchiato";
         background-opacity = 0.95;
         background-blur = false;
