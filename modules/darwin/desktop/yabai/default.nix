@@ -26,6 +26,10 @@ in {
       restart-yabai = ''launchctl kickstart -k gui/"$(id -u)"/org.nixos.yabai'';
     };
 
+    environment.systemPackages = with pkgs; [
+      snix.yabai-helper
+    ];
+
     homebrew.casks = mkIf cfg.enableSpaceId ["spaceid"];
 
     services.yabai = {
@@ -106,22 +110,22 @@ in {
             ${builtins.readFile ./extraConfig}
 
             # Signal hooks
-            ${yabai} -m signal --add event=dock_did_restart action="sudo ${yabai} --load-sa"
-            ${yabai} -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${cfg.spacesCount}"
-            ${yabai} -m signal --add event=display_removed action="sleep 1 && source ${yaba-helper} && create_spaces ${cfg.spacesCount}"
+            yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+            yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${cfg.spacesCount}"
+            yabai -m signal --add event=display_removed action="sleep 1 && source ${yaba-helper} && create_spaces ${cfg.spacesCount}"
 
             echo "yabai configuration loaded"
           ''
           + optionalString useSketchybar ''
             echo "yabai sketchybar integration loading"
 
-            BAR_HEIGHT=$(${sketchybar} -m --query bar | ${jq} -r '.height')
+            BAR_HEIGHT=$(sketchybar -m --query bar | ${jq} -r '.height')
             echo "bar height is $BAR_HEIGHT"
-            ${yabai} -m config external_bar all:"$BAR_HEIGHT":0
+            yabai -m config external_bar all:"$BAR_HEIGHT":0
 
-            ${yabai} -m signal --add event=window_focused action="${sketchybar} --trigger window_focus"
-            ${yabai} -m signal --add event=window_created action="${sketchybar} --trigger windows_on_spaces"
-            ${yabai} -m signal --add event=window_destroyed action="${sketchybar} --trigger windows_on_spaces"
+            # yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+            # yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+            # yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
             echo "yabai sketchybar integration loaded"
           '';
