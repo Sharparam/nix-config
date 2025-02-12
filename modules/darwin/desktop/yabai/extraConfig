@@ -33,9 +33,12 @@ UNMANAGED=(
   Screens
   Smooze Pro
   Software Update
+  Steam
+  SteerMouse
   System Information
   System Preferences
   System Settings
+  VLC
 )
 
 for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
