@@ -25,7 +25,7 @@ in {
           "Iosevka Sharpie Term"
           "Iosevka Term"
           "Iosevka Nerd Font Mono"
-          "Symbols Nerd Font"
+          "Symbols Nerd Font Mono"
         ];
         font-size = 12;
         # theme = "catppuccin-macchiato";
