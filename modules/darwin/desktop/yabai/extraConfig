@@ -21,23 +21,23 @@ yabai -m config --space scratch layout float
 
 UNMANAGED=(
   1Password
-  Activity Monitor
-  App Store
-  Archive Utility
+  "Activity Monitor"
+  "App Store"
+  "Archive Utility"
   Bitwarden
   Calculator
   Dictionary
   FaceTime
-  Photo Booth
-  Screen Sharing
+  "Photo Booth"
+  "Screen Sharing"
   Screens
-  Smooze Pro
-  Software Update
+  "Smooze Pro"
+  "Software Update"
   Steam
   SteerMouse
-  System Information
-  System Preferences
-  System Settings
+  "System Information"
+  "System Preferences"
+  "System Settings"
   VLC
 )
 
@@ -56,7 +56,7 @@ COMMS=(
   Mail
   Messages
   Messenger
-  Microsoft Teams
+  "Microsoft Teams"
   "Microsoft Teams (work or school)"
   Outlook
   Slack
@@ -90,23 +90,23 @@ for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
 done
 
 CODE=(
-  Android Studio
+  "Android Studio"
   CLion
   DataGrip
   Fleet
   GoLand
-  IntelliJ IDEA
-  IntelliJ IDEA Community Edition
-  IntelliJ IDEA Ultimate
+  "IntelliJ IDEA"
+  "IntelliJ IDEA Community Edition"
+  "IntelliJ IDEA Ultimate"
   PhpStorm
   PyCharm
-  PyCharm Community
-  PyCharm Professional
+  "PyCharm Community"
+  "PyCharm Professional"
   Rider
   RubyMine
   RustRover
-  Visual Studio
-  Visual Studio Code
+  "Visual Studio"
+  "Visual Studio Code"
   WebStorm
   XCode
 )
