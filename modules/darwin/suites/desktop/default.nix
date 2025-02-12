@@ -27,6 +27,7 @@ in {
 
       apps = {
         dropbox = enabled;
+        ghostty = enabled;
         google = {
           chrome = enabled;
           drive = enabled;

@@ -20,6 +20,12 @@ in {
     };
     programs.ghostty = {
       enable = true;
+      # nix package/flake not supported on darwin:
+      # https://github.com/ghostty-org/ghostty/discussions/2824
+      package =
+        if pkgs.stdenv.isDarwin
+        then null
+        else pkgs.ghostty;
       settings = {
         font-family = [
           "Iosevka Sharpie Term"
