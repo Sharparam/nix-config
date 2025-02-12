@@ -98,7 +98,8 @@ in {
             default < lalt - l : yabai -m window --focus east || yabai -m display --focus east
             # Extended
             default < lalt - g : yabai -m window --focus first
-            default < lalt - ; : yabai -m window --focus last
+            # 0x29 is semicolon on ANSI US
+            default < lalt - 0x29 : yabai -m window --focus last
 
             # Toggle floating window
             default < lalt - space : yabai -m window --toggle float
