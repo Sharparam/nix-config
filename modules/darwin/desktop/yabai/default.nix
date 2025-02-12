@@ -18,7 +18,7 @@ in {
     #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log"
     #     "File path of log output";
     spacesCount = mkOpt int 9 "Number of spaces";
-    enableSpaceId = mkBoolOpt (!useSketchyBar) "Whether to enable SpaceId";
+    enableSpaceId = mkBoolOpt (!useSketchybar) "Whether to enable SpaceId";
   };
 
   config = mkIf cfg.enable {
@@ -111,8 +111,8 @@ in {
 
             # Signal hooks
             yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-            yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${cfg.spacesCount}"
-            yabai -m signal --add event=display_removed action="sleep 1 && source ${yaba-helper} && create_spaces ${cfg.spacesCount}"
+            yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
+            yabai -m signal --add event=display_removed action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
 
             echo "yabai configuration loaded"
           ''
