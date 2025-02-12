@@ -5,8 +5,7 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-{
+with lib.${namespace}; {
   # TODO: Finish setup when laptop is actually received
 
   ${namespace} = {
@@ -25,7 +24,7 @@ with lib.${namespace};
     };
   };
 
-  environment.systemPath = [ "/opt/homebrew/bin" ];
+  environment.systemPath = ["/opt/homebrew/bin"];
 
   system.stateVersion = 6;
 }
