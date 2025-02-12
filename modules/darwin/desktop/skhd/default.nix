@@ -65,10 +65,11 @@ in {
             :: default
 
             ## Launchers
-            # default < lalt - return : kitty --single-instance -d ~
-            # default < shift + lalt - return : kitty -d ~
+            default < lalt - return : kitty --single-instance -d ~
+            default < shift + lalt - return : kitty -d ~
             # Experiment with ghostty
-            default < lalt - return : ghostty
+            # disable for now since it seems not quite ready yet
+            # default < lalt - return : ghostty
 
             ## System
             default < lalt - l : osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'

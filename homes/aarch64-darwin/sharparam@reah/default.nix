@@ -24,7 +24,7 @@ with lib.${namespace}; {
     apps = {
       ghostty = {
         enable = true;
-        setAsDefault = true;
+        setAsDefault = false;
       };
       # vscode.fhs doesn't work on nix-darwin
       vscode = disabled;
