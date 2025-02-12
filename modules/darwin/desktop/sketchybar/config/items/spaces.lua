@@ -37,8 +37,8 @@ local function create_space_item(i)
       background = {
         border_width = 5,
         border_color = colors.black,
-      }
-    }
+      },
+    },
   }
 end
 
@@ -55,7 +55,7 @@ local function create(sbar)
         border_color = colors.background.border,
         height = 28,
         border_width = 2,
-      }
+      },
     })
 
     sbar.add("space", "space.padding." .. i, {
@@ -73,8 +73,8 @@ local function create(sbar)
         image = {
           corner_radius = 9,
           scale = 0.2,
-        }
-      }
+        },
+      },
     })
 
     space:subscribe("space_change", function(env)
@@ -126,7 +126,7 @@ local function create(sbar)
     background = {
       color = colors.with_alpha(colors.gray, 0),
       border_color = colors.with_alpha(colors.background.background, 0),
-    }
+    },
   })
 
   space_window_observer:subscribe("space_windows_change", function(env)
@@ -187,5 +187,5 @@ local function create(sbar)
 end
 
 return {
-  create = create
+  create = create,
 }

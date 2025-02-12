@@ -1,10 +1,12 @@
 local settings = require "settings"
 
 local mt = {
-  __tostring = function() return "Missing Icon" end,
+  __tostring = function()
+    return "Missing Icon"
+  end,
   __index = function(t, k)
     return setmetatable({}, getmetatable(t))
-  end
+  end,
 }
 
 local function make_icons(icons)
@@ -50,7 +52,7 @@ local sf_symbols = make_icons {
     _50 = "􀺶",
     _25 = "􀛩",
     _0 = "􀛪",
-    charging = "􀢋"
+    charging = "􀢋",
   },
   wifi = {
     upload = "􀄨",
@@ -87,7 +89,7 @@ local sf_symbols = make_icons {
     parent_zoom = "􀥃",
     float = "􀢌",
     grid = "􀧍",
-  }
+  },
 }
 
 -- Alternative NerdFont icons
@@ -116,14 +118,14 @@ local nerdfont = make_icons {
     _50 = "",
     _25 = "",
     _0 = "",
-    charging = ""
+    charging = "",
   },
   wifi = {
     upload = "",
     download = "",
     connected = "󰖩",
     disconnected = "󰖪",
-    router = "Missing Icon"
+    router = "Missing Icon",
   },
   media = {
     back = "",
