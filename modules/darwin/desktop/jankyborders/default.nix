@@ -6,11 +6,9 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.desktop.jankyborders;
-in
-{
+in {
   options.${namespace}.desktop.jankyborders = {
     enable = mkEnableOption "Enable janky borders.";
   };
@@ -18,12 +16,14 @@ in
   config = mkIf cfg.enable {
     services.jankyborders = {
       enable = true;
-      active_color = "0xff7793d1";
-      inactive_color = "0xff5e6798";
+      active_color = "0xffe2e2e3";
+      inactive_color = "0xff414550";
       background_color = "0x302c2e34";
-      blur_radius = 25.0;
+      blur_radius = 0.0;
       hidpi = false;
-      width = 5.0;
+      width = 6.0;
+      order = "below";
+      style = "round";
     };
   };
 }
