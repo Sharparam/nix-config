@@ -72,7 +72,8 @@ in {
             # default < lalt - return : ghostty
 
             ## System
-            default < lalt - l : osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'
+            # conflicts with yabai window movement
+            # default < lalt - l : osascript -e 'tell application "System Events" to keystroke "q" using {command down,control down}'
           ''
           + optionalString useYabai ''
             ## Window
@@ -171,9 +172,9 @@ in {
 
             ## Layout
 
-            default < shift + lalt - z : yabai -m space --layout bsp
-            default < shift + lalt - x : yabai -m space --layout stack
-            default < shift + lalt - c : yabai -m space --layout float
+            default < ctrl + lalt - z : yabai -m space --layout bsp
+            default < ctrl + lalt - x : yabai -m space --layout stack
+            default < ctrl + lalt - c : yabai -m space --layout float
 
             ## Stacks
 
