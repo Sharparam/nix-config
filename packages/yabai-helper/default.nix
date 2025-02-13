@@ -231,7 +231,7 @@ in
           yabai -m space --focus "$i"
           set_wallpaper ${pkgs.${namespace}.wallpapers}/share/wallpapers/$(ls ${pkgs.${namespace}.wallpapers}/share/wallpapers/ | shuf -n 1)
         done
-        yabai -m space "$CURRENT_SPACE" --focus
+        yabai -m space --focus "$CURRENT_SPACE"
 
       }
 
