@@ -41,15 +41,21 @@ in {
             if useSketchybar
             then "sketchybar --trigger windows_on_spaces"
             else "true";
+          # goto_space = n: ''
+          #   default < lalt - ${n} : SPACES=($(yabai -m query --displays --display | ${jq} '.spaces[]')) \
+          #     && [[ -n $SPACES[${n}] ]] \
+          #     && yabai -m space --focus $SPACES[${n}]
+          # '';
           goto_space = n: ''
-            default < lalt - ${n} : SPACES=($(yabai -m query --displays --display | ${jq} '.spaces[]')) \
-              && [[ -n $SPACES[${n}] ]] \
-              && yabai -m space --focus $SPACES[${n}]
+            default < lalt - ${n} : yabai -m space --focus ${n}
           '';
+          # move_window_in_space = n: ''
+          #   default < shift + lalt - ${n} : SPACES=($(yabai -m query --displays --display | ${jq} '.spaces[]')) \
+          #     && [[ -n $SPACES[${n}] ]] \
+          #     && yabai -m window --space $SPACES[${n}]
+          # '';
           move_window_in_space = n: ''
-            default < shift + lalt - ${n} : SPACES=($(yabai -m query --displays --display | ${jq} '.spaces[]')) \
-              && [[ -n $SPACES[${n}] ]] \
-              && yabai -m window --space $SPACES[${n}]
+            default < shift + lalt - ${n} : yabai -m window --space ${n}
           '';
         in
           # hyper: cmd + shift + alt + ctrl
