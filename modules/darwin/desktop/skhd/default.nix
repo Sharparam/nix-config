@@ -185,23 +185,23 @@ in {
             ## Stacks
 
             # Add active window to window or stack to direction
-            default < shift + ctrl - h : yabai -m window west --stack $(yabai -m query --windows --window | ${jq} -r '.id')
-            default < shift + ctrl - j : yabai -m window south --stack $(yabai -m query --windows --window | ${jq} -r '.id')
-            default < shift + ctrl - k : yabai -m window north --stack $(yabai -m query --windows --window | ${jq} -r '.id')
-            default < shift + ctrl - l : yabai -m window east --stack $(yabai -m query --windows --window | ${jq} -r '.id')
+            default < shift + ctrl + lalt - h : yabai -m window west --stack $(yabai -m query --windows --window | ${jq} -r '.id')
+            default < shift + ctrl + lalt - j : yabai -m window south --stack $(yabai -m query --windows --window | ${jq} -r '.id')
+            default < shift + ctrl + lalt - k : yabai -m window north --stack $(yabai -m query --windows --window | ${jq} -r '.id')
+            default < shift + ctrl + lalt - l : yabai -m window east --stack $(yabai -m query --windows --window | ${jq} -r '.id')
 
             # Stack navigation
-            default < shift + ctrl - n : yabai -m window --focus stack.next
-            default < shift + ctrl - p : yabai -m window --focus stack.prev
+            default < shift + ctrl + lalt - n : yabai -m window --focus stack.next
+            default < shift + ctrl + lalt - p : yabai -m window --focus stack.prev
 
             ## Insertions
 
             # Set insertion point for focused container
-            default < shift + ctrl + lalt - h : yabai -m window --insert west
-            default < shift + ctrl + lalt - j : yabai -m window --insert south
-            default < shift + ctrl + lalt - k : yabai -m window --insert north
-            default < shift + ctrl + lalt - l : yabai -m window --insert east
-            default < shift + ctrl + lalt - s : yabai -m window --insert stack
+            default < shift + ctrl + lalt + cmd - h : yabai -m window --insert west
+            default < shift + ctrl + lalt + cmd - j : yabai -m window --insert south
+            default < shift + ctrl + lalt + cmd - k : yabai -m window --insert north
+            default < shift + ctrl + lalt + cmd - l : yabai -m window --insert east
+            default < shift + ctrl + lalt + cmd - s : yabai -m window --insert stack
 
             # New window in horizontal/vertical splits for all applications with yabai
             default < lalt - s : yabai -m window --insert east; skhd -k "cmd - n"
