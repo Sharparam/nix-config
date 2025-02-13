@@ -16,9 +16,9 @@ in {
   config = mkIf cfg.enable {
     services.jankyborders = {
       enable = true;
-      active_color = "0xffe2e2e3";
-      inactive_color = "0xff414550";
-      background_color = "0x302c2e34";
+      active_color = "0xffbabbf1"; # Catppuccin Frappé - Lavender
+      inactive_color = "0xff737994"; # Catpuccin Frappé - Overlay 0
+      background_color = "0x30303446"; # Catppuccin Frappé - Base
       blur_radius = 0.0;
       hidpi = false;
       width = 4.0;
