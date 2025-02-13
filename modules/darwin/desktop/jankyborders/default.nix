@@ -21,7 +21,7 @@ in {
       background_color = "0x302c2e34";
       blur_radius = 0.0;
       hidpi = false;
-      width = 6.0;
+      width = 4.0;
       order = "below";
       style = "round";
     };
