@@ -9,8 +9,6 @@ with lib;
 with lib.${namespace}; let
   cfg = config.${namespace}.tools.git;
   is-linux = pkgs.stdenv.isLinux;
-  is-darwin = pkgs.stdenv.isDarwin;
-  user = config.${namespace}.user;
   _1PasswordSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
   sshSigningProgram =
     if is-linux
@@ -23,8 +21,8 @@ in {
   options.${namespace}.tools.git = with types; {
     enable = mkEnableOption "Git";
     use1Password = mkBoolOpt false "Use 1Password integration.";
-    userName = mkOpt str user.fullName "The name to configure Git with.";
-    userEmail = mkOpt str user.email "The email to configure Git with.";
+    userName = mkOpt str "Adam Hellberg" "The name to configure Git with.";
+    userEmail = mkOpt str "sharparam@sharparam.com" "The email to configure Git with.";
     signingKey =
       mkOpt str "C58C41E27B00AD04"
       "The GPG key to use for signing commits and tags (ignored if using 1Password).";
@@ -130,7 +128,15 @@ in {
       };
       includes = [
         {
-          condition = "gitdir:~/projects/work/ninetech";
+          condition = "gitdir:~/projects/work/ninetech/";
+          contents = ninetechConfig;
+        }
+        {
+          condition = "gitdir:~/projects/serveit/";
+          contents = ninetechConfig;
+        }
+        {
+          condition = "gitdir:~/projects/toolpal/";
           contents = ninetechConfig;
         }
         {
