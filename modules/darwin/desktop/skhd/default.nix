@@ -200,6 +200,9 @@ in {
             # New window in horizontal/vertical splits for all applications with yabai
             default < lalt - s : yabai -m window --insert east; skhd -k "cmd - n"
             default < lalt - v : yabai -m window --insert south; skhd -k "cmd - n"
+
+            # Toggle split orientation of selected windows node
+            default < shift + lalt - s : yabai -m window --toggle split
           ''
           + optionalString useSketchybar ''
             # Toggle sketchybar (b = bar)
