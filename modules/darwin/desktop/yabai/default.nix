@@ -107,12 +107,16 @@ in {
           ''
             echo "yabai configuration loading"
 
+            ${yabai-helper} setup_spaces
+
             ${builtins.readFile ./extraConfig}
 
             # Signal hooks
             yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-            yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
-            yabai -m signal --add event=display_removed action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
+            # yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
+            # yabai -m signal --add event=display_removed action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
+            yabai -m signal --add event=display_added action="sleep 1 && ${yabai-helper} setup_spaces"
+            yabai -m signal --add event=display_removed action="sleep 1 && ${yabai-helper} setup_spaces"
 
             echo "yabai configuration loaded"
           ''

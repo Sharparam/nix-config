@@ -235,8 +235,72 @@ in
 
       }
 
+      setup_space() {
+        if [[ $# -lt 2 ]]; then
+          echo "Usage: $0 setup_space <idx> <label>" >&2
+          exit 1
+        fi
+        local idx=$1
+        local label=$2
+        local wp_focus_restore=true
+        if [[ $# -ge 3 ]]; then
+          wp_focus_restore=$3
+        fi
+        local space
+        space=$(yabai -m query --spaces --space "$idx")
+        if [ -z "$space" ]; then
+          yabai -m space --create
+        fi
+        yabai -m space "$idx" --label "$label"
+        local space_wp_path="$(realpath ${pkgs.${namespace}.wallpapers}/share/wallpapers/yabai/space_$label.png)"
+        if [ ! -f "$space_wp_path" ]; then
+          space_wp_path="${pkgs.${namespace}.wallpapers}/share/wallpapers/$(ls ${pkgs.${namespace}.wallpapers}/share/wallpapers/ | shuf -n 1)"
+        fi
+        if [ -f "$space_wp_path" ]; then
+          set_space_wallpaper "$idx" "$space_wp_path" "$wp_focus_restore"
+        fi
+      }
+
+      setup_spaces() {
+        local current_space=$(yabai -m query --spaces --space | jq -r ."index")
+        setup_space 1 "main" false
+        setup_space 2 "code" false
+        setup_space 3 "web" false
+        setup_space 4 "comms" false
+        setup_space 5 "media" false
+        setup_space 6 "misc" false
+        setup_space 7 "scratch" false
+        # yabai -m config --space media layout stack window_opacity off
+        yabai -m config --space media window_opacity off
+        yabai -m config --space scratch layout float
+        yabai -m space --focus "$current_space"
+      }
+
       set_wallpaper() {
         osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'"$1"'"'
+      }
+
+      set_space_wallpaper() {
+        local idx=$1
+        local wp_path=$2
+        local space_restore=true
+        if [[ $# -ge 3 ]]; then
+          case $3 in
+            f* | n* | 0)
+              space_restore=false
+              ;;
+            *)
+              space_restore=true
+              ;;
+          esac
+        fi
+        local current_space=$(yabai -m query --spaces --space | jq -r ."index")
+
+        yabai -m space --focus "$idx"
+        set_wallpaper "$wp_path"
+        if $space_restore; then
+          yabai -m space --focus "$current_space"
+        fi
       }
 
       set_wallpapers() {
@@ -384,5 +448,24 @@ in
 
         yabai -m window "$KUAKE_ID" --opacity 0.1 --space "$CURRENT_SPACE" --focus "$KUAKE_ID" --opacity 0.0
       }
+
+      if [[ $# -eq 0 ]]; then
+        echo "Usage: yabai-helper <function> [args...]" >&2
+        exit 1
+      fi
+
+      fn="$1"
+      shift
+      if [[ -z "$fn" ]]; then
+        echo "Usage: yabai-helper <function> [args...]" >&2
+        exit 1
+      fi
+
+      if [[ "$(type -t "$fn")" != "function" ]]; then
+        echo "yabai-helper: $fn: command not found" >&2
+        exit 1
+      fi
+
+      "$fn" "$@"
     '';
   }
