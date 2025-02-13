@@ -52,8 +52,6 @@ yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
 
-yabai -m rule --add label="dialogs_Rider" app="^Rider.*" title="^(Add File to Git|Settings|Enter Solution Folder Name)$" manage=off
-
 COMMS=(
   Discord
   Element
@@ -94,14 +92,25 @@ for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
 done
 
 CODE=(
+  Fleet
+  "Visual Studio"
+  "Visual Studio Code"
+  XCode
+)
+
+for ((i = 1; i <= "${#CODE[@]}"; i++)); do
+  yabai -m rule --add label="code_${CODE[((i - 1))]}" app="^${CODE[((i - 1))]}.*$" space=code
+done
+
+JB_APPS=(
   "Android Studio"
   CLion
   DataGrip
-  Fleet
   GoLand
   "IntelliJ IDEA"
   "IntelliJ IDEA Community Edition"
   "IntelliJ IDEA Ultimate"
+  "JetBrains Rider"
   PhpStorm
   PyCharm
   "PyCharm Community"
@@ -109,14 +118,14 @@ CODE=(
   Rider
   RubyMine
   RustRover
-  "Visual Studio"
-  "Visual Studio Code"
   WebStorm
-  XCode
 )
 
-for ((i = 1; i <= "${#CODE[@]}"; i++)); do
-  yabai -m rule --add label="code_${CODE[((i - 1))]}" app="^${CODE[((i - 1))]}.*$" space=code
+for ((i = 1; i <= "${#JB_APPS[@]}"; i++)); do
+  jb_app_name="${JB_APPS[((i - 1))]}"
+  yabai -m rule --add label="jbapp_${jb_app_name}" app="${jb_app_name}" manage=off
+  yabai -m rule --add label="jbapp_${jb_app_name}_main" --app="${jb_app_name}" title="^$" manage=on space=code
+  yabai -m rule --add label="jbapp_${jb_app_name}_proj" --app="${jb_app_name}" title=".*\[.*\].*" manage=on space=code
 done
 
 # Workarounds for ghostty
