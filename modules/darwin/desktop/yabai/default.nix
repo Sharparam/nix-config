@@ -17,7 +17,7 @@ in {
     # logFile =
     #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log"
     #     "File path of log output";
-    spacesCount = mkOpt int 9 "Number of spaces";
+    spacesCount = mkOpt int 7 "Number of spaces";
     enableSpaceId = mkBoolOpt (!useSketchybar) "Whether to enable SpaceId";
   };
 
