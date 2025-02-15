@@ -34,8 +34,18 @@ in {
           NSWindowShouldDragOnGesture = true;
         };
 
+        WindowManager = {
+          EnableStandardClickToShowDesktop = !config.${namespace}.desktop.yabai.enable;
+        };
+
         controlcenter = {
           BatteryShowPercentage = true;
+        };
+
+        dock = {
+          autohide = true;
+          mru-spaces = false;
+          orientation = "bottom";
         };
 
         finder = {
