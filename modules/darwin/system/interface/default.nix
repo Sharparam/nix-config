@@ -31,6 +31,7 @@ in {
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
           AppleShowScrollBars = "Automatic";
+          NSWindowShouldDragOnGesture = true;
         };
 
         controlcenter = {
