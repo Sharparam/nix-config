@@ -125,8 +125,8 @@ JB_APPS=(
 for ((i = 1; i <= "${#JB_APPS[@]}"; i++)); do
   jb_app_name="${JB_APPS[((i - 1))]}"
   yabai -m rule --add label="jbapp_${jb_app_name}" app="${jb_app_name}" manage=off
-  yabai -m rule --add label="jbapp_${jb_app_name}_main" --app="${jb_app_name}" title="^$" manage=on space=code
-  yabai -m rule --add label="jbapp_${jb_app_name}_proj" --app="${jb_app_name}" title=".*\[.*\].*" manage=on space=code
+  yabai -m rule --add label="jbapp_${jb_app_name}_main" app="${jb_app_name}" title="^$" manage=on space=code
+  yabai -m rule --add label="jbapp_${jb_app_name}_proj" app="${jb_app_name}" title=".*\[.*\].*" manage=on space=code
 done
 
 # Workarounds for ghostty
