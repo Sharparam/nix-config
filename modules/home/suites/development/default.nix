@@ -6,11 +6,9 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.suites.development;
-in
-{
+in {
   options.${namespace}.suites.development = with types; {
     enable = mkEnableOption "Development suite";
   };
@@ -18,6 +16,7 @@ in
   config = mkIf cfg.enable {
     ${namespace} = {
       apps = {
+        emacs.enable = mkDefault true;
         vscode.enable = mkDefault true;
       };
     };
