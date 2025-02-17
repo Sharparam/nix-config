@@ -19,5 +19,9 @@ in {
     ${namespace}.cli.aliases = {
       emacs = ''pgrep emacs && emacsclient --no-wait --create-frame "$@" || emacs --no-window-system "$@"'';
     };
+
+    programs.zsh.initExtraBeforeCompInit = ''
+      path+="${"\${XDG_CONFIG_HOME:-$HOME/.config}"}/emacs/bin"
+    ''
   };
 }
