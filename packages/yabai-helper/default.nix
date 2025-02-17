@@ -29,6 +29,7 @@ in
       export PATH="$PATH:${pkgs.lib.makeBinPath buildInputs}"
 
       toggle_layout() {
+        local LAYOUT
         LAYOUT=$(yabai -m query --spaces --space | jq .type)
 
         if [[ $LAYOUT =~ "bsp" ]]; then
@@ -41,6 +42,7 @@ in
       }
 
       opacity_up() {
+        local OPACITY
         OPACITY=$(yabai -m query --windows --window | jq .opacity)
         if [ "$(echo "$OPACITY == 1.0" | bc -l)" -eq 1 ]; then
           yabai -m window --opacity 0.1
@@ -51,6 +53,7 @@ in
       }
 
       opacity_down() {
+        local OPACITY
         OPACITY=$(yabai -m query --windows --window | jq .opacity)
         if [ "$(echo "$OPACITY == 0.1" | bc -l)" -eq 1 ]; then
           yabai -m window --opacity 1.0
@@ -61,6 +64,7 @@ in
       }
 
       toggle_border() {
+        local BORDER
         BORDER=$(yabai -m config window_border)
         if [[ $BORDER = "on" ]]; then
           yabai -m config window_border off
@@ -71,84 +75,97 @@ in
       }
 
       increase_gaps() {
+        local GAP
         GAP=$(yabai -m config window_gap)
-        yabai -m config window_gap $(echo "$GAP" + 1 | bc)
+        yabai -m config window_gap $((GAP + 1))
       }
 
       decrease_gaps() {
+        local GAP
         GAP=$(yabai -m config window_gap)
-        yabai -m config window_gap $(echo "$GAP" - 1 | bc)
+        yabai -m config window_gap $((GAP - 1))
       }
 
       increase_padding_top() {
+        local PADDING
         PADDING=$(yabai -m config top_padding)
-        yabai -m config top_padding $(echo "$PADDING" + 1 | bc)
+        yabai -m config top_padding $((PADDING + 1))
       }
 
       increase_padding_bottom() {
+        local PADDING
         PADDING=$(yabai -m config bottom_padding)
-        yabai -m config bottom_padding $(echo "$PADDING" + 1 | bc)
+        yabai -m config bottom_padding $((PADDING + 1))
       }
 
       increase_padding_left() {
+        local PADDING
         PADDING=$(yabai -m config left_padding)
-        yabai -m config left_padding $(echo "$PADDING" + 1 | bc)
+        yabai -m config left_padding $((PADDING + 1))
       }
 
       increase_padding_right() {
+        local PADDING
         PADDING=$(yabai -m config right_padding)
-        yabai -m config right_padding $(echo "$PADDING" + 1 | bc)
+        yabai -m config right_padding $((PADDING + 1))
       }
 
       increase_padding_all() {
+        local PADDING_TOP PADDING_BOTTOM PADDING_LEFT PADDING_RIGHT WINDOW_GAP
         PADDING_TOP=$(yabai -m config top_padding)
         PADDING_BOTTOM=$(yabai -m config bottom_padding)
         PADDING_LEFT=$(yabai -m config left_padding)
         PADDING_RIGHT=$(yabai -m config right_padding)
         WINDOW_GAP=$(yabai -m config window_gap)
 
-        yabai -m config top_padding $(echo "$PADDING"_TOP + 10 | bc)
-        yabai -m config bottom_padding $(echo "$PADDING"_BOTTOM + 10 | bc)
-        yabai -m config left_padding $(echo "$PADDING"_LEFT + 10 | bc)
-        yabai -m config right_padding $(echo "$PADDING"_RIGHT + 10 | bc)
-        yabai -m config window_gap $(echo "$window"_GAP + 10 | bc)
+        yabai -m config top_padding $((PADDING_TOP + 10))
+        yabai -m config bottom_padding $((PADDING_BOTTOM + 10))
+        yabai -m config left_padding $((PADDING_LEFT + 10))
+        yabai -m config right_padding $((PADDING_RIGHT + 10))
+        yabai -m config window_gap $((WINDOW_GAP + 10))
       }
 
       decrease_padding_top() {
+        local PADDING
         PADDING=$(yabai -m config top_padding)
         yabai -m config top_padding $(echo "$PADDING" - 1 | bc)
       }
 
       decrease_padding_bottom() {
+        local PADDING
         PADDING=$(yabai -m config bottom_padding)
         yabai -m config bottom_padding $(echo "$PADDING" - 1 | bc)
       }
 
       decrease_padding_left() {
+        local PADDING
         PADDING=$(yabai -m config left_padding)
         yabai -m config left_padding $(echo "$PADDING" - 1 | bc)
       }
 
       decrease_padding_right() {
+        local PADDING
         PADDING=$(yabai -m config right_padding)
         yabai -m config right_padding $(echo "$PADDING" - 1 | bc)
       }
 
       decrease_padding_all() {
+        local PADDING_TOP PADDING_BOTTOM PADDING_LEFT PADDING_RIGHT WINDOW_GAP
         PADDING_TOP=$(yabai -m config top_padding)
         PADDING_BOTTOM=$(yabai -m config bottom_padding)
         PADDING_LEFT=$(yabai -m config left_padding)
         PADDING_RIGHT=$(yabai -m config right_padding)
         WINDOW_GAP=$(yabai -m config window_gap)
 
-        yabai -m config top_padding $(echo "$PADDING"_TOP - 10 | bc)
-        yabai -m config bottom_padding $(echo "$PADDING"_BOTTOM - 10 | bc)
-        yabai -m config left_padding $(echo "$PADDING"_LEFT - 10 | bc)
-        yabai -m config right_padding $(echo "$PADDING"_RIGHT - 10 | bc)
-        yabai -m config window_gap $(echo "$window"_GAP - 10 | bc)
+        yabai -m config top_padding $(echo "$PADDING_TOP" - 10 | bc)
+        yabai -m config bottom_padding $(echo "$PADDING_BOTTOM" - 10 | bc)
+        yabai -m config left_padding $(echo "$PADDING_LEFT" - 10 | bc)
+        yabai -m config right_padding $(echo "$PADDING_RIGHT" - 10 | bc)
+        yabai -m config window_gap $(echo "$WINDOW_GAP" - 10 | bc)
       }
 
       create_spaces() {
+        local CURRENT_SPACES CURRENT_SPACE NEEDED_SPACES
         CURRENT_SPACES=$(yabai -m query --spaces | jq -r '[.[]."is-native-fullscreen" | select(.==false) ] | length')
         CURRENT_SPACE=$(yabai -m query --spaces --space | jq -r ."index")
         NEEDED_SPACES=$1
@@ -167,6 +184,7 @@ in
         if [[ "$CURRENT_SPACES" -ge "$NEEDED_SPACES" ]]; then
           return
         fi
+        local SPACES_TO_CREATE
         SPACES_TO_CREATE=$(("$NEEDED_SPACES" - "$CURRENT_SPACES"))
 
         for i in $(seq $((1 + CURRENT_SPACES)) "$NEEDED_SPACES"); do
@@ -242,7 +260,8 @@ in
               ;;
           esac
         fi
-        local current_space=$(yabai -m query --spaces --space | jq -r ."index")
+        local current_space
+        current_space=$(yabai -m query --spaces --space | jq -r ."index")
 
         if [[ "$current_space" != "$idx" ]]; then
           yabai -m space --focus "$idx"
@@ -273,7 +292,7 @@ in
       }
 
       get_pixel_color() {
-
+        local X Y COLOR
         # Use hammer spoon to get mouse x,y coords
         X=$(hs -A -c "hs.mouse.absolutePosition()['x']")
         Y=$(hs -A -c "hs.mouse.absolutePosition()['y']")
@@ -303,10 +322,10 @@ in
         ' "$COLOR"
 
         skhd -k 'escape'
-
       }
 
       cycle_windows() {
+        local reverse
         reverse=""
         if [[ $1 != "--reverse" ]]; then
           reverse="| reverse"
@@ -325,6 +344,7 @@ in
       }
 
       float_reset() {
+        local ids
         ids=($(yabai -m query --windows --space | jq -re '.[].id'))
 
         for window in $ids; do
@@ -341,6 +361,7 @@ in
       }
 
       float_signal() {
+        local QUERY
         QUERY=$(yabai -m query --windows --window "$1" | jq -re '."is-topmost",."is-floating"')
         declare -a PROPERTIES
         PROPERTIES=("$QUERY")
@@ -357,11 +378,13 @@ in
       }
 
       auto_stack() {
+        local INSTANCES
         INSTANCES=$(yabai -m query --windows | jq "[.[] |select(.\"app\"==\"$1\")| .\"id\"]| length")
         if [[ $INSTANCES -eq 1 ]]; then
           return 0
         fi
 
+        local NEW_APP APP
         NEW_APP=$yabai_WINDOW_ID
         APP=$(yabai -m query --windows | jq "[.[] |select(.\"app\"==\"$1\" )|select(.\"id\"!=\"$NEW_APP\")][1].\"id\"")
         yabai -m window "$APP" --stack "$NEW_APP"
