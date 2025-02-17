@@ -23,6 +23,7 @@ in {
     ${namespace} = {
       apps = {
         azure-data-studio = enabled;
+        emacs = enabled;
         jetbrains.toolbox = enabled;
         sublime-merge = enabled;
         vscode = enabled;
