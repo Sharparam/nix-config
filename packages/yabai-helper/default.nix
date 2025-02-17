@@ -196,9 +196,9 @@ in
           yabai -m space --create
         fi
         yabai -m space "$idx" --label "$label"
-        local space_wp_path="$(realpath ${pkgs.${namespace}.wallpapers}/share/wallpapers/yabai/space_$label.png)"
+        local space_wp_path="${pkgs.${namespace}.wallpapers}/share/wallpapers/yabai/space_$label.png"
         if [ ! -f "$space_wp_path" ]; then
-          space_wp_path="${pkgs.${namespace}.wallpapers}/share/wallpapers/$(ls ${pkgs.${namespace}.wallpapers}/share/wallpapers/ | shuf -n 1)"
+          space_wp_path="${pkgs.${namespace}.wallpapers}/share/wallpapers/$(find ${pkgs.${namespace}.wallpapers}/share/wallpapers/ -type f -printf '%P\n' | shuf -n 1)"
         fi
         if [ -f "$space_wp_path" ]; then
           set_space_wallpaper "$idx" "$space_wp_path" "$wp_focus_restore"
@@ -221,7 +221,11 @@ in
       }
 
       set_wallpaper() {
-        osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'"$1"'"'
+        local wp_path=$1
+        if [ -f "$wp_path" ]; then
+          wp_path=$(realpath "$wp_path")
+        fi
+        osascript -e 'tell application "Finder" to set desktop picture to POSIX file "'"$wp_path"'"'
       }
 
       set_space_wallpaper() {
@@ -240,9 +244,11 @@ in
         fi
         local current_space=$(yabai -m query --spaces --space | jq -r ."index")
 
-        yabai -m space --focus "$idx"
+        if [[ "$current_space" != "$idx" ]]; then
+          yabai -m space --focus "$idx"
+        fi
         set_wallpaper "$wp_path"
-        if $space_restore; then
+        if $space_restore && [[ "$current_space" != "$idx" ]]; then
           yabai -m space --focus "$current_space"
         fi
       }
