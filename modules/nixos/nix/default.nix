@@ -58,36 +58,42 @@ in {
       };
     };
 
-    nix =
-      let
-        users = [
-          "root"
-          user.name
-        ];
-      in
-      {
-        package = cfg.package;
-        # gc = {
-        #   options = "--delete-older-than ${cfg.cleanAge}";
-        #   dates = "daily";
-        #   automatic = true;
-        # };
+    nix = let
+      users = [
+        "root"
+        user.name
+      ];
+    in {
+      package = cfg.package;
+      # gc = {
+      #   options = "--delete-older-than ${cfg.cleanAge}";
+      #   dates = "daily";
+      #   automatic = true;
+      # };
 
-        settings = {
-          allowed-users = users;
-          trusted-users = users;
-          sandbox = "relaxed";
-          auto-optimise-store = true;
-          experimental-features = "nix-command flakes";
-          use-xdg-base-directories = true;
-          http-connections = 50;
-          warn-dirty = false;
-          log-lines = 50;
-        };
-        # flake-utils-plus
-        generateRegistryFromInputs = true;
-        generateNixPathFromInputs = true;
-        linkInputs = true;
+      settings = {
+        allowed-users = users;
+        trusted-users = users;
+        sandbox = "relaxed";
+        auto-optimise-store = true;
+        experimental-features = "nix-command flakes";
+        use-xdg-base-directories = true;
+        http-connections = 50;
+        warn-dirty = false;
+        log-lines = 50;
+
+        substituters = [
+          "https://nix-community.cachix.org"
+        ];
+
+        trusted-public-keys = [
+          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        ];
       };
+      # flake-utils-plus
+      generateRegistryFromInputs = true;
+      generateNixPathFromInputs = true;
+      linkInputs = true;
+    };
   };
 }
