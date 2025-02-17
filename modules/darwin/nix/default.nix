@@ -31,6 +31,7 @@ in {
       nixfmt-rfc-style
       nvd
       # comma
+      cachix
       snowfallorg.flake
       alejandra
       deadnix
