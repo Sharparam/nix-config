@@ -64,6 +64,11 @@
 
     mac-app-util.url = "github:hraban/mac-app-util";
 
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
@@ -90,6 +95,7 @@
       overlays = with inputs; [
         snowfall-flake.overlays.default
         nur.overlays.default
+        emacs-overlay.overlays.default
         ghostty.overlays.default
       ];
 
