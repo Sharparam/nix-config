@@ -21,6 +21,10 @@ in {
         desktop = enabled;
         development = enabled;
       };
+
+      apps = {
+        postman = enabled;
+      };
     };
 
     homebrew = {
