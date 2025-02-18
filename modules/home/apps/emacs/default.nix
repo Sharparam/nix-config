@@ -22,6 +22,6 @@ in {
 
     programs.zsh.initExtraBeforeCompInit = ''
       path+="${"\${XDG_CONFIG_HOME:-$HOME/.config}"}/emacs/bin"
-    ''
+    '';
   };
 }
