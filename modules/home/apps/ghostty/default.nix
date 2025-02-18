@@ -47,7 +47,7 @@ in {
           [
           ]
           ++ optionals pkgs.stdenv.isDarwin [
-            "global:cmd+f12=toggle_quick_terminal"
+            "global:ctrl+cmd+f12=toggle_quick_terminal"
           ];
       };
     };
