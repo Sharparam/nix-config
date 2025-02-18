@@ -30,6 +30,10 @@ in {
       zstd
 
       ## Module deps
+      # :term vterm
+      cmake
+      gcc
+      gnumake
       # :tools editorconfig
       editorconfig-core-c
       # :lang org +roam
