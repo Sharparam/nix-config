@@ -40,7 +40,13 @@ in {
       # :tools editorconfig
       editorconfig-core-c
       # :lang org +roam
+      graphviz
       sqlite
+      # :lang sh
+      shellcheck
+      shfmt
+      # :tools lsp
+      nodejs
     ];
 
     homebrew = {
