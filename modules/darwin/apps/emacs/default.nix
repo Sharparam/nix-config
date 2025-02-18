@@ -14,7 +14,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; let
+      epkgs = pkgs.emacsPackages;
+    in [
       ## Emacs
       binutils
       # emacs # We're using emacs-plus from Homebrew
@@ -34,6 +36,7 @@ in {
       cmake
       gcc
       gnumake
+      epkgs.vterm
       # :tools editorconfig
       editorconfig-core-c
       # :lang org +roam
