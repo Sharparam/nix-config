@@ -22,6 +22,10 @@ with lib.${namespace}; {
       yabai = enabled;
       # sketchybar = enabled;
     };
+
+    apps = {
+      linqpad = enabled;
+    };
   };
 
   environment.systemPath = ["/opt/homebrew/bin"];
