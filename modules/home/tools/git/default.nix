@@ -78,8 +78,20 @@ in {
           autocrlf = "input";
           askPass = mkIf (cfg.askPass != null) cfg.askPass;
         };
+        column.ui = "auto";
         init.defaultBranch = "main";
-        fetch.prune = true;
+        commit.verbose = true;
+        rebase = {
+          autoSquash = true;
+          autoStash = true;
+          updateRefs = true;
+        };
+        fetch = {
+          prune = true;
+          # pruneTags removes *all* local tags, might not be what we want
+          # pruneTags = true;
+          # all = true;
+        };
         pull.ff = "only";
         push = {
           default = "simple";
@@ -93,8 +105,17 @@ in {
         tag = {
           sort = "version:refname";
         };
+        diff = {
+          algorithm = "histogram";
+          colorMoved = "plain";
+          mnemonicPrefix = true;
+          renames = true;
+        };
         merge.conflictstyle = "zdiff3";
-        rerere.enabled = true;
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
         trailer = {
           where = "after";
           ifexists = "addIfDifferent";
