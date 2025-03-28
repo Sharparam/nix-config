@@ -46,6 +46,7 @@ in {
           host = "solaire shanalotte matrix radahn";
           hostname = "%h.sharparam.com";
           user = "sharparam";
+          forwardAgent = true;
           extraOptions = {
             PasswordAuthentication = "no";
             VerifyHostKeyDNS = "yes";
