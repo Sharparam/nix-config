@@ -47,6 +47,9 @@ in {
       shfmt
       # :tools lsp
       nodejs
+
+      # Seems to be needed since emacs v30
+      tree-sitter
     ];
 
     homebrew = {
