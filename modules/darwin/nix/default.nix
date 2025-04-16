@@ -40,7 +40,8 @@ in {
 
     services = {
       lorri = enabled;
-      nix-daemon = enabled;
+      # Nix daemon is now managed automatically when nix-darwin is enabled
+      # nix-daemon = enabled;
     };
 
     nix = let
@@ -87,7 +88,8 @@ in {
           Day = 7;
         };
         options = "--delete-older-than 30d";
-        user = config.${namespace}.user.name;
+        # no longer has any effect
+        # user = config.${namespace}.user.name;
       };
 
       # flake-utils-plus
