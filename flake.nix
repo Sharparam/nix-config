@@ -102,7 +102,7 @@
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
         sops-nix.homeManagerModules.sops
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin.homeModules.catppuccin
       ];
 
       homes.users."sharparam@reah".modules = with inputs; [
