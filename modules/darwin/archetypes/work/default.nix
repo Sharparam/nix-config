@@ -28,7 +28,10 @@ in {
     };
 
     homebrew = {
-      casks = ["microsoft-teams"];
+      casks = [
+        "microsoft-auto-update"
+        "microsoft-teams"
+      ];
       masApps = mkIf config.${namespace}.tools.homebrew.enable {
         "Microsoft Outlook" = 985367838;
       };
