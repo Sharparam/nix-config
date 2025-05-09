@@ -25,6 +25,7 @@ with lib.${namespace}; {
 
     apps = {
       # linqpad = enabled;
+      obs = enabled;
     };
   };
 
