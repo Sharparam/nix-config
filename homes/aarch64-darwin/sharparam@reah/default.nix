@@ -27,6 +27,7 @@ with lib.${namespace}; {
         setAsDefault = false;
         fontSize = 14;
       };
+      obs = enabled;
       # vscode.fhs doesn't work on nix-darwin
       vscode = disabled;
     };
