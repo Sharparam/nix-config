@@ -22,6 +22,10 @@ in {
         development = enabled;
       };
 
+      tools = {
+        podman = enabled;
+      };
+
       apps = {
         postman = enabled;
       };
