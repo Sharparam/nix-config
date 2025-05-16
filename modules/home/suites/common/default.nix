@@ -48,6 +48,7 @@ in {
         direnv = enabled;
         duf = enabled;
         fd = enabled;
+        ffmpeg = enabled;
         fzf = enabled;
         git = enabled;
         htop = enabled;
