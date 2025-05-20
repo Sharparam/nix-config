@@ -23,5 +23,7 @@ in
       uid = mkIf (cfg.uid != null) cfg.uid;
       shell = pkgs.zsh;
     };
+
+    system.primaryUser = cfg.name;
   };
 }
