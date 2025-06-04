@@ -33,7 +33,7 @@ diff: build
 	nix run 'nixpkgs#nvd' -- --color always diff /var/run/current-system ./result | less --raw-control-chars --quit-if-one-screen
 
 switch: build
-	result/sw/bin/$(REBUILD) switch --flake .?submodules=1#
+	sudo result/sw/bin/$(REBUILD) switch --flake .?submodules=1#
 
 update:
 	nix flake update
