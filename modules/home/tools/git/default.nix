@@ -17,6 +17,7 @@ with lib.${namespace}; let
   ninetechConfig = {
     user.email = "adam.hellberg@ninetech.com";
   };
+  difftasticPackage = pkgs.difftastic;
 in {
   options.${namespace}.tools.git = with types; {
     enable = mkEnableOption "Git";
@@ -35,6 +36,7 @@ in {
       ghq
       gh
       lazyjj
+      difftasticPackage
     ];
 
     programs = {
@@ -60,6 +62,7 @@ in {
           GITHUB_USER = "Sharparam";
         };
       };
+      mergiraf.enable = true;
     };
 
     programs.git = {
@@ -72,6 +75,12 @@ in {
           then "key::${_1PasswordSigningKey}"
           else cfg.signingKey;
         signByDefault = true;
+      };
+      difftastic = {
+        enable = true;
+        enableAsDifftool = true;
+        package = difftasticPackage;
+        background = "dark";
       };
       extraConfig = {
         core = {
@@ -191,13 +200,54 @@ in {
           };
         };
         git = {
+          auto-local-bookmark = false;
+          colocate = true;
+          private-commits = "blacklist()";
+          push-bookmark-prefix = "sharparam/push-";
           sign-on-push = true;
-          subprocess = true;
+          write-change-id-header = true;
         };
         ui = {
+          default-command = "log";
+          diff.tool = "difft";
+          merge-editor = "mergiraf";
           show-cryptographic-signatures = true;
         };
+        merge-tools.difft = {
+          program = "difft";
+          diff-args = ["--color=always" "$left" "$right"];
+        };
+        aliases = {
+          d = ["diff"];
+          s = ["show"];
+          ll = ["log" "--template" "builtin_log_detailed"];
+          tug = ["bookmark" "move" "--from" "heads(::@- & bookmarks())" "--to" "@-"];
+        };
+        revset-aliases = {
+          "gh_pages()" = ''ancestors(remote_bookmarks(exact:"gh-pages"))'';
+          "wip()" = ''description(glob:"wip:*")'';
+          "private()" = ''description(glob:"private:*")'';
+          "blacklist()" = "wip() | private()";
+        };
+        templates = {
+          commit_trailers = ''
+            format_signed_off_by_trailer(self)
+            ++ if(!trailers.contains_key("Change-Id"), format_gerrit_change_id_trailer(self))
+          '';
+          draft_commit_description = ''
+            concat(
+              coalesce(description, default_commit_description, "\n"),
+              surround(
+                "\nJJ: This commit contains the following changes:\n", "",
+                indent("JJ:     ", diff.stat(72)),
+              ),
+              "\nJJ: ignore-rest\n",
+              diff.git(),
+            )
+          '';
+        };
         template-aliases = {
+          "format_short_signature(sig)" = ''"<" ++ if(sig.email(), sig.email(), label("text warning", "NO EMAIL")) ++ ">"'';
           "format_short_cryptographic_signature(sig)" = ''
             if (sig, sig.status(), "(no sig)")
           '';
