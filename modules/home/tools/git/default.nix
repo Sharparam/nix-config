@@ -185,7 +185,7 @@ in {
           email = cfg.userEmail;
         };
         signing = {
-          sign-all = true;
+          behavior = "own";
           backend =
             if cfg.use1Password
             then "ssh"
