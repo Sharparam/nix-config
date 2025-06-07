@@ -249,7 +249,7 @@ in {
         template-aliases = {
           "format_short_signature(sig)" = ''"<" ++ if(sig.email(), sig.email(), label("text warning", "NO EMAIL")) ++ ">"'';
           "format_short_cryptographic_signature(sig)" = ''
-            if (sig, sig.status(), "(no sig)")
+            if(sig, sig.status(), "(no sig)")
           '';
         };
       };
