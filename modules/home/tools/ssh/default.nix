@@ -36,6 +36,9 @@ in {
       run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh"
       run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh/control"
     '';
+    home.packages = with pkgs; [
+      mosh
+    ];
     programs.ssh = {
       enable = true;
       controlMaster = "auto";
