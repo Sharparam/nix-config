@@ -100,7 +100,7 @@
       ];
 
       homes.modules = with inputs; [
-        nix-index-database.hmModules.nix-index
+        nix-index-database.homeModules.nix-index
         sops-nix.homeManagerModules.sops
         catppuccin.homeModules.catppuccin
       ];
