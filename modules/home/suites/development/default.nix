@@ -19,6 +19,9 @@ in {
         emacs.enable = mkDefault true;
         vscode.enable = mkDefault true;
       };
+      tools = {
+        github.enable = mkDefault true;
+      };
     };
   };
 }
