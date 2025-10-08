@@ -37,6 +37,7 @@ in {
       defaults = {
         NSGlobalDomain = {
           AppleKeyboardUIMode = 3;
+          ApplePressAndHoldEnabled = false;
 
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
