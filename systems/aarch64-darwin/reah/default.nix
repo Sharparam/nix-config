@@ -18,8 +18,8 @@ with lib.${namespace}; {
     };
 
     desktop = {
-      jankyborders = enabled;
-      yabai = enabled;
+      # jankyborders = enabled;
+      # yabai = enabled;
       # sketchybar = enabled;
     };
 
