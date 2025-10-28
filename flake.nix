@@ -33,7 +33,7 @@
 
     snowfall-flake = {
       url = "github:snowfallorg/flake";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
