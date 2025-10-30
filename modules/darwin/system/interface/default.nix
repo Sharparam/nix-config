@@ -35,7 +35,8 @@ in {
         };
 
         WindowManager = {
-          EnableStandardClickToShowDesktop = !config.${namespace}.desktop.yabai.enable;
+          # EnableStandardClickToShowDesktop = !config.${namespace}.desktop.yabai.enable;
+          EnableStandardClickToShowDesktop = false;
         };
 
         controlcenter = {
