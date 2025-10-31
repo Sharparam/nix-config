@@ -9,10 +9,12 @@ with lib;
 with lib.${namespace}; let
   cfg = config.${namespace}.tools.atuin;
 in {
-  options.${namespace}.tools.atuin = {
+  options.${namespace}.tools.atuin = with types; {
     enable = mkEnableOption "Atuin";
     enableDaemon = mkBoolOpt true "Whether or not to run the Atuin daemon.";
+    enableSync = mkBoolOpt true "Whether to enable syncing";
     enableZvmWorkaround = mkBoolOpt false "Apply zsh-vi-mode workaround.";
+    syncAddress = mkOpt str "https://atuin.sharparam.com" "Sync address to use.";
   };
 
   config = mkIf cfg.enable {
@@ -25,11 +27,13 @@ in {
         logLevel = "warn";
       };
       settings = {
+        auto_sync = cfg.enableSync;
         dialect = "uk";
         enter_accept = true;
         filter_mode = "global";
         filter_mode_shell_up_key_binding = "directory";
         keymap_mode = "auto";
+        sync_address = cfg.syncAddress;
         sync = {
           records = true;
         };
