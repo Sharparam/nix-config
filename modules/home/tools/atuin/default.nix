@@ -31,7 +31,7 @@ in {
         dialect = "uk";
         enter_accept = true;
         filter_mode = "global";
-        filter_mode_shell_up_key_binding = "directory";
+        filter_mode_shell_up_key_binding = "session";
         keymap_mode = "auto";
         sync_address = cfg.syncAddress;
         sync = {
