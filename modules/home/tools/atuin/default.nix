@@ -6,11 +6,9 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.tools.atuin;
-in
-{
+in {
   options.${namespace}.tools.atuin = {
     enable = mkEnableOption "Atuin";
     enableDaemon = mkBoolOpt true "Whether or not to run the Atuin daemon.";
@@ -29,16 +27,18 @@ in
       settings = {
         dialect = "uk";
         enter_accept = true;
+        filter_mode = "global";
+        filter_mode_shell_up_key_binding = "directory";
+        keymap_mode = "auto";
         sync = {
           records = true;
         };
       };
     };
 
-    programs.zsh.initExtra =
-      let
-        flagsStr = escapeShellArgs config.programs.atuin.flags;
-      in
+    programs.zsh.initExtra = let
+      flagsStr = escapeShellArgs config.programs.atuin.flags;
+    in
       mkIf cfg.enableZvmWorkaround (mkAfter ''
         if [[ $options[zle] = on ]]; then
           function atuin_init() {
