@@ -22,6 +22,7 @@ in {
 
     ${namespace} = {
       apps = {
+        atuin-desktop = enabled;
         azure-data-studio = enabled;
         emacs = enabled;
         jetbrains.toolbox = enabled;
