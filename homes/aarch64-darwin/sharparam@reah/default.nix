@@ -33,6 +33,7 @@ with lib.${namespace}; {
 
     tools = {
       azure = enabled;
+      uv = enabled;
     };
   };
 
