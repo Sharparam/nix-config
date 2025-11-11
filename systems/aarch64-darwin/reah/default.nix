@@ -24,6 +24,7 @@ with lib.${namespace}; {
     };
 
     apps = {
+      etcher = enabled;
       # linqpad = enabled;
       obs = enabled;
     };
