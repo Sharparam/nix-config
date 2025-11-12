@@ -24,7 +24,7 @@ with lib.${namespace}; {
     apps = {
       ghostty = {
         enable = true;
-        setAsDefault = false;
+        setAsDefault = true;
         fontSize = 14;
       };
       # vscode.fhs doesn't work on nix-darwin

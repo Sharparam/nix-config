@@ -71,11 +71,10 @@ in {
             :: default
 
             ## Launchers
-            default < lalt - return : kitty --single-instance -d ~
-            default < shift + lalt - return : kitty -d ~
+            # default < lalt - return : kitty --single-instance -d ~
+            # default < shift + lalt - return : kitty -d ~
             # Experiment with ghostty
-            # disable for now since it seems not quite ready yet
-            # default < lalt - return : ghostty
+            default < lalt - return : open --new -a ghostty
 
             ## System
             # conflicts with yabai window movement
