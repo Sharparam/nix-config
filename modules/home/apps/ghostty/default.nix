@@ -27,6 +27,7 @@ in {
         if pkgs.stdenv.isDarwin
         then null
         else pkgs.ghostty;
+      enableZshIntegration = true;
       settings = {
         font-family = [
           "Iosevka Sharpie Term"
@@ -38,6 +39,7 @@ in {
         # theme = "catppuccin-macchiato";
         background-opacity = 0.95;
         background-blur = false;
+        shell-integration-features = ["ssh-terminfo" "ssh-env"];
         quick-terminal-position = "top";
         quick-terminal-screen = "main"; # default: "main"
         # quick-terminal-animation-duration = 0;
