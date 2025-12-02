@@ -66,7 +66,6 @@ in {
     };
 
     programs.git = {
-      inherit (cfg) userName userEmail;
       enable = true;
       lfs = enabled;
       signing = {
@@ -76,13 +75,11 @@ in {
           else cfg.signingKey;
         signByDefault = true;
       };
-      difftastic = {
-        enable = true;
-        enableAsDifftool = true;
-        package = difftasticPackage;
-        background = "dark";
-      };
-      extraConfig = {
+      settings = {
+        user = {
+          name = cfg.userName;
+          email = cfg.userEmail;
+        };
         core = {
           autocrlf = "input";
           askPass = mkIf (cfg.askPass != null) cfg.askPass;
@@ -253,6 +250,18 @@ in {
           '';
         };
       };
+    };
+
+    programs.difftastic = {
+      enable = true;
+      package = difftasticPackage;
+      options = {
+        background = "dark";
+      };
+      git = {
+        enable = true;
+        diffToolMode = true;
+      }
     };
 
     ${namespace}.cli.aliases = let
