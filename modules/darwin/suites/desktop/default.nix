@@ -22,7 +22,7 @@ in {
       };
 
       desktop = {
-        skhd = enabled;
+        # skhd = enabled;
       };
 
       apps = {
