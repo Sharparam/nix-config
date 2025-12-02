@@ -261,7 +261,7 @@ in {
       git = {
         enable = true;
         diffToolMode = true;
-      }
+      };
     };
 
     ${namespace}.cli.aliases = let
