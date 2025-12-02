@@ -41,11 +41,21 @@ in {
     ];
     programs.ssh = {
       enable = true;
-      controlMaster = "auto";
-      controlPath = "~/.ssh/control/%r@%h:%p";
-      controlPersist = "5m";
+      enableDefaultConfig = false;
       matchBlocks = with lib.home-manager.hm.dag; {
-        servers = {
+        "*" = {
+          addKeysToAgent = "no";
+          compression = false;
+          controlMaster = "auto";
+          controlPath = "~/.ssh/control/%r@%h:%p";
+          controlPersist = "5m";
+          forwardAgent = false;
+          hashKnownHosts = false;
+          serverAliveInterval = 0;
+          serverAliveCountMax = 3;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+        };
+        servers = entryAfter ["*"] {
           host = "solaire shanalotte matrix radahn";
           hostname = "%h.sharparam.com";
           user = "sharparam";
