@@ -20,7 +20,7 @@ in {
       emacs = ''pgrep emacs Emacs && emacsclient --no-wait --create-frame "$@" || emacs --no-window-system "$@"'';
     };
 
-    programs.zsh.initExtraBeforeCompInit = ''
+    programs.zsh.initContent = lib.mkOrder 550 ''
       path+="${"\${XDG_CONFIG_HOME:-$HOME/.config}"}/emacs/bin"
     '';
   };

@@ -35,7 +35,7 @@ in {
           ZVM_LAZY_KEYBINDINGS = false;
           ZVM_LINE_INIT_MODE = "i";
         };
-        initExtraBeforeCompInit = ''
+        initContent = lib.mkOrder 550 ''
           path+="$HOME/.local/bin"
         '';
         plugins = [

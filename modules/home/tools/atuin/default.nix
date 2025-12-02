@@ -40,7 +40,7 @@ in {
       };
     };
 
-    programs.zsh.initExtra = let
+    programs.zsh.initContent = let
       flagsStr = escapeShellArgs config.programs.atuin.flags;
     in
       mkIf cfg.enableZvmWorkaround (mkAfter ''
