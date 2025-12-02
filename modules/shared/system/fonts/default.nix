@@ -8,14 +8,12 @@
   ...
 }:
 with lib;
-with lib.${namespace};
-let
+with lib.${namespace}; let
   cfg = config.${namespace}.system.fonts;
-in
-{
+in {
   options.${namespace}.system.fonts = with types; {
     enable = mkEnableOption "Whether or not to manage fonts.";
-    fonts = mkOpt (listOf package) [ ] "Custom font packages to install.";
+    fonts = mkOpt (listOf package) [] "Custom font packages to install.";
   };
 
   config = mkIf cfg.enable {
@@ -24,8 +22,7 @@ in
     };
 
     fonts = {
-      packages =
-        with pkgs;
+      packages = with pkgs;
         [
           corefonts
 
@@ -40,7 +37,7 @@ in
           noto-fonts
           noto-fonts-cjk-sans
           noto-fonts-cjk-serif
-          noto-fonts-emoji
+          noto-fonts-color-emoji
 
           roboto
 
