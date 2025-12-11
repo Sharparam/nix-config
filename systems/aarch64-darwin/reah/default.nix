@@ -27,6 +27,7 @@ with lib.${namespace}; {
       etcher = enabled;
       # linqpad = enabled;
       obs = enabled;
+      sweet-home3d = enabled;
     };
   };
 
