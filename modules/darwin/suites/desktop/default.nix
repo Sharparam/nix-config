@@ -34,6 +34,7 @@ in {
         };
         firefox = enabled;
         kde-connect = enabled;
+        signal = enabled;
         slack = enabled;
         spotify = enabled;
         telegram = enabled;
