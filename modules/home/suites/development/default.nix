@@ -21,6 +21,8 @@ in {
       };
       tools = {
         github.enable = mkDefault true;
+        scc = enabled;
+        tokei = enabled;
       };
     };
   };
