@@ -108,7 +108,7 @@
         catppuccin.homeModules.catppuccin
       ];
 
-      homes.users."sharparam@reah".modules = with inputs; [
+      homes.users."sharparam@NINETECH-617128".modules = with inputs; [
         mac-app-util.homeManagerModules.default
       ];
 
