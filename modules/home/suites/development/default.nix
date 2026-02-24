@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.suites.development;
-in {
+in
+{
   options.${namespace}.suites.development = with types; {
     enable = mkEnableOption "Development suite";
   };
@@ -20,6 +22,7 @@ in {
         vscode.enable = mkDefault true;
       };
       tools = {
+        codespelunker = enabled;
         github.enable = mkDefault true;
         scc = enabled;
         tokei = enabled;
