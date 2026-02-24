@@ -22,6 +22,7 @@ in
         vscode.enable = mkDefault true;
       };
       tools = {
+        ast-grep = enabled;
         codespelunker = enabled;
         github.enable = mkDefault true;
         scc = enabled;
