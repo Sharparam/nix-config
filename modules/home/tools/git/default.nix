@@ -168,6 +168,10 @@ in
           contents = ninetechConfig;
         }
         {
+          condition = "gitdir:~/projects/plendo/";
+          contents = ninetechConfig;
+        }
+        {
           condition = "gitdir:~/repos/ssh.dev.azure.com/v3/ToolPal/";
           contents = ninetechConfig;
         }
