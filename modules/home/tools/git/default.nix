@@ -17,6 +17,7 @@ let
     else
       "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"; # TODO: Fix?
   ninetechConfig = {
+    user.name = "Adam Hellberg";
     user.email = "adam.hellberg@ninetech.com";
   };
   difftasticPackage = pkgs.difftastic;
@@ -278,6 +279,24 @@ in
         diffToolMode = true;
       };
     };
+
+    xdg.configFile."jj/conf.d/10-work.toml".source =
+      let
+        tomlFormat = pkgs.formats.toml { };
+      in
+      tomlFormat.generate "work.toml" {
+        "--when".repositories = [
+          "~/projects/work/ninetech/"
+          "~/projects/serveit/"
+          "~/projects/toolpal/"
+          "~/projects/plendo/"
+          "~/repos/ssh.dev.azure.com/v3/ToolPal/"
+        ];
+        user = {
+          name = "Adam Hellberg";
+          email = "adam.hellberg@ninetech.com";
+        };
+      };
 
     ${namespace}.cli.aliases =
       let
