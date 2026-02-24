@@ -19,5 +19,9 @@ in
     home.packages = with pkgs; [
       ast-grep
     ];
+
+    ${namespace}.cli.aliases = {
+      sg = "${pkgs.ast-grep}/bin/ast-grep";
+    };
   };
 }
