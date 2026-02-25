@@ -108,9 +108,12 @@
   # Windows shortcuts
   "*.lnk"
 
-  # Mise
+  ### Mise
   ".mise.local.toml"
 
-  # Ruby
+  ### Ruby
   ".bundle/"
+
+  ### Jujutsu (JJ)
+  ".jj/"
 ]
