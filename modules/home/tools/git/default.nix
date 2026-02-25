@@ -256,8 +256,8 @@ in
               diff.git(),
             )
           '';
+          git_push_bookmark = ''"sharparam/push-" ++ change_id.short()'';
         };
-        git_push_bookmark = ''"sharparam/push-" ++ change_id.short()'';
         template-aliases = {
           "format_short_signature(sig)" =
             ''"<" ++ if(sig.email(), sig.email(), label("text warning", "NO EMAIL")) ++ ">"'';
