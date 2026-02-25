@@ -301,6 +301,7 @@ in
     ${namespace}.cli.aliases =
       let
         git = "${pkgs.git}/bin/git";
+        jj = "jj";
         # gh = "${pkgs.gh}/bin/gh";
         # Don't use the direct package path because 1Password will make an alias
         # for `gh` to automatically inject secrets
@@ -322,6 +323,32 @@ in
         # gpf = "${git} push --force-with-lease";
         # gpF = "${git} push --force";
         gst = "${git} status";
+
+        jb = "${jj} bookmark";
+        jbc = "${jj} bookmark create";
+        jbd = "${jj} bookmark delete";
+        jbf = "${jj} bookmark forget";
+        jbl = "${jj} bookmark list";
+        jbm = "${jj} bookmark move";
+        jbr = "${jj} bookmark rename";
+        jbs = "${jj} bookmark set";
+        jc = "${jj} commit";
+        jci = "${jj} commit --interactive";
+        jcm = "${jj} commit --message";
+        jd = "${jj} describe";
+        jdm = "${jj} describe --message";
+        je = "${jj} edit";
+        jg = "${jj} git";
+        jgf = "${jj} git fetch";
+        jgp = "${jj} git push";
+        jl = "${jj} log";
+        jn = "${jj} new";
+        jr = "${jj} rebase";
+        js = "${jj} show";
+        jsq = "${jj} squash";
+        jst = "${jj} status";
+        jt = "${jj} tag";
+        jw = "${jj} workspace";
 
         "?" = "${gh} copilot suggeste -t shell";
         "??" = "${gh} copilot explain";
