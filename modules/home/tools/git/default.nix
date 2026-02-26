@@ -296,6 +296,9 @@ in
           name = "Adam Hellberg";
           email = "adam.hellberg@ninetech.com";
         };
+        templates = {
+          git_push_bookmark = ''"adam/push-" ++ change_id.short()'';
+        };
       };
 
     ${namespace}.cli.aliases =
