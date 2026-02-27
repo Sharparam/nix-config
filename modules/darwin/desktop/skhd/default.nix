@@ -74,7 +74,8 @@ in {
             # default < lalt - return : kitty --single-instance -d ~
             # default < shift + lalt - return : kitty -d ~
             # Experiment with ghostty
-            default < lalt - return : open --new -a ghostty
+            # adding --new to open a new instance breaks the quick terminal
+            default < lalt - return : open -a ghostty --args --quit-after-last-window-closed=true
 
             ## System
             # conflicts with yabai window movement
