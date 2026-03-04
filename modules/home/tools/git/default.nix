@@ -268,6 +268,10 @@ in
       };
     };
 
+    programs.jjui = {
+      enable = true;
+    };
+
     programs.difftastic = {
       enable = true;
       package = difftasticPackage;
