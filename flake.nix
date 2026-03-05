@@ -6,7 +6,7 @@
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     # stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
-    # unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # unstable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
@@ -75,21 +75,23 @@
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
+  outputs =
+    inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
 
-      src = ./.;
+        src = ./.;
 
-      snowfall = {
-        namespace = "snix";
-        meta = {
-          name = "snix";
-          title = "Sharparam's NixOS/nix-darwin/nix flake";
+        snowfall = {
+          namespace = "snix";
+          meta = {
+            name = "snix";
+            title = "Sharparam's NixOS/nix-darwin/nix flake";
+          };
         };
       };
-    };
-  in
+    in
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
