@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.apps.discord;
-in {
+in
+{
   options.${namespace}.apps.discord = {
     enable = mkEnableOption "Enable Discord.";
   };
