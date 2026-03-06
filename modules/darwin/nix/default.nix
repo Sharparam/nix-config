@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.nix;
-in {
+in
+{
   options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.lixPackageSets.latest.lix "Which nix package to use.";
@@ -44,58 +46,60 @@ in {
       # nix-daemon = enabled;
     };
 
-    nix = let
-      users = [
-        "root"
-        config.${namespace}.user.name
-      ];
-    in {
-      package = cfg.package;
-      settings = {
-        allowed-users = users;
-        trusted-users = users;
-
-        experimental-features = "nix-command flakes";
-        # TODO: Broken on nix-darwin
-        # See: https://github.com/LnL7/nix-darwin/issues/943
-        # See: https://github.com/LnL7/nix-darwin/issues/947
-        # use-xdg-base-directories = true;
-        http-connections = 50;
-        log-lines = 50;
-
-        # TODO FIXME
-        # Large builds apparently fail due to an issue with darwin:
-        # https://github.com/NixOS/nix/issues/4119
-        sandbox = false;
-
-        # TODO FIXME
-        # This appears to break on darwin
-        # https://github.com/NixOS/nix/issues/7273
-        auto-optimise-store = false;
-
-        substituters = [
-          "https://nix-community.cachix.org"
+    nix =
+      let
+        users = [
+          "root"
+          config.${namespace}.user.name
         ];
+      in
+      {
+        inherit (cfg) package;
+        settings = {
+          allowed-users = users;
+          trusted-users = users;
 
-        trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        ];
-      };
+          experimental-features = "nix-command flakes";
+          # TODO: Broken on nix-darwin
+          # See: https://github.com/LnL7/nix-darwin/issues/943
+          # See: https://github.com/LnL7/nix-darwin/issues/947
+          # use-xdg-base-directories = true;
+          http-connections = 50;
+          log-lines = 50;
 
-      gc = {
-        automatic = true;
-        interval = {
-          Day = 7;
+          # TODO FIXME
+          # Large builds apparently fail due to an issue with darwin:
+          # https://github.com/NixOS/nix/issues/4119
+          sandbox = false;
+
+          # TODO FIXME
+          # This appears to break on darwin
+          # https://github.com/NixOS/nix/issues/7273
+          auto-optimise-store = false;
+
+          substituters = [
+            "https://nix-community.cachix.org"
+          ];
+
+          trusted-public-keys = [
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          ];
         };
-        options = "--delete-older-than 30d";
-        # no longer has any effect
-        # user = config.${namespace}.user.name;
-      };
 
-      # flake-utils-plus
-      generateRegistryFromInputs = true;
-      generateNixPathFromInputs = true;
-      linkInputs = true;
-    };
+        gc = {
+          automatic = true;
+          interval = {
+            Day = 7;
+          };
+          options = "--delete-older-than 30d";
+          # no longer has any effect
+          # user = config.${namespace}.user.name;
+        };
+
+        # flake-utils-plus
+        generateRegistryFromInputs = true;
+        generateNixPathFromInputs = true;
+        linkInputs = true;
+      };
   };
 }

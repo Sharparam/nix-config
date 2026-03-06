@@ -1,17 +1,16 @@
 {
   lib,
-  pkgs,
-  osConfig ? {},
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; {
+with lib.${namespace};
+{
   snix = {
     user = {
       enable = true;
-      name = config.snowfallorg.user.name;
+      inherit (config.snowfallorg.user) name;
       email = "adam.hellberg@ninetech.com";
     };
 

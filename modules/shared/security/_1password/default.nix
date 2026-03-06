@@ -1,16 +1,16 @@
 {
   lib,
   pkgs,
-  inputs,
   namespace,
-  system,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.security._1password;
-in {
+in
+{
   options.${namespace}.security._1password = with types; {
     enable = mkEnableOption "Enable 1Password";
     enableSshAgent = mkBoolOpt false "Enable SSH agent integration";
@@ -30,7 +30,7 @@ in {
         };
 
         ssh = mkIf cfg.enableSshAgent {
-          includes = ["~/.ssh/1Password/config"];
+          includes = [ "~/.ssh/1Password/config" ];
           extraOptionOverrides = {
             IdentityAgent = "~/.1password/agent.sock";
           };

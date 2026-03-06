@@ -1,8 +1,6 @@
 {
   lib,
-  pkgs,
   namespace,
-  options,
   config,
   ...
 }:
@@ -51,7 +49,7 @@ in
           profiles.${config.${namespace}.user.name} = {
             inherit (cfg) extraConfig userChrome settings;
             id = 0;
-            name = config.${namespace}.user.name;
+            inherit (config.${namespace}.user) name;
           };
         };
       };

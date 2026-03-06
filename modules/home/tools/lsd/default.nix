@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.lsd;
-in {
+in
+{
   options.${namespace}.tools.lsd = with types; {
     enable = mkEnableOption "Whether or not to enable the lsd tool.";
   };

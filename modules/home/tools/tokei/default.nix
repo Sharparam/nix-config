@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.tokei;
-in {
+in
+{
   options.${namespace}.tools.tokei = {
     enable = mkEnableOption "Enable tokei.";
   };

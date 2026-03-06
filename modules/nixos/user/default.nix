@@ -28,7 +28,7 @@ let
     pkgs.runCommandNoCC "propagated-icon"
       {
         passthru = {
-          fileName = cfg.icon.fileName;
+          inherit (cfg.icon) fileName;
         };
       }
       ''
@@ -82,7 +82,8 @@ in
 
       uid = 1000;
 
-      extraGroups = cfg.extraGroups;
-    } // cfg.extraOptions;
+      inherit (cfg) extraGroups;
+    }
+    // cfg.extraOptions;
   };
 }

@@ -6,7 +6,8 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   aliasesFile = pkgs.writeText "aliases.shrc" "${convertAliases config.${namespace}.cli.aliases}";
 
   default-aliases = pkgs.writeText "default-aliases.shrc" (convertAliases {
@@ -33,11 +34,13 @@ with lib.${namespace}; let
     ":wq" = "exit";
     ":x" = "exit";
   });
-in {
-  options.${namespace}.cli.aliases = with types;
+in
+{
+  options.${namespace}.cli.aliases =
+    with types;
     mkOption {
       type = attrsOf str;
-      default = {};
+      default = { };
       description = "A set of aliases to add to the user's shell.";
     };
 

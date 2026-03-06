@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.desktop.sketchybar;
-in {
+in
+{
   options.${namespace}.desktop.sketchybar = with types; {
     enable = mkEnableOption "Enable sketchybar.";
     package = mkOpt package pkgs.sketchybar "sketchybar package";
@@ -31,7 +33,7 @@ in {
       # inherit (cfg) logFile;
 
       enable = true;
-      package = cfg.package;
+      inherit (cfg) package;
 
       extraPackages = with pkgs; [
         jq

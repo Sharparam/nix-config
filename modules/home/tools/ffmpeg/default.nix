@@ -4,10 +4,12 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.ffmpeg;
-in {
+in
+{
   options.${namespace}.tools.ffmpeg = {
     enable = mkEnableOption "ffmpeg";
   };

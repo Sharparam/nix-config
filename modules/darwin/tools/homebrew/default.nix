@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.homebrew;
-in {
+in
+{
   options.${namespace}.tools.homebrew = with types; {
     enable = mkEnableOption "Whether or not to enable homebrew.";
     enableMas = mkBoolOpt true "Whether or not to enable Mac App Store downloads via homebrew.";
@@ -21,7 +23,8 @@ in {
       HOMEBREW_NO_INSECURE_REDIRECT = "1";
     };
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       mkIf cfg.enableMas [
         mas
       ];
@@ -41,7 +44,7 @@ in {
         upgrade = false;
       };
 
-      taps = ["homebrew/services"];
+      taps = [ "homebrew/services" ];
     };
   };
 }

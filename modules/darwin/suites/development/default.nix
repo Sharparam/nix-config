@@ -1,14 +1,15 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.suites.development;
-in {
+in
+{
   options.${namespace}.suites.development = with types; {
     enable = mkEnableOption "Whether or not to enable the development suite.";
   };

@@ -92,7 +92,7 @@ in
               "media.hardware-video-decoding.enabled" = true;
             })
           ];
-          userChrome = builtins.readFile ./chrome/userChrome.css + ''${cfg.userChrome}'';
+          userChrome = builtins.readFile ./chrome/userChrome.css + "${cfg.userChrome}";
         };
       };
     };

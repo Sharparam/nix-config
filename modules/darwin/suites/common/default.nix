@@ -3,7 +3,6 @@
   pkgs,
   inputs,
   namespace,
-  options,
   config,
   ...
 }:

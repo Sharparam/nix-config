@@ -42,5 +42,6 @@ stdenvNoCC.mkDerivation {
   '';
   passthru = {
     inherit names;
-  } // wallpapers;
+  }
+  // wallpapers;
 }

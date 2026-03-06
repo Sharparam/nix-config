@@ -1,9 +1,7 @@
 {
   lib,
   pkgs,
-  inputs,
   namespace,
-  system,
   config,
   ...
 }:
@@ -44,8 +42,9 @@ in
             monospace = [
               "Iosevka Sharpie"
               "Iosevka Nerd Font"
-            ] ++ nerd;
-            emoji = emoji;
+            ]
+            ++ nerd;
+            inherit emoji;
           };
       };
 

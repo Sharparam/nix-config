@@ -1,10 +1,7 @@
 {
   lib,
-  pkgs,
   host ? null,
-  format ? "unknown",
   namespace,
-  config,
   ...
 }:
 with lib;

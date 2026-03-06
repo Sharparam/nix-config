@@ -1,4 +1,4 @@
 { channels, ... }:
-final: prev: {
+_final: _prev: {
   inherit (channels.unstable) jujutsu;
 }

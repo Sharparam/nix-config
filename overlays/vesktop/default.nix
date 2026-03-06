@@ -1,6 +1,6 @@
-{ ... }:
+_:
 final: prev: {
-  vesktop = prev.vesktop.overrideAttrs (old: {
+  vesktop = prev.vesktop.overrideAttrs (_old: {
     postConfigure = "";
 
     buildPhase = ''

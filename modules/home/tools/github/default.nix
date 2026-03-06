@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.github;
-in {
+in
+{
   options.${namespace}.tools.github = with types; {
     enable = mkEnableOption "GitHub";
   };

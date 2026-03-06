@@ -1,8 +1,5 @@
 {
-  lib,
   pkgs,
-  inputs,
-  namespace,
   mkShell,
   ...
 }:

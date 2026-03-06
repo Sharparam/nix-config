@@ -1,6 +1,6 @@
-{channels, ...}: final: prev: {
-  inherit
-    (final.lixPackageSets.latest.lix)
+_:
+final: _prev: {
+  inherit (final.lixPackageSets.latest.lix)
     nixpkgs-review
     # nix-direnv
     nix-eval-jobs

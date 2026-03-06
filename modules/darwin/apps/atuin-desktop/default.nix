@@ -5,14 +5,16 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.apps.atuin-desktop;
-in {
+in
+{
   options.${namespace}.apps.atuin-desktop = with types; {
     enable = mkEnableOption "Enable atuin-desktop.";
   };
 
   config = mkIf cfg.enable {
-    homebrew.casks = ["atuin-desktop"];
+    homebrew.casks = [ "atuin-desktop" ];
   };
 }

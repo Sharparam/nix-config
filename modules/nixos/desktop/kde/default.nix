@@ -1,7 +1,5 @@
 {
   lib,
-  pkgs,
-  options,
   namespace,
   config,
   ...

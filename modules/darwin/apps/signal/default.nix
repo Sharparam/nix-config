@@ -1,19 +1,20 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.apps.signal;
-in {
+in
+{
   options.${namespace}.apps.signal = {
     enable = mkEnableOption "Enable Signal";
   };
 
   config = mkIf cfg.enable {
-    homebrew.casks = ["signal"];
+    homebrew.casks = [ "signal" ];
   };
 }

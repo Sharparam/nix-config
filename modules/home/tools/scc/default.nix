@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.scc;
-in {
+in
+{
   options.${namespace}.tools.scc = {
     enable = mkEnableOption "Enable scc.";
   };

@@ -1,14 +1,15 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.podman;
-in {
+in
+{
   options.${namespace}.tools.podman = with types; {
     enable = mkEnableOption "Whether or not to enable Podman.";
   };
@@ -20,7 +21,7 @@ in {
         "podman-compose"
         "podman-tui"
       ];
-      casks = ["podman-desktop"];
+      casks = [ "podman-desktop" ];
     };
   };
 }

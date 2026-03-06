@@ -6,58 +6,63 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.apps.emacs;
-in {
+in
+{
   options.${namespace}.apps.emacs = with types; {
     enable = mkEnableOption "Enable emacs";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; let
-      epkgs = pkgs.emacsPackages;
-    in [
-      ## Emacs
-      binutils
-      # emacs # We're using emacs-plus from Homebrew
+    environment.systemPackages =
+      with pkgs;
+      let
+        epkgs = pkgs.emacsPackages;
+      in
+      [
+        ## Emacs
+        binutils
+        # emacs # We're using emacs-plus from Homebrew
 
-      ## Doom
-      ripgrep
-      gnutls
+        ## Doom
+        ripgrep
+        gnutls
 
-      ## Optional
-      fd
-      imagemagick
-      pinentry-emacs
-      zstd
+        ## Optional
+        fd
+        imagemagick
+        pinentry-emacs
+        zstd
 
-      ## Module deps
-      # :term vterm
-      cmake
-      gcc
-      gnumake
-      epkgs.vterm
-      # :tools editorconfig
-      editorconfig-core-c
-      # :lang org +roam
-      graphviz
-      sqlite
-      # :lang sh
-      shellcheck
-      shfmt
-      # :tools lsp
-      nodejs
+        ## Module deps
+        # :term vterm
+        cmake
+        gcc
+        gnumake
+        epkgs.vterm
+        # :tools editorconfig
+        editorconfig-core-c
+        # :lang org +roam
+        graphviz
+        sqlite
+        # :lang sh
+        shellcheck
+        shfmt
+        # :tools lsp
+        nodejs
 
-      # Seems to be needed since emacs v30
-      tree-sitter
-    ];
+        # Seems to be needed since emacs v30
+        tree-sitter
+      ];
 
     homebrew = {
-      taps = ["d12frosted/emacs-plus"];
+      taps = [ "d12frosted/emacs-plus" ];
       brews = [
         {
           name = "emacs-plus";
-          args = ["with-native-comp"];
+          args = [ "with-native-comp" ];
         }
       ];
     };

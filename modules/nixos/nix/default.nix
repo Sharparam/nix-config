@@ -6,16 +6,18 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.nix;
-  user = config.${namespace}.user;
-in {
+  inherit (config.${namespace}) user;
+in
+{
   options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.lix "Which nix package to use.";
     flakePath =
       mkOpt str "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1"
-      "Path to the flake to use for NixOS configuration.";
+        "Path to the flake to use for NixOS configuration.";
     keepAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
     keepCount = mkOpt int 3 "How many store paths to keep.";
     # cleanAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
@@ -58,42 +60,44 @@ in {
       };
     };
 
-    nix = let
-      users = [
-        "root"
-        user.name
-      ];
-    in {
-      package = cfg.package;
-      # gc = {
-      #   options = "--delete-older-than ${cfg.cleanAge}";
-      #   dates = "daily";
-      #   automatic = true;
-      # };
-
-      settings = {
-        allowed-users = users;
-        trusted-users = users;
-        sandbox = "relaxed";
-        auto-optimise-store = true;
-        experimental-features = "nix-command flakes";
-        use-xdg-base-directories = true;
-        http-connections = 50;
-        warn-dirty = false;
-        log-lines = 50;
-
-        substituters = [
-          "https://nix-community.cachix.org"
+    nix =
+      let
+        users = [
+          "root"
+          user.name
         ];
+      in
+      {
+        inherit (cfg) package;
+        # gc = {
+        #   options = "--delete-older-than ${cfg.cleanAge}";
+        #   dates = "daily";
+        #   automatic = true;
+        # };
 
-        trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        ];
+        settings = {
+          allowed-users = users;
+          trusted-users = users;
+          sandbox = "relaxed";
+          auto-optimise-store = true;
+          experimental-features = "nix-command flakes";
+          use-xdg-base-directories = true;
+          http-connections = 50;
+          warn-dirty = false;
+          log-lines = 50;
+
+          substituters = [
+            "https://nix-community.cachix.org"
+          ];
+
+          trusted-public-keys = [
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          ];
+        };
+        # flake-utils-plus
+        generateRegistryFromInputs = true;
+        generateNixPathFromInputs = true;
+        linkInputs = true;
       };
-      # flake-utils-plus
-      generateRegistryFromInputs = true;
-      generateNixPathFromInputs = true;
-      linkInputs = true;
-    };
   };
 }

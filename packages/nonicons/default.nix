@@ -4,8 +4,6 @@
   stdenv,
   ...
 }:
-let
-in
 stdenv.mkDerivation (finalAttrs: {
   pname = "nonicons";
   version = "0-unstable-2024-12-12";

@@ -4,10 +4,12 @@
   namespace,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.qalc;
-in {
+in
+{
   options.${namespace}.tools.qalc = {
     enable = mkEnableOption "qalc";
   };

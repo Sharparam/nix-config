@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.tools.atuin;
-in {
+in
+{
   options.${namespace}.tools.atuin = with types; {
     enable = mkEnableOption "Atuin";
     enableDaemon = mkBoolOpt true "Whether or not to run the Atuin daemon.";
@@ -40,9 +42,10 @@ in {
       };
     };
 
-    programs.zsh.initContent = let
-      flagsStr = escapeShellArgs config.programs.atuin.flags;
-    in
+    programs.zsh.initContent =
+      let
+        flagsStr = escapeShellArgs config.programs.atuin.flags;
+      in
       mkIf cfg.enableZvmWorkaround (mkAfter ''
         if [[ $options[zle] = on ]]; then
           function atuin_init() {

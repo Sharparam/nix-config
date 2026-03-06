@@ -17,7 +17,7 @@ in
 
   config = mkIf cfg.enable {
     programs.ssh = {
-      startAgent = cfg.startAgent;
+      inherit (cfg) startAgent;
     };
   };
 }

@@ -1,13 +1,11 @@
 {
   lib,
-  pkgs,
-  osConfig ? {},
   namespace,
-  config,
   ...
 }:
 with lib;
-with lib.${namespace}; {
+with lib.${namespace};
+{
   snix = {
     suites = {
       common = enabled;

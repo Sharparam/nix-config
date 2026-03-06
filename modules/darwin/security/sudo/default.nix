@@ -1,14 +1,15 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.security.sudo;
-in {
+in
+{
   options.${namespace}.security.sudo = with types; {
     enable = mkEnableOption "Whether or not to enable the sudo security module.";
   };

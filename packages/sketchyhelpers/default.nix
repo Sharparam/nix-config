@@ -6,7 +6,7 @@
   pkg-config,
   apple-sdk,
 }:
-stdenv.mkDerivation (final: {
+stdenv.mkDerivation (_final: {
   pname = "sketchyhelpers";
   version = "0-unstable-2025-02-09";
 

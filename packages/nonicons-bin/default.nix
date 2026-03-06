@@ -13,7 +13,7 @@ stdenv.mkDerivation {
   version = "0-unstable-2024-12-12";
 
   src = pkgs.fetchurl {
-    url = url;
+    inherit url;
     sha256 = "sha256-25k4k7IUzmrYO1TF4ErDia1VT0vMxqQZuWviiesU1qc=";
   };
 

@@ -6,10 +6,12 @@
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.desktop.yabai;
   useSketchybar = config.${namespace}.desktop.sketchybar.enable;
-in {
+in
+{
   options.${namespace}.desktop.yabai = with types; {
     enable = mkEnableOption "Enable yabai.";
     package = mkOpt package pkgs.yabai "yabai package";
@@ -30,13 +32,13 @@ in {
       snix.yabai-helper
     ];
 
-    homebrew.casks = mkIf cfg.enableSpaceId ["spaceid"];
+    homebrew.casks = mkIf cfg.enableSpaceId [ "spaceid" ];
 
     services.yabai = {
       # inherit (cfg) logFile;
 
       enable = true;
-      package = cfg.package;
+      inherit (cfg) package;
       enableScriptingAddition = true;
 
       # https://github.com/koekeishiya/yabai/wiki/Configuration#configuration-file
@@ -46,16 +48,10 @@ in {
       config = {
         ## Global settings
 
-        debug_output =
-          if cfg.debug
-          then "on"
-          else "off";
+        debug_output = if cfg.debug then "on" else "off";
 
         # external_bar = "off"; # default: "off"?
-        menubar_opacity =
-          if useSketchybar
-          then "0.5"
-          else "1.0"; # default: "1.0"
+        menubar_opacity = if useSketchybar then "0.5" else "1.0"; # default: "1.0"
 
         mouse_follows_focus = "off"; # default: "off"
         focus_follows_mouse = "autoraise"; # default: "off"
@@ -99,40 +95,40 @@ in {
       extraConfig =
         # bash
         let
-          yabai = getExe cfg.package;
+          # yabai = getExe cfg.package;
           yabai-helper = getExe pkgs.${namespace}.yabai-helper;
-          sketchybar = getExe config.${namespace}.desktop.sketchybar.package;
+          # sketchybar = getExe config.${namespace}.desktop.sketchybar.package;
           jq = getExe pkgs.jq;
         in
-          ''
-            echo "yabai configuration loading"
+        ''
+          echo "yabai configuration loading"
 
-            ${yabai-helper} setup_spaces
+          ${yabai-helper} setup_spaces
 
-            ${builtins.readFile ./extraConfig}
+          ${builtins.readFile ./extraConfig}
 
-            # Signal hooks
-            yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-            # yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
-            # yabai -m signal --add event=display_removed action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
-            yabai -m signal --add event=display_added action="sleep 1 && ${yabai-helper} setup_spaces"
-            yabai -m signal --add event=display_removed action="sleep 1 && ${yabai-helper} setup_spaces"
+          # Signal hooks
+          yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+          # yabai -m signal --add event=display_added action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
+          # yabai -m signal --add event=display_removed action="sleep 1 && source ${yabai-helper} && create_spaces ${toString cfg.spacesCount}"
+          yabai -m signal --add event=display_added action="sleep 1 && ${yabai-helper} setup_spaces"
+          yabai -m signal --add event=display_removed action="sleep 1 && ${yabai-helper} setup_spaces"
 
-            echo "yabai configuration loaded"
-          ''
-          + optionalString useSketchybar ''
-            echo "yabai sketchybar integration loading"
+          echo "yabai configuration loaded"
+        ''
+        + optionalString useSketchybar ''
+          echo "yabai sketchybar integration loading"
 
-            BAR_HEIGHT=$(sketchybar -m --query bar | ${jq} -r '.height')
-            echo "bar height is $BAR_HEIGHT"
-            yabai -m config external_bar all:"$BAR_HEIGHT":0
+          BAR_HEIGHT=$(sketchybar -m --query bar | ${jq} -r '.height')
+          echo "bar height is $BAR_HEIGHT"
+          yabai -m config external_bar all:"$BAR_HEIGHT":0
 
-            # yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
-            # yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-            # yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+          # yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+          # yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+          # yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
-            echo "yabai sketchybar integration loaded"
-          '';
+          echo "yabai sketchybar integration loaded"
+        '';
     };
   };
 }

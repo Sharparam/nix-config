@@ -7,9 +7,6 @@
 }:
 with lib;
 with lib.${namespace};
-let
-  cfg = config.${namespace}.home;
-in
 {
   options.${namespace}.home = with types; {
     file = mkOpt attrs { } "A set of files to be managed by home-manager's `home.file`.";

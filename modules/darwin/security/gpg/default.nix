@@ -25,7 +25,7 @@ in
       # ssh.startAgent = mkIf cfg.enableSSHSupport false;
       gnupg.agent = {
         enable = true;
-        enableSSHSupport = cfg.enableSSHSupport;
+        inherit (cfg) enableSSHSupport;
         # TODO: settings not supported on nix-darwin
         # settings = {
         #   default-cache-ttl = 60;

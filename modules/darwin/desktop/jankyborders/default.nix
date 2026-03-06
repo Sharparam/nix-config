@@ -1,14 +1,15 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
 with lib;
-with lib.${namespace}; let
+with lib.${namespace};
+let
   cfg = config.${namespace}.desktop.jankyborders;
-in {
+in
+{
   options.${namespace}.desktop.jankyborders = {
     enable = mkEnableOption "Enable janky borders.";
   };

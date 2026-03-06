@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   namespace,
   config,
   ...
@@ -28,7 +27,7 @@ in
       ssh.startAgent = mkIf cfg.enableSSHSupport false;
       gnupg.agent = {
         enable = true;
-        enableSSHSupport = cfg.enableSSHSupport;
+        inherit (cfg) enableSSHSupport;
         settings = {
           default-cache-ttl = 60;
           default-cache-ttl-ssh = 60;
