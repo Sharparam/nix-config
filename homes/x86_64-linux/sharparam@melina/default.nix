@@ -19,7 +19,7 @@ with lib.${namespace};
     cachix
     deadnix
     nixd
-    nixfmt-rfc-style
+    nixfmt
     statix
   ];
 

@@ -3,7 +3,7 @@
 
   programs = {
     # Nix
-    alejandra.enable = true;
+    nixfmt.enable = true;
     deadnix.enable = true;
     statix.enable = true;
   };

@@ -28,7 +28,7 @@ in {
       nix-output-monitor
       nix-prefetch-git
       nixd
-      nixfmt-rfc-style
+      nixfmt
       nvd
       # comma
       cachix
