@@ -19,6 +19,8 @@ let
     "......." = "cd ../../../../../..";
     "-" = "cd -";
 
+    take = ''mkdir -p "$1" && cd "$1"'';
+
     launch = "nohup $@ &>/dev/null & disown";
 
     status = "systemctl status";
