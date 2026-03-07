@@ -10,6 +10,12 @@ with lib.${namespace};
   snix = {
     tools = {
       devenv = enabled;
+      git = {
+        enable = true;
+        use1Password = true;
+        credentialHelper = "libsecret";
+        askPass = "/usr/bin/ksshaskpass";
+      };
       home-manager = enabled;
     };
   };
