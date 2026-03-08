@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     programs.bat = enabled;
 
-    ${namespace}.cli.aliases = {
+    home.shellAliases = {
       cat = "${pkgs.bat}/bin/bat --paging=never";
     };
   };

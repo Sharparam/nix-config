@@ -11,30 +11,9 @@ let
   aliasesFile = pkgs.writeText "aliases.shrc" "${convertAliases config.${namespace}.cli.aliases}";
 
   default-aliases = pkgs.writeText "default-aliases.shrc" (convertAliases {
-    ".." = "cd ..";
-    "..." = "cd ../..";
-    "...." = "cd ../../..";
-    "....." = "cd ../../../..";
-    "......" = "cd ../../../../..";
-    "......." = "cd ../../../../../..";
-    "-" = "cd -";
-
     take = ''mkdir -p "$1" && cd "$1"'';
 
     launch = "nohup $@ &>/dev/null & disown";
-
-    status = "systemctl status";
-    start = "sudo systemctl start";
-    stop = "sudo systemctl stop";
-    restart = "sudo systemctl restart";
-    reload = "sudo systemctl reload";
-    enable = "sudo systemctl enable";
-    disable = "sudo systemctl disable";
-
-    ":q" = "exit";
-    ":q!" = "exit";
-    ":wq" = "exit";
-    ":x" = "exit";
   });
 in
 {
@@ -47,6 +26,29 @@ in
     };
 
   config = {
+    home.shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+      "......" = "cd ../../../../..";
+      "......." = "cd ../../../../../..";
+      "-" = "cd -";
+
+      status = "systemctl status";
+      start = "sudo systemctl start";
+      stop = "sudo systemctl stop";
+      restart = "sudo systemctl restart";
+      reload = "sudo systemctl reload";
+      enable = "sudo systemctl enable";
+      disable = "sudo systemctl disable";
+
+      ":q" = "exit";
+      ":q!" = "exit";
+      ":wq" = "exit";
+      ":x" = "exit";
+    };
+
     programs.zsh.initContent = lib.mkBefore ''
       source ${default-aliases}
       source ${aliasesFile}

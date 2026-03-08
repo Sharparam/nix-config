@@ -20,7 +20,7 @@ in
       lsd
     ];
 
-    ${namespace}.cli.aliases = {
+    home.shellAliases = {
       ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
       l = "ls --online --all";
       ll = "ls --long";

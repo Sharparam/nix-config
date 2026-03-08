@@ -20,7 +20,7 @@ in
       ast-grep
     ];
 
-    ${namespace}.cli.aliases = {
+    home.shellAliases = {
       sg = "${pkgs.ast-grep}/bin/ast-grep";
     };
   };

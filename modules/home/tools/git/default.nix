@@ -305,7 +305,7 @@ in
         };
       };
 
-    ${namespace}.cli.aliases =
+    home.shellAliases =
       let
         git = "${pkgs.git}/bin/git";
         jj = "jj";

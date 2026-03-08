@@ -20,7 +20,7 @@ in
       rsync
     ];
 
-    ${namespace}.cli.aliases =
+    home.shellAliases =
       let
         rsync = "${pkgs.rsync}/bin/rsync";
       in

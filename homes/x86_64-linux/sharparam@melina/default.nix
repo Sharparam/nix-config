@@ -64,6 +64,7 @@ with lib.${namespace};
   };
 
   home.shellAliases = {
+    emacs = "emacsclient --no-wait --create-frame";
     fsi = "dotnet fsi";
     fsharpi = "dotnet fsi";
     hx = "helix";
