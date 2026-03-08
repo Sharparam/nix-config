@@ -44,7 +44,7 @@ in
             '';
             zshConfig = lib.mkOrder 1000 "";
             zshConfigLast = lib.mkOrder 1500 "";
-            zshrcd = lib.mkOrder 2000 ./zshrcd.zsh;
+            zshrcd = lib.mkOrder 2000 (builtins.readFile ./zshrcd.zsh);
           in
           lib.mkMerge [
             zshConfigFirst
