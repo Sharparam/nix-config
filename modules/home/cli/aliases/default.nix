@@ -33,7 +33,6 @@ in
       "....." = "cd ../../../..";
       "......" = "cd ../../../../..";
       "......." = "cd ../../../../../..";
-      "-" = "cd -";
 
       status = "systemctl status";
       start = "sudo systemctl start";
@@ -49,9 +48,15 @@ in
       ":x" = "exit";
     };
 
-    programs.zsh.initContent = lib.mkBefore ''
-      source ${default-aliases}
-      source ${aliasesFile}
-    '';
+    programs.zsh = {
+      shellAliases = {
+        "-" = "cd -";
+      };
+
+      initContent = lib.mkBefore ''
+        source ${default-aliases}
+        source ${aliasesFile}
+      '';
+    };
   };
 }
