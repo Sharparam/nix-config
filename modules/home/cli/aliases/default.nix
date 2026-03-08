@@ -1,24 +1,11 @@
 {
   lib,
-  pkgs,
   namespace,
-  config,
   ...
 }:
 with lib;
 with lib.${namespace};
-let
-  aliasesFile = pkgs.writeText "aliases.shrc" "${convertAliases config.${namespace}.cli.aliases}";
-in
 {
-  options.${namespace}.cli.aliases =
-    with types;
-    mkOption {
-      type = attrsOf str;
-      default = { };
-      description = "A set of aliases to add to the user's shell.";
-    };
-
   config = {
     home.shellAliases = {
       ".." = "cd ..";
@@ -63,10 +50,6 @@ in
         launch = "nohup $@ &>/dev/null & disown";
         take = ''mkdir --parents "$1" && cd "$1"'';
       };
-
-      initContent = lib.mkBefore ''
-        source ${aliasesFile}
-      '';
     };
   };
 }

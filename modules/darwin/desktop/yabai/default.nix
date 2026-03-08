@@ -24,8 +24,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.home.extraOptions.${namespace}.cli.aliases = {
-      restart-yabai = ''launchctl kickstart -k gui/"$(id -u)"/org.nixos.yabai'';
+    ${namespace}.home.extraOptions.programs = {
+      bash.initExtra = ''
+        restart-yabai() {
+          launchctl kickstart -k gui/"$(id -u)"/org.nixos.yabai
+        }
+      '';
+
+      zsh.siteFunctions = {
+        restart-yabai = ''
+          launchctl kickstart -k gui/"$(id -u)"/org.nixos.yabai
+        '';
+      };
     };
 
     environment.systemPackages = with pkgs; [

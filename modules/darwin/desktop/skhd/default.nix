@@ -20,8 +20,18 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.home.extraOptions.${namespace}.cli.aliases = {
-      restart-skhd = ''launchctl kickstart -k gui/"$(id -u)"/org.nixos.skhd'';
+    ${namespace}.home.extraOptions.programs = {
+      bash.initExtra = ''
+        restart-skhd() {
+          launchctl kickstart -k gui/"$(id -u)"/org.nixos.skhd
+        }
+      '';
+
+      zsh.siteFunctions = {
+        restart-skhd = ''
+          launchctl kickstart -k gui/"$(id -u)"/org.nixos.skhd
+        '';
+      };
     };
 
     services.skhd = {

@@ -22,8 +22,18 @@ in
 
   config = mkIf cfg.enable {
     ${namespace}.home = {
-      extraOptions.${namespace}.cli.aliases = {
-        restart-sketchybar = ''launchctl kickstart -k gui/"$(id -u)"/org.nixos.sketchybar'';
+      extraOptions.programs = {
+        bash.initExtra = ''
+          restart-sketchybar() {
+            launchctl kickstart -k gui/"$(id -u)"/org.nixos.sketchybar
+          }
+        '';
+
+        zsh.siteFunctions = {
+          restart-sketchybar = ''
+            launchctl kickstart -k gui/"$(id -u)"/org.nixos.sketchybar
+          '';
+        };
       };
 
       configFile."sketchybar".source = ./config;

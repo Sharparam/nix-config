@@ -17,25 +17,33 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.zoxide = {
-      enable = true;
-      options =
-        let
-          cmdArg = if (cfg.cmd == null) then "--no-cmd" else "--cmd ${cfg.cmd}";
-        in
-        [
-          cmdArg
-        ];
-    };
-
-    ${namespace}.cli.aliases =
+    programs =
       let
-        zoxide = if (cfg.cmd == null) then "${pkgs.zoxide}/bin/zoxide" else cfg.cmd;
+        zoxideCmd = if (cfg.cmd == null) then "zoxide" else cfg.cmd;
       in
       {
-        pj = ''
-          pushd "$(${zoxide} -e $@)"
+        zoxide = {
+          enable = true;
+          options =
+            let
+              cmdArg = if (cfg.cmd == null) then "--no-cmd" else "--cmd ${cfg.cmd}";
+            in
+            [
+              cmdArg
+            ];
+        };
+
+        bash.initExtra = ''
+          pj() {
+            pushd "$(${zoxideCmd} -e $@)"
+          }
         '';
+
+        zsh.siteFunctions = {
+          pj = ''
+            pushd "$(${zoxideCmd} -e $@)"
+          '';
+        };
       };
   };
 }
