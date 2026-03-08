@@ -28,6 +28,7 @@ with lib.${namespace};
       home-manager = enabled;
       lsd = enabled;
       mise = enabled;
+      starship = enabled;
       zoxide = enabled;
       zsh = enabled;
     };

@@ -61,6 +61,7 @@ in
         ripgrep = enabled;
         rsync = enabled;
         ssh = enabled;
+        starship = enabled;
         tmux = enabled;
         yt-dlp = enabled;
         zoxide = enabled;
