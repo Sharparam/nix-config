@@ -13,7 +13,7 @@ in
 {
   options.${namespace}.desktop.skhd = with types; {
     enable = mkEnableOption "Enable skhd.";
-    package = mkOpt package pkgs.skhd "skhd package";
+    package = mkPackageOption pkgs "skhd";
     # logFile =
     #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/skhd.log"
     #     "File path of log output";

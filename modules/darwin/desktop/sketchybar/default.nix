@@ -13,7 +13,7 @@ in
 {
   options.${namespace}.desktop.sketchybar = with types; {
     enable = mkEnableOption "Enable sketchybar.";
-    package = mkOpt package pkgs.sketchybar "sketchybar package";
+    package = mkPackageOption pkgs "sketchybar";
     # logFile =
     #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/sketchybar.log"
     #     "File path of log output";

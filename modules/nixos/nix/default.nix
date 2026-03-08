@@ -14,7 +14,13 @@ in
 {
   options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-    package = mkOpt package pkgs.lix "Which nix package to use.";
+    package = mkPackageOption pkgs "Lix" {
+      default = [
+        "lixPackageSets"
+        "latest"
+        "lix"
+      ];
+    };
     flakePath =
       mkOpt str "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1"
         "Path to the flake to use for NixOS configuration.";

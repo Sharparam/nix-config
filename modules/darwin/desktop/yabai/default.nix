@@ -14,7 +14,7 @@ in
 {
   options.${namespace}.desktop.yabai = with types; {
     enable = mkEnableOption "Enable yabai.";
-    package = mkOpt package pkgs.yabai "yabai package";
+    package = mkPackageOption pkgs "yabai";
     debug = mkBoolOpt false "Whether to enable debug output";
     # logFile =
     #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log"

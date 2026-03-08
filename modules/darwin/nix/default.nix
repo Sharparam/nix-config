@@ -13,7 +13,13 @@ in
 {
   options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
-    package = mkOpt package pkgs.lixPackageSets.latest.lix "Which nix package to use.";
+    package = mkPackageOption pkgs "Lix" {
+      default = [
+        "lixPackageSets"
+        "latest"
+        "lix"
+      ];
+    };
   };
 
   config = mkIf cfg.enable {
