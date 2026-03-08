@@ -28,6 +28,10 @@ with lib.${namespace};
       home-manager = enabled;
       lsd = enabled;
       mise = enabled;
+      nushell = {
+        enable = true;
+        package = null;
+      };
       starship = enabled;
       zoxide = enabled;
       zsh = enabled;
