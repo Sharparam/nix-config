@@ -9,12 +9,6 @@ with lib;
 with lib.${namespace};
 let
   aliasesFile = pkgs.writeText "aliases.shrc" "${convertAliases config.${namespace}.cli.aliases}";
-
-  default-aliases = pkgs.writeText "default-aliases.shrc" (convertAliases {
-    take = ''mkdir -p "$1" && cd "$1"'';
-
-    launch = "nohup $@ &>/dev/null & disown";
-  });
 in
 {
   options.${namespace}.cli.aliases =
@@ -48,13 +42,29 @@ in
       ":x" = "exit";
     };
 
+    programs.bash = {
+      initExtra = ''
+        launch() {
+          nohup $@ &>/dev/null & disown
+        }
+
+        take() {
+          mkdir --parents "$1" && cd "$1"
+        }
+      '';
+    };
+
     programs.zsh = {
       shellAliases = {
         "-" = "cd -";
       };
 
+      siteFunctions = {
+        launch = "nohup $@ &>/dev/null & disown";
+        take = ''mkdir --parents "$1" && cd "$1"'';
+      };
+
       initContent = lib.mkBefore ''
-        source ${default-aliases}
         source ${aliasesFile}
       '';
     };
