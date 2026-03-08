@@ -10,10 +10,10 @@ with lib.${namespace};
   snix = {
     tools = {
       atuin = enabled;
-      # bash = {
-      #   enable = true;
-      #   package = null;
-      # };
+      bash = {
+        enable = true;
+        package = null;
+      };
       bat = enabled;
       devenv = enabled;
       direnv = enabled;
