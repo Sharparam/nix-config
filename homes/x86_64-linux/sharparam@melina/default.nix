@@ -63,6 +63,7 @@ with lib.${namespace};
         PERL_LOCAL_LIB_ROOT = "$HOME/.perl5$\{PERL_LOCAL_LIB_ROOT:+:$\{PERL_LOCAL_LIB_ROOT}}";
         PERL_MB_OPT = ''--install_base \"$HOME/.perl5\"'';
         PERL_MM_OPT = "INSTALL_BASE=$HOME/.perl5";
+        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
       };
     };
   };
@@ -75,6 +76,7 @@ with lib.${namespace};
     "zsh/zshrc.d/10-perl5.zsh".source = ./zshrc.d/10-perl5.zsh;
     "zsh/zshrc.d/10-restic.sh".source = ./zshrc.d/10-restic.sh;
     "zsh/zshrc.d/80-gpg.zsh".source = ./zshrc.d/80-gpg.zsh;
+    "zsh/zshrc.d/90-1password.sh".source = ./zshrc.d/90-1password.sh;
     "zsh/zshrc.d/90-raku.zsh".source = ./zshrc.d/90-raku.zsh;
   };
 
