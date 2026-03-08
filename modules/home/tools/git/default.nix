@@ -357,9 +357,9 @@ in
         jt = "${jj} tag";
         jw = "${jj} workspace";
 
-        "?" = "${gh} copilot suggeste -t shell";
+        "?" = "${gh} copilot suggest -t shell";
         "??" = "${gh} copilot explain";
-        "?e" = "${gh} copoilot explain";
+        "?e" = "${gh} copilot explain";
         "?g" = "${gh} copilot suggest -t git";
         "?gh" = "${gh} copilot suggest -t gh";
       };
