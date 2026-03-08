@@ -22,6 +22,7 @@ in
 
     ${namespace}.cli.aliases = {
       ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
+      l = "ls --online --all";
       ll = "ls --long";
       la = "ls --all";
       lt = "ls --tree";
