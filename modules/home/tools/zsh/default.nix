@@ -36,9 +36,23 @@ in
           ZVM_LAZY_KEYBINDINGS = false;
           ZVM_LINE_INIT_MODE = "i";
         };
-        initContent = lib.mkOrder 550 ''
-          path+="$HOME/.local/bin"
-        '';
+        initContent =
+          let
+            zshConfigFirst = lib.mkOrder 500 "";
+            zshConfigBeforeCompInit = lib.mkOrder 550 ''
+              path+="$HOME/.local/bin"
+            '';
+            zshConfig = lib.mkOrder 1000 "";
+            zshConfigLast = lib.mkOrder 1500 "";
+            zshrcd = lib.mkOrder 2000 ./zshrcd.zsh;
+          in
+          lib.mkMerge [
+            zshConfigFirst
+            zshConfigBeforeCompInit
+            zshConfig
+            zshConfigLast
+            zshrcd
+          ];
         plugins = [
           {
             name = "zsh-nix-shell";
