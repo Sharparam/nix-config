@@ -17,6 +17,7 @@ with lib.${namespace};
         askPass = "/usr/bin/ksshaskpass";
       };
       home-manager = enabled;
+      mise = enabled;
     };
   };
 
