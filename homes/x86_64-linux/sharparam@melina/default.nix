@@ -9,7 +9,12 @@ with lib.${namespace};
 {
   snix = {
     tools = {
+      atuin = enabled;
+      bat = enabled;
       devenv = enabled;
+      direnv = enabled;
+      fd = enabled;
+      fzf = enabled;
       git = {
         enable = true;
         use1Password = true;
@@ -18,6 +23,7 @@ with lib.${namespace};
       };
       home-manager = enabled;
       mise = enabled;
+      zoxide = enabled;
     };
   };
 
