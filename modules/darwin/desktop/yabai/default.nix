@@ -42,7 +42,7 @@ in
       };
       enableSpaceId = mkOption {
         type = bool;
-        default = (!useSketchybar);
+        default = !useSketchybar;
         description = "Whether to enable SpaceId";
       };
     };

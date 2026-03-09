@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
     programs.nushell = {
       enable = true;
-      package = cfg.package;
+      inherit (cfg) package;
     };
   };
 }

@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   namespace,
   ...
 }:
@@ -66,7 +65,7 @@
       wget
       ;
 
-    kate = pkgs.kdePackages.kate;
+    inherit (pkgs.kdePackages) kate;
   };
 
   # List services that you want to enable:
