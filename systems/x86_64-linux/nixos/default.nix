@@ -63,9 +63,10 @@
   # $ nix search wget
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
-      kate
       wget
       ;
+
+    kate = pkgs.kdePackages.kate;
   };
 
   # List services that you want to enable:
