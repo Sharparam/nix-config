@@ -17,7 +17,7 @@ in
   config = mkIf cfg.enable {
     programs.fzf =
       let
-        fd = "${pkgs.fd}/bin/fd";
+        fd = "fd";
       in
       {
         enable = true;

@@ -20,7 +20,7 @@ in
     ];
 
     home.shellAliases = {
-      sg = "${pkgs.ast-grep}/bin/ast-grep";
+      sg = "ast-grep";
     };
   };
 }

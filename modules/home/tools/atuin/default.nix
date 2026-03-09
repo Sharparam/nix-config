@@ -74,7 +74,7 @@ in
         lib.mkAfter ''
           if [[ $options[zle] = on ]]; then
             function atuin_init() {
-              eval "$(${pkgs.atuin}/bin/atuin init zsh ${flagsStr})"
+              eval "$(atuin init zsh ${flagsStr})"
             }
             zvm_after_init_commands+=(atuin_init)
           fi

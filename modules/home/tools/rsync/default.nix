@@ -19,12 +19,8 @@ in
       pkgs.rsync
     ];
 
-    home.shellAliases =
-      let
-        rsync = "${pkgs.rsync}/bin/rsync";
-      in
-      {
-        rsync = "${rsync} --info=progress2 --partial -h";
-      };
+    home.shellAliases = {
+      rsync = "rsync --info=progress2 --partial -h";
+    };
   };
 }

@@ -21,7 +21,7 @@ in
     programs.bat.enable = true;
 
     home.shellAliases = {
-      cat = "${pkgs.bat}/bin/bat --paging=never";
+      cat = "bat --paging=never";
     };
   };
 }
