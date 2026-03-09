@@ -24,6 +24,7 @@
       home-manager.enable = true;
       lsd.enable = true;
       mise.enable = true;
+      nh.enable = true;
       nushell = {
         enable = true;
         package = null;
