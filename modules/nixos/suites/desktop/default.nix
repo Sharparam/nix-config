@@ -29,7 +29,6 @@ in
       };
 
       apps = {
-        firefox.enable = true;
         # vlc.enable = true;
         # yt-music.enable = true;
         # gparted.enable = true;
