@@ -2,6 +2,27 @@
   pkgs,
   ...
 }:
+let
+  sessionVariables = {
+    ANSIBLE_NOCOWS = 1;
+    BROWSER = "firefox";
+    CMAKE_GENERATOR = "Ninja";
+    DOOMDIR = "$HOME/.config/doom"; # Since we don't manage Emacs through HM
+    DOTNET_CLI_TELEMETRY_OPTOUT = 1;
+    EDITOR = "nvim";
+    FLAKE_CONFIG_URI = ''$HOME/repos/github.com/Sharparam/nix-config#homeConfigurations.\"$USER@$HOST\"'';
+    GOPATH = "$HOME/.go";
+    MAKEFLAGS = "-j$(nproc)";
+    MANPAGER = "nvim -M +Man!";
+    PERL5LIB = "$HOME/.perl5/lib/perl5$\{PERL5LIB:+:$\{PERL5LIB}}";
+    PERL_LOCAL_LIB_ROOT = "$HOME/.perl5$\{PERL_LOCAL_LIB_ROOT:+:$\{PERL_LOCAL_LIB_ROOT}}";
+    PERL_MB_OPT = ''--install_base \"$HOME/.perl5\"'';
+    PERL_MM_OPT = "INSTALL_BASE=$HOME/.perl5";
+    SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+    TERMINAL = "ghostty";
+    VISUAL = "nvim";
+  };
+in
 {
   snix = {
     tools = {
@@ -51,25 +72,8 @@
     "$HOME/.config/emacs/bin"
   ];
 
-  home.sessionVariables = {
-    ANSIBLE_NOCOWS = 1;
-    BROWSER = "firefox";
-    CMAKE_GENERATOR = "Ninja";
-    DOOMDIR = "$HOME/.config/doom"; # Since we don't manage Emacs through HM
-    DOTNET_CLI_TELEMETRY_OPTOUT = 1;
-    EDITOR = "nvim";
-    FLAKE_CONFIG_URI = ''$HOME/repos/github.com/Sharparam/nix-config#homeConfigurations.\"$USER@$HOST\"'';
-    GOPATH = "$HOME/.go";
-    MAKEFLAGS = "-j$(nproc)";
-    MANPAGER = "nvim -M +Man!";
-    PERL5LIB = "$HOME/.perl5/lib/perl5$\{PERL5LIB:+:$\{PERL5LIB}}";
-    PERL_LOCAL_LIB_ROOT = "$HOME/.perl5$\{PERL_LOCAL_LIB_ROOT:+:$\{PERL_LOCAL_LIB_ROOT}}";
-    PERL_MB_OPT = ''--install_base \"$HOME/.perl5\"'';
-    PERL_MM_OPT = "INSTALL_BASE=$HOME/.perl5";
-    SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
-    TERMINAL = "ghostty";
-    VISUAL = "nvim";
-  };
+  home.sessionVariables = sessionVariables;
+  systemd.user.sessionVariables = sessionVariables;
 
   home.shellAliases = {
     emacs = "emacsclient --no-wait --create-frame";

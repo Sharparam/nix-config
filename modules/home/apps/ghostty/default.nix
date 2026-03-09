@@ -39,6 +39,9 @@ in
     home.sessionVariables = mkIf cfg.setAsDefault {
       TERMINAL = mkDefault "ghostty";
     };
+    systemd.user.sessionVariables = mkIf cfg.setAsDefault {
+      TERMINAL = mkDefault "ghostty";
+    };
     programs.ghostty = {
       enable = true;
       # nix package/flake not supported on darwin:

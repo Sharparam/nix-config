@@ -17,6 +17,14 @@ in
 
   config = mkIf cfg.enable {
     ${namespace}.home.extraOptions = {
+      home.sessionVariables = mkIf cfg.enableSshAgent {
+        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+      };
+
+      systemd.user.sessionVariables = mkIf cfg.enableSshAgent {
+        SSH_AUTH_SOCK = "$HOME/.1password/agent.sock";
+      };
+
       programs = {
         zsh = {
           initContent = lib.mkAfter ''

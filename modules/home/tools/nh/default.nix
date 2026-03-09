@@ -12,10 +12,18 @@ in
     enable = mkEnableOption "nh";
   };
 
-  config = mkIf cfg.enable {
-    programs.nh = {
-      enable = true;
-      flake = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config";
+  config =
+    let
+      flakePath = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config";
+    in
+    mkIf cfg.enable {
+      programs.nh = {
+        enable = true;
+        flake = flakePath;
+      };
+
+      systemd.user.sessionVariables = {
+        NH_FLAKE = flakePath;
+      };
     };
-  };
 }

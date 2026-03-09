@@ -76,6 +76,14 @@ in
       difftastic = difftasticPackage;
     };
 
+    home.sessionVariables = {
+      GITHUB_USER = "Sharparam";
+    };
+
+    systemd.user.sessionVariables = {
+      GITHUB_USER = "Sharparam";
+    };
+
     programs = {
       lazygit = {
         enable = true;
