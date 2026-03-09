@@ -71,8 +71,9 @@ in
         ghq
         gh
         lazyjj
-        difftasticPackage
         ;
+
+      difftastic = difftasticPackage;
     };
 
     programs = {
@@ -339,11 +340,8 @@ in
 
     home.shellAliases =
       let
-        git = "${pkgs.git}/bin/git";
+        git = "git";
         jj = "jj";
-        # gh = "${pkgs.gh}/bin/gh";
-        # Don't use the direct package path because 1Password will make an alias
-        # for `gh` to automatically inject secrets
         gh = "gh";
       in
       {
