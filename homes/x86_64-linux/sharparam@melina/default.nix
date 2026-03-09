@@ -42,6 +42,7 @@
       deadnix
       nixd
       nixfmt
+      nix-output-monitor
       statix
       ;
   };
