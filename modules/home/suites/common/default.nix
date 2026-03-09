@@ -5,13 +5,15 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
   cfg = config.${namespace}.suites.common;
 in
 {
-  options.${namespace}.suites.common = with types; {
+  options.${namespace}.suites.common = {
     enable = mkEnableOption "Whether or not to enable the common configuration.";
   };
 
@@ -28,44 +30,44 @@ in
 
     ${namespace} = {
       security = {
-        gpg = enabled;
+        gpg.enable = true;
       };
 
-      dotfiles = enabled;
+      dotfiles.enable = true;
       fonts.enable = pkgs.stdenv.isLinux;
 
       apps = {
-        kitty = enabled;
-        neovim = enabled;
+        kitty.enable = true;
+        neovim.enable = true;
       };
 
       tools = {
-        home-manager = enabled;
-        comma = enabled;
-        aria2 = enabled;
-        asciinema = enabled;
-        atuin = enabled;
-        bat = enabled;
-        curl = enabled;
-        direnv = enabled;
-        duf = enabled;
-        fd = enabled;
-        ffmpeg = enabled;
-        fzf = enabled;
-        git = enabled;
-        htop = enabled;
-        hyfetch = enabled;
-        jq = enabled;
-        lsd = enabled;
-        powershell = enabled;
-        ripgrep = enabled;
-        rsync = enabled;
-        ssh = enabled;
-        starship = enabled;
-        tmux = enabled;
-        yt-dlp = enabled;
-        zoxide = enabled;
-        zsh = enabled;
+        home-manager.enable = true;
+        comma.enable = true;
+        aria2.enable = true;
+        asciinema.enable = true;
+        atuin.enable = true;
+        bat.enable = true;
+        curl.enable = true;
+        direnv.enable = true;
+        duf.enable = true;
+        fd.enable = true;
+        ffmpeg.enable = true;
+        fzf.enable = true;
+        git.enable = true;
+        htop.enable = true;
+        hyfetch.enable = true;
+        jq.enable = true;
+        lsd.enable = true;
+        powershell.enable = true;
+        ripgrep.enable = true;
+        rsync.enable = true;
+        ssh.enable = true;
+        starship.enable = true;
+        tmux.enable = true;
+        yt-dlp.enable = true;
+        zoxide.enable = true;
+        zsh.enable = true;
       };
     };
   };

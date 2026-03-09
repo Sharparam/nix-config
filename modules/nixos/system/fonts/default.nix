@@ -5,26 +5,27 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
   cfg = config.${namespace}.system.fonts;
 in
 {
   imports = [ (lib.snowfall.fs.get-file "modules/shared/system/fonts/default.nix") ];
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      font-manager
-      fontpreview
-      smile
-    ];
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        font-manager
+        fontpreview
+        smile
+        ;
+    };
     fonts = {
       enableDefaultPackages = true;
 
       fontconfig = {
         antialias = true;
-        hinting = enabled;
+        hinting.enable = true;
 
         defaultFonts =
           let

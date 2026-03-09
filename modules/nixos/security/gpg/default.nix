@@ -5,22 +5,21 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.security.gpg;
 in
 {
-  options.${namespace}.security.gpg = with types; {
+  options.${namespace}.security.gpg = {
     enable = mkEnableOption "GPG";
     enableSSHSupport = mkEnableOption "SSH support";
   };
 
   config = mkIf cfg.enable {
-    services.pcscd = enabled;
+    services.pcscd.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      pinentry-curses
+    environment.systemPackages = [
+      pkgs.pinentry-curses
     ];
 
     programs = {

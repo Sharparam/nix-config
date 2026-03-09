@@ -4,16 +4,21 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    optional
+    types
+    ;
   cfg = config.${namespace}.apps.firefox;
 in
 {
-  options.${namespace}.apps.firefox = with types; {
+  options.${namespace}.apps.firefox = {
     enable = mkEnableOption "Firefox";
     enableDeveloperEdition = mkOption {
-      type = bool;
+      type = types.bool;
       default = false;
       description = "Enable Firefox Developer Edition.";
     };

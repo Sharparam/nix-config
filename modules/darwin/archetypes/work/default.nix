@@ -4,30 +4,29 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.archetypes.work;
 in
 {
-  options.${namespace}.archetypes.work = with types; {
+  options.${namespace}.archetypes.work = {
     enable = mkEnableOption "Whether or not to enable the work archetype.";
   };
 
   config = mkIf cfg.enable {
     ${namespace} = {
       suites = {
-        common = enabled;
-        desktop = enabled;
-        development = enabled;
+        common.enable = true;
+        desktop.enable = true;
+        development.enable = true;
       };
 
       tools = {
-        podman = enabled;
+        podman.enable = true;
       };
 
       apps = {
-        postman = enabled;
+        postman.enable = true;
       };
     };
 

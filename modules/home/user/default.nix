@@ -5,9 +5,15 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkDefault
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.user;
   is-darwin = pkgs.stdenv.isDarwin;
 

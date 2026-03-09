@@ -4,36 +4,35 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.suites.desktop;
 in
 {
-  options.${namespace}.suites.desktop = with types; {
+  options.${namespace}.suites.desktop = {
     enable = mkEnableOption "Whether or not to enable common desktop configuration.";
   };
 
   config = mkIf cfg.enable {
     ${namespace} = {
       desktop = {
-        kde = enabled;
+        kde.enable = true;
 
         # addons = {
-        #   wallpapers = enabled;
+        #   wallpapers.enable = true;
         # };
       };
 
       security = {
-        _1password = enabled;
-        bitwarden = enabled;
+        _1password.enable = true;
+        bitwarden.enable = true;
       };
 
       apps = {
-        firefox = enabled;
-        # vlc = enabled;
-        # yt-music = enabled;
-        # gparted = enabled;
+        firefox.enable = true;
+        # vlc.enable = true;
+        # yt-music.enable = true;
+        # gparted.enable = true;
       };
     };
   };

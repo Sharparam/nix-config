@@ -4,8 +4,6 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 {
   imports = [
     ./hardware-configuration.nix
@@ -15,7 +13,7 @@ with lib.${namespace};
 
   ${namespace} = {
     archetypes = {
-      workstation = enabled;
+      workstation.enable = true;
     };
 
     user = {
@@ -31,8 +29,8 @@ with lib.${namespace};
     };
 
     system = {
-      boot.grub = enabled;
-      xkb.eu = enabled;
+      boot.grub.enable = true;
+      xkb.eu.enable = true;
     };
 
     tools.ssh.startAgent = false;
@@ -63,10 +61,12 @@ with lib.${namespace};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    kate
-    wget
-  ];
+  environment.systemPackages = builtins.attrValues {
+    inherit (pkgs)
+      kate
+      wget
+      ;
+  };
 
   # List services that you want to enable:
 

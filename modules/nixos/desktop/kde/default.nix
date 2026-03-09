@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.desktop.kde;
 in
 {
-  options.${namespace}.desktop.kde = with types; {
+  options.${namespace}.desktop.kde = {
     enable = mkEnableOption "Whether or not to use KDE Plasma as the desktop environment.";
   };
 

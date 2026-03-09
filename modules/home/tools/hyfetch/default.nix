@@ -5,16 +5,21 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    optional
+    types
+    ;
   cfg = config.${namespace}.tools.hyfetch;
 in
 {
-  options.${namespace}.tools.hyfetch = with types; {
+  options.${namespace}.tools.hyfetch = {
     enable = mkEnableOption "hyfetch";
     backend = mkOption {
-      type = enum [
+      type = types.enum [
         "neofetch"
         "fastfetch"
       ];
@@ -24,12 +29,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages =
-      with pkgs;
-      [
-        hyfetch
-      ]
-      ++ optional (cfg.backend == "fastfetch") fastfetch;
+    home.packages = [
+      pkgs.hyfetch
+    ]
+    ++ optional (cfg.backend == "fastfetch") pkgs.fastfetch;
 
     # Sadly we have to disable the pride month animation since the config file
     # is read-only when managed by home-manager.

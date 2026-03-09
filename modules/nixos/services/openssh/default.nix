@@ -5,25 +5,34 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkDefault
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.services.openssh;
 in
 {
-  options.${namespace}.services.openssh = with types; {
-    enable = mkEnableOption "OpenSSH";
-    authorizedKeys = mkOption {
-      type = listOf str;
-      default = [ ];
-      description = "The public keys to authorize.";
+  options.${namespace}.services.openssh =
+    let
+      inherit (types) listOf port str;
+    in
+    {
+      enable = mkEnableOption "OpenSSH";
+      authorizedKeys = mkOption {
+        type = listOf str;
+        default = [ ];
+        description = "The public keys to authorize.";
+      };
+      port = mkOption {
+        type = port;
+        default = 22;
+        description = "The port to listen on.";
+      };
     };
-    port = mkOption {
-      type = port;
-      default = 22;
-      description = "The port to listen on.";
-    };
-  };
 
   config = mkIf cfg.enable {
     services.openssh = {

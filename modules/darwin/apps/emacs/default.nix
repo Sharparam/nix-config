@@ -5,23 +5,18 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
   cfg = config.${namespace}.apps.emacs;
 in
 {
-  options.${namespace}.apps.emacs = with types; {
-    enable = mkEnableOption "emacs";
+  options.${namespace}.apps.emacs = {
+    enable = lib.mkEnableOption "emacs";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages =
-      with pkgs;
-      let
-        epkgs = pkgs.emacsPackages;
-      in
-      [
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
         ## Emacs
         binutils
         # emacs # We're using emacs-plus from Homebrew
@@ -41,7 +36,7 @@ in
         cmake
         gcc
         gnumake
-        epkgs.vterm
+
         # :tools editorconfig
         editorconfig-core-c
         # :lang org +roam
@@ -55,7 +50,12 @@ in
 
         # Seems to be needed since emacs v30
         tree-sitter
-      ];
+        ;
+
+      inherit (pkgs.emacsPackages)
+        vterm
+        ;
+    };
 
     homebrew = {
       taps = [ "d12frosted/emacs-plus" ];

@@ -4,26 +4,34 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.security.gpg;
   defaultKeyId = "0xC58C41E27B00AD04";
 in
 {
-  options.${namespace}.security.gpg = with types; {
-    enable = mkEnableOption "GPG";
-    defaultKey = mkOption {
-      type = nullOr str;
-      default = defaultKeyId;
-      description = "Default key ID";
+  options.${namespace}.security.gpg =
+    let
+      inherit (types) nullOr str;
+    in
+    {
+      enable = mkEnableOption "GPG";
+      defaultKey = mkOption {
+        type = nullOr str;
+        default = defaultKeyId;
+        description = "Default key ID";
+      };
+      trustedKey = mkOption {
+        type = nullOr str;
+        default = defaultKeyId;
+        description = "Trusted key ID";
+      };
     };
-    trustedKey = mkOption {
-      type = nullOr str;
-      default = defaultKeyId;
-      description = "Trusted key ID";
-    };
-  };
 
   config = mkIf cfg.enable {
     programs.gpg = {

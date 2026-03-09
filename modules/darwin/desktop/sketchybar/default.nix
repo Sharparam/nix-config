@@ -5,13 +5,18 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    mkPackageOption
+    types
+    ;
   cfg = config.${namespace}.desktop.sketchybar;
 in
 {
-  options.${namespace}.desktop.sketchybar = with types; {
+  options.${namespace}.desktop.sketchybar = {
     enable = mkEnableOption "sketchybar";
     package = mkPackageOption pkgs "sketchybar";
     # logFile = mkOption {
@@ -20,7 +25,7 @@ in
     #   description = "File path of log output";
     # };
     catppuccinFlavor = mkOption {
-      type = str;
+      type = types.str;
       default = "frappe";
       description = "Catppuccin flavor for colors.";
     };
@@ -51,10 +56,10 @@ in
       enable = true;
       inherit (cfg) package;
 
-      extraPackages = with pkgs; [
-        jq
-        (lua5_4.withPackages (ps: with ps; [ snix.sbarlua ]))
-        snix.sketchyhelper
+      extraPackages = [
+        pkgs.jq
+        (pkgs.lua5_4.withPackages (ps: [ ps.snix.sbarlua ]))
+        pkgs.snix.sketchyhelper
       ];
 
       # Config files managed via symlinks for now

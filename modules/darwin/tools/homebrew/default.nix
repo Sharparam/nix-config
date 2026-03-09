@@ -5,16 +5,20 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.tools.homebrew;
 in
 {
-  options.${namespace}.tools.homebrew = with types; {
+  options.${namespace}.tools.homebrew = {
     enable = mkEnableOption "Whether or not to enable homebrew.";
     enableMas = mkOption {
-      type = bool;
+      type = types.bool;
       default = true;
       description = "Whether or not to enable Mac App Store downloads via homebrew.";
     };
@@ -27,11 +31,9 @@ in
       HOMEBREW_NO_INSECURE_REDIRECT = "1";
     };
 
-    environment.systemPackages =
-      with pkgs;
-      mkIf cfg.enableMas [
-        mas
-      ];
+    environment.systemPackages = mkIf cfg.enableMas [
+      pkgs.mas
+    ];
 
     homebrew = {
       enable = true;

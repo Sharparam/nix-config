@@ -4,14 +4,13 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
   cfg = config.${namespace}.apps.atuin-desktop;
 in
 {
-  options.${namespace}.apps.atuin-desktop = with types; {
-    enable = mkEnableOption "atuin-desktop";
+  options.${namespace}.apps.atuin-desktop = {
+    enable = lib.mkEnableOption "atuin-desktop";
   };
 
   config = mkIf cfg.enable {

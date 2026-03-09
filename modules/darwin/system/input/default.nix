@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.system.input;
 in
 {
-  options.${namespace}.system.input = with types; {
+  options.${namespace}.system.input = {
     enable = mkEnableOption "Whether or not to enable the input system.";
   };
 

@@ -5,19 +5,18 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.jq;
 in
 {
-  options.${namespace}.tools.jq = with types; {
+  options.${namespace}.tools.jq = {
     enable = mkEnableOption "Whether or not to enable the jq tool.";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      jq
+    home.packages = [
+      pkgs.jq
     ];
   };
 }

@@ -4,9 +4,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
   cfg = config.${namespace}.system.fonts;
 in
 {

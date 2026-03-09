@@ -5,25 +5,26 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.security.gpg;
 in
 {
-  options.${namespace}.security.gpg = with types; {
+  options.${namespace}.security.gpg = {
     enable = mkEnableOption "GPG";
     enableSSHSupport = mkOption {
-      type = bool;
+      type = types.bool;
       default = false;
       description = "Enable SSH support";
     };
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-    ];
-
     programs = {
       # TODO: Not supported on nix-darwin
       # ssh.startAgent = mkIf cfg.enableSSHSupport false;

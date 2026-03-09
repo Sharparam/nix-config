@@ -4,8 +4,6 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 {
   snix = {
     user = {
@@ -15,9 +13,9 @@ with lib.${namespace};
     };
 
     suites = {
-      common = enabled;
-      desktop = enabled;
-      development = enabled;
+      common.enable = true;
+      desktop.enable = true;
+      development.enable = true;
     };
 
     apps = {
@@ -27,12 +25,12 @@ with lib.${namespace};
         fontSize = 14;
       };
       # vscode.fhs doesn't work on nix-darwin
-      vscode = disabled;
+      vscode.enable = false;
     };
 
     tools = {
-      azure = enabled;
-      uv = enabled;
+      azure.enable = true;
+      uv.enable = true;
     };
   };
 

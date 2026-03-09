@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.vscode;
 in
 {
-  options.${namespace}.apps.vscode = with types; {
+  options.${namespace}.apps.vscode = {
     enable = mkEnableOption "Visual Studio Code";
   };
 

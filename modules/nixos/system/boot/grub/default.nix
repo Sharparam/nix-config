@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf mkDefault;
   cfg = config.${namespace}.system.boot.grub;
 in
 {
-  options.${namespace}.system.boot.grub = with types; {
+  options.${namespace}.system.boot.grub = {
     enable = mkEnableOption "Whether or not to enable grub booting.";
   };
 

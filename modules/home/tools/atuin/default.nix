@@ -5,35 +5,43 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.tools.atuin;
 in
 {
-  options.${namespace}.tools.atuin = with types; {
-    enable = mkEnableOption "Atuin";
-    enableDaemon = mkOption {
-      type = bool;
-      default = true;
-      description = "Whether or not to run the Atuin daemon.";
+  options.${namespace}.tools.atuin =
+    let
+      inherit (types) bool str;
+    in
+    {
+      enable = mkEnableOption "Atuin";
+      enableDaemon = mkOption {
+        type = bool;
+        default = true;
+        description = "Whether or not to run the Atuin daemon.";
+      };
+      enableSync = mkOption {
+        type = bool;
+        default = true;
+        description = "Whether to enable syncing";
+      };
+      enableZvmWorkaround = mkOption {
+        type = bool;
+        default = false;
+        description = "Apply zsh-vi-mode workaround.";
+      };
+      syncAddress = mkOption {
+        type = str;
+        default = "https://atuin.sharparam.com";
+        description = "Sync address to use.";
+      };
     };
-    enableSync = mkOption {
-      type = bool;
-      default = true;
-      description = "Whether to enable syncing";
-    };
-    enableZvmWorkaround = mkOption {
-      type = bool;
-      default = false;
-      description = "Apply zsh-vi-mode workaround.";
-    };
-    syncAddress = mkOption {
-      type = str;
-      default = "https://atuin.sharparam.com";
-      description = "Sync address to use.";
-    };
-  };
 
   config = mkIf cfg.enable {
     programs.atuin = {
@@ -60,15 +68,17 @@ in
 
     programs.zsh.initContent =
       let
-        flagsStr = escapeShellArgs config.programs.atuin.flags;
+        flagsStr = lib.escapeShellArgs config.programs.atuin.flags;
       in
-      mkIf cfg.enableZvmWorkaround (mkAfter ''
-        if [[ $options[zle] = on ]]; then
-          function atuin_init() {
-            eval "$(${pkgs.atuin}/bin/atuin init zsh ${flagsStr})"
-          }
-          zvm_after_init_commands+=(atuin_init)
-        fi
-      '');
+      mkIf cfg.enableZvmWorkaround (
+        lib.mkAfter ''
+          if [[ $options[zle] = on ]]; then
+            function atuin_init() {
+              eval "$(${pkgs.atuin}/bin/atuin init zsh ${flagsStr})"
+            }
+            zvm_after_init_commands+=(atuin_init)
+          fi
+        ''
+      );
   };
 }

@@ -5,13 +5,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.hardware.audio;
 in
 {
-  options.${namespace}.hardware.audio = with types; {
+  options.${namespace}.hardware.audio = {
     enable = mkEnableOption "pipewire";
   };
 
@@ -31,6 +30,6 @@ in
       wireplumber.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [ pavucontrol ];
+    environment.systemPackages = [ pkgs.pavucontrol ];
   };
 }

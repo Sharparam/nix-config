@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.google.drive;
 in
 {
-  options.${namespace}.apps.google.drive = with types; {
+  options.${namespace}.apps.google.drive = {
     enable = mkEnableOption "Google Drive";
   };
 

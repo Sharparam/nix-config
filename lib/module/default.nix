@@ -3,7 +3,7 @@ _: {
     ## Quickly enable an option.
     ##
     ## ```nix
-    ## services.nginx = enabled;
+    ## services.nginx.enable = true;
     ## ```
     ##
     #@ true
@@ -14,7 +14,7 @@ _: {
     ## Quickly disable an option.
     ##
     ## ```nix
-    ## services.nginx = enabled;
+    ## services.nginx.enable = true;
     ## ```
     ##
     #@ false

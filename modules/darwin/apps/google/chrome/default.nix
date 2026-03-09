@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.google.chrome;
 in
 {
-  options.${namespace}.apps.google.chrome = with types; {
+  options.${namespace}.apps.google.chrome = {
     enable = mkEnableOption "Google Chrome";
   };
 

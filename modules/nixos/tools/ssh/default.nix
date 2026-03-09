@@ -4,16 +4,20 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.tools.ssh;
 in
 {
   options.${namespace}.tools.ssh = {
     enable = mkEnableOption "SSH";
     startAgent = mkOption {
-      type = bool;
+      type = types.bool;
       default = false;
       description = "Start SSH agent";
     };

@@ -5,37 +5,47 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    mkPackageOption
+    optionalString
+    types
+    ;
   cfg = config.${namespace}.desktop.yabai;
   useSketchybar = config.${namespace}.desktop.sketchybar.enable;
 in
 {
-  options.${namespace}.desktop.yabai = with types; {
-    enable = mkEnableOption "yabai";
-    package = mkPackageOption pkgs "yabai";
-    debug = mkOption {
-      type = bool;
-      default = false;
-      description = "Whether to enable debug output";
+  options.${namespace}.desktop.yabai =
+    let
+      inherit (types) bool int;
+    in
+    {
+      enable = mkEnableOption "yabai";
+      package = mkPackageOption pkgs "yabai";
+      debug = mkOption {
+        type = bool;
+        default = false;
+        description = "Whether to enable debug output";
+      };
+      # logFile = mkOption {
+      #   type = types.str;
+      #   default = "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log";
+      #   description = "File path of log output";
+      # };
+      spacesCount = mkOption {
+        type = int;
+        default = 7;
+        description = "Number of spaces";
+      };
+      enableSpaceId = mkOption {
+        type = bool;
+        default = (!useSketchybar);
+        description = "Whether to enable SpaceId";
+      };
     };
-    # logFile = mkOption {
-    #   type = str;
-    #   default = "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log";
-    #   description = "File path of log output";
-    # };
-    spacesCount = mkOption {
-      type = int;
-      default = 7;
-      description = "Number of spaces";
-    };
-    enableSpaceId = mkOption {
-      type = bool;
-      default = (!useSketchybar);
-      description = "Whether to enable SpaceId";
-    };
-  };
 
   config = mkIf cfg.enable {
     ${namespace}.home.extraOptions.programs = {
@@ -52,8 +62,8 @@ in
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      snix.yabai-helper
+    environment.systemPackages = [
+      pkgs.snix.yabai-helper
     ];
 
     homebrew.casks = mkIf cfg.enableSpaceId [ "spaceid" ];
@@ -119,6 +129,7 @@ in
       extraConfig =
         # bash
         let
+          inherit (lib) getExe;
           # yabai = getExe cfg.package;
           yabai-helper = getExe pkgs.${namespace}.yabai-helper;
           # sketchybar = getExe config.${namespace}.desktop.sketchybar.package;

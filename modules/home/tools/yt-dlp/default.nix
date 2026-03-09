@@ -15,8 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      yt-dlp
+    home.packages = [
+      pkgs.yt-dlp
     ];
   };
 }

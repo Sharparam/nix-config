@@ -5,9 +5,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.lsd;
   lsdAliases = lsd: {
     ls = "${lsd}/bin/lsd --group-dirs first";
@@ -18,13 +17,13 @@ let
   };
 in
 {
-  options.${namespace}.tools.lsd = with types; {
+  options.${namespace}.tools.lsd = {
     enable = mkEnableOption "Whether or not to enable the lsd tool.";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      lsd
+    home.packages = [
+      pkgs.lsd
     ];
 
     # The lsd aliases won't work in nushell, so we set them for the non-nushell

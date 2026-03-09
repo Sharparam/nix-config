@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkDefault mkEnableOption mkIf;
   cfg = config.${namespace}.suites.development;
 in
 {
-  options.${namespace}.suites.development = with types; {
+  options.${namespace}.suites.development = {
     enable = mkEnableOption "Development suite";
   };
 
@@ -21,11 +20,11 @@ in
         vscode.enable = mkDefault true;
       };
       tools = {
-        ast-grep = enabled;
-        codespelunker = enabled;
+        ast-grep.enable = true;
+        codespelunker.enable = true;
         github.enable = mkDefault true;
-        scc = enabled;
-        tokei = enabled;
+        scc.enable = true;
+        tokei.enable = true;
       };
     };
   };

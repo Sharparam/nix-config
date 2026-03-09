@@ -5,13 +5,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.security._1password;
 in
 {
-  options.${namespace}.security._1password = with types; {
+  options.${namespace}.security._1password = {
     enable = mkEnableOption "1Password";
     enableSshAgent = mkEnableOption "SSH agent integration";
   };
@@ -20,7 +19,7 @@ in
     ${namespace}.home.extraOptions = {
       programs = {
         zsh = {
-          initContent = mkAfter ''
+          initContent = lib.mkAfter ''
             [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
           '';
 

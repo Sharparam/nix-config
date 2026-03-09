@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.security.sudo;
 in
 {
-  options.${namespace}.security.sudo = with types; {
+  options.${namespace}.security.sudo = {
     enable = mkEnableOption "Whether or not to enable the sudo security module.";
   };
 

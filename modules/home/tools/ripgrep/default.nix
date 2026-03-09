@@ -4,17 +4,16 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.ripgrep;
 in
 {
-  options.${namespace}.tools.ripgrep = with types; {
+  options.${namespace}.tools.ripgrep = {
     enable = mkEnableOption "Whether or not to enable the ripgrep tool.";
   };
 
   config = mkIf cfg.enable {
-    programs.ripgrep = enabled;
+    programs.ripgrep.enable = true;
   };
 }

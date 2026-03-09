@@ -4,14 +4,16 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 {
-  options.${namespace}.host = {
-    name = mkOption {
-      type = types.nullOr types.str;
-      default = host;
-      description = "The hostname.";
+  options.${namespace}.host =
+    let
+      inherit (lib) mkOption types;
+    in
+    {
+      name = mkOption {
+        type = types.nullOr types.str;
+        default = host;
+        description = "The hostname.";
+      };
     };
-  };
 }

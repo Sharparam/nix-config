@@ -15,8 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      aria2
+    home.packages = [
+      pkgs.aria2
     ];
   };
 }

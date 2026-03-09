@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.obs;
 in
 {
-  options.${namespace}.apps.obs = with types; {
+  options.${namespace}.apps.obs = {
     enable = mkEnableOption "OBS";
   };
 

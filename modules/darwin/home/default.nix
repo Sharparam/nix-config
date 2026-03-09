@@ -5,31 +5,40 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
+let
+  inherit (lib)
+    mkAliasDefinitions
+    mkOption
+    types
+    ;
+in
 {
-  options.${namespace}.home = with types; {
-    file = mkOption {
-      type = attrs;
-      default = { };
-      description = "A set of files to be managed by home-manager's `home.file`.";
+  options.${namespace}.home =
+    let
+      inherit (types) attrs;
+    in
+    {
+      file = mkOption {
+        type = attrs;
+        default = { };
+        description = "A set of files to be managed by home-manager's `home.file`.";
+      };
+      configFile = mkOption {
+        type = attrs;
+        default = { };
+        description = "A set of files to be managed by home-manager's `xdg.configFile`.";
+      };
+      extraOptions = mkOption {
+        type = attrs;
+        default = { };
+        description = "Options to pass directly to home-manager.";
+      };
+      homeConfig = mkOption {
+        type = attrs;
+        default = { };
+        description = "Final config for home-manager.";
+      };
     };
-    configFile = mkOption {
-      type = attrs;
-      default = { };
-      description = "A set of files to be managed by home-manager's `xdg.configFile`.";
-    };
-    extraOptions = mkOption {
-      type = attrs;
-      default = { };
-      description = "Options to pass directly to home-manager.";
-    };
-    homeConfig = mkOption {
-      type = attrs;
-      default = { };
-      description = "Final config for home-manager.";
-    };
-  };
 
   config = {
     ${namespace}.home.extraOptions = {

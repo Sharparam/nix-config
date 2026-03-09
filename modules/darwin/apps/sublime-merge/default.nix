@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.sublime-merge;
 in
 {
-  options.${namespace}.apps.sublime-merge = with types; {
+  options.${namespace}.apps.sublime-merge = {
     enable = mkEnableOption "Sublime Merge";
   };
 

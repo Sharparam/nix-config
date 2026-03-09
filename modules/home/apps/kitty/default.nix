@@ -6,30 +6,43 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.apps.kitty;
 in
 {
-  options.${namespace}.apps.kitty = with types; {
-    enable = mkEnableOption "Kitty Terminal Emulator";
-    fontPackage = mkOption {
-      type = nullOr package;
-      default = inputs.iosevka.packages.${system}.bin;
-      description = "Font package to use.";
+  options.${namespace}.apps.kitty =
+    let
+      inherit (types)
+        nullOr
+        number
+        package
+        str
+        ;
+    in
+    {
+      enable = mkEnableOption "Kitty Terminal Emulator";
+      fontPackage = mkOption {
+        type = nullOr package;
+        default = inputs.iosevka.packages.${system}.bin;
+        description = "Font package to use.";
+      };
+      fontName = mkOption {
+        type = nullOr str;
+        default = "Iosevka Sharpie Term";
+        description = "Font name to use.";
+      };
+      fontSize = mkOption {
+        type = nullOr number;
+        default = 12;
+        description = "Font size to use.";
+      };
     };
-    fontName = mkOption {
-      type = nullOr str;
-      default = "Iosevka Sharpie Term";
-      description = "Font name to use.";
-    };
-    fontSize = mkOption {
-      type = nullOr number;
-      default = 12;
-      description = "Font size to use.";
-    };
-  };
 
   config = mkIf cfg.enable {
     programs.kitty = {

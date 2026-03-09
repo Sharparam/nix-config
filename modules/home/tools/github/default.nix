@@ -5,19 +5,18 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.github;
 in
 {
-  options.${namespace}.tools.github = with types; {
+  options.${namespace}.tools.github = {
     enable = mkEnableOption "GitHub";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      github-copilot-cli
+    home.packages = [
+      pkgs.github-copilot-cli
     ];
   };
 }

@@ -4,9 +4,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.suites.desktop;
 in
 {
@@ -17,12 +16,12 @@ in
   config = mkIf cfg.enable {
     ${namespace} = {
       apps = {
-        discord = enabled;
-        ghostty = enabled;
+        discord.enable = true;
+        ghostty.enable = true;
         # TODO: Firefox is broken on darwin
         # https://github.com/NixOS/nixpkgs/issues/366581
         # See firefox module in the darwin tree instead
-        # firefox = enabled;
+        # firefox.enable = true;
       };
     };
   };

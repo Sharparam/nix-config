@@ -1,16 +1,13 @@
 {
-  lib,
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 {
   # TODO: Finish setup when laptop is actually received
 
   ${namespace} = {
     archetypes = {
-      work = enabled;
+      work.enable = true;
     };
 
     security = {
@@ -18,16 +15,16 @@ with lib.${namespace};
     };
 
     desktop = {
-      # jankyborders = enabled;
-      # yabai = enabled;
-      # sketchybar = enabled;
+      # jankyborders.enable = true;
+      # yabai.enable = true;
+      # sketchybar.enable = true;
     };
 
     apps = {
-      etcher = enabled;
-      # linqpad = enabled;
-      obs = enabled;
-      sweet-home3d = enabled;
+      etcher.enable = true;
+      # linqpad.enable = true;
+      obs.enable = true;
+      sweet-home3d.enable = true;
     };
   };
 

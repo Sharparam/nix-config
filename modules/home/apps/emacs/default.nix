@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.emacs;
 in
 {
-  options.${namespace}.apps.emacs = with types; {
+  options.${namespace}.apps.emacs = {
     enable = mkEnableOption "emacs";
   };
 

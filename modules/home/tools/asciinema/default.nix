@@ -5,19 +5,18 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.asciinema;
 in
 {
-  options.${namespace}.tools.asciinema = with types; {
+  options.${namespace}.tools.asciinema = {
     enable = mkEnableOption "Whether or not to enable the asciinema tool.";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      asciinema
+    home.packages = [
+      pkgs.asciinema
     ];
   };
 }

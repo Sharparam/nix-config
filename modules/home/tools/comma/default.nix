@@ -4,9 +4,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.comma;
 in
 {
@@ -15,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.nix-index = enabled;
+    programs.nix-index.enable = true;
     programs.nix-index-database.comma.enable = true;
   };
 }

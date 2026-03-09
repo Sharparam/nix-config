@@ -5,15 +5,19 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.tools.git;
   is-linux = pkgs.stdenv.isLinux;
   _1PasswordSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
   sshSigningProgram =
     if is-linux then
-      (getExe' pkgs._1password-gui "op-ssh-sign")
+      (lib.getExe' pkgs._1password-gui "op-ssh-sign")
     else
       "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"; # TODO: Fix?
   ninetechConfig = {
@@ -23,47 +27,53 @@ let
   difftasticPackage = pkgs.difftastic;
 in
 {
-  options.${namespace}.tools.git = with types; {
-    enable = mkEnableOption "Git";
-    use1Password = mkOption {
-      type = bool;
-      default = false;
-      description = "Use 1Password integration.";
+  options.${namespace}.tools.git =
+    let
+      inherit (types) bool nullOr str;
+    in
+    {
+      enable = mkEnableOption "Git";
+      use1Password = mkOption {
+        type = bool;
+        default = false;
+        description = "Use 1Password integration.";
+      };
+      userName = mkOption {
+        type = str;
+        default = "Adam Hellberg";
+        description = "The name to configure Git with.";
+      };
+      userEmail = mkOption {
+        type = str;
+        default = "sharparam@sharparam.com";
+        description = "The email to configure Git with.";
+      };
+      signingKey = mkOption {
+        type = str;
+        default = "C58C41E27B00AD04";
+        description = "The GPG key to use for signing commits and tags (ignored if using 1Password).";
+      };
+      credentialHelper = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "The credential helper to use with Git.";
+      };
+      askPass = mkOption {
+        type = nullOr str;
+        default = null;
+        description = "The askpass program to use with Git.";
+      };
     };
-    userName = mkOption {
-      type = str;
-      default = "Adam Hellberg";
-      description = "The name to configure Git with.";
-    };
-    userEmail = mkOption {
-      type = str;
-      default = "sharparam@sharparam.com";
-      description = "The email to configure Git with.";
-    };
-    signingKey = mkOption {
-      type = str;
-      default = "C58C41E27B00AD04";
-      description = "The GPG key to use for signing commits and tags (ignored if using 1Password).";
-    };
-    credentialHelper = mkOption {
-      type = nullOr str;
-      default = null;
-      description = "The credential helper to use with Git.";
-    };
-    askPass = mkOption {
-      type = nullOr str;
-      default = null;
-      description = "The askpass program to use with Git.";
-    };
-  };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      ghq
-      gh
-      lazyjj
-      difftasticPackage
-    ];
+    home.packages = builtins.attrValues {
+      inherit (pkgs)
+        ghq
+        gh
+        lazyjj
+        difftasticPackage
+        ;
+    };
 
     programs = {
       lazygit = {
@@ -93,7 +103,7 @@ in
 
     programs.git = {
       enable = true;
-      lfs = enabled;
+      lfs.enable = true;
       signing = {
         key = if cfg.use1Password then "key::${_1PasswordSigningKey}" else cfg.signingKey;
         signByDefault = true;
@@ -153,9 +163,9 @@ in
           if cfg.credentialHelper != null then
             cfg.credentialHelper
           else if is-linux then
-            getExe' config.programs.git.package "git-credential-libsecret"
+            lib.getExe' config.programs.git.package "git-credential-libsecret"
           else
-            getExe' config.programs.git.package "git-credential-osxkeychain";
+            lib.getExe' config.programs.git.package "git-credential-osxkeychain";
         gpg = mkIf cfg.use1Password {
           format = "ssh";
           ssh = {

@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.sweet-home3d;
 in
 {
-  options.${namespace}.apps.sweet-home3d = with types; {
+  options.${namespace}.apps.sweet-home3d = {
     enable = mkEnableOption "Sweet Home 3D";
   };
 

@@ -1,11 +1,4 @@
-{
-  lib,
-  namespace,
-  ...
-}:
-with lib;
-with lib.${namespace};
-{
+_: {
   config = {
     home.shellAliases = {
       ".." = "cd ..";

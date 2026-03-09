@@ -1,51 +1,49 @@
 {
-  lib,
   pkgs,
-  namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 {
   snix = {
     tools = {
-      atuin = enabled;
+      atuin.enable = true;
       bash = {
         enable = true;
         package = null;
       };
-      bat = enabled;
-      devenv = enabled;
-      direnv = enabled;
-      fd = enabled;
-      fzf = enabled;
+      bat.enable = true;
+      devenv.enable = true;
+      direnv.enable = true;
+      fd.enable = true;
+      fzf.enable = true;
       git = {
         enable = true;
         use1Password = true;
         credentialHelper = "libsecret";
         askPass = "/usr/bin/ksshaskpass";
       };
-      home-manager = enabled;
-      lsd = enabled;
-      mise = enabled;
+      home-manager.enable = true;
+      lsd.enable = true;
+      mise.enable = true;
       nushell = {
         enable = true;
         package = null;
       };
-      starship = enabled;
-      zoxide = enabled;
-      zsh = enabled;
+      starship.enable = true;
+      zoxide.enable = true;
+      zsh.enable = true;
     };
   };
 
-  home.packages = with pkgs; [
-    alejandra
-    cachix
-    deadnix
-    nixd
-    nixfmt
-    statix
-  ];
+  home.packages = builtins.attrValues {
+    inherit (pkgs)
+      alejandra
+      cachix
+      deadnix
+      nixd
+      nixfmt
+      statix
+      ;
+  };
 
   home.sessionPath = [
     "$HOME/.local/bin"

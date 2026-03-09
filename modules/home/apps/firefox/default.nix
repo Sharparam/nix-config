@@ -5,45 +5,61 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    optionalAttrs
+    types
+    ;
   cfg = config.${namespace}.apps.firefox;
 in
 {
-  options.${namespace}.apps.firefox = with types; {
-    enable = mkEnableOption "Whether or not to enable Firefox.";
-    extensions = mkOption {
-      type = listOf package;
-      default = [ ];
-      description = "Extra extensions to install";
+  options.${namespace}.apps.firefox =
+    let
+      inherit (types)
+        attrs
+        bool
+        listOf
+        package
+        str
+        ;
+    in
+    {
+      enable = mkEnableOption "Whether or not to enable Firefox.";
+      extensions = mkOption {
+        type = listOf package;
+        default = [ ];
+        description = "Extra extensions to install";
+      };
+      extraConfig = mkOption {
+        type = str;
+        default = "";
+        description = "Extra configuration for the user.js file";
+      };
+      gpuAcceleration = mkOption {
+        type = bool;
+        default = true;
+        description = "Enable GPU acceleration";
+      };
+      hardwareDecoding = mkOption {
+        type = bool;
+        default = true;
+        description = "Enable hardware video decoding.";
+      };
+      settings = mkOption {
+        type = attrs;
+        default = { };
+        description = "Settings to apply.";
+      };
+      userChrome = mkOption {
+        type = str;
+        default = "";
+        description = "Extra configuration for the user chrome CSS file";
+      };
     };
-    extraConfig = mkOption {
-      type = str;
-      default = "";
-      description = "Extra configuration for the user.js file";
-    };
-    gpuAcceleration = mkOption {
-      type = bool;
-      default = true;
-      description = "Enable GPU acceleration";
-    };
-    hardwareDecoding = mkOption {
-      type = bool;
-      default = true;
-      description = "Enable hardware video decoding.";
-    };
-    settings = mkOption {
-      type = attrs;
-      default = { };
-      description = "Settings to apply.";
-    };
-    userChrome = mkOption {
-      type = str;
-      default = "";
-      description = "Extra configuration for the user chrome CSS file";
-    };
-  };
 
   config = mkIf cfg.enable {
     programs.firefox = {
@@ -63,31 +79,32 @@ in
           name = "default";
           isDefault = true;
           extensions =
-            with pkgs.nur.repos.rycee.firefox-addons;
-            [
-              augmented-steam
-              bitwarden
-              darkreader
-              dearrow
-              imagus
-              indie-wiki-buddy
-              multi-account-containers
-              onepassword-password-manager
-              privacy-badger
-              reddit-enhancement-suite
-              refined-github
-              sidebery
-              sponsorblock
-              steam-database
-              stylus
-              toolkit-for-ynab
-              tridactyl
-              ublock-origin
-              user-agent-string-switcher
-              violentmonkey
-              wayback-machine
-              web-scrobbler
-            ]
+            builtins.attrValues {
+              inherit (pkgs.nur.repos.rycee.firefox-addons)
+                augmented-steam
+                bitwarden
+                darkreader
+                dearrow
+                imagus
+                indie-wiki-buddy
+                multi-account-containers
+                onepassword-password-manager
+                privacy-badger
+                reddit-enhancement-suite
+                refined-github
+                sidebery
+                sponsorblock
+                steam-database
+                stylus
+                toolkit-for-ynab
+                tridactyl
+                ublock-origin
+                user-agent-string-switcher
+                violentmonkey
+                wayback-machine
+                web-scrobbler
+                ;
+            }
             ++ cfg.extensions;
           search = {
             force = true;

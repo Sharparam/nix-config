@@ -4,6 +4,6 @@
   ...
 }:
 mkShell {
-  packages = with pkgs; [
+  packages = [
   ];
 }

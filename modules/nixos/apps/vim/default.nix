@@ -4,9 +4,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.vim;
 in
 {
@@ -15,6 +14,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.vim = enabled;
+    programs.vim.enable = true;
   };
 }

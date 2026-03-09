@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.podman;
 in
 {
-  options.${namespace}.tools.podman = with types; {
+  options.${namespace}.tools.podman = {
     enable = mkEnableOption "Whether or not to enable Podman.";
   };
 

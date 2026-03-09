@@ -4,24 +4,23 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.suites.development;
   # apps = {
-  #   vscode = enabled;
-  #   yubikey = enabled;
+  #   vscode.enable = true;
+  #   yubikey.enable = true;
   # };
   # cli-apps = {
-  #   tmux = enabled;
-  #   neovim = enabled;
-  #   yubikey = enabled;
-  #   prisma = enabled;
-  #   mods = enabled;
+  #   tmux.enable = true;
+  #   neovim.enable = true;
+  #   yubikey.enable = true;
+  #   prisma.enable = true;
+  #   mods.enable = true;
   # };
 in
 {
-  options.${namespace}.suites.development = with types; {
+  options.${namespace}.suites.development = {
     enable = mkEnableOption "Whether or not to enable common development configuration.";
   };
 
@@ -30,11 +29,11 @@ in
       # inherit apps cli-apps;
 
       # tools = {
-      #   direnv = enabled;
+      #   direnv.enable = true;
       # };
 
       # virtualisation = {
-      #   podman = enabled;
+      #   podman.enable = true;
       # };
     };
   };

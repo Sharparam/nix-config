@@ -97,38 +97,38 @@
         allowUnfree = true;
       };
 
-      overlays = with inputs; [
-        snowfall-flake.overlays.default
-        nur.overlays.default
-        emacs-overlay.overlays.default
-        ghostty.overlays.default
+      overlays = [
+        inputs.snowfall-flake.overlays.default
+        inputs.nur.overlays.default
+        inputs.emacs-overlay.overlays.default
+        inputs.ghostty.overlays.default
       ];
 
-      homes.modules = with inputs; [
-        nix-index-database.homeModules.nix-index
-        sops-nix.homeManagerModules.sops
-        catppuccin.homeModules.catppuccin
+      homes.modules = [
+        inputs.nix-index-database.homeModules.nix-index
+        inputs.sops-nix.homeManagerModules.sops
+        inputs.catppuccin.homeModules.catppuccin
       ];
 
-      homes.users."sharparam@NINETECH-617128".modules = with inputs; [
-        mac-app-util.homeManagerModules.default
+      homes.users."sharparam@NINETECH-617128".modules = [
+        inputs.mac-app-util.homeManagerModules.default
       ];
 
       systems.modules = {
-        nixos = with inputs; [
-          home-manager.nixosModules.home-manager
-          nix-index-database.nixosModules.nix-index
-          nur.modules.nixos.default
-          sops-nix.nixosModules.sops
-          catppuccin.nixosModules.catppuccin
-          locale-en_se.nixosModules.default
+        nixos = [
+          inputs.home-manager.nixosModules.home-manager
+          inputs.nix-index-database.nixosModules.nix-index
+          inputs.nur.modules.nixos.default
+          inputs.sops-nix.nixosModules.sops
+          inputs.catppuccin.nixosModules.catppuccin
+          inputs.locale-en_se.nixosModules.default
         ];
 
-        darwin = with inputs; [
-          home-manager.darwinModules.home-manager
-          nix-index-database.darwinModules.nix-index
-          sops-nix.darwinModules.sops
-          mac-app-util.darwinModules.default
+        darwin = [
+          inputs.home-manager.darwinModules.home-manager
+          inputs.nix-index-database.darwinModules.nix-index
+          inputs.sops-nix.darwinModules.sops
+          inputs.mac-app-util.darwinModules.default
         ];
       };
 

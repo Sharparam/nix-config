@@ -6,13 +6,15 @@
   ...
 }:
 let
-  buildInputs = with pkgs; [
-    bc
-    coreutils
-    jq
-    yabai
-    skhd
-  ];
+  buildInputs = builtins.attrValues {
+    inherit (pkgs)
+      bc
+      coreutils
+      jq
+      yabai
+      skhd
+      ;
+  };
 in
 writeShellApplication {
   meta = {

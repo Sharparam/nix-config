@@ -5,13 +5,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf mkPackageOption;
   cfg = config.${namespace}.desktop.skhd;
 in
 {
-  options.${namespace}.desktop.skhd = with types; {
+  options.${namespace}.desktop.skhd = {
     enable = mkEnableOption "skhd";
     package = mkPackageOption pkgs "skhd";
     # logFile = mkOption {
@@ -45,10 +44,10 @@ in
       skhdConfig =
         # bash
         let
-          # skhd = getExe cfg.package;
-          # yabai = getExe config.${namespace}.desktop.yabai.package;
-          # sketchybar = getExe config.${namespace}.desktop.sketchybar.package;
-          jq = getExe pkgs.jq;
+          # skhd = lib.getExe cfg.package;
+          # yabai = lib.getExe config.${namespace}.desktop.yabai.package;
+          # sketchybar = lib.getExe config.${namespace}.desktop.sketchybar.package;
+          jq = lib.getExe pkgs.jq;
           useYabai = config.${namespace}.desktop.yabai.enable;
           useSketchybar = config.${namespace}.desktop.sketchybar.enable;
           sb_wos = if useSketchybar then "sketchybar --trigger windows_on_spaces" else "true";

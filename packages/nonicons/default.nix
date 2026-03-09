@@ -20,12 +20,14 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-EDL24LXu4lHzybUOB5LBL870rjToieHvjpx4kqSaNjc=";
   };
 
-  nativeBuildInputs = with pkgs; [
-    yarnConfigHook
-    yarnBuildHook
-    yarnInstallHook
-    nodejs
-  ];
+  nativeBuildInputs = builtins.attrValues {
+    inherit (pkgs)
+      yarnConfigHook
+      yarnBuildHook
+      yarnInstallHook
+      nodejs
+      ;
+  };
 
   yarnBuildScript = "update";
 

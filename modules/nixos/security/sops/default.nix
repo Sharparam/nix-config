@@ -6,25 +6,33 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.security.sops;
 in
 {
-  options.${namespace}.security.sops = with types; {
-    enable = mkEnableOption "sops";
-    defaultSopsFile = mkOption {
-      type = path;
-      default = snowfall.fs.get-file "systems/${system}/${config.networking.hostName}/secrets.yml";
-      description = "Default sops file.";
+  options.${namespace}.security.sops =
+    let
+      inherit (types) listOf path;
+    in
+    {
+      enable = mkEnableOption "sops";
+      defaultSopsFile = mkOption {
+        type = path;
+        default = lib.snowfall.fs.get-file "systems/${system}/${config.networking.hostName}/secrets.yml";
+        description = "Default sops file.";
+      };
+      sshKeyPaths = mkOption {
+        type = listOf path;
+        default = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        description = "SSH key paths to use.";
+      };
     };
-    sshKeyPaths = mkOption {
-      type = listOf path;
-      default = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      description = "SSH key paths to use.";
-    };
-  };
 
   config = mkIf cfg.enable {
     sops = {
@@ -39,8 +47,8 @@ in
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      sops
+    environment.systemPackages = [
+      pkgs.sops
     ];
   };
 }

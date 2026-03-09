@@ -4,9 +4,8 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.home-manager;
 in
 {
@@ -14,5 +13,5 @@ in
     enable = mkEnableOption "home-manager";
   };
 
-  config = mkIf cfg.enable { programs.home-manager = enabled; };
+  config = mkIf cfg.enable { programs.home-manager.enable = true; };
 }

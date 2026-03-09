@@ -5,9 +5,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.tokei;
 in
 {
@@ -16,8 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      tokei
+    home.packages = [
+      pkgs.tokei
     ];
   };
 }

@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.slack;
 in
 {
-  options.${namespace}.apps.slack = with types; {
+  options.${namespace}.apps.slack = {
     enable = mkEnableOption "Slack";
   };
 

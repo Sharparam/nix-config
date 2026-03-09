@@ -4,9 +4,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
   cfg = config.${namespace}.security._1password;
 in
 {
@@ -14,7 +13,7 @@ in
 
   config = mkIf cfg.enable {
     programs = {
-      _1password = enabled;
+      _1password.enable = true;
       _1password-gui = {
         enable = true;
         polkitPolicyOwners = [ config.${namespace}.user.name ];

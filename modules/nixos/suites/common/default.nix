@@ -6,27 +6,26 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.suites.common;
   # rev =
   #   if (lib.hasAttrByPath [ "rev" ] inputs.self.sourceInfo) then
   #     inputs.self.sourceInfo.rev
   #   else
   #     "Dirty Build";
-  rev = with inputs; self.rev or self.dirtyRev or null;
+  rev = inputs.self.rev or inputs.self.dirtyRev or null;
 in
 {
-  options.${namespace}.suites.common = with types; {
+  options.${namespace}.suites.common = {
     enable = mkEnableOption "Whether or not to enable common configuration.";
   };
 
   config = mkIf cfg.enable {
     system.configurationRevision = rev;
-    environment.systemPackages = with pkgs; [
-      snix.scripts
-      catppuccin-cursors.frappeDark
+    environment.systemPackages = [
+      pkgs.snix.scripts
+      pkgs.catppuccin-cursors.frappeDark
     ];
     services = {
       getty.greetingLine = "<<< Welcome to ${config.system.nixos.label} @ ${rev} - \\l >>>";
@@ -42,34 +41,34 @@ in
     };
 
     ${namespace} = {
-      nix = enabled;
+      nix.enable = true;
 
       hardware = {
-        audio = enabled;
-        networking = enabled;
+        audio.enable = true;
+        networking.enable = true;
       };
 
       system = {
-        fonts = enabled;
-        locale = enabled;
-        time = enabled;
+        fonts.enable = true;
+        locale.enable = true;
+        time.enable = true;
       };
 
       security = {
-        age = enabled;
-        gpg = enabled;
+        age.enable = true;
+        gpg.enable = true;
       };
 
       services = {
-        openssh = enabled;
+        openssh.enable = true;
       };
 
       tools = {
-        ssh = enabled;
+        ssh.enable = true;
       };
 
       apps = {
-        vim = enabled;
+        vim.enable = true;
       };
     };
   };

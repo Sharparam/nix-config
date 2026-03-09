@@ -5,19 +5,18 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.tools.ast-grep;
 in
 {
-  options.${namespace}.tools.ast-grep = with types; {
+  options.${namespace}.tools.ast-grep = {
     enable = mkEnableOption "Whether or not to enable the ast-grep tool.";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      ast-grep
+    home.packages = [
+      pkgs.ast-grep
     ];
 
     home.shellAliases = {

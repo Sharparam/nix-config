@@ -4,36 +4,44 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.apps.firefox;
   defaultSettings = {
     "browser.download.useDownloadDir" = false;
   };
 in
 {
-  options.${namespace}.apps.firefox = with types; {
-    enable = mkEnableOption "Whether or not to enable Firefox.";
-    extraConfig = mkOption {
-      type = str;
-      default = "";
-      description = "Extra configuration for the user profile JS file.";
+  options.${namespace}.apps.firefox =
+    let
+      inherit (types) attrs str;
+    in
+    {
+      enable = mkEnableOption "Whether or not to enable Firefox.";
+      extraConfig = mkOption {
+        type = str;
+        default = "";
+        description = "Extra configuration for the user profile JS file.";
+      };
+      userChrome = mkOption {
+        type = str;
+        default = "";
+        description = "Extra configuration for the user chrome CSS file.";
+      };
+      settings = mkOption {
+        type = attrs;
+        default = defaultSettings;
+        description = "Settings to apply to the profile.";
+      };
     };
-    userChrome = mkOption {
-      type = str;
-      default = "";
-      description = "Extra configuration for the user chrome CSS file.";
-    };
-    settings = mkOption {
-      type = attrs;
-      default = defaultSettings;
-      description = "Settings to apply to the profile.";
-    };
-  };
 
   config = mkIf cfg.enable {
-    # plusultra.desktop.addons.firefox-nordic-theme = enabled;
+    # plusultra.desktop.addons.firefox-nordic-theme.enable = true;
 
     # services.gnome.gnome-browser-connector.enable = config.${namespace}.desktop.gnome.enable;
 

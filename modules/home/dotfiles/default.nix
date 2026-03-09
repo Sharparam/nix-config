@@ -4,16 +4,20 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.dotfiles;
 in
 {
-  options.${namespace}.dotfiles = with types; {
+  options.${namespace}.dotfiles = {
     enable = mkEnableOption "dotfiles";
     dotfilesPath = mkOption {
-      type = str;
+      type = types.str;
       default = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles";
       description = "Path to dotfiles folder.";
     };

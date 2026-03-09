@@ -5,25 +5,35 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkDefault
+    mkEnableOption
+    mkIf
+    mkOption
+    optionals
+    types
+    ;
   cfg = config.${namespace}.apps.ghostty;
 in
 {
-  options.${namespace}.apps.ghostty = with types; {
-    enable = mkEnableOption "ghostty";
-    setAsDefault = mkOption {
-      type = bool;
-      default = false;
-      description = "Set ghostty as default terminal (TERMINAL env var).";
+  options.${namespace}.apps.ghostty =
+    let
+      inherit (types) bool int;
+    in
+    {
+      enable = mkEnableOption "ghostty";
+      setAsDefault = mkOption {
+        type = bool;
+        default = false;
+        description = "Set ghostty as default terminal (TERMINAL env var).";
+      };
+      fontSize = mkOption {
+        type = int;
+        default = 12;
+        description = "Font size";
+      };
     };
-    fontSize = mkOption {
-      type = int;
-      default = 12;
-      description = "Font size";
-    };
-  };
 
   config = mkIf cfg.enable {
     home.sessionVariables = mkIf cfg.setAsDefault {

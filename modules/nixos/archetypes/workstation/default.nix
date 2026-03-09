@@ -4,22 +4,21 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.archetypes.workstation;
 in
 {
-  options.${namespace}.archetypes.workstation = with types; {
+  options.${namespace}.archetypes.workstation = {
     enable = mkEnableOption "Whether or not to enable the workstation archetype.";
   };
 
   config = mkIf cfg.enable {
     ${namespace} = {
       suites = {
-        common = enabled;
-        desktop = enabled;
-        development = enabled;
+        common.enable = true;
+        desktop.enable = true;
+        development.enable = true;
       };
     };
   };

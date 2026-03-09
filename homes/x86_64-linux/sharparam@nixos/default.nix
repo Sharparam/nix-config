@@ -1,20 +1,16 @@
 {
-  lib,
-  namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 {
   snix = {
     suites = {
-      common = enabled;
+      common.enable = true;
     };
 
-    tools.ssh = enabled;
+    tools.ssh.enable = true;
 
     apps = {
-      ghostty = enabled;
+      ghostty.enable = true;
     };
   };
 

@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.services.openssh;
 in
 {
-  options.${namespace}.services.openssh = with types; {
+  options.${namespace}.services.openssh = {
     enable = mkEnableOption "OpenSSH service";
   };
 

@@ -5,16 +5,20 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.tools.zsh;
 in
 {
-  options.${namespace}.tools.zsh = with types; {
+  options.${namespace}.tools.zsh = {
     enable = mkEnableOption "ZSH";
     enableFastSyntaxHighlighting = mkOption {
-      type = bool;
+      type = types.bool;
       default = true;
       description = "Enable fast syntax highlighting";
     };

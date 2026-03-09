@@ -5,47 +5,56 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkDefault
+    mkIf
+    mkOption
+    mkPackageOption
+    types
+    ;
   cfg = config.${namespace}.nix;
   inherit (config.${namespace}) user;
 in
 {
-  options.${namespace}.nix = with types; {
-    enable = mkOption {
-      type = bool;
-      default = true;
-      description = "Whether to manage nix configuration.";
+  options.${namespace}.nix =
+    let
+      inherit (types) bool int str;
+    in
+    {
+      enable = mkOption {
+        type = bool;
+        default = true;
+        description = "Whether to manage nix configuration.";
+      };
+      package = mkPackageOption pkgs "Lix" {
+        default = [
+          "lixPackageSets"
+          "latest"
+          "lix"
+        ];
+      };
+      flakePath = mkOption {
+        type = str;
+        default = "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1";
+        description = "Path to the flake to use for NixOS configuration.";
+      };
+      keepAge = mkOption {
+        type = str;
+        default = "30d";
+        description = "How old to allow store paths to be before deleting them.";
+      };
+      keepCount = mkOption {
+        type = int;
+        default = 3;
+        description = "How many store paths to keep.";
+      };
+      # cleanAge = mkOption {
+      #   type = str;
+      #   default = "30d";
+      #   description = "How old to allow store paths to be before deleting them.";
+      # };
     };
-    package = mkPackageOption pkgs "Lix" {
-      default = [
-        "lixPackageSets"
-        "latest"
-        "lix"
-      ];
-    };
-    flakePath = mkOption {
-      type = str;
-      default = "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1";
-      description = "Path to the flake to use for NixOS configuration.";
-    };
-    keepAge = mkOption {
-      type = str;
-      default = "30d";
-      description = "How old to allow store paths to be before deleting them.";
-    };
-    keepCount = mkOption {
-      type = int;
-      default = 3;
-      description = "How many store paths to keep.";
-    };
-    # cleanAge = mkOption {
-    #   type = str;
-    #   default = "30d";
-    #   description = "How old to allow store paths to be before deleting them.";
-    # };
-  };
 
   config = mkIf cfg.enable {
     documentation = {
@@ -54,25 +63,30 @@ in
       man.enable = mkDefault true;
     };
 
-    environment.systemPackages = with pkgs; [
-      nix-diff
-      nix-health
-      # nix-index
-      nix-output-monitor
-      nix-prefetch-git
-      nixd
-      nixfmt
-      nvd
-      # comma
-      cachix
-      snowfallorg.flake
-      alejandra
-      deadnix
-      statix
-    ];
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        nix-diff
+        nix-health
+        # nix-index
+        nix-output-monitor
+        nix-prefetch-git
+        nixd
+        nixfmt
+        nvd
+        # comma
+        cachix
+        alejandra
+        deadnix
+        statix
+        ;
+
+      inherit (pkgs.snowfallorg)
+        flake
+        ;
+    };
 
     services = {
-      lorri = enabled;
+      lorri.enable = true;
     };
 
     programs = {

@@ -1,20 +1,23 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.tools.zoxide;
 in
 {
-  options.${namespace}.tools.zoxide = with types; {
+  options.${namespace}.tools.zoxide = {
     enable = mkEnableOption "zoxide";
     cmd = mkOption {
-      type = nullOr str;
+      type = types.nullOr types.str;
       default = "j";
       description = "Zoxide command (alias) (set to null to disable)";
     };

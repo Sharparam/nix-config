@@ -4,41 +4,40 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.suites.desktop;
 in
 {
-  options.${namespace}.suites.desktop = with types; {
+  options.${namespace}.suites.desktop = {
     enable = mkEnableOption "Whether or not to enable common desktop configuration.";
   };
 
   config = mkIf cfg.enable {
     ${namespace} = {
       security = {
-        _1password = enabled;
+        _1password.enable = true;
         # TODO: bitwarden-cli doesn't build on nix-darwin
-        # bitwarden = enabled;
+        # bitwarden.enable = true;
       };
 
       desktop = {
-        skhd = enabled;
+        skhd.enable = true;
       };
 
       apps = {
-        dropbox = enabled;
-        ghostty = enabled;
+        dropbox.enable = true;
+        ghostty.enable = true;
         google = {
-          chrome = enabled;
-          drive = enabled;
+          chrome.enable = true;
+          drive.enable = true;
         };
-        firefox = enabled;
-        kde-connect = enabled;
-        signal = enabled;
-        slack = enabled;
-        spotify = enabled;
-        telegram = enabled;
+        firefox.enable = true;
+        kde-connect.enable = true;
+        signal.enable = true;
+        slack.enable = true;
+        spotify.enable = true;
+        telegram.enable = true;
       };
     };
   };

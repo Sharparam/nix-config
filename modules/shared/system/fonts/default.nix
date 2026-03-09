@@ -7,16 +7,21 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    optional
+    types
+    ;
   cfg = config.${namespace}.system.fonts;
 in
 {
-  options.${namespace}.system.fonts = with types; {
+  options.${namespace}.system.fonts = {
     enable = mkEnableOption "Whether or not to manage fonts.";
     fonts = mkOption {
-      type = listOf package;
+      type = types.listOf types.package;
       default = [ ];
       description = "Custom font packages to install.";
     };
@@ -29,30 +34,37 @@ in
 
     fonts = {
       packages =
-        with pkgs;
-        [
-          corefonts
 
-          jetbrains-mono
-          meslo-lgs-nf
+        builtins.attrValues {
+          inherit (pkgs)
+            corefonts
 
-          nerd-fonts.caskaydia-cove
-          nerd-fonts.hack
-          nerd-fonts.iosevka
-          nerd-fonts.symbols-only
+            jetbrains-mono
 
-          noto-fonts
-          noto-fonts-cjk-sans
-          noto-fonts-cjk-serif
-          noto-fonts-color-emoji
+            meslo-lgs-nf
 
-          roboto
+            noto-fonts
+            noto-fonts-cjk-sans
+            noto-fonts-cjk-serif
+            noto-fonts-color-emoji
 
-          inputs.iosevka.packages.${system}.bin
+            roboto
+            ;
 
-          snix.nonicons-bin
-        ]
-        ++ optional pkgs.stdenv.isDarwin sketchybar-app-font
+          inherit (pkgs.nerd-fonts)
+            caskaydia-cove
+            hack
+            iosevka
+            symbols-only
+            ;
+
+          inherit (pkgs.snix)
+            nonicons-bin
+            ;
+
+          iosevka-sharpie = inputs.iosevka.packages.${system}.bin;
+        }
+        ++ optional pkgs.stdenv.isDarwin pkgs.sketchybar-app-font
         ++ cfg.fonts;
     };
   };

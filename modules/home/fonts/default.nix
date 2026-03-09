@@ -4,14 +4,15 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
-with lib.home-manager;
 let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    ;
   cfg = config.${namespace}.fonts;
 in
 {
-  options.${namespace}.fonts = with types; {
+  options.${namespace}.fonts = {
     enable = mkEnableOption "home-manager font management";
   };
 
@@ -28,7 +29,7 @@ in
       </fontconfig>
     '';
 
-    home.activation.ensureDummyFontConfig = hm.dag.entryAfter [ "writeBoundary" ] ''
+    home.activation.ensureDummyFontConfig = lib.home-manager.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.config/fontconfig/conf.d"
       run cp $VERBOSE_ARG ${builtins.toPath ./00-dummy.conf} "$HOME/.config/fontconfig/conf.d/00-dummy.conf"
     '';

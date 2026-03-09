@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.suites.development;
 in
 {
-  options.${namespace}.suites.development = with types; {
+  options.${namespace}.suites.development = {
     enable = mkEnableOption "Whether or not to enable the development suite.";
   };
 
@@ -23,12 +22,12 @@ in
 
     ${namespace} = {
       apps = {
-        atuin-desktop = enabled;
-        azure-data-studio = enabled;
-        emacs = enabled;
-        jetbrains.toolbox = enabled;
-        sublime-merge = enabled;
-        vscode = enabled;
+        atuin-desktop.enable = true;
+        azure-data-studio.enable = true;
+        emacs.enable = true;
+        jetbrains.toolbox.enable = true;
+        sublime-merge.enable = true;
+        vscode.enable = true;
       };
     };
   };

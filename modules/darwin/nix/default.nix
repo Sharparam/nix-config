@@ -5,15 +5,20 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkIf
+    mkOption
+    mkPackageOption
+    mkDefault
+    types
+    ;
   cfg = config.${namespace}.nix;
 in
 {
-  options.${namespace}.nix = with types; {
+  options.${namespace}.nix = {
     enable = mkOption {
-      type = bool;
+      type = types.bool;
       default = true;
       description = "Whether or not to manage nix configuration.";
     };
@@ -33,27 +38,31 @@ in
       man.enable = mkDefault true;
     };
 
-    environment.systemPackages = with pkgs; [
-      nix-diff
-      nix-health
-      # nix-index
-      nix-output-monitor
-      nix-prefetch-git
-      nixd
-      nixfmt
-      nvd
-      # comma
-      cachix
-      snowfallorg.flake
-      alejandra
-      deadnix
-      statix
-    ];
+    environment.systemPackages = builtins.attrValues {
+      inherit (pkgs)
+        nix-diff
+        nix-health
+        # nix-index
+        nix-output-monitor
+        nix-prefetch-git
+        nixd
+        nixfmt
+        nvd
+        # comma
+        cachix
+        alejandra
+        deadnix
+        statix
+        ;
+      inherit (pkgs.snowfallorg)
+        flake
+        ;
+    };
 
     services = {
-      lorri = enabled;
+      lorri.enable = true;
       # Nix daemon is now managed automatically when nix-darwin is enabled
-      # nix-daemon = enabled;
+      # nix-daemon.enable = true;
     };
 
     nix =

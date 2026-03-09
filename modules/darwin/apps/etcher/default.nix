@@ -4,14 +4,13 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
   cfg = config.${namespace}.apps.etcher;
 in
 {
-  options.${namespace}.apps.etcher = with types; {
-    enable = mkEnableOption "etcher";
+  options.${namespace}.apps.etcher = {
+    enable = lib.mkEnableOption "etcher";
   };
 
   config = mkIf cfg.enable {

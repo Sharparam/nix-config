@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.spotify;
 in
 {
-  options.${namespace}.apps.spotify = with types; {
+  options.${namespace}.apps.spotify = {
     enable = mkEnableOption "Spotify";
   };
 

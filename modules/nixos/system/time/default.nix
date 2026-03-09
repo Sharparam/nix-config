@@ -4,13 +4,12 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.system.time;
 in
 {
-  options.${namespace}.system.time = with types; {
+  options.${namespace}.system.time = {
     enable = mkEnableOption "Whether or not to configure timezone information.";
   };
 

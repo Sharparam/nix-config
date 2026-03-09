@@ -5,16 +5,21 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkDefault
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.${namespace}.apps.neovim;
 in
 {
-  options.${namespace}.apps.neovim = with types; {
+  options.${namespace}.apps.neovim = {
     enable = mkEnableOption "Neovim";
     configPath = mkOption {
-      type = str;
+      type = types.str;
       default = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/nvim/.config/nvim";
       description = "Path to Neovim configuration folder.";
     };
@@ -32,12 +37,14 @@ in
       vimAlias = true;
       vimdiffAlias = true;
       withNodeJs = true;
-      extraPackages = with pkgs; [
-        unzip
-        cargo
-        rustc
-        gcc
-      ];
+      extraPackages = builtins.attrValues {
+        inherit (pkgs)
+          unzip
+          cargo
+          rustc
+          gcc
+          ;
+      };
     };
   };
 }

@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.system.interface;
 in
 {
-  options.${namespace}.system.interface = with types; {
+  options.${namespace}.system.interface = {
     enable = mkEnableOption "macOS interface";
   };
 

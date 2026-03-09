@@ -4,13 +4,12 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.system.boot.systemd-boot;
 in
 {
-  options.${namespace}.system.boot.systemd-boot = with types; {
+  options.${namespace}.system.boot.systemd-boot = {
     enable = mkEnableOption "Whether or not to enable systemd-booting.";
   };
 

@@ -5,9 +5,8 @@
   config,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.${namespace}.apps.discord;
 in
 {
@@ -16,8 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      vesktop
+    home.packages = [
+      pkgs.vesktop
     ];
   };
 }
