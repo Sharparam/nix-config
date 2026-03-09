@@ -93,7 +93,7 @@ in
     };
 
   config = {
-    environment.systemPackages = [ pkgs.propagatedIcon ];
+    environment.systemPackages = [ propagatedIcon ];
     environment.localBinInPath = true;
 
     programs.zsh = {
