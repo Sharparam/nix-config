@@ -22,13 +22,31 @@ in
 {
   options.${namespace}.user = {
     enable = mkEnableOption "Whether to configure the user account.";
-    name = mkOpt (types.nullOr types.str) (config.snowfallorg.user.name or "sharparam"
-    ) "The user account.";
-    uid = mkOpt types.int 1000 "UID of the user.";
-    fullName = mkOpt types.str "Adam Hellberg" "The full name of the user.";
-    email = mkOpt types.str "sharparam@sharparam.com" "The email of the user.";
-
-    home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
+    name = mkOption {
+      type = types.nullOr types.str;
+      default = config.snowfallorg.user.name or "sharparam";
+      description = "The user account.";
+    };
+    uid = mkOption {
+      type = types.int;
+      default = 1000;
+      description = "UID of the user.";
+    };
+    fullName = mkOption {
+      type = types.str;
+      default = "Adam Hellberg";
+      description = "The full name of the user.";
+    };
+    email = mkOption {
+      type = types.str;
+      default = "sharparam@sharparam.com";
+      description = "The email of the user.";
+    };
+    home = mkOption {
+      type = types.nullOr types.str;
+      default = home-directory;
+      description = "The user's home directory.";
+    };
   };
 
   config = mkIf cfg.enable (mkMerge [

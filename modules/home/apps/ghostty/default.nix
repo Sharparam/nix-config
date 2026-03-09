@@ -13,8 +13,16 @@ in
 {
   options.${namespace}.apps.ghostty = with types; {
     enable = mkEnableOption "Enable ghostty.";
-    setAsDefault = mkBoolOpt false "Set ghostty as default terminal (TERMINAL env var).";
-    fontSize = mkOpt int 12 "Font size";
+    setAsDefault = mkOption {
+      type = bool;
+      default = false;
+      description = "Set ghostty as default terminal (TERMINAL env var).";
+    };
+    fontSize = mkOption {
+      type = int;
+      default = 12;
+      description = "Font size";
+    };
   };
 
   config = mkIf cfg.enable {

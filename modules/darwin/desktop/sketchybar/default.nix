@@ -14,10 +14,16 @@ in
   options.${namespace}.desktop.sketchybar = with types; {
     enable = mkEnableOption "Enable sketchybar.";
     package = mkPackageOption pkgs "sketchybar";
-    # logFile =
-    #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/sketchybar.log"
-    #     "File path of log output";
-    catppuccinFlavor = mkOpt str "frappe" "Catppuccin flavor for colors.";
+    # logFile = mkOption {
+    #   type = str;
+    #   default = "/Users/${config.${namespace}.user.name}/Library/Logs/sketchybar.log";
+    #   description = "File path of log output";
+    # };
+    catppuccinFlavor = mkOption {
+      type = str;
+      default = "frappe";
+      description = "Catppuccin flavor for colors.";
+    };
   };
 
   config = mkIf cfg.enable {

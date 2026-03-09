@@ -12,7 +12,11 @@ let
 in
 {
   options.${namespace}.nix = with types; {
-    enable = mkBoolOpt true "Whether or not to manage nix configuration.";
+    enable = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether or not to manage nix configuration.";
+    };
     package = mkPackageOption pkgs "Lix" {
       default = [
         "lixPackageSets"

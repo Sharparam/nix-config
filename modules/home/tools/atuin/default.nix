@@ -13,10 +13,26 @@ in
 {
   options.${namespace}.tools.atuin = with types; {
     enable = mkEnableOption "Atuin";
-    enableDaemon = mkBoolOpt true "Whether or not to run the Atuin daemon.";
-    enableSync = mkBoolOpt true "Whether to enable syncing";
-    enableZvmWorkaround = mkBoolOpt false "Apply zsh-vi-mode workaround.";
-    syncAddress = mkOpt str "https://atuin.sharparam.com" "Sync address to use.";
+    enableDaemon = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether or not to run the Atuin daemon.";
+    };
+    enableSync = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether to enable syncing";
+    };
+    enableZvmWorkaround = mkOption {
+      type = bool;
+      default = false;
+      description = "Apply zsh-vi-mode workaround.";
+    };
+    syncAddress = mkOption {
+      type = str;
+      default = "https://atuin.sharparam.com";
+      description = "Sync address to use.";
+    };
   };
 
   config = mkIf cfg.enable {

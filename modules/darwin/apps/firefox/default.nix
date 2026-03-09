@@ -12,7 +12,11 @@ in
 {
   options.${namespace}.apps.firefox = with types; {
     enable = mkEnableOption "Enable Firefox.";
-    enableDeveloperEdition = mkBoolOpt false "Enable Firefox Developer Edition.";
+    enableDeveloperEdition = mkOption {
+      type = bool;
+      default = false;
+      description = "Enable Firefox Developer Edition.";
+    };
   };
 
   config = mkIf cfg.enable {

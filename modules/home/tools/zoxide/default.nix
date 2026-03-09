@@ -13,7 +13,11 @@ in
 {
   options.${namespace}.tools.zoxide = with types; {
     enable = mkEnableOption "zoxide";
-    cmd = mkOpt (nullOr str) "j" "Zoxide command (alias) (set to null to disable)";
+    cmd = mkOption {
+      type = nullOr str;
+      default = "j";
+      description = "Zoxide command (alias) (set to null to disable)";
+    };
   };
 
   config = mkIf cfg.enable {

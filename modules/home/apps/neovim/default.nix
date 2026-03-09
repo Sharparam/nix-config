@@ -13,10 +13,11 @@ in
 {
   options.${namespace}.apps.neovim = with types; {
     enable = mkEnableOption "Enable Neovim";
-    configPath =
-      mkOpt str
-        "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/nvim/.config/nvim"
-        "Path to Neovim configuration folder.";
+    configPath = mkOption {
+      type = str;
+      default = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/nvim/.config/nvim";
+      description = "Path to Neovim configuration folder.";
+    };
   };
 
   config = mkIf cfg.enable {

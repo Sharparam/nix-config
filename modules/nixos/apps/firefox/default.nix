@@ -15,9 +15,21 @@ in
 {
   options.${namespace}.apps.firefox = with types; {
     enable = mkEnableOption "Whether or not to enable Firefox.";
-    extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
-    userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
-    settings = mkOpt attrs defaultSettings "Settings to apply to the profile.";
+    extraConfig = mkOption {
+      type = str;
+      default = "";
+      description = "Extra configuration for the user profile JS file.";
+    };
+    userChrome = mkOption {
+      type = str;
+      default = "";
+      description = "Extra configuration for the user chrome CSS file.";
+    };
+    settings = mkOption {
+      type = attrs;
+      default = defaultSettings;
+      description = "Settings to apply to the profile.";
+    };
   };
 
   config = mkIf cfg.enable {

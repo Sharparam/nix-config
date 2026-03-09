@@ -13,12 +13,36 @@ in
 {
   options.${namespace}.apps.firefox = with types; {
     enable = mkEnableOption "Whether or not to enable Firefox.";
-    extensions = mkOpt (listOf package) [ ] "Extra extensions to install";
-    extraConfig = mkOpt str "" "Extra configuration for the user.js file";
-    gpuAcceleration = mkBoolOpt true "Enable GPU acceleration";
-    hardwareDecoding = mkBoolOpt true "Enable hardware video decoding.";
-    settings = mkOpt attrs { } "Settings to apply.";
-    userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file";
+    extensions = mkOption {
+      type = listOf package;
+      default = [ ];
+      description = "Extra extensions to install";
+    };
+    extraConfig = mkOption {
+      type = str;
+      default = "";
+      description = "Extra configuration for the user.js file";
+    };
+    gpuAcceleration = mkOption {
+      type = bool;
+      default = true;
+      description = "Enable GPU acceleration";
+    };
+    hardwareDecoding = mkOption {
+      type = bool;
+      default = true;
+      description = "Enable hardware video decoding.";
+    };
+    settings = mkOption {
+      type = attrs;
+      default = { };
+      description = "Settings to apply.";
+    };
+    userChrome = mkOption {
+      type = str;
+      default = "";
+      description = "Extra configuration for the user chrome CSS file";
+    };
   };
 
   config = mkIf cfg.enable {

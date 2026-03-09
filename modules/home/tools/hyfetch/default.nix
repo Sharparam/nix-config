@@ -13,10 +13,14 @@ in
 {
   options.${namespace}.tools.hyfetch = with types; {
     enable = mkEnableOption "hyfetch";
-    backend = mkOpt (enum [
-      "neofetch"
-      "fastfetch"
-    ]) "neofetch" "The backend to use for fetching system information.";
+    backend = mkOption {
+      type = enum [
+        "neofetch"
+        "fastfetch"
+      ];
+      default = "neofetch";
+      description = "The backend to use for fetching system information.";
+    };
   };
 
   config = mkIf cfg.enable {

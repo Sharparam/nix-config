@@ -15,12 +15,26 @@ in
   options.${namespace}.desktop.yabai = with types; {
     enable = mkEnableOption "Enable yabai.";
     package = mkPackageOption pkgs "yabai";
-    debug = mkBoolOpt false "Whether to enable debug output";
-    # logFile =
-    #   mkOpt str "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log"
-    #     "File path of log output";
-    spacesCount = mkOpt int 7 "Number of spaces";
-    enableSpaceId = mkBoolOpt (!useSketchybar) "Whether to enable SpaceId";
+    debug = mkOption {
+      type = bool;
+      default = false;
+      description = "Whether to enable debug output";
+    };
+    # logFile = mkOption {
+    #   type = str;
+    #   default = "/Users/${config.${namespace}.user.name}/Library/Logs/yabai.log";
+    #   description = "File path of log output";
+    # };
+    spacesCount = mkOption {
+      type = int;
+      default = 7;
+      description = "Number of spaces";
+    };
+    enableSpaceId = mkOption {
+      type = bool;
+      default = (!useSketchybar);
+      description = "Whether to enable SpaceId";
+    };
   };
 
   config = mkIf cfg.enable {

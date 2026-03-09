@@ -14,10 +14,16 @@ in
 {
   options.${namespace}.security.sops = with types; {
     enable = mkEnableOption "Enable sops";
-    defaultSopsFile =
-      mkOpt path (snowfall.fs.get-file "systems/${system}/${config.networking.hostName}/secrets.yml")
-        "Default sops file.";
-    sshKeyPaths = mkOpt (listOf path) [ "/etc/ssh/ssh_host_ed25519_key" ] "SSH key paths to use.";
+    defaultSopsFile = mkOption {
+      type = path;
+      default = snowfall.fs.get-file "systems/${system}/${config.networking.hostName}/secrets.yml";
+      description = "Default sops file.";
+    };
+    sshKeyPaths = mkOption {
+      type = listOf path;
+      default = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      description = "SSH key paths to use.";
+    };
   };
 
   config = mkIf cfg.enable {

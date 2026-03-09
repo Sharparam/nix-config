@@ -12,9 +12,11 @@ in
 {
   options.${namespace}.dotfiles = with types; {
     enable = mkEnableOption "Enable dotfiles";
-    dotfilesPath =
-      mkOpt str "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles"
-        "Path to dotfiles folder.";
+    dotfilesPath = mkOption {
+      type = str;
+      default = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles";
+      description = "Path to dotfiles folder.";
+    };
   };
 
   config = mkIf cfg.enable {

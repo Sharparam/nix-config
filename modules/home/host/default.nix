@@ -8,6 +8,10 @@ with lib;
 with lib.${namespace};
 {
   options.${namespace}.host = {
-    name = mkOpt (types.nullOr types.str) host "The hostname.";
+    name = mkOption {
+      type = types.nullOr types.str;
+      default = host;
+      description = "The hostname.";
+    };
   };
 }

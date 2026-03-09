@@ -13,7 +13,11 @@ in
 {
   options.${namespace}.tools.zsh = with types; {
     enable = mkEnableOption "ZSH";
-    enableFastSyntaxHighlighting = mkBoolOpt true "Enable fast syntax highlighting";
+    enableFastSyntaxHighlighting = mkOption {
+      type = bool;
+      default = true;
+      description = "Enable fast syntax highlighting";
+    };
   };
 
   config = mkIf cfg.enable {

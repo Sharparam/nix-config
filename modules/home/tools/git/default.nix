@@ -25,14 +25,36 @@ in
 {
   options.${namespace}.tools.git = with types; {
     enable = mkEnableOption "Git";
-    use1Password = mkBoolOpt false "Use 1Password integration.";
-    userName = mkOpt str "Adam Hellberg" "The name to configure Git with.";
-    userEmail = mkOpt str "sharparam@sharparam.com" "The email to configure Git with.";
-    signingKey =
-      mkOpt str "C58C41E27B00AD04"
-        "The GPG key to use for signing commits and tags (ignored if using 1Password).";
-    credentialHelper = mkOpt (nullOr str) null "The credential helper to use with Git.";
-    askPass = mkOpt (nullOr str) null "The askpass program to use with Git.";
+    use1Password = mkOption {
+      type = bool;
+      default = false;
+      description = "Use 1Password integration.";
+    };
+    userName = mkOption {
+      type = str;
+      default = "Adam Hellberg";
+      description = "The name to configure Git with.";
+    };
+    userEmail = mkOption {
+      type = str;
+      default = "sharparam@sharparam.com";
+      description = "The email to configure Git with.";
+    };
+    signingKey = mkOption {
+      type = str;
+      default = "C58C41E27B00AD04";
+      description = "The GPG key to use for signing commits and tags (ignored if using 1Password).";
+    };
+    credentialHelper = mkOption {
+      type = nullOr str;
+      default = null;
+      description = "The credential helper to use with Git.";
+    };
+    askPass = mkOption {
+      type = nullOr str;
+      default = null;
+      description = "The askpass program to use with Git.";
+    };
   };
 
   config = mkIf cfg.enable {

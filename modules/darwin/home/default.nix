@@ -9,10 +9,26 @@ with lib;
 with lib.${namespace};
 {
   options.${namespace}.home = with types; {
-    file = mkOpt attrs { } "A set of files to be managed by home-manager's `home.file`.";
-    configFile = mkOpt attrs { } "A set of files to be managed by home-manager's `xdg.configFile`.";
-    extraOptions = mkOpt attrs { } "Options to pass directly to home-manager.";
-    homeConfig = mkOpt attrs { } "Final config for home-manager.";
+    file = mkOption {
+      type = attrs;
+      default = { };
+      description = "A set of files to be managed by home-manager's `home.file`.";
+    };
+    configFile = mkOption {
+      type = attrs;
+      default = { };
+      description = "A set of files to be managed by home-manager's `xdg.configFile`.";
+    };
+    extraOptions = mkOption {
+      type = attrs;
+      default = { };
+      description = "Options to pass directly to home-manager.";
+    };
+    homeConfig = mkOption {
+      type = attrs;
+      default = { };
+      description = "Final config for home-manager.";
+    };
   };
 
   config = {

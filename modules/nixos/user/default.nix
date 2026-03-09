@@ -40,16 +40,46 @@ let
 in
 {
   options.${namespace}.user = with types; {
-    name = mkOpt str "sharparam" "The name to use for the user account.";
-    fullName = mkOpt str "Adam Hellberg" "The full name of the user.";
-    email = mkOpt str "sharparam@sharparam.com" "The email of the user.";
-    initialPassword =
-      mkOpt str "password"
-        "The initial password to use when the user is first created.";
-    icon = mkOpt (nullOr package) defaultIcon "The profile picture to use for the user.";
-    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
-    extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
-    extraOptions = mkOpt attrs { } (mdDoc "Extra options passed to `users.users.<name>`.");
+    name = mkOption {
+      type = str;
+      default = "sharparam";
+      description = "The name to use for the user account.";
+    };
+    fullName = mkOption {
+      type = str;
+      default = "Adam Hellberg";
+      description = "The full name of the user.";
+    };
+    email = mkOption {
+      type = str;
+      default = "sharparam@sharparam.com";
+      description = "The email of the user.";
+    };
+    initialPassword = mkOption {
+      type = str;
+      default = "password";
+      description = "The initial password to use when the user is first created.";
+    };
+    icon = mkOption {
+      type = nullOr package;
+      default = defaultIcon;
+      description = "The profile picture to use for the user.";
+    };
+    prompt-init = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether to show an initial message when opening a new shell.";
+    };
+    extraGroups = mkOption {
+      type = listOf str;
+      default = [ ];
+      description = "Groups for the user to be assigned.";
+    };
+    extraOptions = mkOption {
+      type = attrs;
+      default = { };
+      description = mdDoc "Extra options passed to `users.users.<name>`.";
+    };
   };
 
   config = {

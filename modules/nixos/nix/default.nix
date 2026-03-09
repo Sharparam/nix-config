@@ -13,7 +13,11 @@ let
 in
 {
   options.${namespace}.nix = with types; {
-    enable = mkBoolOpt true "Whether or not to manage nix configuration.";
+    enable = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether to manage nix configuration.";
+    };
     package = mkPackageOption pkgs "Lix" {
       default = [
         "lixPackageSets"
@@ -21,12 +25,26 @@ in
         "lix"
       ];
     };
-    flakePath =
-      mkOpt str "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1"
-        "Path to the flake to use for NixOS configuration.";
-    keepAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
-    keepCount = mkOpt int 3 "How many store paths to keep.";
-    # cleanAge = mkOpt str "30d" "How old to allow store paths to be before deleting them.";
+    flakePath = mkOption {
+      type = str;
+      default = "/home/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1";
+      description = "Path to the flake to use for NixOS configuration.";
+    };
+    keepAge = mkOption {
+      type = str;
+      default = "30d";
+      description = "How old to allow store paths to be before deleting them.";
+    };
+    keepCount = mkOption {
+      type = int;
+      default = 3;
+      description = "How many store paths to keep.";
+    };
+    # cleanAge = mkOption {
+    #   type = str;
+    #   default = "30d";
+    #   description = "How old to allow store paths to be before deleting them.";
+    # };
   };
 
   config = mkIf cfg.enable {

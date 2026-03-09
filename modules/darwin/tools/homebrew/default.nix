@@ -13,7 +13,11 @@ in
 {
   options.${namespace}.tools.homebrew = with types; {
     enable = mkEnableOption "Whether or not to enable homebrew.";
-    enableMas = mkBoolOpt true "Whether or not to enable Mac App Store downloads via homebrew.";
+    enableMas = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether or not to enable Mac App Store downloads via homebrew.";
+    };
   };
 
   config = mkIf cfg.enable {

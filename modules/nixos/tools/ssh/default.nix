@@ -12,7 +12,11 @@ in
 {
   options.${namespace}.tools.ssh = {
     enable = mkEnableOption "SSH";
-    startAgent = mkBoolOpt false "Start SSH agent";
+    startAgent = mkOption {
+      type = bool;
+      default = false;
+      description = "Start SSH agent";
+    };
   };
 
   config = mkIf cfg.enable {

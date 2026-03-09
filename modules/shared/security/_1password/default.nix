@@ -13,7 +13,7 @@ in
 {
   options.${namespace}.security._1password = with types; {
     enable = mkEnableOption "Enable 1Password";
-    enableSshAgent = mkBoolOpt false "Enable SSH agent integration";
+    enableSshAgent = mkEnableOption "SSH agent integration";
   };
 
   config = mkIf cfg.enable {

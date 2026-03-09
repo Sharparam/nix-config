@@ -14,9 +14,21 @@ in
 {
   options.${namespace}.apps.kitty = with types; {
     enable = mkEnableOption "Kitty Terminal Emulator";
-    fontPackage = mkOpt (nullOr package) inputs.iosevka.packages.${system}.bin "Font package to use.";
-    fontName = mkOpt (nullOr str) "Iosevka Sharpie Term" "Font name to use.";
-    fontSize = mkOpt (nullOr number) 12 "Font size to use.";
+    fontPackage = mkOption {
+      type = nullOr package;
+      default = inputs.iosevka.packages.${system}.bin;
+      description = "Font package to use.";
+    };
+    fontName = mkOption {
+      type = nullOr str;
+      default = "Iosevka Sharpie Term";
+      description = "Font name to use.";
+    };
+    fontSize = mkOption {
+      type = nullOr number;
+      default = 12;
+      description = "Font size to use.";
+    };
   };
 
   config = mkIf cfg.enable {

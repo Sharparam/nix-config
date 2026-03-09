@@ -13,8 +13,16 @@ in
 {
   options.${namespace}.services.openssh = with types; {
     enable = mkEnableOption "Enable the OpenSSH service.";
-    authorizedKeys = mkOpt (listOf str) [ ] "The public keys to authorize.";
-    port = mkOpt port 22 "The port to listen on.";
+    authorizedKeys = mkOption {
+      type = listOf str;
+      default = [ ];
+      description = "The public keys to authorize.";
+    };
+    port = mkOption {
+      type = port;
+      default = 22;
+      description = "The port to listen on.";
+    };
   };
 
   config = mkIf cfg.enable {

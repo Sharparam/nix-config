@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.system.time = with types; {
-    enable = mkBoolOpt false "Whether or not to configure timezone information.";
+    enable = mkEnableOption "Whether or not to configure timezone information.";
   };
 
   config = mkIf cfg.enable { time.timeZone = "Europe/Stockholm"; };

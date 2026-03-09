@@ -13,7 +13,11 @@ in
 {
   options.${namespace}.security.gpg = with types; {
     enable = mkEnableOption "Enable GPG";
-    enableSSHSupport = mkBoolOpt false "Enable SSH support";
+    enableSSHSupport = mkOption {
+      type = bool;
+      default = false;
+      description = "Enable SSH support";
+    };
   };
 
   config = mkIf cfg.enable {

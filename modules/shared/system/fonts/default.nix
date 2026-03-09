@@ -15,7 +15,11 @@ in
 {
   options.${namespace}.system.fonts = with types; {
     enable = mkEnableOption "Whether or not to manage fonts.";
-    fonts = mkOpt (listOf package) [ ] "Custom font packages to install.";
+    fonts = mkOption {
+      type = listOf package;
+      default = [ ];
+      description = "Custom font packages to install.";
+    };
   };
 
   config = mkIf cfg.enable {

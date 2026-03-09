@@ -8,12 +8,21 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.security.gpg;
+  defaultKeyId = "0xC58C41E27B00AD04";
 in
 {
   options.${namespace}.security.gpg = with types; {
     enable = mkEnableOption "Enable GPG";
-    defaultKey = mkOpt (nullOr str) "0xC58C41E27B00AD04" "Default key ID";
-    trustedKey = mkOpt (nullOr str) "0xC58C41E27B00AD04" "Trusted key ID";
+    defaultKey = mkOption {
+      type = nullOr str;
+      default = defaultKeyId;
+      description = "Default key ID";
+    };
+    trustedKey = mkOption {
+      type = nullOr str;
+      default = defaultKeyId;
+      description = "Trusted key ID";
+    };
   };
 
   config = mkIf cfg.enable {

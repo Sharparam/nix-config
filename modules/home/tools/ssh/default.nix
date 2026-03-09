@@ -14,7 +14,11 @@ in
 {
   options.${namespace}.tools.ssh = {
     enable = mkEnableOption "SSH";
-    useYubiKey = mkBoolOpt false "Use YubiKey for auth";
+    useYubiKey = mkOption {
+      type = bool;
+      default = false;
+      description = "Use YubiKey for auth";
+    };
     identityFile = mkOption {
       type = with types; either (listOf str) (nullOr str);
       default = [ "~/.ssh/id_yubikey_gpg.pub" ];
