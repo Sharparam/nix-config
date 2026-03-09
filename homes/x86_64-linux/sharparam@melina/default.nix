@@ -47,7 +47,6 @@
   };
 
   home.sessionPath = [
-    "$HOME/.local/bin"
     "$HOME/.config/emacs/bin"
   ];
 

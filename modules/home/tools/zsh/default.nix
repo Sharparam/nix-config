@@ -44,7 +44,7 @@ in
         let
           zshConfigFirst = lib.mkOrder 500 "";
           zshConfigBeforeCompInit = lib.mkOrder 550 ''
-            path+="$HOME/.local/bin"
+            # path+="$HOME/.local/bin"
           '';
           zshConfig = lib.mkOrder 1000 "";
           zshConfigLast = lib.mkOrder 1500 "";
