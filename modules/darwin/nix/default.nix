@@ -14,22 +14,32 @@ let
     types
     ;
   cfg = config.${namespace}.nix;
+  inherit (config.${namespace}) user;
 in
 {
-  options.${namespace}.nix = {
-    enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Whether or not to manage nix configuration.";
+  options.${namespace}.nix =
+    let
+      inherit (types) int str;
+    in
+    {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Whether or not to manage nix configuration.";
+      };
+      package = mkPackageOption pkgs "Lix" {
+        default = [
+          "lixPackageSets"
+          "latest"
+          "lix"
+        ];
+      };
+      flakePath = mkOption {
+        type = str;
+        default = "/Users/${user.name}/repos/github.com/Sharparam/nix-config?submodules=1";
+        description = "Path to the flake to use for NixOS configuration.";
+      };
     };
-    package = mkPackageOption pkgs "Lix" {
-      default = [
-        "lixPackageSets"
-        "latest"
-        "lix"
-      ];
-    };
-  };
 
   config = mkIf cfg.enable {
     documentation = {
@@ -38,8 +48,14 @@ in
       man.enable = mkDefault true;
     };
 
+    # There is no `programs.nh` in nix-darwin so we set the NH_FLAKE env var manually
+    environment.variables = {
+      NH_FLAKE = cfg.flakePath;
+    };
+
     environment.systemPackages = builtins.attrValues {
       inherit (pkgs)
+        nh
         nix-diff
         nix-health
         # nix-index
