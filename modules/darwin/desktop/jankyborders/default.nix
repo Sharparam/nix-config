@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.desktop.jankyborders = {
-    enable = mkEnableOption "Enable janky borders.";
+    enable = mkEnableOption "janky borders";
   };
 
   config = mkIf cfg.enable {

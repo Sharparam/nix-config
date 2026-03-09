@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.google.chrome = with types; {
-    enable = mkEnableOption "Enable Google Chrome.";
+    enable = mkEnableOption "Google Chrome";
   };
 
   config = mkIf cfg.enable {

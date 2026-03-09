@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.telegram = {
-    enable = mkEnableOption "Enable Telegram.";
+    enable = mkEnableOption "Telegram";
   };
 
   config = mkIf cfg.enable {

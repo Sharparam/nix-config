@@ -13,7 +13,7 @@ let
 in
 {
   options.${namespace}.security.sops = with types; {
-    enable = mkEnableOption "Enable sops";
+    enable = mkEnableOption "sops";
     defaultSopsFile = mkOption {
       type = path;
       default = snowfall.fs.get-file "systems/${system}/${config.networking.hostName}/secrets.yml";

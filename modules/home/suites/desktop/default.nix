@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.suites.desktop = {
-    enable = mkEnableOption "Enable Desktop suite.";
+    enable = mkEnableOption "Desktop suite";
   };
 
   config = mkIf cfg.enable {

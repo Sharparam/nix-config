@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.obs = with types; {
-    enable = mkEnableOption "Enable OBS";
+    enable = mkEnableOption "OBS";
   };
 
   config = mkIf cfg.enable {

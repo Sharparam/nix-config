@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.services.openssh = with types; {
-    enable = mkEnableOption "Enable the OpenSSH service.";
+    enable = mkEnableOption "OpenSSH";
     authorizedKeys = mkOption {
       type = listOf str;
       default = [ ];

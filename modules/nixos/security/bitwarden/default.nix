@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.security.bitwarden = with types; {
-    enable = mkEnableOption "Enable Bitwarden";
+    enable = mkEnableOption "Bitwarden";
   };
 
   config = mkIf cfg.enable {

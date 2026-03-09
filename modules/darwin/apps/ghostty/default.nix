@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.ghostty = with types; {
-    enable = mkEnableOption "Enable ghostty.";
+    enable = mkEnableOption "ghostty";
   };
 
   config = mkIf cfg.enable {

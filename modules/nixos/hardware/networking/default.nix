@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.hardware.networking = with types; {
-    enable = mkEnableOption "Enable networkmanager";
+    enable = mkEnableOption "networkmanager";
   };
 
   config = mkIf cfg.enable {

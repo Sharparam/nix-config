@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.hardware.audio = with types; {
-    enable = mkEnableOption "Enable pipewire";
+    enable = mkEnableOption "pipewire";
   };
 
   config = mkIf cfg.enable {

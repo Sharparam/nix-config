@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.google.drive = with types; {
-    enable = mkEnableOption "Enable Google Drive.";
+    enable = mkEnableOption "Google Drive";
   };
 
   config = mkIf cfg.enable {

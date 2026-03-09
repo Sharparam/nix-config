@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.slack = with types; {
-    enable = mkEnableOption "Enable Slack";
+    enable = mkEnableOption "Slack";
   };
 
   config = mkIf cfg.enable {

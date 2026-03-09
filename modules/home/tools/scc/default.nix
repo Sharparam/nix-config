@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.tools.scc = {
-    enable = mkEnableOption "Enable scc.";
+    enable = mkEnableOption "scc";
   };
 
   config = mkIf cfg.enable {

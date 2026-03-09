@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.desktop.skhd = with types; {
-    enable = mkEnableOption "Enable skhd.";
+    enable = mkEnableOption "skhd";
     package = mkPackageOption pkgs "skhd";
     # logFile = mkOption {
     #   type = str;

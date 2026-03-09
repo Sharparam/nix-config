@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.services.openssh = with types; {
-    enable = mkEnableOption "Enable OpenSSH service";
+    enable = mkEnableOption "OpenSSH service";
   };
 
   config = mkIf cfg.enable {

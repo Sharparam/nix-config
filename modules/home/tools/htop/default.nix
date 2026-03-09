@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.tools.htop = {
-    enable = mkEnableOption "Enable htop.";
+    enable = mkEnableOption "htop";
   };
 
   config = mkIf cfg.enable {

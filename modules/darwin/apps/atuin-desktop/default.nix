@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.atuin-desktop = with types; {
-    enable = mkEnableOption "Enable atuin-desktop.";
+    enable = mkEnableOption "atuin-desktop";
   };
 
   config = mkIf cfg.enable {

@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.apps.neovim = with types; {
-    enable = mkEnableOption "Enable Neovim";
+    enable = mkEnableOption "Neovim";
     configPath = mkOption {
       type = str;
       default = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles/nvim/.config/nvim";

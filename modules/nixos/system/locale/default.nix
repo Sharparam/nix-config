@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.system.locale = {
-    enable = mkEnableOption "Enable locale configuration";
+    enable = mkEnableOption "locale configuration";
   };
 
   config = mkIf cfg.enable {

@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.postman = {
-    enable = mkEnableOption "Enable Postman";
+    enable = mkEnableOption "Postman";
   };
 
   config = mkIf cfg.enable {

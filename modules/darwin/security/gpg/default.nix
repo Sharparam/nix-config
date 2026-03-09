@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.security.gpg = with types; {
-    enable = mkEnableOption "Enable GPG";
+    enable = mkEnableOption "GPG";
     enableSSHSupport = mkOption {
       type = bool;
       default = false;

@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.azure-data-studio = with types; {
-    enable = mkEnableOption "Enable Azure Data Studio.";
+    enable = mkEnableOption "Azure Data Studio";
   };
 
   config = mkIf cfg.enable {

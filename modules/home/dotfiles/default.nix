@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.dotfiles = with types; {
-    enable = mkEnableOption "Enable dotfiles";
+    enable = mkEnableOption "dotfiles";
     dotfilesPath = mkOption {
       type = str;
       default = "${config.home.homeDirectory}/repos/github.com/Sharparam/nix-config/dotfiles";

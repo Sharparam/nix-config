@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.security._1password = with types; {
-    enable = mkEnableOption "Enable 1Password";
+    enable = mkEnableOption "1Password";
     enableSshAgent = mkEnableOption "SSH agent integration";
   };
 

@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.apps.discord = {
-    enable = mkEnableOption "Enable Discord.";
+    enable = mkEnableOption "Discord";
   };
 
   config = mkIf cfg.enable {

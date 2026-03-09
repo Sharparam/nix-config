@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.security.age = with types; {
-    enable = mkEnableOption "Enable (r)age";
+    enable = mkEnableOption "(r)age";
   };
 
   config = mkIf cfg.enable {

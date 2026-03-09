@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.tools.tokei = {
-    enable = mkEnableOption "Enable tokei.";
+    enable = mkEnableOption "tokei";
   };
 
   config = mkIf cfg.enable {

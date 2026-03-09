@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.apps.emacs = with types; {
-    enable = mkEnableOption "Enable emacs";
+    enable = mkEnableOption "emacs";
   };
 
   config = mkIf cfg.enable {

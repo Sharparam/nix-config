@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.dropbox = with types; {
-    enable = mkEnableOption "Enable Dropbox.";
+    enable = mkEnableOption "Dropbox";
   };
 
   config = mkIf cfg.enable {

@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.signal = {
-    enable = mkEnableOption "Enable Signal";
+    enable = mkEnableOption "Signal";
   };
 
   config = mkIf cfg.enable {

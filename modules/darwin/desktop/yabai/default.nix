@@ -13,7 +13,7 @@ let
 in
 {
   options.${namespace}.desktop.yabai = with types; {
-    enable = mkEnableOption "Enable yabai.";
+    enable = mkEnableOption "yabai";
     package = mkPackageOption pkgs "yabai";
     debug = mkOption {
       type = bool;

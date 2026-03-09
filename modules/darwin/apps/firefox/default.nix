@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.firefox = with types; {
-    enable = mkEnableOption "Enable Firefox.";
+    enable = mkEnableOption "Firefox";
     enableDeveloperEdition = mkOption {
       type = bool;
       default = false;

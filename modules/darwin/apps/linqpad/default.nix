@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.apps.linqpad = with types; {
-    enable = mkEnableOption "Enable LINQPad";
+    enable = mkEnableOption "LINQPad";
   };
 
   config = mkIf cfg.enable {

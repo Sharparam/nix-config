@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.etcher = with types; {
-    enable = mkEnableOption "Enable etcher";
+    enable = mkEnableOption "etcher";
   };
 
   config = mkIf cfg.enable {

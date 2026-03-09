@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.apps.spotify = with types; {
-    enable = mkEnableOption "Enable Spotify.";
+    enable = mkEnableOption "Spotify";
   };
 
   config = mkIf cfg.enable {

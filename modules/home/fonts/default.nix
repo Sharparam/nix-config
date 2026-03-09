@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.fonts = with types; {
-    enable = mkEnableOption "Enable home-manager font management.";
+    enable = mkEnableOption "home-manager font management";
   };
 
   config = mkIf cfg.enable {

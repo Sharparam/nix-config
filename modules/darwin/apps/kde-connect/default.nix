@@ -10,7 +10,7 @@ let
 in
 {
   options.${namespace}.apps.kde-connect = {
-    enable = mkEnableOption "Enable KDE Connect.";
+    enable = mkEnableOption "KDE Connect";
   };
 
   config = mkIf cfg.enable {

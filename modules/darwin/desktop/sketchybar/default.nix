@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.desktop.sketchybar = with types; {
-    enable = mkEnableOption "Enable sketchybar.";
+    enable = mkEnableOption "sketchybar";
     package = mkPackageOption pkgs "sketchybar";
     # logFile = mkOption {
     #   type = str;
