@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf mkPackageOption;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkPackageOption
+    optionalString
+    ;
   cfg = config.${namespace}.desktop.skhd;
 in
 {
