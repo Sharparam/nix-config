@@ -268,14 +268,15 @@ in
           ];
           tug = [
             "bookmark"
-            "move"
-            "--from"
-            "heads(::@- & bookmarks())"
-            "--to"
-            "@-"
+            "advance"
           ];
         };
+        revsets = {
+          bookmark-advance-to = "closest_pushable(@)";
+        };
         revset-aliases = {
+          "closest_pushable(to)" =
+            ''heads(::to & mutable() & ~description(exact:"") & (~empty() | merges()))'';
           "gh_pages()" = ''ancestors(remote_bookmarks(exact:"gh-pages"))'';
           "wip()" = ''description(glob:"wip:*")'';
           "private()" = ''description(glob:"private:*")'';
@@ -370,6 +371,7 @@ in
         gst = "${git} status";
 
         jb = "${jj} bookmark";
+        jba = "${jj} bookmark advance";
         jbc = "${jj} bookmark create";
         jbd = "${jj} bookmark delete";
         jbf = "${jj} bookmark forget";
