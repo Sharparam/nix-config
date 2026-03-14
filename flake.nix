@@ -1,142 +1,77 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  description = "Sharparam's Nix files";
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # stable.url = "github:NixOS/nixpkgs/nixos-25.11";
-    # stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # unstable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      # url = "github:nix-community/home-manager/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      # url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    snowfall-flake = {
-      url = "github:snowfallorg/flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix.url = "github:Mic92/sops-nix";
-
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-
     catppuccin = {
       url = "github:catppuccin/nix";
-      # url = "github:catppuccin/nix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    iosevka = {
-      url = "github:Sharparam/Iosevka/v1.0.1";
-      inputs.nixpkgs.follows = "nixpkgs";
+    cl-nix-lite = {
+      url = "github:hraban/cl-nix-lite";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
-
-    locale-en_se = {
-      url = "github:Sharparam/locale-en_se/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mac-app-util.url = "github:hraban/mac-app-util";
-
+    den.url = "github:vic/den";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    ghostty.url = "github:ghostty-org/ghostty";
-  };
-
-  outputs =
-    inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-
-        src = ./.;
-
-        snowfall = {
-          namespace = "snix";
-          meta = {
-            name = "snix";
-            title = "Sharparam's NixOS/nix-darwin/nix flake";
-          };
-        };
-      };
-    in
-    lib.mkFlake {
-      channels-config = {
-        allowUnfree = true;
-      };
-
-      overlays = [
-        inputs.snowfall-flake.overlays.default
-        inputs.nur.overlays.default
-        inputs.emacs-overlay.overlays.default
-        inputs.ghostty.overlays.default
-      ];
-
-      homes.modules = [
-        inputs.nix-index-database.homeModules.nix-index
-        inputs.sops-nix.homeManagerModules.sops
-        inputs.catppuccin.homeModules.catppuccin
-      ];
-
-      homes.users."sharparam@NINETECH-617128".modules = [
-        inputs.mac-app-util.homeManagerModules.default
-      ];
-
-      systems.modules = {
-        nixos = [
-          inputs.home-manager.nixosModules.home-manager
-          inputs.nix-index-database.nixosModules.nix-index
-          inputs.nur.modules.nixos.default
-          inputs.sops-nix.nixosModules.sops
-          inputs.catppuccin.nixosModules.catppuccin
-          inputs.locale-en_se.nixosModules.default
-        ];
-
-        darwin = [
-          inputs.home-manager.darwinModules.home-manager
-          inputs.nix-index-database.darwinModules.nix-index
-          inputs.sops-nix.darwinModules.sops
-          inputs.mac-app-util.darwinModules.default
-        ];
-      };
-
-      alias = {
-        shells = {
-          default = "dev";
-        };
-      };
-
-      outputs-builder = channels: {
-        formatter = inputs.treefmt-nix.lib.mkWrapper channels.nixpkgs ./treefmt.nix;
+    flake-aspects.url = "github:vic/flake-aspects";
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    import-tree.url = "github:vic/import-tree";
+    iosevka = {
+      url = "github:Sharparam/Iosevka/v1.0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    locale-en_se = {
+      url = "github:Sharparam/locale-en_se/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs = {
+        cl-nix-lite.follows = "cl-nix-lite";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs-lib.follows = "nixpkgs";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    systems.url = "github:nix-systems/default";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 }

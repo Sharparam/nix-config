@@ -1,8 +1,0 @@
-#!/usr/bin/env lua
-
---[[
-  Mostly following FelixKratz's config:
-  https://github.com/FelixKratz/dotfiles/tree/master/.config/sketchybar
-]]
-
-require "init"
