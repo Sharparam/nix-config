@@ -2,27 +2,23 @@
   description = "Sharparam's Nix files";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    # stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    # stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    # stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # unstable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      # url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
+      # url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    lix = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.1.tar.gz";
+      url = "github:nix-darwin/nix-darwin";
+      # url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,7 +47,8 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     catppuccin = {
-      url = "github:catppuccin/nix/release-25.05";
+      url = "github:catppuccin/nix";
+      # url = "github:catppuccin/nix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
