@@ -27,7 +27,6 @@ in
         };
 
         NSGlobalDomain = {
-          _HIHideMenuBar = config.${namespace}.desktop.sketchybar.enable;
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
           AppleShowScrollBars = "Automatic";
@@ -35,7 +34,6 @@ in
         };
 
         WindowManager = {
-          # EnableStandardClickToShowDesktop = !config.${namespace}.desktop.yabai.enable;
           EnableStandardClickToShowDesktop = false;
           StandardHideDesktopIcons = true;
         };

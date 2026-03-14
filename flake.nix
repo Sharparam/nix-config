@@ -130,10 +130,6 @@
       };
 
       alias = {
-        packages = {
-          default = "scripts";
-        };
-
         shells = {
           default = "dev";
         };

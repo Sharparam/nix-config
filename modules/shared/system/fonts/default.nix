@@ -64,7 +64,6 @@ in
 
           iosevka-sharpie = inputs.iosevka.packages.${system}.bin;
         }
-        ++ optional pkgs.stdenv.isDarwin pkgs.sketchybar-app-font
         ++ cfg.fonts;
     };
   };

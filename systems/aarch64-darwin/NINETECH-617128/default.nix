@@ -3,8 +3,6 @@
   ...
 }:
 {
-  # TODO: Finish setup when laptop is actually received
-
   ${namespace} = {
     archetypes = {
       work.enable = true;
@@ -12,12 +10,6 @@
 
     security = {
       _1password.enableSshAgent = true;
-    };
-
-    desktop = {
-      # jankyborders.enable = true;
-      # yabai.enable = true;
-      # sketchybar.enable = true;
     };
 
     apps = {

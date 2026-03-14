@@ -24,7 +24,6 @@ in
   config = mkIf cfg.enable {
     system.configurationRevision = rev;
     environment.systemPackages = [
-      pkgs.snix.scripts
       pkgs.catppuccin-cursors.frappeDark
     ];
     services = {
