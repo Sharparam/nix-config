@@ -4,7 +4,7 @@
     { pkgs, ... }:
     {
       services.xserver = {
-        enable = lib.mkDefault true;
+        enable = lib.mkDefault false;
         excludePackages = lib.mkDefault [ pkgs.xterm ];
       };
     };
