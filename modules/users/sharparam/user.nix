@@ -22,7 +22,7 @@
     homeManager = {
       home.file =
         let
-          profile = ../../assets/sharparam/profile.png;
+          profile = ../../../assets/sharparam/profile.png;
         in
         {
           ".face".source = profile;
