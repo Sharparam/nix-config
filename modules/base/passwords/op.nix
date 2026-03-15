@@ -8,6 +8,13 @@
         "1password"
         "1password-gui"
       ])
+
+      (
+        { _host, user }:
+        {
+          nixos.programs._1password-gui.polkitPolicyOwners = [ user.name ];
+        }
+      )
     ];
 
     os = {
@@ -19,8 +26,6 @@
         _1password.enable = true;
         _1password-gui = {
           enable = true;
-          # TODO: Figure out how to not hardcode this
-          polkitPolicyOwners = [ "sharparam" ];
         };
       };
     };
