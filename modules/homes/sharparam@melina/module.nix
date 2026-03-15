@@ -62,6 +62,8 @@ in
           hx = "helix";
           rbbi = "bundle install";
           rsync = "rsync --info=progress2 --partial -h";
+          vi = "nvim";
+          vim = "nvim";
           zed = "zeditor";
         };
 
