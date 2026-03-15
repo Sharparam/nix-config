@@ -55,12 +55,6 @@
               zshrcd
             ];
           plugins = [
-            {
-              name = "zsh-nix-shell";
-              src = pkgs.zsh-nix-shell;
-              file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
-            }
-
             # zsh-vi-mode overwrites other bindings:
             # https://github.com/jeffreytse/zsh-vi-mode/issues/299
             # See workaround:
