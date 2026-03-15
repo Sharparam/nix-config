@@ -10,6 +10,12 @@
             enable = true;
             package = pkgs.lixPackageSets.latest.nix-direnv;
           };
+          config = {
+            global = {
+              load_dotenv = true;
+              strict_env = true;
+            };
+          };
         };
       };
   };
