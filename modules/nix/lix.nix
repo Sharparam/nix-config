@@ -7,7 +7,8 @@
           (_final: prev: {
             inherit (prev.lixPackageSets.latest)
               nixpkgs-review
-              nix-direnv
+              # https://git.lix.systems/lix-project/lix/issues/980
+              # nix-direnv
               nix-eval-jobs
               nix-fast-build
               colmena
