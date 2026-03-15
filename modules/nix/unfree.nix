@@ -1,3 +1,4 @@
+{ __findFile, ... }:
 {
   den.default = {
     os = {

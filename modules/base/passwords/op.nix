@@ -1,5 +1,15 @@
+{ __findFile, ... }:
 {
   den.aspects.base = {
+    includes = [
+      (<den/unfree> [
+        "_1password"
+        "_1password-gui"
+        "1password"
+        "1password-gui"
+      ])
+    ];
+
     os = {
 
     };

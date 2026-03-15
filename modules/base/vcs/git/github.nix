@@ -1,3 +1,4 @@
+{ __findFile, ... }:
 let
   githubUsername = "Sharparam";
   sessionVariables = {
@@ -6,6 +7,10 @@ let
 in
 {
   den.aspects.base = {
+    includes = [
+      (<den/unfree> [ "github-copilot-cli" ])
+    ];
+
     homeManager =
       { pkgs, ... }:
       {
