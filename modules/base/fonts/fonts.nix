@@ -112,10 +112,16 @@ in
 
         xdg.configFile."fontconfig/conf.d/99-local-fonts.conf".source = ./99-local-fonts.conf;
 
-        home.activation.ensureDummyFontConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          mkdir -p "$HOME/.config/fontconfig/conf.d"
-          run cp $VERBOSE_ARG ${builtins.toPath ./00-dummy.conf} "$HOME/.config/fontconfig/conf.d/00-dummy.conf"
-        '';
+        home.activation.ensureDummyFontConfig =
+          let
+            dummyPath = "$HOME/.config/fontconfig/conf.d/00-dummy.conf";
+          in
+          lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            mkdir -p "$HOME/.config/fontconfig/conf.d"
+            run rm $VERBOSE_ARG --force "${dummyPath}"
+            run cp $VERBOSE_ARG ${builtins.toPath ./00-dummy.conf} "${dummyPath}"
+            run chmod $VERBOSE_ARG 644 "${dummyPath}"
+          '';
       };
   };
 }
