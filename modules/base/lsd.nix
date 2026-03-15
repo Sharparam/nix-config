@@ -1,6 +1,6 @@
 let
   lsdAliases = lsd: {
-    ls = "${lsd}/bin/lsd --group-dirs first";
+    ls = "${lsd} --group-dirs first";
     l = "ls --online --all";
     ll = "ls --long";
     la = "ls --all";
