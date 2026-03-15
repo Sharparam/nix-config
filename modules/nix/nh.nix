@@ -3,7 +3,7 @@
 let
   keepCount = 3;
   keepAge = "7d";
-  cleanArgs = "--keep ${builtins.toString keepCount} --keep-since ${keepAge}";
+  cleanArgs = "--keep ${toString keepCount} --keep-since ${keepAge}";
 in
 {
   perSystem =
