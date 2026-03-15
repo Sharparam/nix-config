@@ -6,10 +6,12 @@ keys:
   - &yubikey_gpg 644DC3F0338A5555C13AB8E402CE50D93CB7C819
   - &hosts '':
       - &NINETECH-617128 age1h6e7jeedt3a3wwytnrgk56pnd843cfytpk66n704n6hh2usweuqshvsg9f # ssh_host_ed25519_key.pub
+  - &sharparam-melina age16g2zvy59h3u6ad7clvzupsds96un7thgnm7p8xz6g3alv28lyghsquttza
 creation_rules:
   - path_regex: ^modules/secrets/secrets.(ya?ml|json|env|ini)$
     key_groups:
       - age:
           - *yk_main_age
           - *yk_backup_age
+          - *sharparam-melina
           - *NINETECH-617128
