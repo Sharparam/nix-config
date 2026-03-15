@@ -1,6 +1,7 @@
 # https://nix.catppuccin.com/
-{ inputs, ... }:
+{ inputs, lib, ... }:
 let
+  inherit (lib) mkDefault;
   # latte, frappe, macchiato, mocha
   flavor = "frappe";
   accent = "mauve";
@@ -24,8 +25,8 @@ in
 
         catppuccin = {
           enable = true;
-          inherit accent;
-          inherit flavor;
+          accent = mkDefault accent;
+          flavor = mkDefault flavor;
           cache.enable = true;
           cursors.enable = true;
         };
@@ -39,8 +40,8 @@ in
 
       catppuccin = {
         enable = true;
-        inherit accent;
-        inherit flavor;
+        accent = mkDefault accent;
+        flavor = mkDefault flavor;
 
         nvim.enable = false;
 

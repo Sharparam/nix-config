@@ -77,6 +77,10 @@ in
             ;
         };
 
+        catppuccin = {
+          flavor = "macchiato";
+        };
+
         programs = {
           bash.package = null;
           bun.enable = true;
