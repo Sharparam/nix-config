@@ -1,7 +1,10 @@
 { __findFile, inputs, ... }:
 {
   den.hosts.x86_64-linux.nixos = {
-    users.sharparam = { };
+    users = {
+      root = { };
+      sharparam = { };
+    };
   };
 
   den.aspects.nixos = {
