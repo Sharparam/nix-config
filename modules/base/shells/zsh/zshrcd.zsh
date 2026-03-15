@@ -7,8 +7,8 @@ typeset -ga _zshrcd=(
 )
 
 if [[ ! -e "$_zshrcd[1]" ]]; then
-  echo >&2 "zshrc.d: dir not found '${ZSHRCD:-${ZDOTDIR:-$HOME}/.zshrc.d}'."
-  return 1
+  # echo >&2 "zshrc.d: dir not found '${ZSHRCD:-${ZDOTDIR:-$HOME}/.zshrc.d}'."
+  return 0
 fi
 
 typeset -ga _zshrcd=("$_zshrcd[1]"/*.{sh,zsh}(N))
