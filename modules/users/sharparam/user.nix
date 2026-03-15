@@ -2,6 +2,8 @@
 {
   den.aspects.sharparam = {
     includes = [
+      <sharparam/gpg>
+
       <nix-allowed-user>
       <nix-trusted-user>
       <den/primary-user>

@@ -30,6 +30,8 @@ in
 
   den.aspects."${username}@${hostname}" = {
     includes = [
+      <sharparam/gpg>
+
       <base>
       <ssh/home>
 

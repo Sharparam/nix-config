@@ -2,7 +2,6 @@ let
   defaultFullName = "Adam Hellberg";
   defaultEmail = "sharparam@sharparam.com";
   _1PasswordPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZcQxmr5ZfF/d0YqEZfhr0ZjuHUjxKBf7YgVjYqS+gE";
-  gpgKeyId = "C58C41E27B00AD04";
   defaultGitSigningKey = "key::${_1PasswordPublicKey}";
   defaultJjSigningKey = _1PasswordPublicKey;
   defaultAuthorizedKeys = [
@@ -46,18 +45,6 @@ let
           }
         );
       };
-      gpg = mkOption {
-        type = types.attrsOf (
-          types.submodule {
-            options = {
-              keyId = mkOption {
-                type = types.nullOr types.str;
-                default = gpgKeyId;
-              };
-            };
-          }
-        );
-      };
       ssh = mkOption {
         type = types.attrsOf (
           types.submodule {
@@ -93,7 +80,6 @@ in
           email = mkDefault defaultEmail;
           git.signingKey = mkDefault defaultGitSigningKey;
           jujutsu.signingKey = mkDefault defaultJjSigningKey;
-          gpg.keyId = mkDefault gpgKeyId;
           ssh = {
             publicKey = mkDefault _1PasswordPublicKey;
             authorizedKeys = mkDefault defaultAuthorizedKeys;
@@ -117,7 +103,6 @@ in
           email = mkDefault defaultEmail;
           git.signingKey = mkDefault defaultGitSigningKey;
           jujutsu.signingKey = mkDefault defaultJjSigningKey;
-          gpg.keyId = mkDefault gpgKeyId;
           ssh = {
             publicKey = mkDefault _1PasswordPublicKey;
             authorizedKeys = mkDefault defaultAuthorizedKeys;
