@@ -12,6 +12,7 @@
             nix-prefetch-git
             nixd
             nixfmt
+            nurl
             nvd
             # comma
             cachix
