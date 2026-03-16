@@ -5,11 +5,12 @@
       {
         environment.systemPackages =
           let
-            net10 = pkgs.dotnetCorePackages.sdk_10_0;
-            net8 = pkgs.dotnetCorePackages.sdk_8_0;
+            dotnetPackages = pkgs.dotnetCorePackages;
+            net10 = dotnetPackages.sdk_10_0;
+            net8 = dotnetPackages.sdk_8_0;
           in
           [
-            (pkgs.combinePackages [
+            (dotnetPackages.combinePackages [
               net10
               net8
             ])
