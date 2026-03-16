@@ -14,8 +14,6 @@ in
       <base>
       <work>
 
-      <ssh/home>
-
       <apps/dropbox>
       <apps/etcher>
       <apps/google-chrome>
