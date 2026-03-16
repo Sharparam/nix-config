@@ -1,10 +1,11 @@
+{ lib, ... }:
 {
   den.aspects.base = {
     homeManager = {
       programs = {
         tmux = {
-          enable = true;
-          clock24 = true;
+          enable = lib.mkDefault true;
+          clock24 = lib.mkDefault true;
         };
 
         bash.initExtra = ''

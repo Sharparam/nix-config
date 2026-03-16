@@ -24,11 +24,11 @@ in
         ];
 
         catppuccin = {
-          enable = true;
+          enable = mkDefault true;
           accent = mkDefault accent;
           flavor = mkDefault flavor;
-          cache.enable = true;
-          cursors.enable = true;
+          cache.enable = mkDefault true;
+          cursors.enable = mkDefault true;
         };
       };
 
@@ -39,14 +39,14 @@ in
       imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
       catppuccin = {
-        enable = true;
+        enable = mkDefault true;
         accent = mkDefault accent;
         flavor = mkDefault flavor;
 
-        nvim.enable = false;
+        nvim.enable = mkDefault false;
 
         # We manage this manually to ensure correct load order
-        zsh-syntax-highlighting.enable = false;
+        zsh-syntax-highlighting.enable = mkDefault false;
       };
     };
   };
