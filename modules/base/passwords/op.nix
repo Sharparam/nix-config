@@ -10,7 +10,7 @@
       ])
 
       (
-        { _host, user }:
+        { host, user }:
         {
           nixos.programs._1password-gui.polkitPolicyOwners = [ user.name ];
         }

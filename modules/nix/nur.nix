@@ -8,7 +8,7 @@
   den.default = {
     includes = [
       (
-        { _home }:
+        { home }:
         {
           homeManager.nixpkgs.overlays = [ inputs.nur.overlays.default ];
         }

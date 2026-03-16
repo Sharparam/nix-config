@@ -1,7 +1,7 @@
 {
   den.aspects.base.includes = [
     (
-      { _host, user }:
+      { host, user }:
       {
         homeManager =
           { lib, ... }:
