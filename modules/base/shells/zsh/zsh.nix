@@ -64,11 +64,12 @@
               src = pkgs.zsh-vi-mode;
               file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
             }
-            {
-              name = "zsh-catppuccin-syntax-highlighting";
-              src = config.catppuccin.sources.zsh-syntax-highlighting;
-              file = "catppuccin_${config.catppuccin.zsh-syntax-highlighting.flavor}-zsh-syntax-highlighting.zsh";
-            }
+            # Only works for normal syntax highlight, not fast
+            # {
+            #   name = "zsh-catppuccin-syntax-highlighting";
+            #   src = config.catppuccin.sources.zsh-syntax-highlighting;
+            #   file = "catppuccin_${config.catppuccin.zsh-syntax-highlighting.flavor}-zsh-syntax-highlighting.zsh";
+            # }
             {
               name = "zsh-fast-syntax-highlighting";
               src = pkgs.zsh-fast-syntax-highlighting;
