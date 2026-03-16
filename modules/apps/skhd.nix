@@ -2,7 +2,7 @@
   den.aspects.apps.provides.skhd = {
     includes = [
       (
-        { user }:
+        { host, user }:
         {
           darwin = {
             system.activationScripts.postActivation.text = ''
