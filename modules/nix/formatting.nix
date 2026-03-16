@@ -24,12 +24,27 @@
           statix.enable = true;
           # nixf-diagnose.enable = true;
 
-          biome.enable = true;
+          biome = {
+            enable = true;
+            settings = {
+              formatter = {
+                useEditorconfig = true;
+              };
+            };
+          };
           # jsonfmt.enable = true;
           just.enable = true;
-          # prettier.enable = true;
+          # prettier = {
+          #   enable = true;
+          #   settings = {
+          #     editorconfig = true;
+          #   };
+          # };
           shellcheck.enable = true;
-          shfmt.enable = true;
+          shfmt = {
+            enable = true;
+            useEditorConfig = true;
+          };
           yamlfmt.enable = true; # Not supported by Biome yet
         };
         settings = {
