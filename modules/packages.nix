@@ -15,32 +15,29 @@
   perSystem =
     { config, system, ... }:
     {
-      # _module.args.pkgs = import inputs.nixpkgs {
-      #   inherit system;
-      #   overlays = [
-      #     (final: prev: {
-      #       local = config.packages;
-      #     })
-      #   ];
-      #   # overlays = [ inputs.self.overlays.default ];
-      # };
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        overlays = [ inputs.self.overlays.default ];
+      };
 
       pkgsDirectory = ../pkgs/by-name;
     };
 
-  flake = {
-    overlays.default =
-      _final: prev:
-      withSystem prev.stdenv.hostPlatform.system (
-        { config, ... }:
-        {
-          local = config.packages;
-        }
-      );
+  flake.overlays.default = _final: prev: {
+    local = withSystem prev.stdenv.hostPlatform.system ({ config, ... }: config.packages);
   };
 
   den.default = {
-    nixos = {
+    includes = [
+      (
+        { home }:
+        {
+          homeManager.nixpkgs.overlays = [ inputs.self.overlays.default ];
+        }
+      )
+    ];
+
+    os = {
       nixpkgs.overlays = [
         inputs.self.overlays.default
       ];
