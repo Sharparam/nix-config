@@ -6,7 +6,7 @@
       <nix-trusted-user>
       (<den/user-shell> "zsh")
 
-      <base>
+      # <base>
     ];
   };
 }
