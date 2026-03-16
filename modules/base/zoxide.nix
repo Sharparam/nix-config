@@ -1,26 +1,30 @@
-{
-  den.aspects.base = {
-    homeManager =
-      let
-        cmd = "j";
-      in
-      {
-        programs.zoxide = {
-          enable = true;
-          options = [ "--cmd ${cmd}" ];
-        };
+let
+  cmd = "j";
 
-        programs.bash.initExtra = ''
-          pj() {
-            pushd "$(${cmd} -e $@)"
-          }
-        '';
-
-        programs.zsh.siteFunctions = {
-          pj = ''
-            pushd "$(${cmd} -e $@)"
-          '';
-        };
+  homeAspect = {
+    homeManager = {
+      programs.zoxide = {
+        enable = true;
+        options = [ "--cmd ${cmd}" ];
       };
+
+      programs.bash.initExtra = ''
+        pj() {
+          pushd "$(${cmd} -e $@)"
+        }
+      '';
+
+      programs.zsh.siteFunctions = {
+        pj = ''
+          pushd "$(${cmd} -e $@)"
+        '';
+      };
+    };
+  };
+in
+{
+  den.aspects.base.provides = {
+    user = homeAspect;
+    home = homeAspect;
   };
 }

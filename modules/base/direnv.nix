@@ -1,5 +1,8 @@
-{
-  den.aspects.base = {
+{ lib, ... }:
+let
+  inherit (lib) mkDefault;
+
+  homeAspect = {
     homeManager =
       { pkgs, ... }:
       {
@@ -8,7 +11,7 @@
           mise.enable = true;
           nix-direnv = {
             enable = true;
-            package = pkgs.lixPackageSets.latest.nix-direnv;
+            package = mkDefault pkgs.lixPackageSets.latest.nix-direnv;
           };
           config = {
             global = {
@@ -18,5 +21,11 @@
           };
         };
       };
+  };
+in
+{
+  den.aspects.base.provides = {
+    user = homeAspect;
+    home = homeAspect;
   };
 }
