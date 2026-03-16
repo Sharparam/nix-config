@@ -51,9 +51,6 @@ in
     homeManager =
       { pkgs, ... }:
       {
-        home.username = username;
-        home.homeDirectory = "/home/${username}";
-
         home.sessionPath = [
           "$HOME/.config/emacs/bin"
         ];
