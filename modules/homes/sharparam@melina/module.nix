@@ -35,6 +35,8 @@ in
       <base>
       <ssh/home>
 
+      <catppuccin>
+
       <apps/ast-grep>
       <apps/codespelunker>
       <apps/just>
