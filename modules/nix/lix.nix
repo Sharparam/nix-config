@@ -7,7 +7,7 @@ let
       # nix-direnv
       nix-eval-jobs
       nix-fast-build
-      nurl
+      # nurl
       colmena
       ;
 
