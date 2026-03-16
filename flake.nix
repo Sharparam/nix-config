@@ -16,6 +16,10 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
+    darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     den.url = "github:vic/den";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
@@ -48,10 +52,6 @@
         systems.follows = "systems";
         treefmt-nix.follows = "treefmt-nix";
       };
-    };
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
