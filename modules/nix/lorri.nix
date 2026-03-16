@@ -8,7 +8,7 @@
       { pkgs, ... }:
       {
         services.lorri = {
-          enable = true;
+          enable = pkgs.stdenv.isLinux;
           nixPackage = pkgs.lixPackageSets.latest.lix;
         };
       };
