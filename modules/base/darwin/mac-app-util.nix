@@ -1,5 +1,11 @@
-{ inputs, lib, ... }:
 {
+  inputs,
+  lib,
+  den,
+  ...
+}:
+let
+  inherit (den.lib) take;
   flake-file.inputs.mac-app-util = {
     url = lib.mkDefault "github:hraban/mac-app-util";
     inputs = {
@@ -18,25 +24,36 @@
   #   };
   # };
 
-  den.aspects.base = {
-    includes = [
+  darwinAspect = (
+    take.exactly (
+      { host }:
+      {
+        darwin = {
+          imports = [
+            inputs.mac-app-util.darwinModules.default
+          ];
+        };
+      }
+    )
+  );
 
-    ];
-
-    darwin = {
-      imports = [
-        inputs.mac-app-util.darwinModules.default
-      ];
-
-      # home-manager.imports = [
-      #   inputs.mac-app-util.homeManagerModules.default
-      # ];
-    };
-
+  hmAspect = {
     homeManager = {
       imports = [
         inputs.mac-app-util.homeManagerModules.default
       ];
     };
+  };
+
+  homeUserAspect = (take.exactly ({ host, user }: hmAspect));
+  homeAspect = take.exactly ({ home }: hmAspect);
+in
+{
+  inherit flake-file;
+
+  den.aspects.base = {
+    provides.host.includes = [ darwinAspect ];
+    provides.user.includes = [ homeUserAspect ];
+    provides.home.includes = [ homeAspect ];
   };
 }

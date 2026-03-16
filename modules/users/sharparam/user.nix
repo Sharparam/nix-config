@@ -10,6 +10,8 @@
       (<den/user-shell> "zsh")
 
       <base>
+      <base/user>
+
       <catppuccin>
       <ssh/home>
       <dev>

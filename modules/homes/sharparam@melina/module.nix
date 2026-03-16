@@ -33,6 +33,8 @@ in
       <sharparam/gpg>
 
       <base>
+      <base/home>
+
       <ssh/home>
 
       <catppuccin>

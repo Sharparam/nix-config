@@ -12,6 +12,7 @@ in
   den.aspects.${hostname} = {
     includes = [
       <base>
+      <base/host>
       <work>
 
       <apps/dropbox>
