@@ -6,6 +6,7 @@
 
       <nix-allowed-user>
       <nix-trusted-user>
+      <den/define-user>
       <den/primary-user>
       (<den/user-shell> "zsh")
 

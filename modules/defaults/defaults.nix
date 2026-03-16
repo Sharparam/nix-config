@@ -5,7 +5,6 @@ in
 {
   den.default = {
     includes = [
-      <den/define-user>
       <den/hostname>
     ];
 
