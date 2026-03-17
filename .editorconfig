@@ -5,6 +5,14 @@ indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[justfile]
+# indent size is hardcoded in `just --fmt` and vscode extension
+# see https://github.com/casey/just/issues/2071
+# see https://github.com/nefrob/vscode-just/issues/94
+# set a matching value here so that indenting with tab key in editors
+# behaves better in line with the formatting that will apply on save
+indent_size = 4
+
 [Makefile]
 indent_style = tab
 tab_width = 2

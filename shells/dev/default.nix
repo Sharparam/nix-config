@@ -1,8 +1,0 @@
-{
-  mkShell,
-  ...
-}:
-mkShell {
-  packages = [
-  ];
-}
