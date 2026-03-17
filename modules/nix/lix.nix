@@ -24,6 +24,16 @@ let
     );
   };
 
+  subs = {
+    substituters = [
+      "https://cache.lix.systems"
+    ];
+
+    trusted-public-keys = [
+      "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+    ];
+  };
+
   hmAspect =
     { home }:
     {
@@ -38,13 +48,19 @@ in
       {
         nixpkgs.overlays = [ overlay ];
 
-        nix.package = pkgs.lixPackageSets.latest.lix;
+        nix = {
+          package = pkgs.lixPackageSets.latest.lix;
+          settings = subs;
+        };
       };
 
     homeManager =
       { pkgs, ... }:
       {
-        nix.package = lib.mkDefault pkgs.lixPackageSets.latest.lix;
+        nix = {
+          package = lib.mkDefault pkgs.lixPackageSets.latest.lix;
+          settings = subs;
+        };
       };
   };
 }
