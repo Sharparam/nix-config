@@ -18,7 +18,7 @@
       <apps/sublime-merge>
       <apps/tokei>
       <apps/uv>
-      <apps/vscode>
+      # <apps/vscode> # Handle this manually for now
     ];
   };
 }
