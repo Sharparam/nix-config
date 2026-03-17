@@ -8,6 +8,7 @@ keys:
   - &hosts "":
       - &NINETECH-617128 age1g7s9am5yr04vkwlc4g5px78xah75klvxxewu2ulqwfel38vzwcrs93j4fa # ssh_host_ed25519_key.pub
   - &sharparam-melina age16g2zvy59h3u6ad7clvzupsds96un7thgnm7p8xz6g3alv28lyghsquttza
+  - &sharparam-NINETECH-617128 age1jvuz0793ctmz5s5zuw6kqswve6l93z6dlmnuxjdjy70ewzetq3rq7du6je
 creation_rules:
   - path_regex: ^modules/secrets/secrets.(ya?ml|json|env|ini)$
     key_groups:
@@ -17,3 +18,4 @@ creation_rules:
           - *yk_5c_main_age
           - *sharparam-melina
           - *NINETECH-617128
+          - *sharparam-NINETECH-617128
