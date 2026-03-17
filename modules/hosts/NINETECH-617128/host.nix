@@ -18,21 +18,11 @@ in
       <apps/dropbox>
       <apps/etcher>
       <apps/google-chrome>
+      <apps/obs>
       <apps/skhd>
       <apps/steermouse>
       <apps/sweet-home3d>
     ];
-
-    # TODO: Enable apps
-    # archetypes = {
-    #   work.enable = true;
-    # };
-    # apps = {
-    #   etcher.enable = true;
-    #   # linqpad.enable = true;
-    #   obs.enable = true;
-    #   sweet-home3d.enable = true;
-    # };
 
     darwin = {
       system.stateVersion = 6;
