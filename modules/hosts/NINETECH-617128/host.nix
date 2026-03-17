@@ -33,13 +33,15 @@ in
         environment.systemPackages = [ pkgs.local.fix-keyboard ];
       };
 
-    homeManager = {
-      programs.ghostty.settings.font-size = 14;
+    provides.to-users = {
+      homeManager = {
+        programs.ghostty.settings.font-size = 14;
 
-      # vscode.fhs doesn't work on nix-darwin
-      programs.vscode.enable = false;
+        # vscode.fhs doesn't work on nix-darwin
+        programs.vscode.enable = false;
 
-      home.stateVersion = "24.11";
+        home.stateVersion = "24.11";
+      };
     };
   };
 }

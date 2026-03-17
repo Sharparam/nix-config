@@ -20,4 +20,10 @@
     den.provides.inputs'
     den.provides.self'
   ];
+
+  den.ctx.user = {
+    includes = [
+      den.provides.mutual-provider
+    ];
+  };
 }
