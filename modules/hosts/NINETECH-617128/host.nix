@@ -40,7 +40,7 @@ in
         # vscode.fhs doesn't work on nix-darwin
         programs.vscode.enable = false;
 
-        home.stateVersion = "24.11";
+        home.stateVersion = "25.11";
       };
     };
   };
