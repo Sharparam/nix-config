@@ -87,7 +87,7 @@
         #   };
         # };
 
-        home.sessionPath = [
+        home.sessionPath = lib.mkDefault [
           "\${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin"
         ];
 
