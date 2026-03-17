@@ -16,6 +16,7 @@ in
 
       <apps/dropbox>
       <apps/etcher>
+      <apps/firefox>
       <apps/google-chrome>
       <apps/obs>
       <apps/skhd>

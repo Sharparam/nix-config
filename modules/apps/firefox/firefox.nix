@@ -10,7 +10,7 @@
       { lib, pkgs, ... }:
       {
         programs.firefox = {
-          enable = true;
+          enable = lib.mkDefault (!pkgs.stdenv.isDarwin);
           policies = {
             HttpsOnlyMode = "enabled";
             OfferToSaveLogins = false;
