@@ -30,6 +30,11 @@ in
 
   den.aspects."${username}@${hostname}" = {
     includes = [
+      <nix-allowed-user>
+      <nix-trusted-user>
+      <den/define-user>
+      (<den/user-shell> "zsh")
+
       <sharparam/gpg>
 
       <base>
