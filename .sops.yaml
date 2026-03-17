@@ -1,11 +1,11 @@
 keys:
   # YubiKey age plugin is not supported by sops
-  - &yubikeys_age '':
+  - &yubikeys_age "":
       - &yk_main_age age1yubikey1qf2pqf4uhz9nhppcvsg0wl6d24nmrc8wthz6rnthkv0s96th8a9mzqhgul5 # 5 NFC Main
       - &yk_backup_age age1yubikey1q08fhw5fzt7a24ehl6nk92va6matuqd37h3e294kmum66mucq5wkkfhcjwx # 5 NFC Backup
       - &yk_5c_main_age age1yubikey1q2dcpyyfhhj6veu9zct8kvxs97nul3jnefvyz5vx9z4382xuujdcyxygj35
   - &yubikey_gpg 644DC3F0338A5555C13AB8E402CE50D93CB7C819
-  - &hosts '':
+  - &hosts "":
       - &NINETECH-617128 age1h6e7jeedt3a3wwytnrgk56pnd843cfytpk66n704n6hh2usweuqshvsg9f # ssh_host_ed25519_key.pub
   - &sharparam-melina age16g2zvy59h3u6ad7clvzupsds96un7thgnm7p8xz6g3alv28lyghsquttza
 creation_rules:
