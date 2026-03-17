@@ -24,10 +24,14 @@ in
       <apps/sweet-home3d>
     ];
 
-    darwin = {
-      system.stateVersion = 6;
-      environment.systemPath = [ "/opt/homebrew/bin" ];
-    };
+    darwin =
+      { pkgs, ... }:
+      {
+        system.stateVersion = 6;
+        environment.systemPath = [ "/opt/homebrew/bin" ];
+
+        environment.systemPackages = [ pkgs.local.fix-keyboard ];
+      };
 
     homeManager = {
       programs.ghostty.settings.font-size = 14;
