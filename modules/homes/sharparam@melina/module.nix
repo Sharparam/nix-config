@@ -48,6 +48,7 @@ in
       <apps/codespelunker>
       <apps/just>
       <apps/mise>
+      <apps/neovim>
       <apps/scc>
       <apps/tokei>
       <apps/uv>
