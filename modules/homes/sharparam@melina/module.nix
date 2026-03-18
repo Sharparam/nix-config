@@ -25,7 +25,7 @@ let
 in
 {
   den.homes.x86_64-linux."${username}@${hostname}" = {
-
+    userName = username;
   };
 
   den.aspects."${username}@${hostname}" = {
