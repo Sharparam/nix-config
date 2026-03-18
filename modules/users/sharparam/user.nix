@@ -16,6 +16,8 @@
       <catppuccin>
       <ssh/home>
       <dev>
+
+      <ai/claude>
     ];
 
     darwin = {
