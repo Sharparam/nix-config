@@ -1,5 +1,12 @@
 # nix-config
 
+[![GitHub Repo][repo-github-badge]][repo-github]
+[![GitLab Repo][repo-gitlab-badge]][repo-gitlab]
+[![Codeberg Repo][repo-codeberg-badge]][repo-codeberg]
+[![Tangled Repo][repo-tangled-badge]][repo-tangled]
+
+[![MPL-2.0 License][mpl-2.0-badge]][mpl-2.0]
+
 My Nix config/dotfiles.
 
 ## Acknowledgements
@@ -33,8 +40,17 @@ This Source Code Form is subject to the terms of the [Mozilla Public
 License, v. 2.0][mpl-2.0]. If a copy of the MPL was not distributed with this
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+[repo-github]: https://github.com/Sharparam/nix-config
+[repo-gitlab]: https://gitlab.com/Sharparam/nix-config
+[repo-codeberg]: https://codeberg.org/Sharparam/nix-config
+[repo-tangled]: https://tangled.org/sharparam.com/nix-config
+[repo-github-badge]: https://img.shields.io/badge/GitHub-gray?logo=github&style=for-the-badge
+[repo-gitlab-badge]: https://img.shields.io/badge/GitLab-gray?logo=gitlab&style=for-the-badge
+[repo-codeberg-badge]: https://img.shields.io/badge/Codeberg-gray?logo=codeberg&style=for-the-badge
+[repo-tangled-badge]: https://img.shields.io/badge/Tangled-gray?style=for-the-badge
 [sharparam]: https://sharparam.com
 [mpl-2.0]: https://mozilla.org/MPL/2.0/
+[mpl-2.0-badge]: https://img.shields.io/badge/License-MPL--2.0-darkgreen.svg?style=for-the-badge
 [den]: https://den.oeiuwq.com/
 [dendritic]: https://github.com/mightyiam/dendritic
 [snowfall-lib]: https://snowfall.org/guides/lib/quickstart/
