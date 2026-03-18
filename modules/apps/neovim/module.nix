@@ -73,6 +73,7 @@ let
   sessionVariables = {
     EDITOR = mkDefault "nvim";
     VISUAL = mkDefault "nvim";
+    MANPAGER = mkDefault "nvim -M +Man!";
   };
 
   aliases = {
