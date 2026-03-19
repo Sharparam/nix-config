@@ -11,11 +11,18 @@ let
       colmena
       ;
 
+    # TODO: Fix to use Lix stuff
+    # nixd = prev.nixd;
+
     comma = prev.comma.override {
       nix = final.lixPackageSets.latest.lix;
     };
 
-    # Sadly we can't do this if using devenv since it's hardcoded to use CppNix
+    # cachix and devenv require CppNix for some reason
+    # cachix = prev.cachix;
+    # devenv = prev.devenv;
+
+    # Still can't disable CppNix entirely :(
     # nixVersions = throw "CppNix bad, use Lix instead";
     lixPackageSets = prev.lixPackageSets.extend (
       finalSet: prevSet: {
