@@ -12,6 +12,7 @@
             # nix-index
             nix-output-monitor
             nix-prefetch-git
+            nixpkgs-review
             nixd
             nixfmt
             nurl
