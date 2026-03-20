@@ -2,6 +2,7 @@
 let
   username = "sharparam";
   hostname = "melina";
+  identifier = "${username}@${hostname}";
 
   sessionVariables = {
     ANSIBLE_NOCOWS = 1;
@@ -24,11 +25,12 @@ let
   };
 in
 {
-  den.homes.x86_64-linux."${username}@${hostname}" = {
+  den.homes.x86_64-linux."${identifier}" = {
     userName = username;
+    aspect = identifier;
   };
 
-  den.aspects."${username}@${hostname}" = {
+  den.aspects."${identifier}" = {
     includes = [
       <nix-allowed-user>
       <nix-trusted-user>
