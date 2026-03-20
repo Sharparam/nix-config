@@ -101,7 +101,7 @@
                 "environment"
                 "directory"
                 "utility"
-                "git"
+                # "git"
                 "ruby"
                 "rails"
                 "python"
