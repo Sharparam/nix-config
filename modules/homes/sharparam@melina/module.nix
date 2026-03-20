@@ -48,6 +48,7 @@ in
 
       <apps/ast-grep>
       <apps/codespelunker>
+      <apps/filen>
       <apps/just>
       <apps/mise>
       <apps/neovim>
