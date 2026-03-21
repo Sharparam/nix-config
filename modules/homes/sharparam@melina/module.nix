@@ -110,6 +110,7 @@ in
             };
           };
           nushell.package = null;
+          vesktop.enable = false;
           zsh = {
             # package = null; # Use Arch Linux package
           };
