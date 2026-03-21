@@ -60,11 +60,12 @@ in
               };
               diff = {
                 algorithm = "histogram";
-                colorMoved = "plain";
+                colorMoved = "default";
                 mnemonicPrefix = true;
                 renames = true;
               };
-              merge.conflictstyle = "zdiff3";
+              # mergiraf needs diff3 to work properly, and the home-manager module will set that automatically
+              merge.conflictstyle = lib.mkIf (!config.programs.mergiraf.enableGitIntegration) "zdiff3";
               rerere = {
                 enable = true;
                 autoupdate = true;

@@ -1,32 +1,46 @@
+{ lib, ... }:
 {
   den.aspects.base = {
-    homeManager = {
-      programs.difftastic = {
-        enable = true;
-        options = {
-          background = "dark";
-        };
-        git = {
+    homeManager =
+      { config, ... }:
+      let
+        cfg = config.programs.difftastic;
+      in
+      {
+        programs.difftastic = {
           enable = true;
-          diffToolMode = true;
+          git = {
+            enable = false;
+            diffToolMode = true;
+          };
+          jujutsu.enable = false;
+          options = {
+            background = "dark";
+          };
         };
-      };
 
-      programs.jujutsu = {
-        settings = {
-          ui = {
-            diff-formatter = "difft";
+        programs.git =
+          let
+            difft = "${lib.getExe cfg.package} ${lib.cli.toCommandLineShellGNU { } cfg.options}";
+          in
+          {
+            settings = lib.mkIf (cfg.enable && !cfg.git.enable && cfg.git.diffToolMode) {
+              difftool.difftastic.cmd = "${difft} $LOCAL $REMOTE";
+            };
           };
-          merge-tools.difft = {
-            program = "difft";
-            diff-args = [
-              "--color=always"
-              "$left"
-              "$right"
-            ];
+
+        programs.jujutsu = {
+          settings = {
+            merge-tools.difft = {
+              program = "difft";
+              diff-args = [
+                "--color=always"
+                "$left"
+                "$right"
+              ];
+            };
           };
         };
       };
-    };
   };
 }
