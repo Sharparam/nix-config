@@ -1,6 +1,44 @@
 { lib, ... }:
+let
+  authKeysModule = authorizedKeys: {
+    homeManager =
+      { config, ... }:
+      {
+        home.file.".ssh/authorized_keys.hm-init" = {
+          text = lib.join "\n" (
+            [
+              "# DO NOT EDIT"
+              "# This file is managed by Home Manager"
+              "# Any manual changes to this file will be overwritten"
+            ]
+            ++ authorizedKeys
+          );
+          onChange =
+            let
+              homeDir = config.home.homeDirectory;
+              source = "${homeDir}/.ssh/authorized_keys.hm-init";
+              target = "${homeDir}/.ssh/authorized_keys";
+            in
+            ''
+              rm --verbose --force "${target}"
+              cp --verbose "${source}" "${target}"
+              chmod --verbose 400 "${target}"
+              rm --verbose --force "${source}"
+            '';
+        };
+      };
+  };
+
+  userHome = { user }: authKeysModule user.ssh.authorizedKeys;
+  home = { home }: authKeysModule home.ssh.authorizedKeys;
+in
 {
   den.aspects.ssh = {
+    includes = [
+      userHome
+      home
+    ];
+
     nixos = {
       programs = {
         ssh = {
