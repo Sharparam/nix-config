@@ -56,6 +56,9 @@ in
 
           secrets = {
             hello = { };
+            ssh-host-siegward = {
+              path = "${config.home.homeDirectory}/.ssh/config.d/10-siegward";
+            };
           };
         };
       };
