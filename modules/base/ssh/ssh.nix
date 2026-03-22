@@ -19,12 +19,16 @@
         home.activation.createSshHomeDir = entryBetween [ "linkGeneration" ] [ "writeBoundary" ] ''
           run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh"
           run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh/control"
+          run mkdir $VERBOSE_ARG -m700 -p "$HOME/.ssh/config.d"
         '';
 
         programs.ssh = {
           enable = true;
           enableDefaultConfig = false;
-          includes = [ "~/.ssh/config.local" ];
+          includes = [
+            "~/.ssh/config.d/*"
+            "~/.ssh/config.local"
+          ];
           matchBlocks = {
             "*" = {
               addKeysToAgent = "no";
