@@ -14,7 +14,6 @@ in
       <base>
       <work>
 
-      <apps/dropbox>
       <apps/etcher>
       <apps/firefox>
       <apps/google-chrome>

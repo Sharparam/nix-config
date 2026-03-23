@@ -6,7 +6,6 @@
     <apps/atuin-desktop>
     <apps/discord>
     <apps/ghostty>
-    <apps/google-drive>
     <apps/kde-connect>
     # <apps/kitty>
     <apps/obs>
