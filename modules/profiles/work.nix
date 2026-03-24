@@ -2,8 +2,6 @@
 {
   den.aspects.work = {
     includes = [
-      <dev>
-
       <apps/azure>
       <apps/slack>
     ];

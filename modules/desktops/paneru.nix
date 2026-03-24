@@ -95,7 +95,7 @@ in
   den.aspects.desktops.provides.paneru = {
     homeManager =
       { pkgs, ... }:
-      lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+      {
         imports = [ inputs.paneru.homeModules.paneru ];
 
         services.paneru = {

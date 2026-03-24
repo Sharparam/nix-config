@@ -14,8 +14,6 @@ in
       <base>
       <work>
 
-      <desktops/paneru>
-
       <apps/etcher>
       <apps/firefox>
       <apps/google-chrome>
@@ -35,6 +33,11 @@ in
       };
 
     provides.to-users = {
+      includes = [
+        <desktops/paneru>
+        <work>
+      ];
+
       homeManager = {
         programs.ghostty.settings.font-size = 14;
 
