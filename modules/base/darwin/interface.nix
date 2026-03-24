@@ -27,7 +27,7 @@
         dock = {
           autohide = true;
           mru-spaces = false;
-          orientation = "bottom";
+          orientation = "left";
         };
 
         finder = {
