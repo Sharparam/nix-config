@@ -38,6 +38,7 @@ in
       (<den/user-shell> "zsh")
 
       <sharparam/gpg>
+      <sharparam/secrets>
 
       <base>
       <base/home>

@@ -19,3 +19,11 @@ creation_rules:
           - *sharparam-melina
           - *NINETECH-617128
           - *sharparam-NINETECH-617128
+  - path_regex: ^modules/users/sharparam/secrets.(ya?ml|json|env|ini)$
+    key_groups:
+      - age:
+          - *yk_main_age
+          - *yk_backup_age
+          - *yk_5c_main_age
+          - *sharparam-melina
+          - *sharparam-NINETECH-617128

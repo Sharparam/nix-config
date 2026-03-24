@@ -2,13 +2,14 @@
 {
   den.aspects.sharparam = {
     includes = [
-      <sharparam/gpg>
-
       <nix-allowed-user>
       <nix-trusted-user>
       <den/define-user>
       <den/primary-user>
       (<den/user-shell> "zsh")
+
+      <sharparam/gpg>
+      <sharparam/secrets>
 
       <base>
       <base/user>
