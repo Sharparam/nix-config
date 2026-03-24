@@ -5,6 +5,42 @@ let
   nix.settings = {
     inherit substituters trusted-public-keys;
   };
+
+  settings = {
+    permissions = {
+      allow = [
+        "Bash(date:*)"
+        "Bash(echo:*)"
+        "Bash(cat:*)"
+        "Bash(ls:*)"
+        # GSD
+        # "Bash(mkdir:*)"
+        "Bash(wc:*)"
+        "Bash(head:*)"
+        "Bash(tail:*)"
+        "Bash(sort:*)"
+        "Bash(grep:*)"
+        "Bash(tr:*)"
+        # GSD
+        # "Bash(git add:*)"
+        # "Bash(git commit:*)"
+        # "Bash(git status:*)"
+        # "Bash(git log:*)"
+        # "Bash(git diff:*)"
+        # "Bash(git tag:*)"
+      ];
+
+      deny = [
+        "Read(.env)"
+        "Read(.env.*)"
+        "Read(**/secrets/*)"
+        "Read(**/*credential*)"
+        "Read(**/*.age)"
+        "Read(**/*.pem)"
+        "Read(**/*.key)"
+      ];
+    };
+  };
 in
 {
   den.aspects.ai.provides.claude = {
@@ -20,8 +56,13 @@ in
 
     homeManager =
       { pkgs, ... }:
+      let
+        jsonFormat = pkgs.formats.json { };
+      in
       {
         inherit nix;
+
+        home.file.".claude/settings.json".source = jsonFormat.generate "claude-settings.json" settings;
 
         programs.claude-code = {
           enable = true;
