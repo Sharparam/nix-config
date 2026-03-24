@@ -68,6 +68,9 @@
       { config, lib, ... }:
       let
         inherit (config.lib.file) mkOutOfStoreSymlink;
+        sessionVariables = {
+          DOOMDIR = "$HOME/.config/doom";
+        };
       in
       {
         xdg.configFile."doom".source =
@@ -87,13 +90,19 @@
         #   };
         # };
 
-        home.sessionPath = lib.mkDefault [
-          "\${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin"
-        ];
+        home = {
+          inherit sessionVariables;
 
-        home.shellAliases = {
-          emacs = "emacsclient --no-wait --create-frame";
+          sessionPath = lib.mkDefault [
+            "\${XDG_CONFIG_HOME:-$HOME/.config}/emacs/bin"
+          ];
+
+          shellAliases = {
+            emacs = "emacsclient --no-wait --create-frame";
+          };
         };
+
+        systemd.user = { inherit sessionVariables; };
       };
   };
 }

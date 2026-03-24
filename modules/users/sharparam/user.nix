@@ -19,6 +19,8 @@
       <dev>
 
       <ai/claude>
+
+      <apps/filen>
     ];
 
     darwin = {
@@ -26,17 +28,33 @@
       system.defaults.screencapture.location = "/Users/sharparam/Pictures/screenshots/";
     };
 
-    homeManager = {
-      home.file =
-        let
-          profile = ../../../assets/sharparam/profile.png;
-        in
-        {
-          ".face".source = profile;
-          "Pictures/profile.png".source = profile;
-          "Pictures/screenshots/.keep".text = "";
-          "repos/.keep".text = "";
+    homeManager =
+      let
+        sessionVariables = {
+          ANSIBLE_NOCOWS = 1;
+          BROWSER = "firefox";
+          CMAKE_GENERATOR = "Ninja";
+          DOTNET_CLI_TELEMETRY_OPTOUT = 1;
+          MAKEFLAGS = "-j$(nproc)";
         };
-    };
+      in
+      {
+        home = {
+          inherit sessionVariables;
+
+          file =
+            let
+              profile = ../../../assets/sharparam/profile.png;
+            in
+            {
+              ".face".source = profile;
+              "Pictures/profile.png".source = profile;
+              "Pictures/screenshots/.keep".text = "";
+              "repos/.keep".text = "";
+            };
+        };
+
+        systemd.user = { inherit sessionVariables; };
+      };
   };
 }

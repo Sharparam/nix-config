@@ -2,6 +2,29 @@
   flake-file.inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   den.default = {
+    includes = [
+      (
+        { home }:
+        {
+          homeManager =
+            { pkgs, ... }:
+            {
+              home.packages = builtins.attrValues {
+                inherit (pkgs)
+
+                  alejandra
+                  cachix
+                  deadnix
+                  nixd
+                  nixfmt
+                  nix-output-monitor
+                  statix
+                  ;
+              };
+            };
+        }
+      )
+    ];
     os =
       { lib, pkgs, ... }:
       {
