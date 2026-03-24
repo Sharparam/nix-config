@@ -101,13 +101,11 @@
                 "environment"
                 "directory"
                 "utility"
-                # "git"
-                "ruby"
-                "rails"
                 "python"
-                "node"
                 "completion"
               ];
+              editor.keymap = "vi";
+              prompt.theme = null;
               python = {
                 virtualenvAutoSwitch = true;
               };

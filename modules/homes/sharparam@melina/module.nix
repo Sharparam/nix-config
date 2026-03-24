@@ -33,7 +33,6 @@ in
         fsi = "dotnet fsi";
         fsharpi = "dotnet fsi";
         hx = "helix";
-        rbbi = "bundle install";
         zed = "zeditor";
       };
 
