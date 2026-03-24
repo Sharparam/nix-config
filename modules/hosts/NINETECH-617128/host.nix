@@ -14,6 +14,8 @@ in
       <base>
       <work>
 
+      <desktops/paneru>
+
       <apps/etcher>
       <apps/firefox>
       <apps/google-chrome>
