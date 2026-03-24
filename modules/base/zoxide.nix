@@ -1,7 +1,8 @@
 let
   cmd = "j";
-
-  homeAspect = {
+in
+{
+  den.aspects.base = {
     homeManager = {
       programs.zoxide = {
         enable = true;
@@ -20,11 +21,5 @@ let
         '';
       };
     };
-  };
-in
-{
-  den.aspects.base.provides = {
-    user = homeAspect;
-    home = homeAspect;
   };
 }

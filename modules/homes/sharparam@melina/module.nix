@@ -22,7 +22,6 @@ in
   den.aspects."${identifier}" = {
     includes = [
       <sharparam>
-      <base/home>
       <apps/ente>
     ];
 

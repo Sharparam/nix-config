@@ -1,8 +1,9 @@
 { lib, ... }:
 let
   inherit (lib) mkDefault;
-
-  homeAspect = {
+in
+{
+  den.aspects.base = {
     homeManager =
       { pkgs, ... }:
       {
@@ -21,11 +22,5 @@ let
           };
         };
       };
-  };
-in
-{
-  den.aspects.base.provides = {
-    user = homeAspect;
-    home = homeAspect;
   };
 }

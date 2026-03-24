@@ -12,10 +12,11 @@
       <sharparam/secrets>
 
       <base>
-      <base/user>
 
       <catppuccin>
+
       <ssh/home>
+
       <dev>
 
       <ai/claude>
