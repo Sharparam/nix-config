@@ -14,7 +14,7 @@
       in
       {
         home.packages = [
-          pkgs.filen-cli
+          pkgs.local.filen-cli
         ]
         ++ lib.optionals isLinux [ pkgs.filen-desktop ];
       };
