@@ -29,7 +29,7 @@ let
       };
   };
 
-  userHome = { user }: authKeysModule user.ssh.authorizedKeys;
+  userHome = { host, user }: authKeysModule user.ssh.authorizedKeys;
   home = { home }: authKeysModule home.ssh.authorizedKeys;
 in
 {
