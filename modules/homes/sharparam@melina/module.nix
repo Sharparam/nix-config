@@ -63,7 +63,6 @@ in
         "zsh/zshrc.d/10-go.zsh".source = ./zshrc.d/10-go.zsh;
         "zsh/zshrc.d/10-perl5.zsh".source = ./zshrc.d/10-perl5.zsh;
         "zsh/zshrc.d/10-restic.sh".source = ./zshrc.d/10-restic.sh;
-        "zsh/zshrc.d/80-gpg.zsh".source = ./zshrc.d/80-gpg.zsh;
         "zsh/zshrc.d/90-raku.zsh".source = ./zshrc.d/90-raku.zsh;
       };
 

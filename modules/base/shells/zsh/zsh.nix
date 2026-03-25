@@ -55,6 +55,8 @@
                   if [[ "$\{FAST_THEME_NAME:-}" != "${fshThemeName}" ]]; then
                     fast-theme --quiet "${fshThemeFile}"
                   fi
+
+                  export GPG_TTY="$(tty)"
                 '';
                 zshrcd = mkOrder 2000 (builtins.readFile ./zshrcd.zsh);
               in
