@@ -68,5 +68,9 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zellij-plugins = {
+      url = "github:Sharparam/zellij-plugins-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

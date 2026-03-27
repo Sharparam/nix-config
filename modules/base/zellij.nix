@@ -1,5 +1,10 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
+  flake-file.inputs.zellij-plugins = {
+    url = "github:Sharparam/zellij-plugins-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   den.aspects.base = {
     homeManager =
       { pkgs, ... }:
@@ -9,6 +14,8 @@
         sed = lib.getExe pkgs.gnused;
       in
       {
+        nixpkgs.overlays = [ inputs.zellij-plugins.overlays.default ];
+
         programs.zellij = {
           enable = true;
           package = pkg;
@@ -28,6 +35,26 @@
                 };
                 tooltip = "F1";
               };
+
+              autolock = {
+                _props = {
+                  location = "file:${pkgs.zellij-autolock}/bin/zellij-autolock.wasm";
+                };
+                is_enabled = true;
+                triggers = lib.join "|" [
+                  "atuin"
+                  "emacs"
+                  "fzf"
+                  "git"
+                  "jj"
+                  "nvim"
+                  "vim"
+                  "zoxide"
+                ];
+              };
+            };
+            load_plugins = {
+              autolock = { };
             };
           };
         };
