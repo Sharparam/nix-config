@@ -18,6 +18,7 @@
           settings = {
             attach_to_session = true;
             session_name = "default";
+            show_startup_tips = false;
             plugins = {
               compact-bar = {
                 _props = {
