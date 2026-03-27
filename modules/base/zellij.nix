@@ -15,6 +15,8 @@
           enableBashIntegration = true;
           enableZshIntegration = true;
           enableFishIntegration = true;
+          attachExistingSession = true;
+          exitShellOnExit = false;
           settings = {
             attach_to_session = true;
             session_name = "default";
