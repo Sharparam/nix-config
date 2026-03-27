@@ -32,6 +32,18 @@
 
         programs.bash.initExtra = ''
           eval "$(${zellij} setup --generate-completion bash)"
+
+          function zrc() {
+            zellij run --close-on-exit --name "$*" -- zsh -ic "$*"
+          }
+
+          function zrfc() {
+            zellij run --close-on-exit --name "$*" --floating -- zsh -ic "$*"
+          }
+
+          function zric() {
+            zellij run --close-on-exit --name "$*" --in-place -- zsh -ic "$*"
+          }
         '';
 
         # programs.zsh.initContent = lib.mkOrder 1000 ''
@@ -43,11 +55,20 @@
             zr = ''
               zellij run --name "$*" -- zsh -ic "$*"
             '';
+            zrc = ''
+              zellij run --close-on-exit --name "$*" -- zsh -ic "$*"
+            '';
             zrf = ''
               zellij run --name "$*" --floating -- zsh -ic "$*"
             '';
+            zrfc = ''
+              zellij run --close-on-exit --name "$*" --floating -- zsh -ic "$*"
+            '';
             zri = ''
               zellij run --name "$*" --in-place -- zsh -ic "$*"
+            '';
+            zric = ''
+              zellij run --close-on-exit --name "$*" --in-place -- zsh -ic "$*"
             '';
             ze = ''
               zellij edit "$*"
