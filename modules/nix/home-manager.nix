@@ -16,6 +16,15 @@
     homeManager = {
       programs.home-manager.enable = true;
       xdg.enable = true;
+
+      home = {
+        shell = {
+          enableShellIntegration = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          enableFishIntegration = true;
+        };
+      };
     };
   };
 }
