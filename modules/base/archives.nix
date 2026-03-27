@@ -4,12 +4,7 @@
     os =
       { pkgs, ... }:
       {
-        environment.systemPackages = builtins.attrValues {
-          inherit (pkgs)
-            lsar
-            unar
-            ;
-        };
+        environment.systemPackages = [ pkgs.unar ];
       };
 
     darwin = {
@@ -21,12 +16,7 @@
     homeManager =
       { pkgs, ... }:
       {
-        home.packages = builtins.attrValues {
-          inherit (pkgs)
-            lsar
-            unar
-            ;
-        };
+        home.packages = [ pkgs.unar ];
       };
   };
 }
