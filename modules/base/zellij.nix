@@ -5,6 +5,8 @@
       { pkgs, ... }:
       let
         pkg = pkgs.zellij;
+        zellij = lib.getExe pkg;
+        sed = lib.getExe pkgs.gnused;
       in
       {
         programs.zellij = {
@@ -28,15 +30,45 @@
         };
 
         programs.bash.initExtra = ''
-          eval "$(${lib.getExe pkg} setup --generate-completion bash)"
+          eval "$(${zellij} setup --generate-completion bash)"
         '';
 
-        programs.zsh.initContent = lib.mkOrder 500 ''
-          eval "$(${lib.getExe pkg} setup --generate-completion zsh)"
-        '';
+        # programs.zsh.initContent = lib.mkOrder 1000 ''
+        #   eval "$(${zellij} setup --generate-completion zsh | ${sed} '/_zellij "$@"/d')"
+        # '';
+
+        programs.zsh = {
+          siteFunctions = {
+            zr = ''
+              zellij run --name "$*" -- zsh -ic "$*"
+            '';
+            zrf = ''
+              zellij run --name "$*" --floating -- zsh -ic "$*"
+            '';
+            zri = ''
+              zellij run --name "$*" --in-place -- zsh -ic "$*"
+            '';
+            ze = ''
+              zellij edit "$*"
+            '';
+            zef = ''
+              zellij edit --floating "$*"
+            '';
+            zei = ''
+              zellij edit --in-place "$*"
+            '';
+            zpipe = ''
+              if [ -z "$1" ]; then
+                zellij pipe;
+              else
+                zellij pipe -p $1;
+              fi
+            '';
+          };
+        };
 
         programs.fish.interactiveShellInit = ''
-          eval ($(${lib.getExe pkg} setup --generate-completion fish) | string collect)
+          eval ($(${zellij} setup --generate-completion fish) | string collect)
         '';
 
         home.shellAliases =
