@@ -1,4 +1,7 @@
 { inputs, lib, ... }:
+let
+  autoAttach = false;
+in
 {
   flake-file.inputs.zellij-plugins = {
     url = "github:Sharparam/zellij-plugins-nix";
@@ -19,10 +22,10 @@
         programs.zellij = {
           enable = true;
           package = pkg;
-          enableBashIntegration = true;
-          enableZshIntegration = true;
-          enableFishIntegration = true;
-          attachExistingSession = true;
+          enableBashIntegration = autoAttach;
+          enableZshIntegration = autoAttach;
+          enableFishIntegration = autoAttach;
+          attachExistingSession = autoAttach;
           exitShellOnExit = false;
           settings = {
             attach_to_session = true;
