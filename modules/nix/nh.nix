@@ -4,6 +4,12 @@ let
   keepCount = 3;
   keepAge = "7d";
   cleanArgs = "--keep ${toString keepCount} --keep-since ${keepAge}";
+  cleanDates = "weekly";
+  clean = {
+    enable = lib.mkDefault true;
+    extraArgs = lib.mkDefault cleanArgs;
+    dates = lib.mkDefault cleanDates;
+  };
 in
 {
   perSystem =
@@ -15,23 +21,19 @@ in
   den.default = {
     nixos = {
       programs.nh = {
-        enable = true;
-        clean = {
-          enable = lib.mkDefault true;
-          extraArgs = cleanArgs;
-        };
+        inherit clean;
+
+        enable = lib.mkDefault true;
         flake = lib.mkDefault "/home/sharparam/repos/github.com/Sharparam/nix-config?submodules=1";
       };
 
-      nix.gc.automatic = false;
+      nix.gc.automatic = lib.mkDefault false;
     };
 
     darwin =
       { pkgs, ... }:
       {
-        environment.systemPackages = [
-          pkgs.nh
-        ];
+        environment.systemPackages = [ pkgs.nh ];
 
         environment.variables = {
           NH_FLAKE = lib.mkDefault "/Users/sharparam/repos/github.com/Sharparam/nix-config?submodules=1";
@@ -48,11 +50,9 @@ in
       in
       {
         programs.nh = {
-          enable = true;
-          clean = lib.mkIf pkgs.stdenv.isDarwin {
-            enable = true;
-            extraArgs = cleanArgs;
-          };
+          inherit clean;
+
+          enable = lib.mkDefault true;
           flake = lib.mkDefault flakePath;
         };
 
