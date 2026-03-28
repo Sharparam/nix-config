@@ -22,6 +22,7 @@
       <ai/claude>
 
       <apps/filen>
+      <programs/glow>
     ];
 
     darwin = {
