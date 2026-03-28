@@ -1,0 +1,33 @@
+let mapleader=' '
+
+set cmdheight=1
+set cursorline
+set encoding=utf8
+set noerrorbells
+set hlsearch " Highlight search results
+set lazyredraw " Don't redraw during macros
+set showcmd
+set noshowmode
+set termguicolors
+set novisualbell
+set whichwrap+=<,>,h,l
+
+nmap <leader>- :source ~/.vimrc<CR>:redraw!<CR>:echo "~/.vimrc reloaded"<CR>
+
+" Disable movement with arrow keys
+" Enforce use of hjkl
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
