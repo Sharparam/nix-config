@@ -30,7 +30,7 @@
           }
 
           take() {
-            mkdir --parents "$1" && cd "$1"
+            mkdir -p "$1" && cd "$1"
           }
         '';
       };
@@ -42,7 +42,7 @@
 
         siteFunctions = {
           launch = "nohup $@ &>/dev/null & disown";
-          take = ''mkdir --parents "$1" && cd "$1"'';
+          take = ''mkdir -p "$1" && cd "$1"'';
         };
       };
     };
