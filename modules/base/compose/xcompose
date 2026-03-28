@@ -1,0 +1,81 @@
+include "%L"
+
+<Multi_key> <o> <o> : "ö" U00F6 # LATIN SMALL LETTER O WITH DIAERESIS
+<Multi_key> <O> <O> : "Ö" U00D6 # LATIN CAPITAL LETTER O WITH DIAERESIS
+
+<Multi_key> <o> <p> : "℗" U2117 # SOUND RECORDING COPYRIGHT
+
+# Greek alphabet
+<Multi_key> <asterisk> <a> : "α" U03B1 # GREEK SMALL LETTER ALPHA
+<Multi_key> <asterisk> <b> : "β" U03B2 # GREEK SMALL LETTER BETA
+<Multi_key> <asterisk> <c> : "ψ" U03C8 # GREEK SMALL LETTER PSI
+<Multi_key> <asterisk> <d> : "δ" U03B4 # GREEK SMALL LETTER DELTA
+<Multi_key> <asterisk> <e> : "ε" U03B5 # GREEK SMALL LETTER EPSILON
+<Multi_key> <asterisk> <f> : "φ" U03C6 # GREEK SMALL LETTER PHI
+<Multi_key> <asterisk> <g> : "γ" U03B3 # GREEK SMALL LETTER GAMMA
+<Multi_key> <asterisk> <h> : "η" U03B7 # GREEK SMALL LETTER ΕΤΑ
+<Multi_key> <asterisk> <i> : "ι" U03B9 # GREEK SMALL LETTER ΙΟΤΑ
+<Multi_key> <asterisk> <j> : "ξ" U03BE # GREEK SMALL LETTER XI
+<Multi_key> <asterisk> <k> : "κ" U03BA # GREEK SMALL LETTER KAPPA
+<Multi_key> <asterisk> <l> : "λ" U03BB # GREEK SMALL LETTER LAMBDA
+<Multi_key> <asterisk> <m> : "μ" U03BC # GREEK SMALL LETTER MU
+<Multi_key> <asterisk> <n> : "ν" U03BD # GREEK SMALL LETTER NU
+<Multi_key> <asterisk> <o> : "ο" U03BF # GREEK SMALL LETTER OMICRON
+<Multi_key> <asterisk> <p> : "π" U03C0 # GREEK SMALL LETTER PI
+<Multi_key> <asterisk> <r> : "ρ" U03C1 # GREEK SMALL LETTER RHO
+<Multi_key> <asterisk> <s> : "σ" U03C3 # GREEK SMALL LETTER SIGMA
+<Multi_key> <asterisk> <t> : "τ" U03C4 # GREEK SMALL LETTER TAU
+<Multi_key> <asterisk> <u> : "θ" U03B8 # GREEK SMALL LETTER THETA
+<Multi_key> <asterisk> <v> : "ω" U03C9 # GREEK SMALL LETTER OMEGA
+<Multi_key> <asterisk> <w> : "ς" U03C2 # GREEK SMALL LETTER FINAL SIGMA
+<Multi_key> <asterisk> <x> : "χ" U03C7 # GREEK SMALL LETTER CHI
+<Multi_key> <asterisk> <y> : "υ" U03C5 # GREEK SMALL LETTER UPSILON
+<Multi_key> <asterisk> <z> : "ζ" U03B6 # GREEK SMALL LETTER ZETA
+<Multi_key> <asterisk> <A> : "Α" U0391 # GREEK CAPITAL LETTER ALPHA
+<Multi_key> <asterisk> <B> : "Β" U0392 # GREEK CAPITAL LETTER BETA
+<Multi_key> <asterisk> <C> : "Ψ" U03A8 # GREEK CAPITAL LETTER PSI
+<Multi_key> <asterisk> <D> : "Δ" U0394 # GREEK CAPITAL LETTER DELTA
+<Multi_key> <asterisk> <E> : "Ε" U0395 # GREEK CAPITAL LETTER EPSILON
+<Multi_key> <asterisk> <F> : "Φ" U03A6 # GREEK CAPITAL LETTER PHI
+<Multi_key> <asterisk> <G> : "Γ" U0393 # GREEK CAPITAL LETTER GAMMA
+<Multi_key> <asterisk> <H> : "Η" U0397 # GREEK CAPITAL LETTER ΕΤΑ
+<Multi_key> <asterisk> <I> : "Ι" U0399 # GREEK CAPITAL LETTER ΙΟΤΑ
+<Multi_key> <asterisk> <J> : "Ξ" U039E # GREEK CAPITAL LETTER XI
+<Multi_key> <asterisk> <K> : "Κ" U039A # GREEK CAPITAL LETTER KAPPA
+<Multi_key> <asterisk> <L> : "Λ" U039B # GREEK CAPITAL LETTER LAMBDA
+<Multi_key> <asterisk> <M> : "Μ" U039C # GREEK CAPITAL LETTER MU
+<Multi_key> <asterisk> <N> : "Ν" U039D # GREEK CAPITAL LETTER NU
+<Multi_key> <asterisk> <O> : "Ο" U039F # GREEK CAPITAL LETTER OMICRON
+<Multi_key> <asterisk> <P> : "Π" U03A0 # GREEK CAPITAL LETTER PI
+<Multi_key> <asterisk> <R> : "Ρ" U03A1 # GREEK CAPITAL LETTER RHO
+<Multi_key> <asterisk> <S> : "Σ" U03A3 # GREEK CAPITAL LETTER SIGMA
+<Multi_key> <asterisk> <T> : "Τ" U03A4 # GREEK CAPITAL LETTER TAU
+<Multi_key> <asterisk> <U> : "Θ" U0398 # GREEK CAPITAL LETTER THETA
+<Multi_key> <asterisk> <V> : "Ω" U03A9 # GREEK CAPITAL LETTER OMEGA
+<Multi_key> <asterisk> <X> : "Χ" U03A7 # GREEK CAPITAL LETTER CHI
+<Multi_key> <asterisk> <Y> : "Υ" U03A5 # GREEK CAPITAL LETTER UPSILON
+<Multi_key> <asterisk> <Z> : "Ζ" U0396 # GREEK CAPITAL LETTER ZETA
+<Multi_key> <asterisk> <question> : ";" U037E # GREEK QUESTION MARK
+
+<Multi_key> <n> <b> <space> : " " U00A0 # NO-BREAK SPACE
+<Multi_key> <r> <l> <m> : "‏" U200F # RIGHT-TO-LEFT MARK
+<Multi_key> <r> <l> <o> : "‮" U202E # RIGHT-TO-LEFT OVERRIDE
+
+<Multi_key> <less> <3> : "♥"
+<Multi_key> <s> <e> <c> : "§"
+<Multi_key> <p> <a> <r> : "¶"
+<Multi_key> <a> <t> <o> <m>: "⚛"
+<Multi_key> <s> <h> <r> <u> <g> : "¯\\_(ツ)_/¯" # Shrug
+<Multi_key> <backslash> <s> <h> <r> <u> <g> : "¯\\\\\\_(ツ)\\_/¯" # Shrug (escaped)
+<Multi_key> <l> <e> <n> <n> <y> : "( ͡° ͜ʖ ͡°)" # Lenny
+<Multi_key> <t> <f> <l> <i> <p> : "(╯°□°)╯︵ ┻━┻" # Table flip
+<Multi_key> <a> <t> <f> <l> <i> <p> : "(ノಠ益ಠ)ノ彡┻━┻" # Table flip (angry)
+<Multi_key> <r> <t> <f> <l> <i> <p> : "┬─┬ノ( º _ ºノ)" # Table flip (reverse/restore)
+
+<Multi_key> <d> <e> <g> : "°" U00B0 # DEGREE SIGN
+
+<Multi_key> <minus> <plus> : "∓"
+<Multi_key> <i> <n> <f> : "∞"
+<Multi_key> <s> <q> : "√"
+<Multi_key> <3> <s> <q> : "∛"
+<Multi_key> <4> <s> <q> : "∜"
