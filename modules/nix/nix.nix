@@ -1,3 +1,24 @@
+let
+  packages =
+    pkgs:
+    builtins.attrValues {
+      inherit (pkgs)
+        alejandra
+        cachix
+        deadnix
+        nix-diff
+        nix-health
+        nix-output-monitor
+        nix-prefetch-git
+        nixd
+        nixfmt
+        nixpkgs-review
+        nurl
+        nvd
+        statix
+        ;
+    };
+in
 {
   flake-file.inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -9,18 +30,7 @@
           homeManager =
             { pkgs, ... }:
             {
-              home.packages = builtins.attrValues {
-                inherit (pkgs)
-
-                  alejandra
-                  cachix
-                  deadnix
-                  nixd
-                  nixfmt
-                  nix-output-monitor
-                  statix
-                  ;
-              };
+              home.packages = packages pkgs;
             };
         }
       )
@@ -28,25 +38,7 @@
     os =
       { lib, pkgs, ... }:
       {
-        environment.systemPackages = builtins.attrValues {
-          inherit (pkgs)
-            nix-diff
-            nix-health
-            # nix-index
-            nix-output-monitor
-            nix-prefetch-git
-            nixpkgs-review
-            nixd
-            nixfmt
-            nurl
-            nvd
-            # comma
-            cachix
-            alejandra
-            deadnix
-            statix
-            ;
-        };
+        environment.systemPackages = packages pkgs;
 
         nix = {
           settings = {
