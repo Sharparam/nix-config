@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 let
   inherit (lib) mkDefault;
 in
@@ -10,7 +10,7 @@ in
 
   den.aspects.base = {
     os =
-      { pkgs, ... }:
+      { pkgs, inputs', ... }:
       {
         environment.variables = {
           LOG_ICONS = "true";
@@ -44,7 +44,7 @@ in
               nonicons-bin
               ;
 
-            iosevka-sharpie = inputs.iosevka.packages.${pkgs.stdenv.hostPlatform.system}.bin;
+            iosevka-sharpie = inputs'.iosevka.packages.bin;
           };
         };
       };
