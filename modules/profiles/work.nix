@@ -2,8 +2,8 @@
 {
   den.aspects.work = {
     includes = [
-      <apps/azure>
-      <apps/slack>
+      <programs/azure>
+      <programs/slack>
     ];
 
     darwin = {

@@ -2,23 +2,23 @@
 {
   den.aspects.dev = {
     includes = [
-      <apps/ast-grep>
-      <apps/atuin-desktop>
-      <apps/codespelunker>
-      <apps/emacs>
-      # <apps/jetbrains-rider>
-      <apps/jetbrains-toolbox>
-      <apps/just>
-      <apps/linqpad>
-      <apps/mise>
-      <apps/neovim>
-      <apps/podman>
-      <apps/postman>
-      <apps/scc>
-      <apps/sublime-merge>
-      <apps/tokei>
-      <apps/uv>
-      # <apps/vscode> # Handle this manually for now
+      <programs/ast-grep>
+      <programs/atuin-desktop>
+      <programs/codespelunker>
+      <programs/emacs>
+      # <programs/jetbrains-rider>
+      <programs/jetbrains-toolbox>
+      <programs/just>
+      <programs/linqpad>
+      <programs/mise>
+      <programs/neovim>
+      <programs/podman>
+      <programs/postman>
+      <programs/scc>
+      <programs/sublime-merge>
+      <programs/tokei>
+      <programs/uv>
+      # <programs/vscode> # Handle this manually for now
     ];
   };
 }

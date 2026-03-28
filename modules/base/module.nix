@@ -3,14 +3,14 @@
   den.aspects.base.includes = [
     <ssh>
 
-    <apps/atuin-desktop>
-    <apps/discord>
-    <apps/ghostty>
-    <apps/kde-connect>
-    # <apps/kitty>
-    <apps/obs>
-    <apps/signal>
-    <apps/spotify>
-    <apps/telegram>
+    <programs/atuin-desktop>
+    <programs/discord>
+    <programs/ghostty>
+    <programs/kde-connect>
+    # <programs/kitty>
+    <programs/obs>
+    <programs/signal>
+    <programs/spotify>
+    <programs/telegram>
   ];
 }

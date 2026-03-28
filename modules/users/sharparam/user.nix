@@ -19,9 +19,8 @@
 
       <dev>
 
-      <ai/claude>
-
-      <apps/filen>
+      <programs/ai/claude>
+      <programs/filen>
       <programs/glow>
     ];
 

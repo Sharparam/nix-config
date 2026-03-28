@@ -22,7 +22,7 @@ in
   den.aspects."${identifier}" = {
     includes = [
       <sharparam>
-      <apps/ente>
+      <programs/ente>
     ];
 
     homeManager = {

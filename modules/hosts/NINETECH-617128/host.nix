@@ -14,13 +14,13 @@ in
       <base>
       <work>
 
-      <apps/etcher>
-      <apps/firefox>
-      <apps/google-chrome>
-      <apps/obs>
-      <apps/skhd>
-      <apps/steermouse>
-      <apps/sweet-home3d>
+      <programs/etcher>
+      <programs/firefox>
+      <programs/google-chrome>
+      <programs/obs>
+      <programs/skhd>
+      <programs/steermouse>
+      <programs/sweet-home3d>
     ];
 
     darwin =
