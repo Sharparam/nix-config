@@ -20,6 +20,7 @@
       <dev>
 
       <programs/ai/claude>
+      <programs/ansible>
       <programs/filen>
       <programs/glow>
     ];
