@@ -32,7 +32,6 @@ in
       home.shellAliases = {
         fsi = "dotnet fsi";
         fsharpi = "dotnet fsi";
-        hx = "helix";
         zed = "zeditor";
       };
 

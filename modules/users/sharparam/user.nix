@@ -24,6 +24,7 @@
       <programs/btop>
       <programs/filen>
       <programs/glow>
+      <programs/helix>
     ];
 
     darwin = {
