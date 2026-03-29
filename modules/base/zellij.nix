@@ -10,15 +10,14 @@ in
 
   den.aspects.base = {
     homeManager =
-      { pkgs, ... }:
+      { pkgs, inputs', ... }:
       let
         pkg = pkgs.zellij;
         zellij = lib.getExe pkg;
+        zellijPlugins = inputs'.zellij-plugins.packages;
         sed = lib.getExe pkgs.gnused;
       in
       {
-        nixpkgs.overlays = [ inputs.zellij-plugins.overlays.default ];
-
         programs.zellij = {
           enable = true;
           package = pkg;
@@ -41,7 +40,7 @@ in
 
               autolock = {
                 _props = {
-                  location = "file:${pkgs.zellij-autolock}/bin/zellij-autolock.wasm";
+                  location = "file:${zellijPlugins.zellij-autolock}/bin/zellij-autolock.wasm";
                 };
                 is_enabled = true;
                 triggers = lib.join "|" [
