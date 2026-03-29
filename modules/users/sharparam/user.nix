@@ -21,6 +21,7 @@
 
       <programs/ai/claude>
       <programs/ansible>
+      <programs/btop>
       <programs/filen>
       <programs/glow>
     ];
