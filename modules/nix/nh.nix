@@ -27,7 +27,7 @@ in
         flake = lib.mkDefault "/home/sharparam/repos/github.com/Sharparam/nix-config?submodules=1";
       };
 
-      nix.gc.automatic = lib.mkDefault false;
+      nix.gc.automatic = false;
     };
 
     darwin =
