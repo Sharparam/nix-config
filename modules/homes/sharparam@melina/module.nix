@@ -26,45 +26,56 @@ in
       <programs/zathura>
     ];
 
-    homeManager = {
-      home.sessionVariables = sessionVariables;
-      systemd.user.sessionVariables = sessionVariables;
+    homeManager =
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        home.sessionVariables = sessionVariables;
+        systemd.user.sessionVariables = sessionVariables;
 
-      home.shellAliases = {
-        fsi = "dotnet fsi";
-        fsharpi = "dotnet fsi";
-        zed = "zeditor";
-      };
-
-      catppuccin.flavor = "macchiato";
-
-      programs = {
-        bash.package = null;
-        bun.enable = true;
-        ghostty = {
-          package = null;
-          systemd.enable = false;
+        home.shellAliases = {
+          fsi = "dotnet fsi";
+          fsharpi = "dotnet fsi";
+          zed = "zeditor";
         };
-        git = {
-          settings = {
-            core.askPass = "/usr/bin/ksshaskpass";
-            credential.helper = "libsecret";
+
+        home.file."${config.programs.gpg.homedir}/gpg-agent.conf".text = ''
+          pinentry-program ${lib.getExe pkgs.pinentry-qt}
+        '';
+
+        catppuccin.flavor = "macchiato";
+
+        programs = {
+          bash.package = null;
+          bun.enable = true;
+          ghostty = {
+            package = null;
+            systemd.enable = false;
+          };
+          git = {
+            settings = {
+              core.askPass = "/usr/bin/ksshaskpass";
+              credential.helper = "libsecret";
+            };
+          };
+          nushell.package = null;
+          vesktop.enable = false;
+          zsh = {
+            # package = null; # Use Arch Linux package
           };
         };
-        nushell.package = null;
-        vesktop.enable = false;
-        zsh = {
-          # package = null; # Use Arch Linux package
+
+        xdg.configFile = {
+          "zsh/zshrc.d/10-cargo.sh".source = ./zshrc.d/10-cargo.sh;
+          "zsh/zshrc.d/10-go.zsh".source = ./zshrc.d/10-go.zsh;
+          "zsh/zshrc.d/10-perl5.zsh".source = ./zshrc.d/10-perl5.zsh;
         };
-      };
 
-      xdg.configFile = {
-        "zsh/zshrc.d/10-cargo.sh".source = ./zshrc.d/10-cargo.sh;
-        "zsh/zshrc.d/10-go.zsh".source = ./zshrc.d/10-go.zsh;
-        "zsh/zshrc.d/10-perl5.zsh".source = ./zshrc.d/10-perl5.zsh;
+        home.stateVersion = "25.11";
       };
-
-      home.stateVersion = "25.11";
-    };
   };
 }
