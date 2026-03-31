@@ -23,6 +23,7 @@ in
     includes = [
       <sharparam>
       <programs/ente>
+      <programs/kitty>
       <programs/zathura>
     ];
 

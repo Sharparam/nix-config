@@ -1,13 +1,23 @@
-{ inputs, ... }:
+{ lib, ... }:
 {
   programs.kitty = {
+    includes = [
+      (
+        { home }:
+        {
+          # nixpkgs Kitty crashes with an OpenGL error on non-NixOS systems
+          homeManager.programs.kitty.package = lib.mkForce null;
+        }
+      )
+    ];
+
     homeManager =
-      { system, ... }:
+      { inputs', ... }:
       {
         programs.kitty = {
           enable = true;
           font = {
-            package = inputs.iosevka.packages.${system}.bin;
+            package = inputs'.iosevka.packages.bin;
             name = "Iosevka Sharpie Term";
             size = 12;
           };
@@ -29,8 +39,9 @@
             tab_powerline_style = "angled";
             tab_activity_symbol = "* ";
             background_opacity = 0.95;
-            allow_remote_control = true;
-            listen_on = "unix:/tmp/kitty";
+            # direnv-instant sets `allow_remote_control` and `listen_on`
+            # allow_remote_control = true;
+            # listen_on = "unix:/tmp/kitty";
             envinclude = "KITTY_CONF_*";
           };
           keybindings = {
