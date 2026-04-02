@@ -59,6 +59,9 @@ in
             ssh-host-siegward = {
               path = "${config.home.homeDirectory}/.ssh/config.d/10-siegward";
             };
+            ssh-hosts-sol = {
+              path = "${config.home.homeDirectory}/.ssh/config.d/99-sol";
+            };
           };
         };
       };

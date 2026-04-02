@@ -119,15 +119,6 @@ in
                 PasswordAuthentication = "no";
               };
             };
-            sol_lan = {
-              host = "*.sol.lan";
-              forwardAgent = true;
-            };
-            sol = entryAfter [ "sol_lan" "solaire" ] {
-              host = "sol*";
-              hostname = "%h.sol.lan";
-              forwardAgent = true;
-            };
           };
         };
       };
