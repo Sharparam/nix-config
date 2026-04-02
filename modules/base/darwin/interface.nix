@@ -12,6 +12,8 @@
           AppleShowAllExtensions = true;
           AppleShowAllFiles = true;
           AppleShowScrollBars = "Automatic";
+          NSStatusItemSelectionPadding = 2;
+          NSStatusItemSpacing = 2;
           NSWindowShouldDragOnGesture = true;
         };
 
