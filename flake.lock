@@ -708,11 +708,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1774652621,
-        "narHash": "sha256-G10PYUUDRNZaVrBsKNtgoUacIpDQPcghY3h/3C0q2xM=",
+        "lastModified": 1775129286,
+        "narHash": "sha256-TfZR6Keli3p80O8zdq1Znc4d97MTpFvo6fqOBCiCqs4=",
         "owner": "Sharparam",
         "repo": "zellij-plugins-nix",
-        "rev": "0a89a17367393863d5314e4b2c21091a7e19de85",
+        "rev": "916e51a3da82906948018625eb0dd252b5436001",
         "type": "github"
       },
       "original": {
