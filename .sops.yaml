@@ -3,11 +3,13 @@ keys:
   - &yubikeys_age "":
       - &yk_main_age age1yubikey1qf2pqf4uhz9nhppcvsg0wl6d24nmrc8wthz6rnthkv0s96th8a9mzqhgul5 # 5 NFC Main
       - &yk_backup_age age1yubikey1q08fhw5fzt7a24ehl6nk92va6matuqd37h3e294kmum66mucq5wkkfhcjwx # 5 NFC Backup
-      - &yk_5c_main_age age1yubikey1q2dcpyyfhhj6veu9zct8kvxs97nul3jnefvyz5vx9z4382xuujdcyxygj35
+      - &yk_5c_main_age age1yubikey1q2dcpyyfhhj6veu9zct8kvxs97nul3jnefvyz5vx9z4382xuujdcyxygj35 # 5C NFC Main
   - &yubikey_gpg 644DC3F0338A5555C13AB8E402CE50D93CB7C819
   - &hosts "":
+      - &sif age1tu50xp2km0dzkugzh4dshdpsrlr0e2jrwqccl8uhk8yalue09ekq7f356v # ssh_host_ed25519_key.pub
       - &NINETECH-617128 age1g7s9am5yr04vkwlc4g5px78xah75klvxxewu2ulqwfel38vzwcrs93j4fa # ssh_host_ed25519_key.pub
   - &sharparam-melina age16g2zvy59h3u6ad7clvzupsds96un7thgnm7p8xz6g3alv28lyghsquttza
+  - &sharparam-sif age127wk9zrxww2ghxdr0d2u2qummk6dpm29gfqxvx5zvyazju9xychs899m2u
   - &sharparam-NINETECH-617128 age1jvuz0793ctmz5s5zuw6kqswve6l93z6dlmnuxjdjy70ewzetq3rq7du6je
 creation_rules:
   - path_regex: ^modules/secrets/secrets.(ya?ml|json|env|ini)$
@@ -17,6 +19,8 @@ creation_rules:
           - *yk_backup_age
           - *yk_5c_main_age
           - *sharparam-melina
+          - *sif
+          - *sharparam-sif
           - *NINETECH-617128
           - *sharparam-NINETECH-617128
   - path_regex: ^modules/users/sharparam/secrets.(ya?ml|json|env|ini)$
@@ -26,4 +30,5 @@ creation_rules:
           - *yk_backup_age
           - *yk_5c_main_age
           - *sharparam-melina
+          - *sharparam-sif
           - *sharparam-NINETECH-617128

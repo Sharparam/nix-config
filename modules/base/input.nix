@@ -5,6 +5,7 @@
       console.useXkbConfig = true;
       services.xserver.xkb = {
         layout = lib.mkDefault "eu";
+        variant = "";
         # variant = "altgr-intl";
         options = lib.mkDefault "caps:escape_shifted_compose,compose:rwin";
       };

@@ -3,7 +3,7 @@
 justfile_dir := justfile_directory()
 flake_path := justfile_dir + "?submodules=1"
 is_nixos := path_exists("/etc/NIXOS")
-nh_sub := if is_nixos == "true" { "nixos" } else if os() == "macos" { "darwin" } else { "home" }
+nh_sub := if is_nixos == "true" { "os" } else if os() == "macos" { "darwin" } else { "home" }
 
 alias fmt := format
 
