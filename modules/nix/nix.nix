@@ -48,6 +48,7 @@ in
             experimental-features = [
               "nix-command"
               "flakes"
+              "pipe-operator"
             ];
             http-connections = 50;
             log-lines = 50;
