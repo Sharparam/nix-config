@@ -40,6 +40,10 @@ let
         "Read(**/*.key)"
       ];
     };
+    statusLine = {
+      type = "command";
+      command = "bash ${./statusline-command.sh}";
+    };
   };
 in
 {
