@@ -1,4 +1,4 @@
-{ __findFile, ... }:
+{ __findFile, inputs, ... }:
 let
   substituters = [ "https://claude-code.cachix.org" ];
   trusted-public-keys = [ "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk=" ];
@@ -47,31 +47,51 @@ let
   };
 in
 {
-  programs.ai.provides.claude = {
-    includes = [ (<den/unfree> [ "claude-code-bin" ]) ];
+  flake-file.inputs.claude-code = {
+    url = "github:sadjow/claude-code-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-    os = {
-      inherit nix;
-    };
+  programs.ai.provides.claude =
+    let
+      overlay = inputs.claude-code.overlays.default;
+    in
+    {
+      includes = [
+        (<den/unfree> [ "claude-code-bin" ])
+        (
+          { home }:
+          {
+            homeManager.nixpkgs.overlays = [ overlay ];
+          }
+        )
+      ];
 
-    darwin = {
-      homebrew.casks = [ "claude" ];
-    };
-
-    homeManager =
-      { pkgs, ... }:
-      let
-        jsonFormat = pkgs.formats.json { };
-      in
-      {
+      os = {
         inherit nix;
 
-        home.file.".claude/settings.json".source = jsonFormat.generate "claude-settings.json" settings;
-
-        programs.claude-code = {
-          enable = true;
-          package = pkgs.claude-code-bin;
-        };
+        nixpkgs.overlays = [ overlay ];
       };
-  };
+
+      darwin = {
+        nixpkgs.overlays = [ overlay ];
+        homebrew.casks = [ "claude" ];
+      };
+
+      homeManager =
+        { pkgs, ... }:
+        let
+          jsonFormat = pkgs.formats.json { };
+        in
+        {
+          inherit nix;
+
+          home.file.".claude/settings.json".source = jsonFormat.generate "claude-settings.json" settings;
+
+          programs.claude-code = {
+            enable = true;
+            package = pkgs.claude-code;
+          };
+        };
+    };
 }
