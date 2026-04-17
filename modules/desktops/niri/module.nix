@@ -28,9 +28,12 @@
 
       services.greetd = {
         settings = {
-          default_session = {
-            command = "${config.programs.niri.package}/bin/niri-session";
-            user = "sharparam";
+          default_session = let
+            tuigreet = lib.getExe pkgs.tuigreet;
+            niri = config.programs.niri.package;
+          in {
+            command = "${tuigreet} --time --remember --asterisks --cmd ${niri}/bin/niri-session";
+            user = "greeter";
           };
         };
       };
@@ -63,7 +66,10 @@
       programs = {
         fuzzel.enable = lib.mkDefault true;
         swaylock.enable = lib.mkDefault true;
-        waybar.enable = lib.mkDefault true;
+        waybar = {
+          enable = lib.mkDefault true;
+          systemd.enable = lib.mkDefault true;
+        };
       };
 
       services = {
