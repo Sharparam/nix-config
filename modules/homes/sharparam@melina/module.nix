@@ -76,6 +76,9 @@ in
           "zsh/zshrc.d/10-perl5.zsh".source = ./zshrc.d/10-perl5.zsh;
         };
 
+        # Managed by Arch
+        xdg.userDirs.enable = false;
+
         home.stateVersion = "25.11";
       };
   };
