@@ -9,7 +9,7 @@
       # <programs/jetbrains-rider>
       <programs/jetbrains-toolbox>
       <programs/just>
-      <programs/linqpad>
+      # <programs/linqpad>
       <programs/mise>
       <programs/neovim>
       <programs/podman>
