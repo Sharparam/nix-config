@@ -58,7 +58,10 @@ in
     in
     {
       includes = [
-        (<den/unfree> [ "claude-code-bin" ])
+        (<den/unfree> [
+          "claude-code"
+          "claude-code-bin"
+        ])
         (
           { home }:
           {
