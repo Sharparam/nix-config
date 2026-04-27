@@ -100,7 +100,7 @@ in
               port = 987;
             };
             radahn = entryAfter [ "servers" ] {
-              port = 22;
+              port = 987;
             };
             seedbox = {
               host = "seedbox";
