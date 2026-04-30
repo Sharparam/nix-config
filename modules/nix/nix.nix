@@ -1,8 +1,8 @@
 let
-  packages = pkgs:
+  packages =
+    pkgs:
     builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         alejandra
         cachix
         deadnix
@@ -18,46 +18,53 @@ let
         statix
         ;
     };
-in {
+in
+{
   flake-file.inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   den.default = {
     includes = [
       (
-        {home}: {
-          homeManager = {pkgs, ...}: {
-            home.packages = packages pkgs;
-          };
+        { home }:
+        {
+          homeManager =
+            { pkgs, ... }:
+            {
+              home.packages = packages pkgs;
+            };
         }
       )
     ];
-    os = {
-      lib,
-      pkgs,
-      ...
-    }: {
-      environment.systemPackages = packages pkgs;
+    os =
+      {
+        lib,
+        pkgs,
+        ...
+      }:
+      {
+        environment.systemPackages = packages pkgs;
 
-      nix = {
-        settings = {
-          allowed-users = ["@wheel"];
-          trusted-users = ["@wheel"];
-          auto-optimise-store = true;
-          experimental-features = [
-            "nix-command"
-            "flakes"
-            "pipe-operators"
-          ];
-          http-connections = 50;
-          log-lines = 50;
-          warn-dirty = false;
-          sandbox = "relaxed";
-        };
-        gc = {
-          automatic = lib.mkDefault true;
+        nix = {
+          settings = {
+            allowed-users = [ "@wheel" ];
+            trusted-users = [ "@wheel" ];
+            auto-optimise-store = true;
+            experimental-features = [
+              "nix-command"
+              "flakes"
+              # Lix names it singular while CppNix names it plural, for some asinine reason
+              "pipe-operator"
+            ];
+            http-connections = 50;
+            log-lines = 50;
+            warn-dirty = false;
+            sandbox = "relaxed";
+          };
+          gc = {
+            automatic = lib.mkDefault true;
+          };
         };
       };
-    };
 
     nixos = {
       nix = {
@@ -78,16 +85,18 @@ in {
       };
     };
 
-    homeManager = {config, ...}: {
-      nix = {
-        extraOptions = ''
-          !include ${config.sops.secrets.nix-access-tokens.path}
-        '';
-      };
+    homeManager =
+      { config, ... }:
+      {
+        nix = {
+          extraOptions = ''
+            !include ${config.sops.secrets.nix-access-tokens.path}
+          '';
+        };
 
-      sops.secrets.nix-access-tokens = {
-        mode = "0400";
+        sops.secrets.nix-access-tokens = {
+          mode = "0400";
+        };
       };
-    };
   };
 }
