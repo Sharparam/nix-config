@@ -18,6 +18,7 @@ in
       <programs/firefox>
       <programs/google-chrome>
       <programs/obs>
+      <programs/proton-drive>
       <programs/skhd>
       <programs/steermouse>
       <programs/sweet-home3d>
