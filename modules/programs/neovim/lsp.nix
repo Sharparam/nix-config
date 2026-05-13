@@ -12,6 +12,9 @@ let
         lsp = {
           enable = mkDefault true;
           formatOnSave = mkDefault true;
+          presets = {
+            tailwindcss-language-server.enable = true;
+          };
         };
         syntaxHighlighting = true;
         treesitter = {
@@ -52,10 +55,9 @@ let
           rust.enable = true;
           sql.enable = true;
           svelte.enable = true;
-          tailwind.enable = true;
           terraform.enable = true;
           toml.enable = true;
-          ts.enable = true;
+          typescript.enable = true;
           typst.enable = true;
           yaml.enable = true;
           xml.enable = true;
