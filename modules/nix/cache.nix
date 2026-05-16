@@ -1,10 +1,12 @@
 let
   substituters = [
     "https://nix-community.cachix.org"
+    "https://sharparam.cachix.org"
   ];
 
   trusted-public-keys = [
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    "sharparam.cachix.org-1:rHNQPQkocjfN4WGu4bVo9w6LXIrwURv7x0oPLOdllc0="
   ];
 
   extra-home-substituters = [
