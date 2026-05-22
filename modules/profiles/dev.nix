@@ -12,6 +12,7 @@
       # <programs/linqpad>
       <programs/mise>
       <programs/neovim>
+      <programs/pdm>
       <programs/podman>
       <programs/postman>
       <programs/scc>
