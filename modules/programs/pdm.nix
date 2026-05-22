@@ -7,7 +7,7 @@
         tomlFormat = pkgs.formats.toml { };
       in
       {
-        home.packages = [ pkgs.pdm ];
+        home.packages = [ pkgs.stable.pdm ];
 
         home.sessionVariables = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
           PDM_CONFIG_FILE = "${config.xdg.configHome}/pdm/config.toml";
