@@ -1,9 +1,5 @@
 {
   programs.azure = {
-    darwin = {
-      homebrew.casks = [ "azure-data-studio" ];
-    };
-
     homeManager =
       { pkgs, ... }:
       {
