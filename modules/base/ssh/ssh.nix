@@ -51,7 +51,7 @@ in
     homeManager =
       { lib, pkgs, ... }:
       let
-        inherit (lib.hm.dag) entryAfter entryBetween;
+        inherit (lib.hm.dag) entryAfter entryBefore entryBetween;
       in
       {
         home.activation.createSshHomeDir = entryBetween [ "linkGeneration" ] [ "writeBoundary" ] ''
@@ -67,57 +67,49 @@ in
             "~/.ssh/config.d/*"
             "~/.ssh/config.local"
           ];
-          matchBlocks = {
+          settings = {
             "*" = {
-              addKeysToAgent = "no";
-              compression = false;
-              controlMaster = "auto";
-              controlPath = "~/.ssh/control/%r@%h:%p";
-              controlPersist = "5m";
-              forwardAgent = false;
-              hashKnownHosts = false;
-              serverAliveInterval = 0;
-              serverAliveCountMax = 3;
-              userKnownHostsFile = "~/.ssh/known_hosts";
+              AddKeysToAgent = false;
+              Compression = false;
+              ControlMaster = "auto";
+              ControlPath = "~/.ssh/control/%r@%h:%p";
+              ControlPersist = "5m";
+              ForwardAgent = false;
+              HashKnownHosts = false;
+              ServerAliveCountMax = 3;
+              ServerAliveInterval = 0;
+              UserKnownHostsFile = "~/.ssh/known_hosts";
             };
             servers = entryAfter [ "*" ] {
-              host = "solaire shanalotte matrix radahn";
-              hostname = "%h.sharparam.com";
-              user = "sharparam";
-              forwardAgent = true;
-              extraOptions = {
-                PasswordAuthentication = "no";
-                VerifyHostKeyDNS = "yes";
-              };
+              header = "Host solaire shanalotte radahn";
+              Hostname = "%h.sharparam.net";
+              User = "sharparam";
+              ForwardAgent = true;
+              PasswordAuthentication = false;
+              VerifyHostKeyDNS = true;
             };
             solaire = entryAfter [ "servers" ] {
-              port = 987;
+              Port = 987;
             };
             shanalotte = entryAfter [ "servers" ] {
-              port = 987;
-            };
-            matrix = entryAfter [ "servers" ] {
-              port = 987;
+              Port = 987;
             };
             radahn = entryAfter [ "servers" ] {
-              port = 987;
+              Port = 987;
             };
             seedbox = {
-              host = "seedbox";
-              hostname = "ds16999.seedhost.eu";
-              port = 22;
+              Hostname = "ds16999.seedhost.eu";
+              Port = 22;
             };
             aur = {
-              hostname = "aur.archlinux.org";
-              user = "aur";
+              Hostname = "aur.archlinux.org";
+              User = "aur";
             };
             github = {
-              host = "github gh";
-              hostname = "github.com";
-              user = "git";
-              extraOptions = {
-                PasswordAuthentication = "no";
-              };
+              header = "Host github gh";
+              Hostname = "github.com";
+              User = "git";
+              PasswordAuthentication = false;
             };
           };
         };

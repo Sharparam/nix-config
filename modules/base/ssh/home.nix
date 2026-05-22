@@ -2,30 +2,24 @@
   den.aspects.ssh.provides.home = {
     homeManager = {
       programs.ssh = {
-        matchBlocks = {
+        settings = {
           router = {
-            host = "192.168.1.1 router.home.arpa router";
-            hostname = "router.home.sharparam.net";
-            user = "sharparam";
-            extraOptions = {
-              PasswordAuthentication = "no";
-            };
+            header = "Host 192.168.1.1 router.home.arpa router";
+            Hostname = "router.home.sharparam.net";
+            User = "sharparam";
+            PasswordAuthentication = false;
           };
           switch = {
-            host = "192.168.1.2 switch";
-            hostname = "switch01.home.sharparam.net";
-            user = "root";
-            extraOptions = {
-              PasswordAuthentication = "no";
-            };
+            header = "Host 192.168.1.2 switch";
+            Hostname = "switch01.home.sharparam.net";
+            User = "root";
+            PasswordAuthentication = false;
           };
           ap = {
-            host = "192.168.1.3 ap";
-            hostname = "ap01.home.sharparam.net";
-            user = "root";
-            extraOptions = {
-              PasswordAuthentication = "no";
-            };
+            header = "Host 192.168.1.3 ap";
+            Hostname = "ap01.home.sharparam.net";
+            User = "root";
+            PasswordAuthentication = false;
           };
         };
       };
