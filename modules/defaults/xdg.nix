@@ -20,11 +20,9 @@ in
           music = mkDefault "${homeDir}/music";
           pictures = mkDefault "${homeDir}/pictures";
           publicShare = mkDefault "${homeDir}/public";
+          projects = mkDefault "${homeDir}/projects";
           templates = mkDefault "${homeDir}/templates";
           videos = mkDefault "${homeDir}/videos";
-          extraConfig = {
-            PROJECTS = mkDefault "${homeDir}/projects";
-          };
         };
       };
   };
