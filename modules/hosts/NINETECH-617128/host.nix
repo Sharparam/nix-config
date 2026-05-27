@@ -16,6 +16,7 @@ in
 
       <programs/etcher>
       <programs/firefox>
+      <programs/gitup>
       <programs/google-chrome>
       <programs/obs>
       <programs/proton-drive>
