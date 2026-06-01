@@ -1,5 +1,11 @@
 {
   programs.azure = {
+    darwin = {
+      homebrew.casks = [
+        "microsoft-azure-storage-explorer"
+      ];
+    };
+
     homeManager =
       { pkgs, ... }:
       {
