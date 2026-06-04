@@ -3,10 +3,12 @@
     { pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
-        nativeBuildInputs = builtins.attrValues {
+        packages = builtins.attrValues {
           inherit (pkgs)
             just
             nh
+            oxfmt
+            oxlint
             ;
         };
       };
