@@ -3,7 +3,6 @@
   buildDotnetModule,
   fetchFromGitHub,
   dotnetCorePackages,
-  jq,
 }:
 
 buildDotnetModule rec {
