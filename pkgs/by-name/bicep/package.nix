@@ -7,13 +7,13 @@
 
 buildDotnetModule rec {
   pname = "bicep";
-  version = "0.43.8";
+  version = "0.46.1";
 
   src = fetchFromGitHub {
     owner = "Azure";
     repo = "bicep";
     rev = "v${version}";
-    hash = "sha256-uQSxoPd4/q3uVGqOe2auigpiQBr2TIznYJcDSrsJ6zA=";
+    hash = "sha256-I3u+MUGwODzC9fIOww9eh3E+4+ZiRTWVeG5IDEbyZLM=";
   };
 
   # patches = [
@@ -34,7 +34,7 @@ buildDotnetModule rec {
 
   nugetDeps = ./deps.json;
 
-  dotnet-sdk = dotnetCorePackages.sdk_10_0_2xx-bin;
+  dotnet-sdk = dotnetCorePackages.sdk_10_0_3xx-bin;
 
   dotnet-runtime = dotnetCorePackages.runtime_10_0;
 
