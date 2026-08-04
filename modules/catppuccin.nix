@@ -47,7 +47,8 @@ let
       imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
       catppuccin = {
-        enable = mkDefault true;
+        enable = true;
+        autoEnable = mkDefault true;
         accent = mkDefault accent;
         flavor = mkDefault flavor;
 
