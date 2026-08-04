@@ -3,31 +3,18 @@
   den.aspects.base = {
     homeManager =
       { config, ... }:
-      let
-        cfg = config.programs.difftastic;
-      in
       {
         programs.difftastic = {
           enable = true;
           git = {
             enable = false;
-            diffToolMode = true;
+            mode = "both";
           };
           jujutsu.enable = false;
           options = {
             background = "dark";
           };
         };
-
-        programs.git =
-          let
-            difft = "${lib.getExe cfg.package} ${lib.cli.toCommandLineShellGNU { } cfg.options}";
-          in
-          {
-            settings = lib.mkIf (cfg.enable && !cfg.git.enable && cfg.git.diffToolMode) {
-              difftool.difftastic.cmd = "${difft} $LOCAL $REMOTE";
-            };
-          };
 
         programs.jujutsu = {
           settings = {
