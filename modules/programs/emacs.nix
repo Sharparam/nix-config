@@ -54,13 +54,19 @@
         };
 
         homebrew = {
-          taps = [ "d12frosted/emacs-plus" ];
-          brews = [
+          taps = [
             {
-              name = "emacs-plus";
-              args = [ "with-native-comp" ];
+              name = "d12frosted/emacs-plus";
+              trusted = true;
             }
           ];
+          # brews = [
+          #   {
+          #     name = "emacs-plus";
+          #     args = [ "with-native-comp" ];
+          #   }
+          # ];
+          casks = [ "emacs-plus-app" ];
         };
       };
 
