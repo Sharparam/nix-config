@@ -23,6 +23,7 @@ in
       <programs/skhd>
       <programs/steermouse>
       <programs/sweet-home3d>
+      <programs/tailscale>
     ];
 
     darwin =
