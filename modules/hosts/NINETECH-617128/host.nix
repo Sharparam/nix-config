@@ -33,6 +33,12 @@ in
         environment.systemPath = [ "/opt/homebrew/bin" ];
 
         environment.systemPackages = [ pkgs.local.fix-keyboard ];
+
+        homebrew = {
+          masApps = {
+            "Windows App" = 1295203466;
+          };
+        };
       };
 
     provides.to-users = {
