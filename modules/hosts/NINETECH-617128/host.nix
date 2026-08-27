@@ -26,20 +26,27 @@ in
       <programs/tailscale>
     ];
 
-    darwin =
-      { pkgs, ... }:
-      {
-        system.stateVersion = 6;
-        environment.systemPath = [ "/opt/homebrew/bin" ];
+    darwin = { pkgs, ... }: {
+      system.stateVersion = 6;
+      environment.systemPath = [ "/opt/homebrew/bin" ];
 
-        environment.systemPackages = [ pkgs.local.fix-keyboard ];
+      environment.systemPackages = [ pkgs.local.fix-keyboard ];
 
-        homebrew = {
-          masApps = {
-            "Windows App" = 1295203466;
-          };
+      homebrew = {
+        taps = [
+          {
+            name = "slp/krun";
+            trusted = true;
+          }
+        ];
+        brews = [
+          "krunkit"
+        ];
+        masApps = {
+          "Windows App" = 1295203466;
         };
       };
+    };
 
     provides.to-users = {
       includes = [
