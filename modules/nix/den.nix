@@ -32,7 +32,7 @@ in
 
   # other inputs may be defined at a module using them.
   # Does not have nixpkgs input(?)
-  flake-file.inputs.den.url = "github:vic/den/244d16234ba8154e0fd2b45982bd475b87de0573";
+  flake-file.inputs.den.url = "github:vic/den/v0.18.0";
 
   den.default.includes = [
     den.provides.inputs'
