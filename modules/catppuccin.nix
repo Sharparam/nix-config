@@ -2,12 +2,10 @@
 {
   inputs,
   lib,
-  den,
   ...
 }:
 let
   inherit (lib) mkDefault;
-  inherit (den.lib) take;
 
   # latte, frappe, macchiato, mocha
   flavor = "frappe";
@@ -18,7 +16,7 @@ let
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  osAspect = take.exactly (
+  osAspect =
     { host }:
     {
       nixos =
@@ -39,8 +37,7 @@ let
             cursors.enable = mkDefault true;
           };
         };
-    }
-  );
+    };
 
   hmAspect = {
     homeManager = {
@@ -60,9 +57,9 @@ let
     };
   };
 
-  hmUserAspect = take.exactly ({ host, user }: hmAspect);
+  hmUserAspect = { host, user }: hmAspect;
 
-  hmHomeAspect = take.exactly ({ home }: hmAspect);
+  hmHomeAspect = { home }: hmAspect;
 
   hmAspects = [
     hmUserAspect

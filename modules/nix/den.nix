@@ -39,7 +39,7 @@ in
     den.provides.self'
   ];
 
-  den.ctx.user = {
+  den.schema.user = {
     includes = [
       den.provides.mutual-provider
       nixClass
