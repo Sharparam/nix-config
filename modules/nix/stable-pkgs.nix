@@ -5,7 +5,7 @@ let
   };
 in
 {
-  flake-file.inputs.nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+  flake-file.inputs.nixpkgs-stable.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
 
   den.default = {
     includes = [
