@@ -67,9 +67,9 @@ in
   den.schema.user =
     { lib, ... }:
     {
-      options = lib.mkMerge [
-        (userHomeOptions lib)
-      ];
+      # options = lib.mkMerge [
+      #   (userHomeOptions lib)
+      # ];
 
       config =
         let
@@ -90,9 +90,9 @@ in
   den.schema.home =
     { lib, ... }:
     {
-      options = lib.mkMerge [
-        (userHomeOptions lib)
-      ];
+      # options = lib.mkMerge [
+      #   (userHomeOptions lib)
+      # ];
 
       config =
         let
