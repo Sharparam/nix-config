@@ -58,6 +58,9 @@ include "%L"
 <Multi_key> <asterisk> <question> : ";" U037E # GREEK QUESTION MARK
 
 <Multi_key> <n> <b> <space> : " " U00A0 # NO-BREAK SPACE
+<Multi_key> <n> <b> <s> <p> : " " U00A0 # NO-BREAK SPACE
+<Multi_key> <n> <n> <b> <space> : " " U202F NARROW NO-BREAK SPACE
+<Multi_key> <n> <n> <b> <s> <p> : " " U202F NARROW NO-BREAK SPACE
 <Multi_key> <r> <l> <m> : "‏" U200F # RIGHT-TO-LEFT MARK
 <Multi_key> <r> <l> <o> : "‮" U202E # RIGHT-TO-LEFT OVERRIDE
 
