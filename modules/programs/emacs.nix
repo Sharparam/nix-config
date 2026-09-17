@@ -71,7 +71,12 @@
       };
 
     homeManager =
-      { config, lib, ... }:
+      {
+        config,
+        lib,
+        pkgs,
+        ...
+      }:
       let
         inherit (config.lib.file) mkOutOfStoreSymlink;
         sessionVariables = {
@@ -104,7 +109,11 @@
           ];
 
           shellAliases = {
-            emacs = "emacsclient --no-wait --create-frame";
+            emacs =
+              if pkgs.stdenv.isDarwin then
+                "emacsclient --no-wait --create-frame --alternate-editor ''"
+              else
+                "emacsclient --no-wait --create-frame";
           };
         };
 
