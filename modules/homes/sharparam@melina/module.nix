@@ -1,4 +1,4 @@
-{ __findFile, ... }:
+{ __findFile, den, ... }:
 let
   username = "sharparam";
   hostname = "melina";
@@ -26,6 +26,7 @@ in
   den.aspects."${username}".provides."${hostname}" = {
     includes = [
       # <sharparam>
+      den.aspects."sharparam@melina".provides.secrets
       <programs/ente>
       <programs/kitty>
       <programs/zathura>
