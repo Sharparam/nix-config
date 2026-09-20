@@ -31,6 +31,15 @@ in
           publicExplorer = "https://rad.sharparam.com/nodes/$host/$rid$path";
         };
       };
+      services.radicle = {
+        node = {
+          enable = mkDefault true;
+          lazy = {
+            enable = mkDefault true;
+            exitIdleTime = mkDefault "30min";
+          };
+        };
+      };
     };
   };
 }
