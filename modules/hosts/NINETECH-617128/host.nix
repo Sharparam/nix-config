@@ -38,9 +38,13 @@ in
             name = "slp/krun";
             trusted = true;
           }
+          {
+            name = "libkrun/krun";
+            trusted = true;
+          }
         ];
         brews = [
-          "krunkit"
+          "slp/krun/krunkit"
         ];
         masApps = {
           "Windows App" = 1295203466;
