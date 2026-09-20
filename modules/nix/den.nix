@@ -10,6 +10,7 @@ let
     den.batteries.forward {
       each = [
         "nixos"
+        "darwin"
         "homeManager"
       ];
       fromClass = _: "nix";
