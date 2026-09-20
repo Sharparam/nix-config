@@ -4,6 +4,7 @@
 [![GitLab Repo][repo-gitlab-badge]][repo-gitlab]
 [![Codeberg Repo][repo-codeberg-badge]][repo-codeberg]
 [![Tangled Repo][repo-tangled-badge]][repo-tangled]
+[![Radicle Repo][repo-radicle-badge]][repo-radicle]
 
 [![MPL-2.0 License][mpl-2.0-badge]][mpl-2.0]
 
@@ -44,10 +45,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 [repo-gitlab]: https://gitlab.com/Sharparam/nix-config
 [repo-codeberg]: https://codeberg.org/Sharparam/nix-config
 [repo-tangled]: https://tangled.org/sharparam.com/nix-config
+[repo-radicle]: https://rad.sharparam.com/nodes/seed.rad.sharparam.com/nix-config
 [repo-github-badge]: https://img.shields.io/badge/GitHub-gray?logo=github&style=for-the-badge
 [repo-gitlab-badge]: https://img.shields.io/badge/GitLab-gray?logo=gitlab&style=for-the-badge
 [repo-codeberg-badge]: https://img.shields.io/badge/Codeberg-gray?logo=codeberg&style=for-the-badge
 [repo-tangled-badge]: https://img.shields.io/badge/Tangled-gray?style=for-the-badge
+[repo-radicle-badge]: https://img.shields.io/badge/Radicle-gray?style=for-the-badge
 [sharparam]: https://sharparam.com
 [mpl-2.0]: https://mozilla.org/MPL/2.0/
 [mpl-2.0-badge]: https://img.shields.io/badge/License-MPL--2.0-darkgreen.svg?style=for-the-badge
