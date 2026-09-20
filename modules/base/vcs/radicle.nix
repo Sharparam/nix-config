@@ -31,6 +31,9 @@ in
               seedingPolicy = {
                 default = mkDefault "block";
               };
+              connect = [
+                "z6MkoGNAbLuAjQoJBSiwvmoGAM9CDp8idGjiABJEBUQyucqs@seed.rad.sharparam.com:8776"
+              ];
             };
             preferredSeeds = [
               "z6MkoGNAbLuAjQoJBSiwvmoGAM9CDp8idGjiABJEBUQyucqs@seed.rad.sharparam.com:8776"
