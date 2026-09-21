@@ -14,18 +14,10 @@ let
   };
 in
 {
-  # den.homes.x86_64-linux."${identifier}" = {
-  #   userName = username;
-  #   aspect = identifier;
-  # };
-
   den.homes.x86_64-linux."${identifier}" = { };
 
-  # den.aspects."${identifier}" = {
-  # den.aspects."${hostname}" = {
   den.aspects."${username}".provides."${hostname}" = {
     includes = [
-      # <sharparam>
       den.aspects."sharparam@melina".provides.secrets
       <programs/ente>
       <programs/kitty>
