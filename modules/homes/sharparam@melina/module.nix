@@ -40,6 +40,9 @@ in
         ...
       }:
       {
+        # https://nix-community.github.io/home-manager/usage/gpu-non-nixos.html#sec-usage-gpu-non-nixos
+        targets.genericLinux.enable = true;
+
         home.sessionVariables = sessionVariables;
         systemd.user.sessionVariables = sessionVariables;
 

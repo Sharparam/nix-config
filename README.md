@@ -10,6 +10,17 @@
 
 My Nix config/dotfiles.
 
+## Setup
+
+### Non-NixOS
+
+If using standalone home-manager setup on a non-NixOS setup, the following needs doing:
+
+1. Set `targets.genericLinux.enable = true;` in the home-manager config (see [sharparam@melina config](modules/homes/sharparam@melina/module.nix) for an example).
+2. Run `non-nixos-gpu-setup` as root after `home-manager switch`.
+   Locate the exact binary to run with `sudo` using `type non-nixos-gpu-setup`.
+3. Ensure that drivers were placed in `/run/opengl-drivers` and it setup a config in `/etc/tmpfiles.d/non-nixos-gpu.conf`.
+
 ## Acknowledgements
 
 Initial version (until TBD) used [snowfall-lib][] for the flake layout/structure.
