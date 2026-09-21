@@ -5,11 +5,16 @@ in
 {
   den.aspects.base = {
     homeManager =
-      { config, ... }:
+      { config, pkgs, ... }:
       let
         inherit (config) sops;
       in
       {
+        home.packages = [
+          pkgs.radicle-tui
+          pkgs.radicle-desktop
+        ];
+
         sops = {
           secrets."radicle/public-key".path = "${config.home.homeDirectory}/.radicle/keys/radicle.pub";
           secrets."radicle/private-key".path = "${config.home.homeDirectory}/.radicle/keys/radicle";
