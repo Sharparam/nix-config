@@ -1,0 +1,5 @@
+const CATPPUCCIN_FLAVOR = "@catppuccin-flavor@";
+
+pub fn config() {
+  theme::set(`catppuccin-${CATPPUCCIN_FLAVOR}`);
+}
