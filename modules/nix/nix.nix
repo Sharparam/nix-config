@@ -6,6 +6,7 @@ let
         alejandra
         cachix
         deadnix
+        nil
         nix-diff
         nix-health
         nix-output-monitor
