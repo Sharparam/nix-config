@@ -52,8 +52,8 @@
             in
             {
               ".face".source = profile;
-              "Pictures/profile.png".source = profile;
-              "Pictures/screenshots/.keep".text = "";
+              "pictures/profile.png".source = profile;
+              "pictures/screenshots/.keep".text = "";
               "repos/.keep".text = "";
             };
         };
