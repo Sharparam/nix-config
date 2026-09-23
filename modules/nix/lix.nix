@@ -26,7 +26,7 @@ let
     # nixVersions = throw "CppNix bad, use Lix instead";
     lixPackageSets = prev.lixPackageSets.extend (
       finalSet: prevSet: {
-        lix_2_93 = throw "Upgrade to Lix 2.94 or newer";
+        lix_2_94 = throw "Upgrade to Lix 2.95 or newer";
       }
     );
   };
