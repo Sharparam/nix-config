@@ -42,7 +42,7 @@ let
     };
     statusLine = {
       type = "command";
-      command = "bash ${./statusline-command.sh}";
+      command = "${./statusline-command.sh}";
     };
   };
 in
