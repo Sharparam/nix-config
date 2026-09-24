@@ -307,12 +307,14 @@ if [ "$(__field 'thinking.enabled')" = 'true' ]; then
   __emit '2;38;2;202;211;245' "$__v"
 fi
 __emit '2;38;2;202;211;245' ' / '
-if [ "$(__field 'output_style.name')" = 'default' ]; then
-  :
-else
-  __v="$(__field 'output_style.name')"
-  __emit '2;38;2;202;211;245' "$__v"
-fi
+# if [ "$(__field 'output_style.name')" = 'default' ]; then
+#   :
+# else
+#   __v="$(__field 'output_style.name')"
+#   __emit '2;38;2;202;211;245' "$__v"
+# fi
+__v="$(__field 'output_style.name')"
+__emit '2;38;2;202;211;245' "$__v"
 __emit '' ' '
 if [ "$(__field 'fast_mode')" = 'true' ]; then
   __emit '' '⚡'
