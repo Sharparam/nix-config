@@ -42,9 +42,16 @@ in
             name = "libkrun/krun";
             trusted = true;
           }
+          {
+            # Needed for MSSQL MCP
+            name = "microsoft/mssql-release";
+            trusted = true;
+          }
         ];
         brews = [
+          "unixodbc" # Needed for MSSQL MCP
           "slp/krun/krunkit"
+          "msodbcsql17" # Needed for MSSQL MCP
         ];
         masApps = {
           "Windows App" = 1295203466;
