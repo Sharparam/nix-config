@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Based on https://statusline.sh/community/ekkoh-2-line-minimal-wqJr
+
 set -u
 
 INPUT="$(cat)"
