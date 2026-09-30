@@ -28,6 +28,9 @@ let
         # "Bash(git log:*)"
         # "Bash(git diff:*)"
         # "Bash(git tag:*)"
+        # Work stuff
+        "mcp__mssql__query_sql"
+        "mcp__mssql-prod__query_sql"
       ];
 
       deny = [
