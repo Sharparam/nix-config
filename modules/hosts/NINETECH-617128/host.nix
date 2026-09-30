@@ -52,6 +52,7 @@ in
           "unixodbc" # Needed for MSSQL MCP
           "slp/krun/krunkit"
           "msodbcsql17" # Needed for MSSQL MCP
+          "openssl@3" # Needed for msodbcsql17, breaks with newer OpenSSL
         ];
         masApps = {
           "Windows App" = 1295203466;
