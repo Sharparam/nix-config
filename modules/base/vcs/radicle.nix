@@ -10,6 +10,12 @@ in
         inherit (config) sops;
       in
       {
+        # The security issue is about private repos,
+        # which I don't use radicle for, so allowing 1.10.3 is fine.
+        nixpkgs.config.permittedInsecurePackages = [
+          "radicle-node-1.10.3"
+        ];
+
         home.packages = [
           pkgs.radicle-tui
           pkgs.radicle-desktop
