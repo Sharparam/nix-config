@@ -1,5 +1,4 @@
-{ __findFile, ... }:
-{
+{__findFile, ...}: {
   den.aspects.sharparam = {
     includes = [
       <nix-allowed-user>
@@ -22,7 +21,7 @@
       <programs/ai/claude>
       <programs/ansible>
       <programs/btop>
-      <programs/filen>
+      # <programs/filen>
       <programs/glow>
       <programs/helix>
     ];
@@ -32,33 +31,29 @@
       system.defaults.screencapture.location = "/Users/sharparam/Pictures/screenshots/";
     };
 
-    homeManager =
-      let
-        sessionVariables = {
-          ANSIBLE_NOCOWS = 1;
-          BROWSER = "firefox";
-          CMAKE_GENERATOR = "Ninja";
-          DOTNET_CLI_TELEMETRY_OPTOUT = 1;
-          MAKEFLAGS = "-j$(nproc)";
-        };
-      in
-      {
-        home = {
-          inherit sessionVariables;
-
-          file =
-            let
-              profile = ../../../assets/sharparam/profile.png;
-            in
-            {
-              ".face".source = profile;
-              "pictures/profile.png".source = profile;
-              "pictures/screenshots/.keep".text = "";
-              "repos/.keep".text = "";
-            };
-        };
-
-        systemd.user = { inherit sessionVariables; };
+    homeManager = let
+      sessionVariables = {
+        ANSIBLE_NOCOWS = 1;
+        BROWSER = "firefox";
+        CMAKE_GENERATOR = "Ninja";
+        DOTNET_CLI_TELEMETRY_OPTOUT = 1;
+        MAKEFLAGS = "-j$(nproc)";
       };
+    in {
+      home = {
+        inherit sessionVariables;
+
+        file = let
+          profile = ../../../assets/sharparam/profile.png;
+        in {
+          ".face".source = profile;
+          "pictures/profile.png".source = profile;
+          "pictures/screenshots/.keep".text = "";
+          "repos/.keep".text = "";
+        };
+      };
+
+      systemd.user = {inherit sessionVariables;};
+    };
   };
 }
