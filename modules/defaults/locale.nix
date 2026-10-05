@@ -1,22 +1,14 @@
-{ inputs, lib, ... }:
+{ ... }:
 {
-  flake-file.inputs.locale-en_se = {
-    url = lib.mkDefault "github:Sharparam/locale-en_se/main";
-    inputs.nixpkgs.follows = lib.mkDefault "nixpkgs";
-  };
-
   den.default = {
     includes = [
       (
         { home }:
         {
           homeManager =
-            { inputs', ... }:
-            let
-              glibcLocales = inputs'.locale-en_se.packages.glibcLocales;
-            in
+            { pkgs, ... }:
             {
-              i18n.glibcLocales = glibcLocales.override {
+              i18n.glibcLocales = pkgs.glibcLocales.override {
                 allLocales = false;
                 locales = [
                   "C.UTF-8/UTF-8"
@@ -33,10 +25,6 @@
     ];
 
     nixos = {
-      imports = [
-        inputs.locale-en_se.nixosModules.default
-      ];
-
       # Select internationalisation properties.
       i18n.defaultLocale = "en_GB.UTF-8";
 
