@@ -6,5 +6,5 @@
     # inputs.flake-file.flakeModules.nix-auto-follow
   ];
 
-  flake-file.inputs.flake-file.url = lib.mkDefault "github:vic/flake-file";
+  flake-file.inputs.flake-file.url = lib.mkDefault "github:denful/flake-file";
 }
