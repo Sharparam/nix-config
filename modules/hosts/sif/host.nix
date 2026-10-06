@@ -20,6 +20,7 @@
       <desktops/niri>
 
       <programs/firefox>
+      <programs/telegram>
     ];
     nixos = {pkgs, ...}: {
       imports = [
