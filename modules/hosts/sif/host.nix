@@ -14,10 +14,12 @@
       <base>
       <boot/systemd-boot>
       <desktops/greetd>
-      <desktops/niri>
+      # <desktops/niri>
+      <desktops/noctalia-niri>
     ];
     provides.to-users.includes = [
-      <desktops/niri>
+      # <desktops/niri>
+      <desktops/noctalia-niri>
 
       <programs/discord>
       <programs/firefox>
