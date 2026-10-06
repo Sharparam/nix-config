@@ -19,6 +19,7 @@
     provides.to-users.includes = [
       <desktops/niri>
 
+      <programs/discord>
       <programs/firefox>
       <programs/telegram>
     ];
