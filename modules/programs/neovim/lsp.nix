@@ -38,7 +38,7 @@ let
           fsharp.enable = !isDarwin;
           gleam.enable = true;
           go.enable = true;
-          haskell.enable = true;
+          # haskell.enable = true;
           html.enable = true;
           java.enable = true;
           json.enable = true;
