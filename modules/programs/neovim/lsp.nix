@@ -47,7 +47,13 @@ let
           lua.enable = true;
           make.enable = true;
           markdown.enable = true;
-          nix.enable = true;
+          nix = {
+            enable = true;
+            format = {
+              enable = true;
+              type = [ "nixfmt" ];
+            };
+          };
           nu.enable = true;
           php.enable = true;
           # python.enable = true;
