@@ -32,3 +32,6 @@ build *args:
 
 switch *args:
     nh {{ nh_sub }} switch {{ args }}
+
+boot *args:
+    nh {{ nh_sub }} boot {{ args }}
