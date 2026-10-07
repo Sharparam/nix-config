@@ -30,6 +30,9 @@ format:
 build *args:
     nh {{ nh_sub }} build {{ args }}
 
+test *args:
+    nh {{ nh_sub }} test {{ args }}
+
 switch *args:
     nh {{ nh_sub }} switch {{ args }}
 
