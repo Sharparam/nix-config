@@ -2,10 +2,11 @@
   __findFile,
   inputs,
   ...
-}: {
+}:
+{
   den.hosts.x86_64-linux.sif = {
     users = {
-      sharparam = {};
+      sharparam = { };
     };
   };
 
@@ -23,9 +24,10 @@
 
       <programs/discord>
       <programs/firefox>
+      <programs/signal>
       <programs/telegram>
     ];
-    nixos = {pkgs, ...}: {
+    nixos = { pkgs, ... }: {
       imports = [
         inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x260
         # Include the results of the hardware scan.
@@ -67,7 +69,7 @@
       system.stateVersion = "25.11"; # Did you read the comment?
     };
 
-    homeManager = {pkgs, ...}: {
+    homeManager = { pkgs, ... }: {
     };
   };
 }
