@@ -29,8 +29,8 @@ in
       in
       {
         home.packages = [
-          pkgs.radicle-tui
-          pkgs.radicle-desktop
+          # pkgs.radicle-tui
+          # pkgs.radicle-desktop
         ];
 
         sops = {
