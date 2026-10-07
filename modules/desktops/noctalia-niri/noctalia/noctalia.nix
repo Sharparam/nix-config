@@ -21,6 +21,7 @@
           auth = {
             allow_empty_password = true;
           };
+          idle.timeout = 600;
         };
       };
     };
@@ -31,6 +32,27 @@
         systemd.enable = mkDefault true;
         checkConfig = mkDefault true;
         settings = {
+          idle = {
+            behavior_order = ["lock" "screen-off" "suspend"];
+            pre_action_fade_seconds = 5.0;
+            behavior = {
+              lock = {
+                action = "lock";
+                enabled = true;
+                timeout = 600;
+              };
+              screen-off = {
+                action = "screen_off";
+                enabled = true;
+                timeout = 660;
+              };
+              suspend = {
+                action = "lock_and_suspend";
+                enabled = false;
+                timeout = 900;
+              };
+            };
+          };
           lockscreen = {
             allow_empty_password = true;
           };
