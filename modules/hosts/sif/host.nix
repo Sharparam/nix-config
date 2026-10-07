@@ -50,6 +50,13 @@
 
       services.openssh.enable = false;
 
+      security.pam = {
+        services = {
+          sudo.u2f.enable = true;
+          systemd-run0.u2f.enable = true;
+        };
+      };
+
       # Define a user account. Don't forget to set a password with ‘passwd’.
       users.users.sharparam = {
         isNormalUser = true;
