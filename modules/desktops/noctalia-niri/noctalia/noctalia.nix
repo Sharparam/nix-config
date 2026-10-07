@@ -67,6 +67,9 @@
                 };
               };
             };
+            location = {
+              auto_locate = true;
+            };
             lockscreen = {
               allow_empty_password = true;
             };
