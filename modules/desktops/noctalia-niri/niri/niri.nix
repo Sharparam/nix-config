@@ -225,31 +225,8 @@
               # "Ctrl+Alt+Delete".quit = {};
               "Mod+Shift+P".power-off-monitors = { };
             };
-            _children = [
-              {
-                window-rule._children = [
-                  {
-                    match._props = {
-                      app-id = ''r#"firefox$"#'';
-                      title = "^Picture-in-Picture$";
-                    };
-                  }
-                  { open-floating = true; }
-                ];
-              }
-              {
-                window-rule._children = [
-                  {
-                    match._props = {
-                      app-id = ''r#"^com\.onepassword\.OnePassword$"#'';
-                    };
-                  }
-                  { open-floating = true; }
-                  { block-out-from = "screen-capture"; }
-                ];
-              }
-            ];
           };
+          extraConfig = builtins.readFile ./config.kdl;
         };
       };
     };

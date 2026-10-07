@@ -1,0 +1,13 @@
+// Config that can't be expressed in Nix
+// (primarily those that use KDL raw strings)
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"^com\.onepassword\.OnePassword$"#
+    open-floating true
+    block-out-from "screen-capture"
+}
