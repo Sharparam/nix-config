@@ -17,6 +17,12 @@
             scheme = "Synced";
             scheme_selector_position = "hidden";
             theme_mode = "dark";
+            wallpaper = let
+              wallpapers = pkgs.local."sharparam/wallpapers";
+            in {
+              fill_mode = "crop";
+              path = "${wallpapers}/share/wallpapers/nix-black-4k.png";
+            };
           };
           auth = {
             allow_empty_password = true;
@@ -71,6 +77,13 @@
             shell_mode = "follow";
             source = "builtin";
             builtin = "Catppuccin";
+          };
+          wallpaper = let
+            wallpapers = pkgs.local."sharparam/wallpapers";
+          in {
+            enabled = true;
+            default.path = "${wallpapers}/share/wallpapers/nix-black-4k.png";
+            fill_mode = "crop";
           };
         };
       };

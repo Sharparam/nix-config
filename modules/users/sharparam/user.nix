@@ -31,7 +31,7 @@
       system.defaults.screencapture.location = "/Users/sharparam/Pictures/screenshots/";
     };
 
-    homeManager = let
+    homeManager = {pkgs, ...}: let
       sessionVariables = {
         ANSIBLE_NOCOWS = 1;
         BROWSER = "firefox";
@@ -39,6 +39,7 @@
         DOTNET_CLI_TELEMETRY_OPTOUT = 1;
         MAKEFLAGS = "-j$(nproc)";
       };
+      wallpapers = pkgs.local."sharparam/wallpapers";
     in {
       home = {
         inherit sessionVariables;
@@ -49,6 +50,7 @@
           ".face".source = profile;
           "pictures/profile.png".source = profile;
           "pictures/screenshots/.keep".text = "";
+          "pictures/wallpapers/nix.png".source = "${wallpapers}/share/wallpapers/nix-black-4k.png";
           "repos/.keep".text = "";
         };
       };
