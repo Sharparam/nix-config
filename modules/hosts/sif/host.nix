@@ -17,6 +17,8 @@
       <desktops/greetd>
       # <desktops/niri>
       <desktops/noctalia-niri>
+
+      <programs/kde-connect>
     ];
     provides.to-users.includes = [
       # <desktops/niri>
@@ -24,6 +26,7 @@
 
       <programs/discord>
       <programs/firefox>
+      <programs/kde-connect>
       <programs/signal>
       <programs/telegram>
     ];
