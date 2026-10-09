@@ -31,6 +31,7 @@ let
 
           catppuccin = {
             enable = mkDefault true;
+            autoEnable = mkDefault true;
             accent = mkDefault accent;
             flavor = mkDefault flavor;
             cache.enable = mkDefault true;
@@ -44,11 +45,12 @@ let
       imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
       catppuccin = {
-        enable = true;
+        enable = mkDefault true;
         autoEnable = mkDefault true;
         accent = mkDefault accent;
         flavor = mkDefault flavor;
 
+        cursors.enable = mkDefault true;
         nvim.enable = mkDefault false;
 
         # We manage this manually to ensure correct load order
