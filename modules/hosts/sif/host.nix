@@ -55,6 +55,7 @@
 
       security.pam = {
         services = {
+          polkit-1.u2f.enable = true;
           sudo.u2f.enable = true;
           systemd-run0.u2f.enable = true;
         };
