@@ -1,4 +1,4 @@
-{__findFile, ...}: {
+{ __findFile, ... }: {
   den.aspects.sharparam = {
     includes = [
       <nix-allowed-user>
@@ -31,31 +31,37 @@
       system.defaults.screencapture.location = "/Users/sharparam/Pictures/screenshots/";
     };
 
-    homeManager = {pkgs, ...}: let
-      sessionVariables = {
-        ANSIBLE_NOCOWS = 1;
-        BROWSER = "firefox";
-        CMAKE_GENERATOR = "Ninja";
-        DOTNET_CLI_TELEMETRY_OPTOUT = 1;
-        MAKEFLAGS = "-j$(nproc)";
-      };
-      wallpapers = pkgs.local."sharparam/wallpapers";
-    in {
-      home = {
-        inherit sessionVariables;
-
-        file = let
-          profile = ../../../assets/sharparam/profile.png;
-        in {
-          ".face".source = profile;
-          "pictures/profile.png".source = profile;
-          "pictures/screenshots/.keep".text = "";
-          "pictures/wallpapers/nix.png".source = "${wallpapers}/share/wallpapers/nix-black-4k.png";
-          "repos/.keep".text = "";
+    homeManager =
+      { lib, pkgs, ... }:
+      let
+        nproc = lib.meta.getExe' pkgs.coreutils "nproc";
+        sessionVariables = {
+          ANSIBLE_NOCOWS = 1;
+          BROWSER = "firefox";
+          CMAKE_GENERATOR = "Ninja";
+          DOTNET_CLI_TELEMETRY_OPTOUT = 1;
+          MAKEFLAGS = "-j$(${nproc})";
         };
-      };
+        wallpapers = pkgs.local."sharparam/wallpapers";
+      in
+      {
+        home = {
+          inherit sessionVariables;
 
-      systemd.user = {inherit sessionVariables;};
-    };
+          file =
+            let
+              profile = ../../../assets/sharparam/profile.png;
+            in
+            {
+              ".face".source = profile;
+              "pictures/profile.png".source = profile;
+              "pictures/screenshots/.keep".text = "";
+              "pictures/wallpapers/nix.png".source = "${wallpapers}/share/wallpapers/nix-black-4k.png";
+              "repos/.keep".text = "";
+            };
+        };
+
+        systemd.user = { inherit sessionVariables; };
+      };
   };
 }
