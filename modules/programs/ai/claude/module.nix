@@ -7,6 +7,41 @@ let
   };
 
   settings = {
+    hooks = {
+      PostToolUse = [
+        {
+          hooks = [
+            {
+              command = "atuin hook claude-code";
+              type = "command";
+            }
+          ];
+          matcher = "Bash";
+        }
+      ];
+      PostToolUseFailure = [
+        {
+          hooks = [
+            {
+              command = "atuin hook claude-code";
+              type = "command";
+            }
+          ];
+          matcher = "Bash";
+        }
+      ];
+      PreToolUse = [
+        {
+          hooks = [
+            {
+              command = "atuin hook claude-code";
+              type = "command";
+            }
+          ];
+          matcher = "Bash";
+        }
+      ];
+    };
     permissions = {
       allow = [
         "Bash(date:*)"
