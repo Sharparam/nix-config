@@ -56,40 +56,45 @@ let
     };
 
   hmAspect = {
-    homeManager = { config, ... }: {
-      imports = [ inputs.catppuccin.homeModules.catppuccin ];
+    homeManager =
+      { config, pkgs, ... }:
+      let
+        inherit (pkgs.stdenv.hostPlatform) isDarwin;
+      in
+      {
+        imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
-      catppuccin = {
-        enable = mkDefault true;
-        autoEnable = mkDefault true;
-        accent = mkDefault accent;
-        flavor = mkDefault flavor;
-
-        cursors = {
+        catppuccin = {
           enable = mkDefault true;
-          accent = mkDefault "dark";
-        };
-        nvim.enable = mkDefault false;
+          autoEnable = mkDefault true;
+          accent = mkDefault accent;
+          flavor = mkDefault flavor;
 
-        # We manage this manually to ensure correct load order
-        zsh-syntax-highlighting.enable = mkDefault false;
-      };
-
-      gtk.enable = mkDefault true;
-
-      home = {
-        pointerCursor = {
-          enable = mkDefault true;
-          dotIcons.enable = mkDefault true;
-          gtk = {
-            enable = mkDefault true;
+          cursors = {
+            enable = mkDefault (!isDarwin);
+            accent = mkDefault "dark";
           };
-          x11 = {
+          nvim.enable = mkDefault false;
+
+          # We manage this manually to ensure correct load order
+          zsh-syntax-highlighting.enable = mkDefault false;
+        };
+
+        gtk.enable = mkDefault true;
+
+        home = {
+          pointerCursor = lib.mkIf (!isDarwin) {
             enable = mkDefault true;
+            dotIcons.enable = mkDefault true;
+            gtk = {
+              enable = mkDefault true;
+            };
+            x11 = {
+              enable = mkDefault true;
+            };
           };
         };
       };
-    };
   };
 
   hmUserAspect = { host, user }: hmAspect;
