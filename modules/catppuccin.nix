@@ -80,7 +80,7 @@ let
           zsh-syntax-highlighting.enable = mkDefault false;
         };
 
-        gtk.enable = mkDefault true;
+        gtk.enable = mkDefault (!isDarwin);
 
         home = {
           pointerCursor = lib.mkIf (!isDarwin) {
