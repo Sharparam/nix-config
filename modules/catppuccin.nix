@@ -70,6 +70,8 @@ let
           accent = mkDefault accent;
           flavor = mkDefault flavor;
 
+          cache.enable = mkDefault true;
+
           cursors = {
             enable = mkDefault (!isDarwin);
             accent = mkDefault "dark";
