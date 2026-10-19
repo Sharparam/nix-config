@@ -35,10 +35,6 @@ in
       homebrew = {
         taps = [
           {
-            name = "slp/krun";
-            trusted = true;
-          }
-          {
             name = "libkrun/krun";
             trusted = true;
           }
@@ -50,7 +46,7 @@ in
         ];
         brews = [
           "unixodbc" # Needed for MSSQL MCP
-          "slp/krun/krunkit"
+          "libkrun/krun/krunkit"
           "msodbcsql17" # Needed for MSSQL MCP
           "openssl@3" # Needed for msodbcsql17, breaks with newer OpenSSL
         ];
