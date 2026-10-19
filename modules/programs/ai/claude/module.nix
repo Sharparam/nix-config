@@ -1,87 +1,15 @@
-{ __findFile, inputs, ... }:
+{
+  __findFile,
+  inputs,
+  lib,
+  ...
+}:
 let
+  inherit (lib) mkDefault;
   substituters = [ "https://claude-code.cachix.org" ];
   trusted-public-keys = [ "claude-code.cachix.org-1:YeXf2aNu7UTX8Vwrze0za1WEDS+4DuI2kVeWEE4fsRk=" ];
   nix.settings = {
     inherit substituters trusted-public-keys;
-  };
-
-  settings = {
-    hooks = {
-      PostToolUse = [
-        {
-          hooks = [
-            {
-              command = "atuin hook claude-code";
-              type = "command";
-            }
-          ];
-          matcher = "Bash";
-        }
-      ];
-      PostToolUseFailure = [
-        {
-          hooks = [
-            {
-              command = "atuin hook claude-code";
-              type = "command";
-            }
-          ];
-          matcher = "Bash";
-        }
-      ];
-      PreToolUse = [
-        {
-          hooks = [
-            {
-              command = "atuin hook claude-code";
-              type = "command";
-            }
-          ];
-          matcher = "Bash";
-        }
-      ];
-    };
-    permissions = {
-      allow = [
-        "Bash(date:*)"
-        "Bash(echo:*)"
-        "Bash(cat:*)"
-        "Bash(ls:*)"
-        # GSD
-        # "Bash(mkdir:*)"
-        "Bash(wc:*)"
-        "Bash(head:*)"
-        "Bash(tail:*)"
-        "Bash(sort:*)"
-        "Bash(grep:*)"
-        "Bash(tr:*)"
-        # GSD
-        # "Bash(git add:*)"
-        # "Bash(git commit:*)"
-        # "Bash(git status:*)"
-        # "Bash(git log:*)"
-        # "Bash(git diff:*)"
-        # "Bash(git tag:*)"
-        # Work stuff
-        "mcp__mssql__query_sql"
-        "mcp__mssql-prod__query_sql"
-      ];
-
-      deny = [
-        "Read(.env)"
-        "Read(.env.*)"
-        "Read(**/secrets/*)"
-        "Read(**/*credential*)"
-        "Read(**/*.age)"
-        "Read(**/*.pem)"
-        "Read(**/*.key)"
-      ];
-    };
-    statusLine = {
-      type = "command";
-      command = "${./statusline-command.sh}";
-    };
   };
 in
 {
@@ -120,18 +48,57 @@ in
       };
 
       homeManager =
-        { pkgs, ... }:
-        let
-          jsonFormat = pkgs.formats.json { };
-        in
+        { config, pkgs, ... }:
         {
           inherit nix;
-
-          home.file.".claude/settings.json".source = jsonFormat.generate "claude-settings.json" settings;
 
           programs.claude-code = {
             enable = true;
             package = pkgs.claude-code;
+            configDir = mkDefault "${config.xdg.configHome}/claude";
+            mutableSettings = mkDefault false;
+            settings = {
+              permissions = {
+                allow = [
+                  "Bash(date:*)"
+                  "Bash(echo:*)"
+                  "Bash(cat:*)"
+                  "Bash(ls:*)"
+                  # GSD
+                  # "Bash(mkdir:*)"
+                  "Bash(wc:*)"
+                  "Bash(head:*)"
+                  "Bash(tail:*)"
+                  "Bash(sort:*)"
+                  "Bash(grep:*)"
+                  "Bash(tr:*)"
+                  # GSD
+                  # "Bash(git add:*)"
+                  # "Bash(git commit:*)"
+                  # "Bash(git status:*)"
+                  # "Bash(git log:*)"
+                  # "Bash(git diff:*)"
+                  # "Bash(git tag:*)"
+                  # Work stuff
+                  "mcp__mssql__query_sql"
+                  "mcp__mssql-prod__query_sql"
+                ];
+
+                deny = [
+                  "Read(.env)"
+                  "Read(.env.*)"
+                  "Read(**/secrets/*)"
+                  "Read(**/*credential*)"
+                  "Read(**/*.age)"
+                  "Read(**/*.pem)"
+                  "Read(**/*.key)"
+                ];
+              };
+              statusLine = {
+                type = "command";
+                command = "${./statusline-command.sh}";
+              };
+            };
           };
         };
     };
