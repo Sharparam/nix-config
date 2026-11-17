@@ -17,7 +17,6 @@ in
         programs = {
           direnv = {
             enable = true;
-            mise.enable = true;
             nix-direnv = {
               enable = true;
               package = mkDefault pkgs.lixPackageSets.latest.nix-direnv;
