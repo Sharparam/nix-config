@@ -58,6 +58,11 @@ in
             configDir = mkDefault "${config.xdg.configHome}/claude";
             mutableSettings = mkDefault false;
             settings = {
+              agentPushNotifEnabled = mkDefault true;
+              editorMode = mkDefault "vim";
+              inputNeededNotifEnabled = mkDefault true;
+              tui = mkDefault "fullscreen";
+              attribution = mkDefault false;
               permissions = {
                 allow = [
                   "Bash(date:*)"
