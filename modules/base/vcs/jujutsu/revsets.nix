@@ -4,6 +4,7 @@
       programs.jujutsu.settings = {
         revsets = {
           bookmark-advance-to = "closest_pushable(@)";
+          git-sign-on-push = "~signed() & mine()";
         };
         revset-aliases = {
           "closest_pushable(to)" =

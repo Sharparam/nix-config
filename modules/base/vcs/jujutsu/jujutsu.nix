@@ -26,7 +26,6 @@ _: {
               auto-local-bookmark = false;
               colocate = true;
               private-commits = "blacklist()";
-              sign-on-push = true;
               write-change-id-header = true;
             };
             ui = {
