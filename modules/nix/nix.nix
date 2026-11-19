@@ -42,6 +42,9 @@ in
         pkgs,
         ...
       }:
+      let
+        inherit (lib) mkDefault;
+      in
       {
         environment.systemPackages = packages pkgs;
 
@@ -59,7 +62,7 @@ in
             http-connections = 50;
             log-lines = 50;
             warn-dirty = false;
-            sandbox = "relaxed";
+            sandbox = mkDefault "relaxed";
           };
           gc = {
             automatic = lib.mkDefault true;
@@ -82,6 +85,10 @@ in
           # See: https://github.com/LnL7/nix-darwin/issues/943
           # See: https://github.com/LnL7/nix-darwin/issues/947
           use-xdg-base-directories = false;
+
+          # 2026-11-19: Sandbox broken on macOS 27.x
+          # See: https://git.lix.systems/lix-project/lix/issues/1308
+          sandbox = false;
         };
       };
     };
