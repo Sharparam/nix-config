@@ -49,6 +49,9 @@ in
 
       homeManager =
         { config, pkgs, ... }:
+        let
+          inherit (pkgs) fetchFromGitHub;
+        in
         {
           inherit nix;
 
@@ -102,6 +105,14 @@ in
               statusLine = {
                 type = "command";
                 command = "${./statusline-command.sh}";
+              };
+            };
+            marketplaces = {
+              "claude-plugins-official" = fetchFromGitHub {
+                owner = "anthropics";
+                repo = "claude-plugins-official";
+                rev = "df9699a55c56707e9948a32951ea356638ea8519";
+                sha256 = "sha256-cVfCTknLEP3IJ3GTaL6bLmnNU6Z1UhC0ZjgdvletP6g=";
               };
             };
           };
