@@ -1,58 +1,58 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib) mkDefault;
-in {
+in
+{
   flake-file.inputs.iosevka = {
     url = lib.mkDefault "github:Sharparam/Iosevka/v1.0.1";
     inputs.nixpkgs.follows = lib.mkDefault "nixpkgs";
   };
 
   den.aspects.base = {
-    os = {
-      pkgs,
-      inputs',
-      ...
-    }: {
-      environment.variables = {
-        LOG_ICONS = "true";
-      };
+    os =
+      {
+        pkgs,
+        inputs',
+        ...
+      }:
+      {
+        environment.variables = {
+          LOG_ICONS = "true";
+        };
 
-      fonts = {
-        packages = builtins.attrValues {
-          inherit
-            (pkgs)
-            corefonts
-            jetbrains-mono
-            meslo-lgs-nf
-            noto-fonts
-            noto-fonts-cjk-sans
-            noto-fonts-cjk-serif
-            noto-fonts-color-emoji
-            roboto
-            symbola
-            ;
+        fonts = {
+          packages = builtins.attrValues {
+            inherit (pkgs)
+              corefonts
+              jetbrains-mono
+              meslo-lgs-nf
+              noto-fonts
+              noto-fonts-cjk-sans
+              noto-fonts-cjk-serif
+              noto-fonts-color-emoji
+              roboto
+              symbola
+              ;
 
-          inherit
-            (pkgs.nerd-fonts)
-            caskaydia-cove
-            hack
-            iosevka
-            symbols-only
-            ;
+            inherit (pkgs.nerd-fonts)
+              caskaydia-cove
+              hack
+              iosevka
+              symbols-only
+              ;
 
-          inherit
-            (pkgs.local)
-            nonicons-bin
-            ;
+            inherit (pkgs.local)
+              nonicons-bin
+              ;
 
-          iosevka-sharpie = inputs'.iosevka.packages.bin;
+            iosevka-sharpie = inputs'.iosevka.packages.bin;
+          };
         };
       };
-    };
 
-    nixos = {pkgs, ...}: {
+    nixos = { pkgs, ... }: {
       environment.systemPackages = builtins.attrValues {
-        inherit
-          (pkgs)
+        inherit (pkgs)
           font-manager
           fontpreview
           smile
@@ -66,23 +66,24 @@ in {
           antialias = true;
           hinting.enable = true;
 
-          defaultFonts = let
-            nerd = ["Symbols Nerd Font"];
-            emoji = [
-              "Noto Color Emoji"
-              "Noto Emoji"
-            ];
-          in {
-            serif = ["Noto Serif"] ++ emoji ++ nerd;
-            sansSerif = ["Noto Sans"] ++ emoji ++ nerd;
-            monospace =
-              [
+          defaultFonts =
+            let
+              nerd = [ "Symbols Nerd Font" ];
+              emoji = [
+                "Noto Color Emoji"
+                "Noto Emoji"
+              ];
+            in
+            {
+              serif = [ "Noto Serif" ] ++ emoji ++ nerd;
+              sansSerif = [ "Noto Sans" ] ++ emoji ++ nerd;
+              monospace = [
                 "Iosevka Sharpie"
                 "Iosevka Nerd Font"
               ]
               ++ nerd;
-            inherit emoji;
-          };
+              inherit emoji;
+            };
         };
 
         fontDir = {
@@ -101,22 +102,24 @@ in {
       ];
     };
 
-    homeManager = {
-      lib,
-      pkgs,
-      ...
-    }:
-      lib.mkIf pkgs.stdenv.isLinux {
+    homeManager =
+      {
+        lib,
+        pkgs,
+        ...
+      }:
+      lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
         fonts.fontconfig = {
           enable = mkDefault true;
         };
 
         xdg.configFile."fontconfig/conf.d/99-local-fonts.conf".source = ./99-local-fonts.conf;
 
-        home.activation.ensureDummyFontConfig = let
-          dummyPath = "$HOME/.config/fontconfig/conf.d/00-dummy.conf";
-        in
-          lib.hm.dag.entryAfter ["writeBoundary"] ''
+        home.activation.ensureDummyFontConfig =
+          let
+            dummyPath = "$HOME/.config/fontconfig/conf.d/00-dummy.conf";
+          in
+          lib.hm.dag.entryAfter [ "writeBoundary" ] ''
             mkdir -p "$HOME/.config/fontconfig/conf.d"
             run rm $VERBOSE_ARG --force "${dummyPath}"
             run cp $VERBOSE_ARG ${builtins.toPath ./00-dummy.conf} "${dummyPath}"

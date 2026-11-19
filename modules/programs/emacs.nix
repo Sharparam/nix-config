@@ -110,7 +110,7 @@
 
           shellAliases = {
             emacs =
-              if pkgs.stdenv.isDarwin then
+              if pkgs.stdenv.hostPlatform.isDarwin then
                 "emacsclient --no-wait --create-frame --alternate-editor ''"
               else
                 "emacsclient --no-wait --create-frame";

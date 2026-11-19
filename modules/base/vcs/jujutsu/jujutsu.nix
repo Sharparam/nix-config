@@ -16,7 +16,7 @@ _: {
               backends.ssh = {
                 allowed-signers = "~/.ssh/allowed_signers";
                 program =
-                  if pkgs.stdenv.isLinux then
+                  if pkgs.stdenv.hostPlatform.isLinux then
                     (lib.getExe' pkgs._1password-gui "op-ssh-sign")
                   else
                     "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";

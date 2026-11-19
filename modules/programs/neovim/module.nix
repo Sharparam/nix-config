@@ -85,7 +85,7 @@ let
   homeManager = {
     inherit nix;
 
-    imports = [ inputs.nvf.homeManagerModules.default ];
+    imports = [ inputs.nvf.homeModules.default ];
 
     home = {
       inherit sessionVariables;

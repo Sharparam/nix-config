@@ -12,7 +12,7 @@
       {
         programs.vscode = {
           enable = lib.mkDefault true;
-          package = lib.mkIf pkgs.stdenv.isLinux pkgs.vscode.fhs;
+          package = lib.mkIf pkgs.stdenv.hostPlatform.isLinux pkgs.vscode.fhs;
           # enableUpdateCheck = true;
           # enableExtensionUpdateCheck = true;
           # mutableExtensionsDir = true;

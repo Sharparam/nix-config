@@ -11,7 +11,7 @@ in
     homeManager =
       { pkgs, ... }:
       let
-        inherit (pkgs.stdenv) isDarwin;
+        inherit (pkgs.stdenv.hostPlatform) isDarwin;
         package = if isDarwin then null else pkgs.ghostty;
       in
       {
